@@ -14,3 +14,6 @@ Glyphics is NOT:
 
 Glyphics Requires only .NET 3.5 or later
  
+
+![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
+
