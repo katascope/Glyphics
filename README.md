@@ -12,8 +12,5 @@ Glyphics is:
 Glyphics is NOT:
 *  A game, game API, or high-performance 3d engine
 
-Glyphics also:
- *  Uses only C# and .NET 4.5
- *  Passes Resharper and VS Code Analysis with 0 warnings or errors
- *  Has over 200 unit tests
- *  Has a self-documenting system
+Glyphics Requires only .NET 3.5 or later
+ 
