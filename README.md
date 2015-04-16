@@ -5,7 +5,9 @@ Glyphics is:
 *  A 3D Raster engine and C# programming API 
 *  A set of raster drawing functions
 *  A language, compiler, and virtual GPU
-*  A pipeline 3D Raster grids, pixels, rectangles, and triangles
+*  A pipeline for 3D Raster grids, pixels, rectangles, and triangles
+*  A Stereolithography (.STL) file manipulator (translate/scale/rotate/etc)
+*  A Portable Network Graphics (.PNG) file manipulator (resize/colorize/etc)
 *  Intended to solve the problem domain of 3D raster grids
    
 Glyphics is NOT:
