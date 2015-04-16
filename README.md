@@ -1,7 +1,6 @@
 # Glyphics
 Glyphics Engine
 
-  
 Glyphics is:
 *  A 3D Raster engine and C# programming API 
 *  A set of raster drawing functions
@@ -14,6 +13,4 @@ Glyphics is NOT:
 
 Glyphics Requires only .NET 3.5 or later
  
-
-![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
-
+![](http://i.imgur.com/KKtSuV0.png)
