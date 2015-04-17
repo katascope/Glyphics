@@ -1,6 +1,4 @@
-# Glyphics
-
-Glyphics API
+# Glyphics API
 
 Glyphics is:
 *  A 3D Raster engine and C# programming API 
@@ -17,3 +15,6 @@ Glyphics is NOT:
 Glyphics Requires only .NET 3.5 or later
  
 ![](http://i.imgur.com/KKtSuV0.png)
+
+Examples:
+![](http://i.imgur.com/6FwWydK.png)
