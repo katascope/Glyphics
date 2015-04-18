@@ -18,6 +18,8 @@ Glyphics Requires only .NET 3.5 or later
 
 Examples:
 
+STL file into 3d Raster Grid to block rendering
 ![](http://i.imgur.com/eWB25T4.png)
 
+Glyphics code to block rendering
 ![](http://i.imgur.com/6FwWydK.png)
