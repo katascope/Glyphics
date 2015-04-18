@@ -15,12 +15,12 @@ Glyphics is NOT:
 Glyphics Requires only .NET 3.5 or later
  
 # High level view
-!(http://i.imgur.com/KKtSuV0.png)
+![](http://i.imgur.com/KKtSuV0.png)
 
 # Examples:
 
 STL file into 3d Raster Grid to block rendering
-[](http://i.imgur.com/eWB25T4.png)
+![](http://i.imgur.com/eWB25T4.png)
 
 Glyphics code to block rendering
 ![](http://i.imgur.com/6FwWydK.png)
