@@ -18,4 +18,6 @@ Glyphics Requires only .NET 3.5 or later
 
 Examples:
 
+![](http://i.imgur.com/eWB25T4.png)
+
 ![](http://i.imgur.com/6FwWydK.png)
