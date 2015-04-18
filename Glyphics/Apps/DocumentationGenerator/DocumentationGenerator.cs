@@ -33,7 +33,7 @@ namespace DocumentationGenerator
 
             var glyphNames = glyphs.Select(glyph => glyph.Name).ToList();
             glyphNames.Sort();
-            using (var file = new System.IO.StreamWriter(documentationPath + "\\index.md"))
+            using (var file = new System.IO.StreamWriter(documentationPath + "\\README.md"))
             {
                 file.WriteLine("#Glyph Functions\n");
                 foreach (string str in glyphNames)
