@@ -5,9 +5,9 @@
 ![](Size2D1.png)
 
 Figure Code:
-- [Size2D1.md](Size2D1) 16 16
-- [PenColorD1.md](PenColorD1) 127
-- [Clear.md](Clear)
+- [Size2D1](Size2D1.md) 16 16
+- [PenColorD1](PenColorD1.md) 127
+- [Clear](Clear.md)
 
 Condensed: Size2D1 16 16;PenColorD1 127;Clear
 

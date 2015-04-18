@@ -5,9 +5,9 @@
 ![](Size1D1.png)
 
 Figure Code:
-- [Size1D1.md](Size1D1) 16
-- [PenColorD1.md](PenColorD1) 127
-- [Clear.md](Clear)
+- [Size1D1](Size1D1.md) 16
+- [PenColorD1](PenColorD1.md) 127
+- [Clear](Clear.md)
 
 Condensed: Size1D1 16;PenColorD1 127;Clear
 

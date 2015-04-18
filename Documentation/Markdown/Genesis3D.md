@@ -5,7 +5,7 @@
 ![](Genesis3D.png)
 
 Figure Code:
-- [Genesis3D.md](Genesis3D) 16
+- [Genesis3D](Genesis3D.md) 16
 
 Condensed: Genesis3D 16
 

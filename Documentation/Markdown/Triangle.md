@@ -5,10 +5,10 @@
 ![](Triangle.png)
 
 Figure Code:
-- [Genesis3D.md](Genesis3D) 16
-- [WallCube.md](WallCube) 37
-- [PenColorD4.md](PenColorD4) 127 127 255 255
-- [Triangle.md](Triangle) 1 1 1 15 5 10 8 15 8
+- [Genesis3D](Genesis3D.md) 16
+- [WallCube](WallCube.md) 37
+- [PenColorD4](PenColorD4.md) 127 127 255 255
+- [Triangle](Triangle.md) 1 1 1 15 5 10 8 15 8
 
 Condensed: Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Triangle 1 1 1 15 5 10 8 15 8
 

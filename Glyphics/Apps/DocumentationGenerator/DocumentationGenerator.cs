@@ -50,7 +50,7 @@ namespace DocumentationGenerator
             string str = "";
             foreach (IToken token in glyphTokens)
             {
-                str += "- [" + token.Glyph.Name + ".md](" + token.Glyph.Name + ")";
+                str += "- [" + token.Glyph.Name + "](" + token.Glyph.Name + ".md)";
                 str = token.GetArgs().Aggregate(str, (current, t) => current + (" " + t));
                 str += "\n";
             }
@@ -325,13 +325,13 @@ namespace DocumentationGenerator
     {
         static void Main()
         {
-            const string documentationPath = "\\Builds\\Vernacular\\Documentation\\";
+            const string documentationPath = "\\GitHub\\Glyphics\\Documentation\\";
             Console.WriteLine("Documenting glyphs to "+documentationPath + "\n");
             Documenter.DocumentByCode(documentationPath);
 
             /*
             Console.WriteLine("Generating from GLY file\n");
-            const string mediaPath = "\\Builds\\Vernacular\\Glyph Cores\\";        
+            const string mediaPath = "\\GitHub\\Glyphics\\Glyph Cores\\";        
             Documenter.DocumentByGlyphicsFile(documentationPath , mediaPath+"default.gly");
             */
         }
