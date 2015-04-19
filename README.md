@@ -25,6 +25,10 @@
 - STL files can be read into a grid and rendered directly using 3d raster triangle functions
 - Conversion paths allows many different kinds of inputs and outputs.
 
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple1.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple2.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple3.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple4.png)
  
 # High level view
 ![](http://i.imgur.com/KKtSuV0.png)
