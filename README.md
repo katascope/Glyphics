@@ -43,9 +43,6 @@
 
 ## Example: Code-To-STL & preview PNG (Code-To-Grid-To-Triangles-To-Grid-To-Rendered-To-PNG)
 
-### Raw rectangle view
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/NexusAnim.gif)
-
 ### STL file view
 ![](http://i.imgur.com/LDqSVAF.png)
 
@@ -56,3 +53,9 @@
 ![](http://i.imgur.com/9wrotEK.png)
 
 ![](http://i.imgur.com/SKPyyVX.png)
+
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/NexusAnim.gif)
+
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/AscentAnim.gif)
+
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/ArenaAnim.gif)
