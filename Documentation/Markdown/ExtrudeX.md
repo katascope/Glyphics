@@ -1,6 +1,6 @@
 #ExtrudeX
 
-##Description: <x1> <y> <z> <x2> <Shape> <StartScale> <StopScale> <Skips>
+##More: x y z X f s S ###Description: <x1> <y> <z> <x2> <Shape> <StartScale> <StopScale> <Skips>
 
 ![](ExtrudeX.png)
 

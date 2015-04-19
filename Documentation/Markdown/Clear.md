@@ -1,6 +1,6 @@
 #Clear
 
-##Description: Clear entire grid
+##More: ##Description: Clear entire grid
 
 ![](Clear.png)
 

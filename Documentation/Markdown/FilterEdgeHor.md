@@ -1,6 +1,6 @@
 #FilterEdgeHor
 
-##Description: Edge horizontal filter
+##More: ##Description: Edge horizontal filter
 
 ![](FilterEdgeHor.png)
 
