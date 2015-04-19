@@ -1,5 +1,10 @@
 # Glyphics API
 
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple1.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple2.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple3.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple4.png)
+
 ## Glyphics is:
 *  A 3D Raster engine and C# programming API 
 *  A 3D Printer STL model creation & manipulation API
@@ -25,11 +30,6 @@
 - STL files can be read into a grid and rendered directly using 3d raster triangle functions
 - Conversion paths allows many different kinds of inputs and outputs.
 
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple1.png)
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple2.png)
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple3.png)
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Simple/simple4.png)
- 
 # High level view
 ![](http://i.imgur.com/KKtSuV0.png)
 
