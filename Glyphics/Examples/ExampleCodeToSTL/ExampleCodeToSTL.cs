@@ -76,7 +76,7 @@ ImgMirrorX
             ITrianglesList trianglesList = GlyphicsApi.CreateTrianglesList();
             const string filename1 = "..\\..\\cube_ascii.stl";
             const string filename2 = "..\\..\\archquad.stl";
-            const string filename3 = "..\\..\\sphere.stl";
+            const string filename3 = "..\\..\\pipesphere.stl";
 
             //Import the models and make sure they are unit sized
             trianglesList.ImportAndReduceToUnit(filename1);
