@@ -27,20 +27,11 @@ Glyphics code to block rendering
 
 # How it works
 
-# Installation
-
-# License BSD
-
-
-##ImgGrayscale
-#Description: 
-Grayscale the image![](ImgGrayscale.png)
-Figure Code:
-- [Genesis3D.md](Genesis3D) 16
-- [WallCube.md](WallCube) 1
-- [PenColorD4.md](PenColorD4) 127 127 255 255
-- [Rect.md](Rect) 1 1 1 14 1 14
-- [ImgGrayscale.md](ImgGrayscale)
-
-Condensed: Genesis3D 16;WallCube 1;PenColorD4 127 127 255 255;Rect 1 1 1 14 1 14;ImgGrayscale
+Glyphics represents a 3D raster of pixels/voxels as a Grid
+Painters can draw various archetypal functions to that grid (rectangles, circles, etc)
+The glyphics language automates and allows compilation of scenes
+The grid can be output to volume rectangles by solving for runs in 3-dimensions
+Volume rectangles can be output to triangles by rendering either cube facets or models
+STL files can be read into a grid and rendered directly using 3d raster triangle functions
+Conversion paths allows many different kinds of inputs and outputs.
 
