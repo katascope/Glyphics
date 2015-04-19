@@ -1,6 +1,7 @@
 #ArcYZ
 
-##More: x y z s # ###Description: Draw 2D Arc <x> <y> <z> <radius> <startAngle> <sweepAngle>
+##Description: Draw 2D Arc <x> <y> <z> <radius> <startAngle> <sweepAngle>
+##Arguments: x y z s # #
 
 ![](ArcYZ.png)
 

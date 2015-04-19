@@ -1,6 +1,7 @@
 #FilterEdgeVer
 
-##More: ##Description: Edge vertical filter
+##Description: Edge vertical filter
+##Arguments: 
 
 ![](FilterEdgeVer.png)
 

@@ -1,6 +1,7 @@
 #Circle2DXY
 
-##More: x y z s##Description: Draw 2D Circle on z-Axis <x> <y> <z> <radius>
+##Description: Draw 2D Circle on z-Axis <x> <y> <z> <radius>
+##Arguments: x y z s
 
 ![](Circle2DXY.png)
 

@@ -1,6 +1,7 @@
 #Alien
 
-##More: x y z s##Description: Draw <x> <y> <z> <scale>
+##Description: Draw <x> <y> <z> <scale>
+##Arguments: x y z s
 
 ![](Alien.png)
 

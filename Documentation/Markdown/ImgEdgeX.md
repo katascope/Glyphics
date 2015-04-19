@@ -1,6 +1,7 @@
 #ImgEdgeX
 
-##More: r g b a##Description: Set edge x color <r> <g> <b> <a>
+##Description: Set edge x color <r> <g> <b> <a>
+##Arguments: r g b a
 
 ![](ImgEdgeX.png)
 

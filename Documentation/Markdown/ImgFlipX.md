@@ -1,6 +1,7 @@
 #ImgFlipX
 
-##More: ##Description: Flip on X axis
+##Description: Flip on X axis
+##Arguments: 
 
 ![](ImgFlipX.png)
 

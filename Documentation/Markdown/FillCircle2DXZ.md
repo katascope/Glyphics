@@ -1,6 +1,7 @@
 #FillCircle2DXZ
 
-##More: x y z s##Description: Draw Filled 2D Circle on y-axis <x> <y> <z> <radius>
+##Description: Draw Filled 2D Circle on y-axis <x> <y> <z> <radius>
+##Arguments: x y z s
 
 ![](FillCircle2DXZ.png)
 

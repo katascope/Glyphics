@@ -1,6 +1,7 @@
 #FilterSharpen
 
-##More: ##Description: Sharpen filter
+##Description: Sharpen filter
+##Arguments: 
 
 ![](FilterSharpen.png)
 

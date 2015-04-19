@@ -1,6 +1,7 @@
 #ImgBrightness
 
-##More: %##Description: Adjust brightness <adjust %>
+##Description: Adjust brightness <adjust %>
+##Arguments: %
 
 ![](ImgBrightness.png)
 

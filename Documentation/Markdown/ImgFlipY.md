@@ -1,6 +1,7 @@
 #ImgFlipY
 
-##More: ##Description: Flip on Y axis
+##Description: Flip on Y axis
+##Arguments: 
 
 ![](ImgFlipY.png)
 

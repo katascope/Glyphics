@@ -1,6 +1,7 @@
 #ImgFlipZ
 
-##More: ##Description: Flip on Z axis
+##Description: Flip on Z axis
+##Arguments: 
 
 ![](ImgFlipZ.png)
 

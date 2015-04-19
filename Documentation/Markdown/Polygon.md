@@ -1,6 +1,7 @@
 #Polygon
 
-##More: x y z s ###Description: Draw 2D Polygon <x> <y> <z> <radius> <sides>
+##Description: Draw 2D Polygon <x> <y> <z> <radius> <sides>
+##Arguments: x y z s #
 
 ![](Polygon.png)
 

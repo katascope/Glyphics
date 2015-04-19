@@ -1,6 +1,7 @@
 #WallCube
 
-##More: f##Description: Put Walls on Cube <bitmask>
+##Description: Put Walls on Cube <bitmask>
+##Arguments: f
 
 ![](WallCube.png)
 

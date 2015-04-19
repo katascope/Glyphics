@@ -1,6 +1,7 @@
 #Size2D4
 
-##More: w h##Description: Create 4-byte 2D grid of <width> <height>
+##Description: Create 4-byte 2D grid of <width> <height>
+##Arguments: w h
 
 ![](Size2D4.png)
 

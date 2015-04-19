@@ -1,6 +1,7 @@
 #Oval3D
 
-##More: x y z w h d##Description: Draw Oval at <x> <y> <z> <w> <h> <d>
+##Description: Draw Oval at <x> <y> <z> <w> <h> <d>
+##Arguments: x y z w h d
 
 ![](Oval3D.png)
 

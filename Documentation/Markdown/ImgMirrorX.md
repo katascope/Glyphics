@@ -1,6 +1,7 @@
 #ImgMirrorX
 
-##More: ##Description: Mirror on X axis
+##Description: Mirror on X axis
+##Arguments: 
 
 ![](ImgMirrorX.png)
 

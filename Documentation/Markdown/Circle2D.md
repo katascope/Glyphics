@@ -1,6 +1,7 @@
 #Circle2D
 
-##More: x y z s##Description: Draw 2D Circle <x> <y> <z> <radius>
+##Description: Draw 2D Circle <x> <y> <z> <radius>
+##Arguments: x y z s
 
 ![](Circle2D.png)
 

@@ -1,6 +1,7 @@
 #Size3D1
 
-##More: w h d##Description: Create 1-byte 3D grid of <width> <height> <depth>
+##Description: Create 1-byte 3D grid of <width> <height> <depth>
+##Arguments: w h d
 
 ![](Size3D1.png)
 

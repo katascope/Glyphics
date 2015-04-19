@@ -1,6 +1,7 @@
 #ImgInvert
 
-##More: ##Description: Invert the image
+##Description: Invert the image
+##Arguments: 
 
 ![](ImgInvert.png)
 

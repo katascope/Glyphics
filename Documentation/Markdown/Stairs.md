@@ -1,6 +1,7 @@
 #Stairs
 
-##More: x y z X Y Z w h d##Description: Create stairs <x1> <y1> <z1> <x2> <y2> <z2> <PenWidth> <PenHeight> <PenDepth>
+##Description: Create stairs <x1> <y1> <z1> <x2> <y2> <z2> <PenWidth> <PenHeight> <PenDepth>
+##Arguments: x y z X Y Z w h d
 
 ![](Stairs.png)
 

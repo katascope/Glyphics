@@ -1,6 +1,7 @@
 #Size1D4
 
-##More: w##Description: Create 4-byte 1D grid of <width>
+##Description: Create 4-byte 1D grid of <width>
+##Arguments: w
 
 ![](Size1D4.png)
 

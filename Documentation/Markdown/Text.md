@@ -1,6 +1,7 @@
 #Text
 
-##More: x y z ###Description: Draw 2D Letter <x> <y> <z> <letter>
+##Description: Draw 2D Letter <x> <y> <z> <letter>
+##Arguments: x y z #
 
 ![](Text.png)
 

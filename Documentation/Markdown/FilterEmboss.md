@@ -1,6 +1,7 @@
 #FilterEmboss
 
-##More: ##Description: Emboss filter
+##Description: Emboss filter
+##Arguments: 
 
 ![](FilterEmboss.png)
 

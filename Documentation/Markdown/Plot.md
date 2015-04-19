@@ -1,6 +1,7 @@
 #Plot
 
-##More: x y z v##Description: Pen Plot at <x> <y> <z> value
+##Description: Pen Plot at <x> <y> <z> value
+##Arguments: x y z v
 
 ![](Plot.png)
 

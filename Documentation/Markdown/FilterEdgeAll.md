@@ -1,6 +1,7 @@
 #FilterEdgeAll
 
-##More: ##Description: Edge filteattenuate, r
+##Description: Edge filteattenuate, r
+##Arguments: 
 
 ![](FilterEdgeAll.png)
 

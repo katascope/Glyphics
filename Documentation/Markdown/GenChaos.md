@@ -1,6 +1,7 @@
 #GenChaos
 
-##More: # x y z##Description: Generate chaos <0..11> <x> <y> <z>
+##Description: Generate chaos <0..11> <x> <y> <z>
+##Arguments: # x y z
 
 ![](GenChaos.png)
 

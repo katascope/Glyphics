@@ -1,6 +1,7 @@
 #PenColorD1
 
-##More: v##Description: Set Pen rgba <v>
+##Description: Set Pen rgba <v>
+##Arguments: v
 
 ![](PenColorD1.png)
 

@@ -1,6 +1,7 @@
 #ImgMirrorZ
 
-##More: ##Description: Mirror on Z axis
+##Description: Mirror on Z axis
+##Arguments: 
 
 ![](ImgMirrorZ.png)
 

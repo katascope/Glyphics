@@ -1,6 +1,7 @@
 #Triangle
 
-##More: x y z X Y Z # # ###Description: Draw Triangle <x1> <y1> <z1> <x2> <y2> <z2> <x3> <y3> <z3>
+##Description: Draw Triangle <x1> <y1> <z1> <x2> <y2> <z2> <x3> <y3> <z3>
+##Arguments: x y z X Y Z # # #
 
 ![](Triangle.png)
 

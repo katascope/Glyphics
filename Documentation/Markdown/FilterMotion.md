@@ -1,6 +1,7 @@
 #FilterMotion
 
-##More: ##Description: Motion filter
+##Description: Motion filter
+##Arguments: 
 
 ![](FilterMotion.png)
 

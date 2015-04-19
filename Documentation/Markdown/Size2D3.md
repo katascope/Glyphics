@@ -1,6 +1,7 @@
 #Size2D3
 
-##More: w h##Description: Create 3-byte 2D grid of <width> <height>
+##Description: Create 3-byte 2D grid of <width> <height>
+##Arguments: w h
 
 ![](Size2D3.png)
 

@@ -1,6 +1,7 @@
 #FilterBlur
 
-##More: ##Description: Blur filter
+##Description: Blur filter
+##Arguments: 
 
 ![](FilterBlur.png)
 

@@ -1,6 +1,7 @@
 #ExtrudeZ
 
-##More: x y z Z f s S ###Description: <x> <y> <z1> <z2> <Shape> <StartScale> <StopScale> <Skips>
+##Description: <x> <y> <z1> <z2> <Shape> <StartScale> <StopScale> <Skips>
+##Arguments: x y z Z f s S #
 
 ![](ExtrudeZ.png)
 

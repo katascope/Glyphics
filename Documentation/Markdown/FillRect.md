@@ -1,6 +1,7 @@
 #FillRect
 
-##More: x y z X Y Z##Description: Draw 3D rectangle <x1> <y1> <z1> <x2> <y2> <z2>
+##Description: Draw 3D rectangle <x1> <y1> <z1> <x2> <y2> <z2>
+##Arguments: x y z X Y Z
 
 ![](FillRect.png)
 
