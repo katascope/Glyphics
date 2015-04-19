@@ -25,7 +25,7 @@
 ## Example: Code-To-(Grid-To-Rendered-To)-PNG
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/ExampleCodeToPNG/Ascent.PNG)
 
-## Example: Code-To-STL, with preview PNG
+## Example: Code-To-STL & preview PNG (Code-To-Grid-To-Triangles-To-Grid-To-Rendered-To-PNG)
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/\ExampleCodeToSTL/preview.png)
 
 # How it works
