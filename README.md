@@ -27,11 +27,11 @@ Glyphics code to block rendering
 
 # How it works
 
-Glyphics represents a 3D raster of pixels/voxels as a Grid
-Painters can draw various archetypal functions to that grid (rectangles, circles, etc)
-The glyphics language automates and allows compilation of scenes
-The grid can be output to volume rectangles by solving for runs in 3-dimensions
-Volume rectangles can be output to triangles by rendering either cube facets or models
-STL files can be read into a grid and rendered directly using 3d raster triangle functions
-Conversion paths allows many different kinds of inputs and outputs.
+- Glyphics represents a 3D raster of pixels/voxels as a Grid
+- Painters can draw various archetypal functions to that grid (rectangles, circles, etc)
+- The glyphics language automates and allows compilation of scenes
+- The grid can be output to volume rectangles by solving for runs in 3-dimensions
+- Volume rectangles can be output to triangles by rendering either cube facets or models
+- STL files can be read into a grid and rendered directly using 3d raster triangle functions
+- Conversion paths allows many different kinds of inputs and outputs.
 
