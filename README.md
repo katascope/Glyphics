@@ -13,7 +13,7 @@
 ## Glyphics is NOT:
 *  A game, game API, or high-performance 3d engine
 
-## Glyphics requires C# to build and .NET 4 or greater to use.
+### Glyphics requires C# to build and .NET 4 or greater to use.
 
 ## How it works
 - Glyphics represents a 3D raster of pixels/voxels as a Grid
