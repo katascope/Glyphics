@@ -1,9 +1,9 @@
 # Glyphics API
 
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple1.png)
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple2.png)
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple3.png)
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/Animator/simple4.png)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple1.PNG)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple2.PNG)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple3.PNG)
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple4.PNG)
 
 ## Glyphics is:
 *  A 3D Raster engine and C# programming API 
