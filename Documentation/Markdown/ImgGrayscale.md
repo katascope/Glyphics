@@ -1,6 +1,6 @@
 #ImgGrayscale
 
-##Description: Grayscale the image
+##More: ##Description: Grayscale the image
 
 ![](ImgGrayscale.png)
 

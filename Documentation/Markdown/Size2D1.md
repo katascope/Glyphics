@@ -1,6 +1,6 @@
 #Size2D1
 
-##Description: Create 1-byte 2D grid of <width> <height>
+##More: w h##Description: Create 1-byte 2D grid of <width> <height>
 
 ![](Size2D1.png)
 

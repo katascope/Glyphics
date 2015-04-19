@@ -1,6 +1,6 @@
 #Genesis3D
 
-##Description: New grid of rgba, xyz <size and floor;person in center;CorNew;DekNew;ScnNew;EleNew
+##More: s##Description: New grid of rgba, xyz <size and floor;person in center;CorNew;DekNew;ScnNew;EleNew
 
 ![](Genesis3D.png)
 

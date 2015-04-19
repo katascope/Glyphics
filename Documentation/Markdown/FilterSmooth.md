@@ -1,6 +1,6 @@
 #FilterSmooth
 
-##Description: Smooth filter
+##More: ##Description: Smooth filter
 
 ![](FilterSmooth.png)
 

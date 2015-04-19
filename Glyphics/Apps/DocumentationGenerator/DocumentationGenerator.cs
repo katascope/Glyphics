@@ -79,7 +79,8 @@ namespace DocumentationGenerator
 
                     string glyphDoc = "#" + title + "\n"
                                      + "\n"
-                                     + "##Description: " + description
+                                     + "##More: " + glyph.Syntax
+                                     + "##Description: " + description                                     
                                      + "\n"
                                      + "\n![](" + title + ".png)\n"
                                      ;

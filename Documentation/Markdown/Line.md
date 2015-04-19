@@ -1,6 +1,6 @@
 #Line
 
-##Description: Draw Line <x1> <y1> <z1> <x2> <y2> <z2>
+##More: x y z X Y Z##Description: Draw Line <x1> <y1> <z1> <x2> <y2> <z2>
 
 ![](Line.png)
 

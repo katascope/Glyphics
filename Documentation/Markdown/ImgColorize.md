@@ -1,6 +1,6 @@
 #ImgColorize
 
-##Description: Colorize the image <hue> <saturation>
+##More: # ###Description: Colorize the image <hue> <saturation>
 
 ![](ImgColorize.png)
 

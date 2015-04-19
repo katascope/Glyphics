@@ -1,6 +1,6 @@
 #ImgEdge
 
-##Description: Set edge color <r> <g> <b> <a>
+##More: r g b a##Description: Set edge color <r> <g> <b> <a>
 
 ![](ImgEdge.png)
 

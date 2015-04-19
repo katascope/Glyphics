@@ -1,6 +1,6 @@
 #PenColorD3
 
-##Description: Set Pen rgba <r> <g> <b>
+##More: r g b##Description: Set Pen rgba <r> <g> <b>
 
 ![](PenColorD3.png)
 

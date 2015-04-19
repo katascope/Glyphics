@@ -1,6 +1,6 @@
 #Size3D4
 
-##Description: Create 4-byte 3D grid of <width> <height> <depth>
+##More: w h d##Description: Create 4-byte 3D grid of <width> <height> <depth>
 
 ![](Size3D4.png)
 
