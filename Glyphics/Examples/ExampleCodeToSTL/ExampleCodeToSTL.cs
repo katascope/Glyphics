@@ -102,12 +102,14 @@ ImgMirrorX
             Console.WriteLine("Saving triangles to {0}", outputFilename);
             GlyphicsApi.SaveTrianglesToStl(outputFilename, triangles);
 
+            //So.. as long as we are here.. let's make a preview
+
             //Since we can, normalize it now
             triangles.ReduceToUnit();
-            
+
             //Save a rendering out to a PNG, why not, too.
             Console.WriteLine("Creating preview grid");
-            IGrid gridFromSTL = GlyphicsApi.CreateGrid(127,127,127, 4);
+            IGrid gridFromSTL = GlyphicsApi.CreateGrid(96,96,96, 4);
 
             Console.WriteLine("Rendering triangles to grid");
             GlyphicsApi.Renderer.RenderTrianglesToGrid(triangles, gridFromSTL);
