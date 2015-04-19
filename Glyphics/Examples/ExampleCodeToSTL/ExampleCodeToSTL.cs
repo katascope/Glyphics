@@ -67,12 +67,15 @@ ImgMirrorX
             Console.WriteLine("\nOutput Filename: {0}", outputFilename);
 
             //Convert the code to actual grid
+            Console.WriteLine("Code to grid");
             IGrid grid = GlyphicsApi.CodeToGrid(glyphicsCode);
 
             //Convert to rects
+            Console.WriteLine("Grid to rects");
             IRectList rects = GlyphicsApi.GridToRects(grid);
 
             //Then render that to triangles
+            Console.WriteLine("Creating triangle library");
             ITrianglesList trianglesList = GlyphicsApi.CreateTrianglesList();
             const string filename1 = "..\\..\\cube_ascii.stl";
             const string filename2 = "..\\..\\archquad.stl";
@@ -83,9 +86,10 @@ ImgMirrorX
             trianglesList.ImportAndReduceToUnit(filename2);
             trianglesList.ImportAndReduceToUnit(filename3);
 
-            //Render the rectangles out as shapes(ITriangles) to a new set of triangles
+           //Render the rectangles out as shapes(ITriangles) to a new set of triangles
             ITriangles triangles = GlyphicsApi.Renderer.RenderRectsAsStlMapping(rects, trianglesList);
-            
+            Console.WriteLine("Rendering triangles to grid");
+             
             //Reduce scale to 1x1x1, making it 1mm x 1mm x 1mm
             triangles.ReduceToUnit();
 
@@ -94,8 +98,28 @@ ImgMirrorX
             const float finalSizeInMillimeters = finalSizeInInches * 25.4f; //Inches to millimeters
             triangles.Scale(finalSizeInMillimeters, finalSizeInMillimeters, finalSizeInMillimeters);
 
-            //Save final result to PNG file
+            //Save final result to STL file
+            Console.WriteLine("Saving triangles to {0}", outputFilename);
             GlyphicsApi.SaveTrianglesToStl(outputFilename, triangles);
+
+            //Since we can, normalize it now
+            triangles.ReduceToUnit();
+            
+            //Save a rendering out to a PNG, why not, too.
+            Console.WriteLine("Creating preview grid");
+            IGrid gridFromSTL = GlyphicsApi.CreateGrid(127,127,127, 4);
+
+            Console.WriteLine("Rendering triangles to grid");
+            GlyphicsApi.Renderer.RenderTrianglesToGrid(triangles, gridFromSTL);
+
+            //Then render to a new grid
+            Console.WriteLine("Rendering grid to oblique preview grid");
+            IGrid gridObliqueRendered = GlyphicsApi.Renderer.RenderObliqueCells(gridFromSTL);
+
+            //Then save            
+            const string filenamePreview = "..\\..\\preview.png";
+            Console.WriteLine("Saving file to {0}", filenamePreview);
+            GlyphicsApi.SaveFlatPng(filenamePreview, gridObliqueRendered);
 
             //.. and write finish
             Console.WriteLine("\nDone.");
