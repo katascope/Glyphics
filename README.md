@@ -1,16 +1,12 @@
 # Glyphics API
 
-*Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;*
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple1.PNG)
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple1.PNG)Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;
 
-*PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;*
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple2.PNG)
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple2.PNG)PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;
 
-*PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;*
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple3.PNG)
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple3.PNG)PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;
 
-*PenColorD4 31 255 127 255;Text 6 3 8 65*
-![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple4.PNG)
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple4.PNG)PenColorD4 31 255 127 255;Text 6 3 8 65
 
 ## Glyphics is:
 *  A 3D Raster engine and C# programming API 
