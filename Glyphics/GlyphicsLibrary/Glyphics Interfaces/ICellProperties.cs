@@ -34,7 +34,7 @@ namespace GlyphicsLibrary
         ulong CalcUnified();
 
         //Check to compare if another cell matches this cell
-        bool SameProperties(ICellProperties asCell);
+        bool CompareTo(ICellProperties asCell);
 
         //Revert cell to identity values
         void Identity();

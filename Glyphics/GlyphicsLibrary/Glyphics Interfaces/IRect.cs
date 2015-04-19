@@ -43,5 +43,8 @@ namespace GlyphicsLibrary
 
         //True if x,y,z is in the rect
         bool Contains(double x, double y, double z);
+
+        //True if same
+        bool CompareTo(IRect rect);
     }
 }

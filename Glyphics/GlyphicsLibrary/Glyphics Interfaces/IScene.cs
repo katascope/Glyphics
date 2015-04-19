@@ -9,33 +9,24 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System;
+using System.Collections.Generic;
 
 namespace GlyphicsLibrary
 {
-    //Simple XYZ point
-    public interface IDouble3
+    //3D Scenegraph
+    public interface IScene : IEnumerable<IElement>
     {
-        //Default to double instead of doing <T>
-        double X { get; set; }
-        double Y { get; set; }
-        double Z { get; set; }
+        //Number of elements in list
+        int Count { get; }
 
-        //Set XYZ to 0
-        void Identity();
+        //Get element from scene if in range, otherwise null
+        IElement GetScene(int id);
 
-        //Absorb the XYZ values of src
-        void CopyFrom(IDouble3 src);
-
-        //Interpolate ptA to ptB based on mux(0 to 1)
-        void Lerp(double mux, IDouble3 ptA, IDouble3 ptB);
+        //Add element to the list
+        void AddElement(IElement element);
 
         //Duplicate object
-        IDouble3 Clone();
-
-        //Readable description
-        string ToString();
-
-        //True if same
-        bool CompareTo(IDouble3 d);
+        IScene Clone();
     }
 }

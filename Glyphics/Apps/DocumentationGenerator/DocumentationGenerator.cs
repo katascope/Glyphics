@@ -306,6 +306,10 @@ namespace DocumentationGenerator
 
             DocumentByCode(documentationPath, "GenChaos", @"Genesis3D 16;PenColorD4 127 127 255 255;Rect 1 7 1 14 7 14;GenChaos 3 0 0 1");
 
+            DocumentByCode(documentationPath, "CornerSupports", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Rect 2 5 2 13 5 13;CornerSupports 0 0 0 15 15 15");
+            DocumentByCode(documentationPath, "Supports", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Rect 2 5 2 13 5 13;Supports");
+            DocumentByCode(documentationPath, "UpV", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;FillRect 2 5 2 13 5 13;UpV 5 127 127 255 255");
+
         }
 
         public static void DocumentByGlyphicsFile(string documentationPath, string filename)

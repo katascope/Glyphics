@@ -41,9 +41,6 @@ namespace GlyphicsLibrary
         //Get the property at xyz
         ICellProperties GetProperty(int x, int y, int z);
 
-        //Get the raw bytes of the grid
-        byte[] GetRawBytes();
-        
         //Create a duplicate of the raw bytes of the grid
         byte[] CloneData();
 
@@ -70,5 +67,8 @@ namespace GlyphicsLibrary
 
         //Return true if the raw bytes = expectedResult bytes
         bool CompareTo(byte[] expectedResult);
+
+        //Return true if the raw bytes = expectedResult bytes
+        bool CompareTo(IGrid grid);
     }
 }

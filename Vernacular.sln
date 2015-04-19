@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleSimple", "Glyphics\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animator", "Glyphics\Apps\Animator\Animator.csproj", "{42860F88-3F4C-4321-AECD-8184D214AA57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleSceneGraph", "Glyphics\Examples\ExampleSceneGraph\ExampleSceneGraph.csproj", "{34626FDC-1601-4618-974A-C8D9C7B3DED2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -198,6 +200,18 @@ Global
 		{42860F88-3F4C-4321-AECD-8184D214AA57}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{42860F88-3F4C-4321-AECD-8184D214AA57}.Release|x64.ActiveCfg = Release|Any CPU
 		{42860F88-3F4C-4321-AECD-8184D214AA57}.Release|x86.ActiveCfg = Release|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Release|x64.ActiveCfg = Release|Any CPU
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -216,6 +230,7 @@ Global
 		{052714AB-2A1D-4B23-B02F-738385D71BE6} = {590D1B19-21CF-4D0F-AC24-744DB24830CB}
 		{6CC2D4BB-B873-4FAC-BD70-E5918CAC02FC} = {590D1B19-21CF-4D0F-AC24-744DB24830CB}
 		{1EF1C221-DCF7-4640-A43F-227A6E5D1058} = {590D1B19-21CF-4D0F-AC24-744DB24830CB}
+		{34626FDC-1601-4618-974A-C8D9C7B3DED2} = {590D1B19-21CF-4D0F-AC24-744DB24830CB}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Vernacular.vsmdi

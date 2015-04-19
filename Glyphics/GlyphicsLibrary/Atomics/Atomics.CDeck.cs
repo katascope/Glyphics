@@ -9,33 +9,64 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
-namespace GlyphicsLibrary
+namespace GlyphicsLibrary.Atomics
 {
-    //Simple XYZ point
-    public interface IDouble3
+    //Implementation of IDeck, see for usage
+    public class CDeck : IDeck
     {
-        //Default to double instead of doing <T>
-        double X { get; set; }
-        double Y { get; set; }
-        double Z { get; set; }
+        private List<IScene> _scenes;
 
-        //Set XYZ to 0
-        void Identity();
+        //Number of elements in list
+        public int Count { get { return _scenes.Count; } }
 
-        //Absorb the XYZ values of src
-        void CopyFrom(IDouble3 src);
+        //Constructor
+        public CDeck()
+        {
+            _scenes = new List<IScene>();
+        }
 
-        //Interpolate ptA to ptB based on mux(0 to 1)
-        void Lerp(double mux, IDouble3 ptA, IDouble3 ptB);
+        //Get scene at id, null if out of range
+        public IScene GetScene(int id)
+        {
+            if (id >= 0 && id < _scenes.Count)
+                return _scenes[id];
+            return null;
+        }
+
+        //Add element to the list
+        public void AddScene(IScene element)
+        {
+            if (!_scenes.Contains(element))
+                _scenes.Add(element);
+        }
 
         //Duplicate object
-        IDouble3 Clone();
+        public IDeck Clone()
+        {
+            IDeck deck = new CDeck();
 
-        //Readable description
-        string ToString();
+            foreach (IScene scene in _scenes)
+            {
+                deck.AddScene(scene.Clone());
+            }
+            return deck;
+        }
 
-        //True if same
-        bool CompareTo(IDouble3 d);
+        //Make enumerable instead
+        #region Implementation of IEnumerable
+        public IEnumerator<IScene> GetEnumerator()
+        {
+            return _scenes.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+        #endregion
     }
 }

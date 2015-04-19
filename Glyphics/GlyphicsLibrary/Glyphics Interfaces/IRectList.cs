@@ -29,5 +29,8 @@ namespace GlyphicsLibrary
 
         //Add an IRect to the list
         void AddRect(IRect rect);
+
+        //True if same
+        bool CompareTo(IRectList rects);
     }
 }

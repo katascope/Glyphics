@@ -18,14 +18,19 @@ using GlyphicsLibrary.Renderers;
 namespace GlyphicsLibrary
 {
     //TODO: Export to ascii STL option
+    //TODO: Elements Scenegraphs
+    //TODO: Render rects to view, but truly
 
-    //TODO: Step-Exporter - renders code, creating a new image for each line
+    //Glyphics High type:
+    // * Clone
+    // * CompareTo
+
 
     //Primary Glyphics API call - intended for use by other programs
     public static class GlyphicsApi
     {
         //Versioning for API
-        private const string CurrentVersion = "1";
+        private const string CurrentVersion = "1.01";
         private const string CurrentVersionName = "Vernacular";
         public static string GetVersion() { return CurrentVersion; }
         public static string GetVersionName() { return CurrentVersionName; }
@@ -49,6 +54,11 @@ namespace GlyphicsLibrary
         public static ITrianglesList CreateTrianglesList() { return new CTrianglesList(); }
         public static ISerializedRects CreateSerializedRects(string serialized) { return new CSerializedRects(serialized); }
         public static ICodeList CreateCodes() { return new CCodeList(); }
+
+        //Glyphs
+        public static IGlyph[] GetGlyphDefs() { return Glyphs.GetGlyphDefs(); }
+        public static IGlyph GetGlyph(int id) { return Glyphs.GetGlyph(id); }
+        public static int GetId(string name) { return Glyphs.GetId(name); }
 
         //Code-To
         public static IGrid CodeToGrid(ICode glyphicsCode) { if (glyphicsCode == null) return null; return Conversions.CodeToGrid(glyphicsCode.Code); }
@@ -108,11 +118,18 @@ namespace GlyphicsLibrary
         //Bytes
         public static string BytesToString(byte[] bytes) { return Conversions.BytesToString(bytes); }        
         public static bool CompareBytes(byte[] result, byte[] expectedResult) { return Compare.CompareBytes(result, expectedResult); }
-        
-        //Glyphs
-        public static IGlyph[] GetGlyphDefs() { return Glyphs.GetGlyphDefs(); }
-        public static IGlyph GetGlyph(int id) { return Glyphs.GetGlyph(id); }
-        public static int GetId(string name) { return Glyphs.GetId(name); }
+
+        //Scenegraph Creational 
+        public static ITransform CreateTransform() { return new CTransform(); }
+        public static IElement CreateElement() { return new CElement(); }
+        public static IScene CreateScene() { return new CScene(); }
+        public static IDeck CreateDeck() { return new CDeck(); }
+
+        //Scenegraph functions
+        public static IScene RectsToScene(IRectList rects) { return SceneGraph.RectsToScene(rects); }
+        public static IRectList SceneToRects(IScene scene) { return SceneGraph.SceneToRects(scene); }
+        public static IRect ElementToRect(IElement element) { return SceneGraph.ElementToRect(element); }
+        public static IElement RectToElement(IRect rect) { return SceneGraph.RectToElement(rect); }
     }
 }
 

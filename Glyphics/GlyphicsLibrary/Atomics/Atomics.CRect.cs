@@ -90,5 +90,17 @@ namespace GlyphicsLibrary.Atomics
             if ((x > Pt2.X) || (x < Pt1.X) || (y > Pt2.Y) || (y < Pt1.Y) || (z > Pt2.Z) || (z < Pt1.Z)) return false;
             return true;
         }
+
+        //True if same
+        public bool CompareTo(IRect rect)
+        {
+            if ( (rect.Pt1.CompareTo(Pt1) == false)
+                || (rect.Pt2.CompareTo(Pt2) == false) )
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

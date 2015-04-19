@@ -9,33 +9,38 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System;
+using System.Collections.Generic;
 
-namespace GlyphicsLibrary
+namespace GlyphicsLibrary.Atomics
 {
-    //Simple XYZ point
-    public interface IDouble3
+    //Implementation of IElement, see for usage
+    public class CElement : IElement
     {
-        //Default to double instead of doing <T>
-        double X { get; set; }
-        double Y { get; set; }
-        double Z { get; set; }
+        //Is element currently selected or not
+        public bool Selected { get; set; }
 
-        //Set XYZ to 0
-        void Identity();
+        //Properties of element
+        public ICellProperties Properties { get; set; }
 
-        //Absorb the XYZ values of src
-        void CopyFrom(IDouble3 src);
+        //Transform information
+        public ITransform Transform { get; set; }
 
-        //Interpolate ptA to ptB based on mux(0 to 1)
-        void Lerp(double mux, IDouble3 ptA, IDouble3 ptB);
+        //Constructor
+        public CElement()
+        {
+            Properties = new CCellProperties();
+            Transform = new CTransform();
+        }
 
         //Duplicate object
-        IDouble3 Clone();
+        public IElement Clone()
+        {
+            IElement newElement = new CElement();
 
-        //Readable description
-        string ToString();
-
-        //True if same
-        bool CompareTo(IDouble3 d);
+            newElement.Properties.CopyFrom(Properties);
+            newElement.Transform.CopyFrom(Transform);
+            return newElement;
+        }
     }
 }

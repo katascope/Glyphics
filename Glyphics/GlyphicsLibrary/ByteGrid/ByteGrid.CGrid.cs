@@ -42,7 +42,7 @@ namespace GlyphicsLibrary.ByteGrid
         public int SizeZ { get { return _sizeZ; } }
         public int Bpp { get { return _bpp; } }
         public int Size { get { return _size; } }
-        public byte[] GetRawBytes() { return null; }
+        //public byte[] GetRawBytes() { return null; }
         public void SetTracker(byte tracker) { _trackId = tracker; }
         public void InhibitCodeTracking() { _codeTrackingInhibit = true; }
         public void AllowCodeTracking(){_codeTrackingInhibit = false;}
@@ -190,6 +190,36 @@ namespace GlyphicsLibrary.ByteGrid
             {
                 if (data[i] != expectedResult[i])
                     return false;
+            }
+            return true;
+        }
+
+        //Return true if the raw bytes = expectedResult bytes
+        public bool CompareTo(IGrid grid)
+        {
+            if ((grid.SizeX != SizeX)
+                || (grid.SizeY != SizeY)
+                || (grid.SizeZ != SizeZ)
+                || (grid.Bpp != Bpp)
+                || (grid.Size != Size))
+                return false;
+
+            for (int z = 0; z < grid.SizeZ;z++)
+            {
+                for (int y = 0; y < grid.SizeY; y++)
+                {
+                    for (int x = 0; x < grid.SizeX; x++)
+                    {
+                        ICellProperties v1 = grid.GetProperty(x, y, z);
+                        ICellProperties v2 = GetProperty(x, y, z);
+                        
+                        if (v1.CompareTo(v2)== false)
+                        {
+                            return false;
+                        }
+
+                    }
+                }
             }
             return true;
         }

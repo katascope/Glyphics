@@ -66,5 +66,17 @@ namespace GlyphicsLibrary.Atomics
             Y = Lerper.Lerp1D(mux, ptA.Y, ptB.Y);
             Z = Lerper.Lerp1D(mux, ptA.Z, ptB.Z);
         }
+
+        //True if same
+        public bool CompareTo(IDouble3 d)
+        {
+            if (  (Compare.CompareDoubleAreEqual(d.X, X) == false)
+               || (Compare.CompareDoubleAreEqual(d.Y, Y) == false)
+               || (Compare.CompareDoubleAreEqual(d.Z, Z) == false) )
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
