@@ -1,13 +1,5 @@
 # Glyphics API
 
-* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple1.PNG)**Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;**
-
-* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple2.PNG)**PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;**
-
-* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple3.PNG)**PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;**
-
-* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple4.PNG)**PenColorD4 31 255 127 255;Text 6 3 8 65**
-
 ## Glyphics is:
 *  A 3D Raster engine and C# programming API 
 *  A 3D Printer STL model creation & manipulation API
@@ -24,7 +16,6 @@
 ## Glyphics requires C# to build and .NET 4 or greater to use.
 
 ## How it works
-
 - Glyphics represents a 3D raster of pixels/voxels as a Grid
 - Painters can draw various archetypal functions to that grid (rectangles, circles, etc)
 - The glyphics language automates and allows compilation of scenes
@@ -32,6 +23,16 @@
 - Volume rectangles can be output to triangles by rendering either cube facets or models
 - STL files can be read into a grid and rendered directly using 3d raster triangle functions
 - Conversion paths allows many different kinds of inputs and outputs.
+
+## Simple Glyphics code example
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple1.PNG)**Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;**
+
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple2.PNG)**PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;**
+
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple3.PNG)**PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;**
+
+* ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Apps/Animator/Simple4.PNG)**PenColorD4 31 255 127 255;Text 6 3 8 65**
+
 
 # High level view
 ![](http://i.imgur.com/KKtSuV0.png)
