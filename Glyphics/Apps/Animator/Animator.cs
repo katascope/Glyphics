@@ -34,23 +34,53 @@ namespace Animator
         static void Main()
         {
             //Simple Glyphics code
-            const string code1 =
-                @"Simple1,Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;";
-
-            const string code2 =
-                @"Simple2,Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;";
-
-            const string code3 =
-                @"Simple3,Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;";
-
-            const string code4 =
-                @"Simple4,Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;PenColorD4 31 255 127 255;Text 6 3 8 65";
+            //const string rawCode = "Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;PenColorD4 31 255 127 255;Text 6 3 8 65";
             
-            ExecutCodeToPng(code1);
-            ExecutCodeToPng(code2);
-            ExecutCodeToPng(code3);
-            ExecutCodeToPng(code4);
+            const string rawCode = @"Size3D4 64 64 64;Spawn 25 5 25;PenColorD4 31 127 255 255;
+            PenShape 1;WallCube 1;PenColorD4 255 255 255 255;
+PenSize 1 2 1;Rect 0 0 0 31 0 31;Rect 0 0 32 31 0 63;Rect 32 0 0 63 0 31;Rect 32 0 32 63 0 63;Rect 16 0 16 48 0 48;
+PenSize 1 1 1;PenColorD4 31 127 255 255;FillRect 17 0 17 47 0 47;FillRect 16 1 49 48 16 63;
+PenColorD4 0 0 0 0;
+FillRect 17 1 49 47 15 63;
+Rect 0 1 0 63 63 63;
+ImgEdgeX 255 255 255 255;ImgEdgeY 255 255 255 255;ImgEdgeZ 255 255 255 255;
+PenShape 2;PenColorD3 255 255 255;FillRect 26 17 51 36 28 62;
+PenColorD3 127 255 127;FillRect 2 1 2 13 12 13; 
+PenColorD3 255 127 127;FillRect 2 1 18 13 12 29;
+PenColorD3 127 127 255;FillRect 2 1 34 13 12 45;
+PenColorD3 255 255 127;FillRect 2 1 50 13 12 61;
 
+PenColorD3 255 127 255;FillRect 18 1 2 29 12 13;
+ImgMirrorX
+";
+            const string prefix = "PrintableNexus";
+            const string codeString = prefix + "," + rawCode;
+            ICode code = GlyphicsApi.CreateCode(codeString);
+            ITokenList tokens = GlyphicsApi.CodeToTokens(code);
+
+            int tokenId = 0;
+            int actualCount = 1;
+            while (tokenId < tokens.Count)
+            {
+                //Skip pen changes, they are boring
+                string str = tokens.GetToken(tokenId).ToString();
+
+                if (str.StartsWith("Pen") == false)
+                {
+                    string curCode = prefix + "-" + actualCount + ",";
+                    for (int i = 0; i <= tokenId; i++)
+                    {
+                        curCode += tokens.GetToken(i) + ";";
+                    }
+                    if (tokenId > 1)
+                    {
+                        Console.WriteLine("Token " + curCode);
+                        ExecutCodeToPng(curCode);
+                        actualCount++;
+                    }
+                }
+                tokenId++;
+            }
         }
     }
 }

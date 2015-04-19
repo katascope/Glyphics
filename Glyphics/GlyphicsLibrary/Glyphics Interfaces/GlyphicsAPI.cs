@@ -19,8 +19,7 @@ namespace GlyphicsLibrary
 {
     //TODO: Export to ascii STL option
 
-    //TODO: Simple simplest example
-    //TODO: Complex example?
+    //TODO: Step-Exporter - renders code, creating a new image for each line
 
     //Primary Glyphics API call - intended for use by other programs
     public static class GlyphicsApi

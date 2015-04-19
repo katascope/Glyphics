@@ -32,7 +32,7 @@ namespace GlyphicsLibrary.Language
         //Get Itoken from list, null if out of range
         public IToken GetToken(int id)
         {
-            if (id < 0 || id > Count) return null;
+            if (id < 0 || id >= Count) return null;
             return TokenList[id];
         }
 
