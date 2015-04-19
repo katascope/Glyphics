@@ -146,7 +146,7 @@ namespace GlyphicsLibrary.Painters
 
             bgc.Pen.SetSize(1, 1, 1);
             BresenhamCallingBresnhamLine3D(bgc, x1, y1, z1, x2, y2, z2, x3, y3, z3);
-            BresenhamCallingBresnhamLine3D(bgc, x2, y2, z2, x3, y3, z3, x1, y1, z1);
+            //BresenhamCallingBresnhamLine3D(bgc, x1, y1, z1, x3, y3, z3, x2, y2, z2);
             BresenhamCallingBresnhamLine3D(bgc, x3, y3, z3, x1, y1, z1, x2, y2, z2);
         }
 

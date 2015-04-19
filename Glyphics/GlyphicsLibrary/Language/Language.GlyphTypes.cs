@@ -181,6 +181,8 @@ namespace GlyphicsLibrary.Language
         GlyphCornerSupports = 126,
         GlyphSupports       = 127,
         GlyphUpV            = 128,
+
+        GlyphFillTriangle   = 129
     };
 
     internal static class Glyphs
@@ -340,7 +342,10 @@ namespace GlyphicsLibrary.Language
                 new CGlyph(GlyphId.GlyphWallCube      , "WallCube",           0,    1,  "f", "Put Walls on Cube <bitmask>" ), 
                 new CGlyph(GlyphId.GlyphCornerSupports, "CornerSupports",     0,    6,  "x y z X Y Z",   "Fill (cellular automata) <x> <y> <z> <x2> <y2> <z2>"),
                 new CGlyph(GlyphId.GlyphSupports      , "Supports",           0,    0,  "", "Put Supports in world" ),
-                new CGlyph(GlyphId.GlyphUpV           , "UpV",                0,    5, "# # r g b a", "UpV <reps> <search r> <search g> <search b> <search a>")
+                new CGlyph(GlyphId.GlyphUpV           , "UpV",                0,    5, "# # r g b a", "UpV <reps> <search r> <search g> <search b> <search a>"),
+#endregion
+#region RecentlyAdded
+                new CGlyph(GlyphId.GlyphFillTriangle  , "FillTriangle",       0,    9,  "x y z X Y Z # # #", "Draw Filled Triangle <x1> <y1> <z1> <x2> <y2> <z2> <x3> <y3> <z3>")
 #endregion
             };
 

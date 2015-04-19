@@ -18,9 +18,9 @@ namespace GlyphicsLibrary.Painters
         //Draw a line in 3D to Grid
         public void DrawLine3D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
-            MinMax(ref x1, ref x2);
-            MinMax(ref y1, ref y2);
-            MinMax(ref z1, ref z2);
+            //MinMax(ref x1, ref x2);
+            //MinMax(ref y1, ref y2);
+            //MinMax(ref z1, ref z2);
 
             int dx = x2 - x1;
             int dy = y2 - y1;

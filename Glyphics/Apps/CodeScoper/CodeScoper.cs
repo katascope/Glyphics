@@ -21,7 +21,8 @@ namespace CodeScoper
     {
         static void Main()
         {
-            const string codeString = "Size3D1 8 9 1;PenColorD1 1;Text 2 2 0 65;ImgFlipY;Rect 0 0 0 7 8 1";
+            const string codeString2 = "Size3D1 8 9 1;PenColorD1 1;Text 2 2 0 65;ImgFlipY;Rect 0 0 0 7 8 1";
+            const string codeString = "Size3D1 4 4 3;PenColorD1 56;FillTriangle 1 1 0 3 3 1 2 3 2";
 
             CodeScope(codeString);
         }

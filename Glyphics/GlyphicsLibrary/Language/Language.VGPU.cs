@@ -205,6 +205,8 @@ namespace GlyphicsLibrary.Language
                 case GlyphId.GlyphStar: Painter.DrawStar(bgc, args[0], args[1], args[2], args[3]); return;
                 case GlyphId.GlyphSupports: Painter.DrawSupports(bgc); return;
                 case GlyphId.GlyphCornerSupports: Painter.DrawCorners(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+
+                case GlyphId.GlyphFillTriangle: Painter.DrawFillTriangle3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
             }
         }
 

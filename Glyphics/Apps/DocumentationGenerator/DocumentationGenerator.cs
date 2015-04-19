@@ -269,6 +269,7 @@ namespace DocumentationGenerator
             DocumentByCode(documentationPath, "Line", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Line 0 0 8 15 8 8");
             DocumentByCode(documentationPath, "Stairs", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Stairs 7 0 0 7 8 15 5 1 1");
             DocumentByCode(documentationPath, "Triangle", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Triangle 1 1 1 15 5 10 8 15 8");
+            DocumentByCode(documentationPath, "FillTriangle", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;FillTriangle 1 1 1 15 5 10 8 15 8");
             DocumentByCode(documentationPath, "Polygon", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;Polygon 7 7 7 7 5");
             DocumentByCode(documentationPath, "ArcXY", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;ArcXY 7 7 7 5 0 50");
             DocumentByCode(documentationPath, "ArcYZ", @"Genesis3D 16;WallCube 37;PenColorD4 127 127 255 255;ArcYZ 7 7 7 5 0 50");

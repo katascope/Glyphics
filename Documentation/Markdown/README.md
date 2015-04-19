@@ -93,6 +93,9 @@
 ![](FillRect.png)
 [FillRect](FillRect.md)
 
+![](FillTriangle.png)
+[FillTriangle](FillTriangle.md)
+
 ![](FillTriangle2D.png)
 [FillTriangle2D](FillTriangle2D.md)
 
