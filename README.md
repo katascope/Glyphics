@@ -20,7 +20,7 @@ Glyphics requires C# to build and .NET 4 or greater to use.
 # Examples:
 
 STL file into 3d Raster Grid to block rendering
-![](http://i.imgur.com/eWB25T4.png)
+![](Example/ExampleSTLToGrid/test.png)
 
 Glyphics code to block rendering
 ![](http://i.imgur.com/6FwWydK.png)
