@@ -1,6 +1,6 @@
 # Glyphics API
 
-Glyphics is:
+## Glyphics is:
 *  A 3D Raster engine and C# programming API 
 *  A set of 1D/2D/3D raster drawing functions
 *  A language, compiler, and virtual GPU
@@ -9,10 +9,10 @@ Glyphics is:
 *  A Portable Network Graphics (.PNG) file manipulator (resize/colorize/etc)
 *  Intended to solve the problem domain of 3D raster grids
    
-Glyphics is NOT:
+## Glyphics is NOT:
 *  A game, game API, or high-performance 3d engine
 
-Glyphics requires C# to build and .NET 4 or greater to use.
+## Glyphics requires C# to build and .NET 4 or greater to use.
  
 # High level view
 ![](http://i.imgur.com/KKtSuV0.png)
