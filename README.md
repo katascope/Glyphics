@@ -12,7 +12,7 @@ Glyphics is:
 Glyphics is NOT:
 *  A game, game API, or high-performance 3d engine
 
-Glyphics Requires only .NET 3.5 or later
+Glyphics requires C# to build and .NET 4 or greater to use.
  
 # High level view
 ![](http://i.imgur.com/KKtSuV0.png)
