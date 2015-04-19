@@ -31,7 +31,6 @@ namespace ExampleSTLToGrid
             //Manually create 64x64x64 grid to draw STL to
             IGrid grid = GlyphicsApi.CreateGrid(64, 64, 64, 4);
 
-            //Use nice companion cube, source: http://www.thingiverse.com/thing:13588
             const string inputFilenameStl = "..\\..\\archquad.stl";
             Console.WriteLine("Input filename: {0}", inputFilenameStl);
 

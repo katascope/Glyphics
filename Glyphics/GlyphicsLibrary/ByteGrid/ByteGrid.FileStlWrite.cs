@@ -19,6 +19,31 @@ namespace GlyphicsLibrary.ByteGrid
     {
         private FileStlWrite() { }
 
+        //Write an ascii file
+        public static void WriteAsciiFile(ITriangles triangles, string filename)
+        {
+            string shortname = Path.GetFileNameWithoutExtension(filename);
+
+            using (StreamWriter sw = new StreamWriter(filename))
+            {
+                sw.WriteLine("solid " + shortname);
+
+                foreach (ITriangle triangle in triangles.GetTriangleArray())
+                {
+                    sw.WriteLine("  facet normal {0} {1} {2}", triangle.Normal.X, triangle.Normal.Y, triangle.Normal.Z);
+                    sw.WriteLine("    outer loop");
+                    //Remember to Flip Y/Z
+                    sw.WriteLine("      vertex {0} {1} {2}", triangle.Vertex1.X, triangle.Vertex1.Z, triangle.Vertex1.Y);
+                    sw.WriteLine("      vertex {0} {1} {2}", triangle.Vertex2.X, triangle.Vertex2.Z, triangle.Vertex2.Y);
+                    sw.WriteLine("      vertex {0} {1} {2}", triangle.Vertex3.X, triangle.Vertex3.Z, triangle.Vertex3.Y);
+                    sw.WriteLine("    endloop");
+                    sw.WriteLine("  endfacet");
+                }
+
+                sw.WriteLine("endsolid " + shortname);
+            }
+        }
+
         //Write a binary STL file
         public static void WriteFile(ITriangles triangles, string filename)
         {

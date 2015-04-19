@@ -28,7 +28,6 @@ namespace ExampleSTLToQuadPrint
     {
         static void Main()
         {
-            //Use nice companion cube, source: http://www.thingiverse.com/thing:13588
             const string inputFilenameStl = "..\\..\\archquad.stl";
             Console.WriteLine("Input filename: {0}", inputFilenameStl);
 

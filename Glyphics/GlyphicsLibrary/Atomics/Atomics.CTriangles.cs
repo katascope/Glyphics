@@ -283,5 +283,16 @@ namespace GlyphicsLibrary.Atomics
             }
             return sb.ToString();
         }
+        
+        //For putting on ground (elevation zero, for easy printing)
+        public void PutOnGround()
+        {
+            float y = (float)TrianglesBoundaries.Pt1.Y;
+
+            foreach (ITriangle triangle in _triangleArray)
+            {
+                triangle.Translate(0, -y, 0);
+            }
+        }
     }
 }

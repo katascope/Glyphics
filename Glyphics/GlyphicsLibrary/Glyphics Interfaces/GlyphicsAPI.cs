@@ -17,14 +17,24 @@ using GlyphicsLibrary.Renderers;
 
 namespace GlyphicsLibrary
 {
-    //TODO: Export to ascii STL option
-    //TODO: Elements Scenegraphs
     //TODO: Render rects to view, but truly
+    //TODO: IPalette type, can convert to others
+    //TODO: Add unit tests for scenegraphs
+    //TODO: Add unit tests for comparison functions (grid,rects,triangles,element)
+    //TODO: Make GIF creator
 
     //Glyphics High type:
+    //Unit
     // * Clone
     // * CompareTo
-
+    // * ToString
+    //Set
+    // * Count
+    // * Add
+    // * Get
+    // * Clone
+    // * Compareto
+    // * ToStrin
 
     //Primary Glyphics API call - intended for use by other programs
     public static class GlyphicsApi
@@ -32,6 +42,8 @@ namespace GlyphicsLibrary
         //Versioning for API
         private const string CurrentVersion = "1.01";
         private const string CurrentVersionName = "Vernacular";
+
+        //Versioning methods
         public static string GetVersion() { return CurrentVersion; }
         public static string GetVersionName() { return CurrentVersionName; }
 
@@ -107,6 +119,7 @@ namespace GlyphicsLibrary
         //File IO for STL files
         public static ITriangles StlToTriangles(string filename) { return FileStlRead.ReadFile(filename); }
         public static void SaveTrianglesToStl(string filename, ITriangles triangles) { FileStlWrite.WriteFile(triangles, filename); }
+        public static void SaveTrianglesToStlAscii(string filename, ITriangles triangles) { FileStlWrite.WriteAsciiFile(triangles, filename); }
 
         //Float & Double comparison
         public static bool DoublesAreEqual(double v1, double v2) { return Compare.CompareDoubleAreEqual(v1,v2); }
@@ -119,6 +132,7 @@ namespace GlyphicsLibrary
         public static string BytesToString(byte[] bytes) { return Conversions.BytesToString(bytes); }        
         public static bool CompareBytes(byte[] result, byte[] expectedResult) { return Compare.CompareBytes(result, expectedResult); }
 
+        #region SceneGraph
         //Scenegraph Creational 
         public static ITransform CreateTransform() { return new CTransform(); }
         public static IElement CreateElement() { return new CElement(); }
@@ -130,6 +144,12 @@ namespace GlyphicsLibrary
         public static IRectList SceneToRects(IScene scene) { return SceneGraph.SceneToRects(scene); }
         public static IRect ElementToRect(IElement element) { return SceneGraph.ElementToRect(element); }
         public static IElement RectToElement(IRect rect) { return SceneGraph.RectToElement(rect); }
+
+        // ICodelist to IDeck
+        //public static ICodeList DeckToCodelist(IDeck deck);
+        // IDeck to ICodelist 
+        //public static IDeck CodelistToDeck(ICodeList codelist);
+        #endregion
     }
 }
 

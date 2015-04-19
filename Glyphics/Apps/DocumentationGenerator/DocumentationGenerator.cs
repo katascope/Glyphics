@@ -321,6 +321,7 @@ namespace DocumentationGenerator
                 ICode glyphicsCode = GlyphicsApi.CreateCode(code.Code);
 
                 const int size = 192;
+                Console.WriteLine("Executing " + name); 
                 DocumentByCode(documentationPath, name, code.Code.Contains("Size3D4 255") ? GlyphicsApi.CodeToRescaledCode(glyphicsCode, size, size, size).Code : glyphicsCode.Code);
             }
         }
@@ -333,8 +334,8 @@ namespace DocumentationGenerator
             const string documentationPath = "\\GitHub\\Glyphics\\Documentation\\";
             Console.WriteLine("Documenting glyphs to "+documentationPath + "\n");
             Documenter.DocumentByCode(documentationPath);
-
             /*
+            
             Console.WriteLine("Generating from GLY file\n");
             const string mediaPath = "\\GitHub\\Glyphics\\Glyph Cores\\";        
             Documenter.DocumentByGlyphicsFile(documentationPath , mediaPath+"default.gly");

@@ -59,5 +59,8 @@ namespace GlyphicsLibrary
 
         //Compare to another ITriangles
         bool CompareTo(ITriangles triangles);
+
+        //For putting on ground (elevation zero, for easy printing)
+        void PutOnGround();
     }
 }

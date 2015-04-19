@@ -12,14 +12,13 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 using System;
 using GlyphicsLibrary;
 
-namespace ExampleResizeSTL
+namespace ExampleAutoPlatform3dPrint
 {
-    /* Example: Resize STL
-     * Purpose: Resize an STL and write back out to another STL
+    /* Example: Automatically ready a 3d print for printing
      * 
      * Example concepts:
      *  1) Loading STL file to ITriangles
-     *  2) Resizing (change the scale of) ITriangles
+     *  2) Placing it at y=0 (ground)
      *  3) Write ITriangles to STL file
      */
     class ExampleResizeStl
@@ -50,33 +49,14 @@ namespace ExampleResizeSTL
                 (int)triangleBoundariesInput.Height,
                 (int)triangleBoundariesInput.Depth);
 
-            //Clone the triangles
-            ITriangles trianglesResized = triangles.Clone();
+            //Call the auto-zeroing function
+            triangles.PutOnGround();
 
-            //Scale everything up by 2.5
-            const float scale = 2.5f;
-            Console.WriteLine("Scaling model size up by {0}%", scale*100.0f);
-            trianglesResized.Scale(scale,scale,scale);
+            //Then write back to file
+            const string outputFilenameStl = "..\\..\\archquad-AutoPlatform.stl";
+            Console.WriteLine("Input filename: {0}", outputFilenameStl);
+            GlyphicsApi.SaveTrianglesToStl(outputFilenameStl, triangles);
 
-            //Just state the directory we are writing to.
-            const string outputfilenameStl = "..\\..\\archquad-resized.stl";
-            Console.WriteLine("Output filename: {0}", outputfilenameStl);
-
-            //Say the dimensions of it too
-            IRect triangleBoundariesOutput = trianglesResized.TrianglesBoundaries;
-            Console.WriteLine("Output {0} Dimensions = {1}mm x {2}mm x {3}mm",
-                outputfilenameStl,
-                (int)triangleBoundariesOutput.Width,
-                (int)triangleBoundariesOutput.Height,
-                (int)triangleBoundariesOutput.Depth);
-
-            trianglesResized.PutOnGround();
-
-            //Finally save out the resized triangles back to STL file
-            Console.WriteLine("Writing file {0}", outputfilenameStl);
-            GlyphicsApi.SaveTrianglesToStlAscii(outputfilenameStl, trianglesResized);
-
-            
             Console.WriteLine("Done.");
         }
     }
