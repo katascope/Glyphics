@@ -19,11 +19,14 @@ Glyphics requires C# to build and .NET 4 or greater to use.
 
 # Examples:
 
-STL file into 3d Raster Grid to block rendering
+Example: STL-To-Grid 
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/ExampleSTLToGrid/test.png)
 
-Glyphics code to block rendering
+Example: Code-To-PNG
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/ExampleCodeToPNG/Ascent.PNG)
+
+Example: Code-To-STL, with preview
+![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/\ExampleCodeToSTL/preview.png)
 
 # How it works
 
