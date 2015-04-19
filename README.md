@@ -2,6 +2,7 @@
 
 ## Glyphics is:
 *  A 3D Raster engine and C# programming API 
+*  A 3D Printer STL model creation & manipulation API
 *  A set of 1D/2D/3D raster drawing functions
 *  A language, compiler, and virtual GPU
 *  A pipeline for 3D Raster grids, pixels, rectangles, and triangles
