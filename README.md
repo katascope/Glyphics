@@ -19,13 +19,13 @@ Glyphics requires C# to build and .NET 4 or greater to use.
 
 # Examples:
 
-Example: STL-To-Grid 
+## Example: STL-To-Grid 
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/ExampleSTLToGrid/test.png)
 
-Example: Code-To-PNG
+## Example: Code-To-PNG
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/ExampleCodeToPNG/Ascent.PNG)
 
-Example: Code-To-STL, with preview
+## Example: Code-To-STL, with preview
 ![](https://github.com/katascope/Glyphics/blob/master/Glyphics/Examples/\ExampleCodeToSTL/preview.png)
 
 # How it works
