@@ -12,40 +12,28 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 using System;
 using System.Collections.Generic;
 
-namespace GlyphicsLibrary.Atomics
+namespace GlyphicsLibrary
 {
-    //Implementation of ITransform, see for usage
-    public class CTransform : ITransform
+    //Plane quad is aligned to
+    public enum QuadAxis
     {
-        //Translation XYZ
-        public IDouble3 Translation { get; set; }
+        Unknown, X, Y, Z
+    };
 
-        //Rotation XYZ
-        public IDouble3 Rotation { get; set; }
+    //A quad - Only two points as must be a single plane
+    public interface IQuad
+    {
+        //Properties of the cell
+        ICellProperties properties { get; set; }
 
-        //Scale XYZ
-        public IDouble3 Scale { get; set; }
+        //Points of a quad
+        IDouble3 Pt1 { get; set; }
+        IDouble3 Pt2 { get; set; }
 
-        //Constructor
-        public CTransform()
-        {
-            Translation = new CDouble3();
-            Rotation = new CDouble3();
-            Scale = new CDouble3();
-        }
+        //True if same
+        bool CompareTo(IQuad quad);
 
-        //Copy properties from sourceTransform
-        public void CopyFrom(ITransform sourceTransform)
-        {
-            Translation.CopyFrom(sourceTransform.Translation);
-            Rotation.CopyFrom(sourceTransform.Rotation);
-            Scale.CopyFrom(sourceTransform.Scale);
-        }
-
-        //Readable description
-        public override string ToString()
-        {
-            return "(Tfrm:T" + Translation + "/R" + Rotation + "/S" + Scale + ")";
-        }
+        //Find the axis the quad is plane-aligned to
+        QuadAxis FindAxis();
     }
 }

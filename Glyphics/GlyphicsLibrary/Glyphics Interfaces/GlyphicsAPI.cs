@@ -17,24 +17,13 @@ using GlyphicsLibrary.Renderers;
 
 namespace GlyphicsLibrary
 {
-    //TODO: Render rects to view, but truly
-    //TODO: IPalette type, can convert to others
-    //TODO: Add unit tests for scenegraphs
-    //TODO: Add unit tests for comparison functions (grid,rects,triangles,element)
-    //TODO: Make GIF creator
-
-    //Glyphics High type:
-    //Unit
-    // * Clone
-    // * CompareTo
-    // * ToString
-    //Set
-    // * Count
-    // * Add
-    // * Get
-    // * Clone
-    // * Compareto
-    // * ToStrin
+    //TODO: Future: Render scenes to grid (with animations, full triangles)
+    //TODO: Future UI units as equivalent to rects
+    //TODO: Future: Speed improvements & profiling
+    //TODO: Future: Corner/STL-solving issue for supports & smoothing
+    //TODO: Future: Importers/Exporters for .obj, .mesh, .gif, .minecraft?
+    //TODO: Future: 4D grids
+    //TODO: Future: Render rects to oblique grid, without borders or cells - as triangles/quads
 
     //Primary Glyphics API call - intended for use by other programs
     public static class GlyphicsApi
@@ -77,7 +66,7 @@ namespace GlyphicsLibrary
         public static IRectList CodeToRects(ICode glyphicsCode) { return Conversions.CodeToRects(glyphicsCode); }
         public static IGrid CodeToObliqueCells(ICode glyphicsCode) { return Renderer.RenderObliqueCells(CodeToGrid(glyphicsCode)); }
         public static ITokenList CodeToTokens(ICode glyphicsCode) { return Tokenizer.CodeToTokens(glyphicsCode); }
-        public static ICodename CodeToCodename(ICode glyphicsCode) { return new CCodename(glyphicsCode.Code.Split(glyphicsCode.NameCodeSplitCharacter)[0]); }
+        public static ICodename CodeToCodename(ICode glyphicsCode) { return new CCodename(glyphicsCode); }
         public static IBytecode CodeToBytes(ICode glyphicsCode) { return Compiler.CodeToBytes(glyphicsCode); }
         public static ICode CodeToRescaledCode(ICode glyphicsCode, int toX, int toY, int toZ) { return Rescaler.Rescale(glyphicsCode, toX, toY, toZ); }
 
@@ -99,7 +88,7 @@ namespace GlyphicsLibrary
         public static IRect RectsToBoundaries(IRectList rectSet) { return RectMath.RectsToBoundaries(rectSet); }
         public static ISerializedRects RectsToSerializedRects(IRectList rectSet) { return RectSerializer.Serialize(rectSet); }
         public static IRectList SerializedRectsToRects(ISerializedRects serializedRects) { return RectSerializer.Deserialize(serializedRects); }
-        public static ITriangles RectsToTrianglesCube(IRectList rectSet) { return QuadToTriangles.RectsToTrianglesCube(rectSet); }
+        public static ITriangles RectsToTrianglesCube(IRectList rectSet) { return RectToTriangles.RectsToTrianglesCube(rectSet); }
         public static string RectsToDescription(IRectList rectSet) { return RectMath.RectsToDescription(rectSet); }
 
         //RGBA-To
@@ -131,6 +120,11 @@ namespace GlyphicsLibrary
         //Bytes
         public static string BytesToString(byte[] bytes) { return Conversions.BytesToString(bytes); }        
         public static bool CompareBytes(byte[] result, byte[] expectedResult) { return Compare.CompareBytes(result, expectedResult); }
+
+        //IQuad and IQuadList
+        public static IQuadList RectsToQuads(IRectList rectSet) { return RectToTriangles.RectsToQuads(rectSet); }
+        public static ITriangles QuadsToTriangles(IQuadList quads) { return RectToTriangles.QuadsToTriangles(quads); }
+        public static int RemoveRedundantQuads(IQuadList quads) { return RectToTriangles.RemoveRedundantQuads(quads); }
 
         #region SceneGraph
         //Scenegraph Creational 

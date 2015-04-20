@@ -70,5 +70,8 @@ namespace GlyphicsLibrary
 
         //Return true if the raw bytes = expectedResult bytes
         bool CompareTo(IGrid grid);
+        
+        //Returns the count of non-zero cells
+        ulong CountNonZero();
     }
 }

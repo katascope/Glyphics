@@ -33,5 +33,8 @@ namespace GlyphicsLibrary
 
         //Adds a default procedurally generated cube to the list
         void AddDefaultCube();
+
+        //Add a ITriangles to the list
+        void AddTriangles(ITriangles triangles);
     }
 }

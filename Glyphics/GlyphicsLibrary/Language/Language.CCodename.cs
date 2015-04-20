@@ -18,9 +18,22 @@ namespace GlyphicsLibrary.Language
         public string Name { get; set; }
 
         //Assignment constructor only
-        public CCodename(string newName)
+        public CCodename(ICode code)
         {
+            string codeStr = code.Code;
+            string newName = codeStr.Split(code.NameCodeSplitCharacter)[0];
+
+            if (codeStr.Contains(""+code.NameCodeSplitCharacter) == false)
+            {
+                newName = "Noname";
+            }
             Name = newName;
+        }
+
+        //Readable description
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

@@ -49,6 +49,12 @@ namespace GlyphicsLibrary.ByteGrid
         public void SetScissor(IRect nScissor){_scissor = nScissor;}
         public void NoScissor(){_scissor = new CRect(0, 0, 0, _sizeX, _sizeY, _sizeZ);}
 
+        //Readable description
+        public override string ToString()
+        {
+            return "[Size=" + SizeX + "," + SizeY + "," + SizeZ + "]";
+        }
+
         //Assignment constructor
         public CGrid(int sx, int sy, int sz, int bpp)
         {
@@ -222,6 +228,17 @@ namespace GlyphicsLibrary.ByteGrid
                 }
             }
             return true;
+        }
+
+        //Returns the count of non-zero cells
+        public ulong CountNonZero()
+        {
+            ulong count=0;
+            foreach (ICellProperties cp in _properties)
+            {
+                if (cp.Rgba != 0) count++;
+            }
+            return count;
         }
     }
 }

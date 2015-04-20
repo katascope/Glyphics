@@ -18,35 +18,41 @@ namespace GlyphicsLibrary.Language
     internal class CTokenList : ITokenList
     {
         //Actual List of IToken
-        private List<IToken> TokenList { get; set; }
+        private List<IToken> _tokenList { get; set; }
 
         //Assignment constructor
         public CTokenList()
         {
-            TokenList = new List<IToken>();
+            _tokenList = new List<IToken>();
         }
 
         //Number of IToken in list
-        public int Count { get { return TokenList.Count; } }
+        public int Count { get { return _tokenList.Count; } }
 
         //Get Itoken from list, null if out of range
         public IToken GetToken(int id)
         {
             if (id < 0 || id >= Count) return null;
-            return TokenList[id];
+            return _tokenList[id];
         }
 
         //Add IToken to list
         public void AddToken(IToken token)
         {
-            TokenList.Add(token);
+            _tokenList.Add(token);
+        }
+
+        //Readable description
+        public override string ToString()
+        {
+            return _tokenList.Count + "";
         }
 
         //Make enumerable instead
         #region Implementation of IEnumerable
         public IEnumerator<IToken> GetEnumerator()
         {
-            return TokenList.GetEnumerator();
+            return _tokenList.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

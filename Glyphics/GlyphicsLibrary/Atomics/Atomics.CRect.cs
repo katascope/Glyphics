@@ -73,15 +73,11 @@ namespace GlyphicsLibrary.Atomics
         //Readable description
         public override string ToString()
         {
-            string result = "[" + Pt1.X + "," + Pt1.Y + "," + Pt1.Z + " - " + Pt2.X + "," + Pt2.Y + "," + Pt2.Z + "]";
-
             double w = Pt2.X - Pt1.X;
             double h = Pt2.Y - Pt1.Y;
             double d = Pt2.Z - Pt1.Z;
-            result += " (w=" + w + ",h=" + h + ",d=" + d + ")";
-
-            result += " " + Properties.Rgba ;
-            return result;
+            string dimStr = "(w=" + w + ",h=" + h + ",d=" + d + ")";
+            return "[" + dimStr + Pt1 + "," + Pt2 + "/" + Properties + "]";
         }
 
         //True if x,y,z is in the rect

@@ -40,6 +40,7 @@ namespace GlyphicsLibrary.Painters
         //Return the string(font) for a character
         public static string[] GetCharacterFont(char c)
         {
+            if (c == '\n') c = ' ';
             c = Char.ToUpper(c);
             string[] result = LetterToFontLookupTable[c];
             return result;

@@ -18,7 +18,7 @@ namespace ExampleAutoPlatform3dPrint
      * 
      * Example concepts:
      *  1) Loading STL file to ITriangles
-     *  2) Placing it at y=0 (ground)
+     *  2) Placing it at y=0 (ground) for easy 3d printing
      *  3) Write ITriangles to STL file
      */
     class ExampleResizeStl
@@ -49,7 +49,7 @@ namespace ExampleAutoPlatform3dPrint
                 (int)triangleBoundariesInput.Height,
                 (int)triangleBoundariesInput.Depth);
 
-            //Call the auto-zeroing function
+            //Call the auto-zeroing function (moves triangles so bottom point y is at 0)
             triangles.PutOnGround();
 
             //Then write back to file

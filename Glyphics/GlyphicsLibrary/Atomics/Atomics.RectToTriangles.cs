@@ -14,12 +14,12 @@ using System.Collections.Generic;
 namespace GlyphicsLibrary.Atomics
 {
     //Converts rects to quads to triangles
-    internal class QuadToTriangles
+    internal class RectToTriangles
     {
-        private QuadToTriangles() { }
+        private RectToTriangles() { }
 
         //Create triangles from quads, along same X axis
-        public static void QuadToTrianglesSameX(ref List<ITriangle> triangles, double y1, double z1, double y2, double z2, double x)
+        private static void QuadToTrianglesSameX(ref List<ITriangle> triangles, double y1, double z1, double y2, double z2, double x)
         {
             var triangle = new CTriangle();
             triangle.SetTriangle((float)x, (float)y1, (float)z1,
@@ -36,7 +36,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Create triangles from quads, along same Y axis
-        public static void QuadToTrianglesSameY(ref List<ITriangle> triangles, double x1, double z1, double x2, double z2, double y)
+        private static void QuadToTrianglesSameY(ref List<ITriangle> triangles, double x1, double z1, double x2, double z2, double y)
         {
             var triangle = new CTriangle();
             triangle.SetTriangle((float)x1, (float)y, (float)z1,
@@ -52,7 +52,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Create triangles from quads, along same Z axis
-        public static void QuadToTrianglesSameZ(ref List<ITriangle> triangles, double x1, double y1, double x2, double y2, double z)
+        private static void QuadToTrianglesSameZ(ref List<ITriangle> triangles, double x1, double y1, double x2, double y2, double z)
         {
             var triangle = new CTriangle();
             triangle.SetTriangle((float)x1, (float)y1, (float)z,
@@ -97,6 +97,170 @@ namespace GlyphicsLibrary.Atomics
 
             return new CTriangles(triangles.ToArray());
         }
+
+        //Convert one quad into two triangles
+        public static ITriangles QuadToTwoTriangles(IQuad quad)
+        {
+            List<ITriangle> triangleList = new List<ITriangle>();
+            ITriangles triangles = new CTriangles();
+
+            float x1 = (float)quad.Pt1.X;
+            float x2 = (float)quad.Pt2.X;
+            float y1 = (float)quad.Pt1.Y;
+            float y2 = (float)quad.Pt2.Y;
+            float z1 = (float)quad.Pt1.Z;
+            float z2 = (float)quad.Pt2.Z;
+
+            QuadAxis qa = quad.FindAxis();
+
+            if (qa == QuadAxis.X)
+            {
+                float sameX = x1;
+
+                ITriangle triangle1 = new CTriangle();
+                triangle1.SetTriangle(
+                    sameX, y1, z1,
+                    sameX, y2, z1,
+                    sameX, y2, z2);
+                triangle1.properties = quad.properties.Clone();
+                triangleList.Add(triangle1);
+
+                ITriangle triangle2 = new CTriangle();
+                triangle2.SetTriangle(
+                    sameX, y1, z1,
+                    sameX, y1, z2,
+                    sameX, y2, z2);
+                triangle2.properties = quad.properties.Clone();
+                triangleList.Add(triangle2);
+            }
+            if (qa == QuadAxis.Y)
+            {
+                float sameY = y1;
+
+                ITriangle triangle1 = new CTriangle();
+                triangle1.SetTriangle(
+                    x1, sameY, z1,
+                    x1, sameY, z2,
+                    x2, sameY, z2);
+                triangle1.properties = quad.properties.Clone();
+                triangleList.Add(triangle1);
+
+                ITriangle triangle2 = new CTriangle();
+                triangle2.SetTriangle(
+                    x1, sameY, z1,
+                    x2, sameY, z1,
+                    x2, sameY, z2);
+                triangle2.properties = quad.properties.Clone();
+                triangleList.Add(triangle2);
+            }
+            if (qa == QuadAxis.Z)
+            {
+                float sameZ = z1;
+
+                ITriangle triangle1 = new CTriangle();
+                triangle1.SetTriangle(
+                    x1, y1, sameZ,
+                    x1, y2, sameZ,
+                    x2, y2, sameZ);
+                triangle1.properties = quad.properties.Clone();
+                triangleList.Add(triangle1);
+
+                ITriangle triangle2 = new CTriangle();
+                triangle2.SetTriangle(
+                    x1, y1, sameZ,
+                    x2, y1, sameZ,
+                    x2, y2, sameZ);
+                triangle2.properties = quad.properties.Clone();
+                triangleList.Add(triangle2);
+            }
+
+            triangles.SetTriangles(triangleList.ToArray());
+            return triangles;
+        }
+
+        //convert a quad to its two triangles
+        public static ITriangles QuadsToTriangles(IQuadList quads)
+        {
+            List<ITriangle> triangleList = new List<ITriangle>();
+
+            foreach (IQuad quad in quads)
+            {
+                ITriangles triangles = QuadToTwoTriangles(quad);
+                triangles.GetTriangleArray()[0].CalcNormal();
+                triangles.GetTriangleArray()[1].CalcNormal();
+                triangleList.Add(triangles.GetTriangleArray()[0]);
+                triangleList.Add(triangles.GetTriangleArray()[1]);
+            }
+
+            ITriangles trianglesPack = new CTriangles();
+            trianglesPack.SetTriangles(triangleList.ToArray());
+
+            return trianglesPack;
+        }
+
+        //Convert rectangles to their 6 quads
+        public static IQuadList RectsToQuads(IRectList rectSet)
+        {
+            IQuadList quads = new CQuadList();
+
+            foreach (IRect rect in rectSet)
+            {
+                IQuad quadFront = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt2.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
+                quadFront.properties = rect.Properties.Clone();
+                IQuad quadBack   = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt1.Z);
+                quadBack.properties = rect.Properties.Clone();
+
+                IQuad quadTopper = new CQuad(rect.Pt1.X, rect.Pt2.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
+                quadTopper.properties = rect.Properties.Clone();
+                IQuad quadBottom = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt1.Y, rect.Pt2.Z);
+                quadBottom.properties = rect.Properties.Clone();
+
+                IQuad quadRight = new CQuad(rect.Pt2.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
+                quadRight.properties = rect.Properties.Clone();
+                IQuad quadLeft = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt1.X, rect.Pt2.Y, rect.Pt2.Z);
+                quadLeft.properties = rect.Properties.Clone();
+                
+                quads.AddQuad(quadFront);
+                quads.AddQuad(quadBack);
+                quads.AddQuad(quadTopper);
+                quads.AddQuad(quadBottom);
+                quads.AddQuad(quadRight);
+                quads.AddQuad(quadLeft);
+            }
+
+            //Remove redundant ones automatically
+            RemoveRedundantQuads(quads);
+
+            return quads;
+        }
+
+        //Remove redundant quads to reduce total count
+        public static int RemoveRedundantQuads(IQuadList quads)
+        {
+            int removedCount = 0;
+
+            for (int me = 0;me<quads.Count;me++)
+            {
+                for (int you = me; you < quads.Count; you++)
+                {
+                    if (me != you)
+                    {
+                        IQuad meQuad = quads.GetQuad(me);
+                        IQuad youQuad = quads.GetQuad(you);
+                        //I saw a duplicate
+                        if  ( (meQuad.Pt1.CompareTo(youQuad.Pt1)==true)
+                              && (meQuad.Pt2.CompareTo(youQuad.Pt2)==true))
+                        {
+                            //we have a redundancy
+                            removedCount++;
+                            quads.RemoveQuad(youQuad);
+                        }
+                    }
+                }
+            }
+            return removedCount;
+        }
     }
 }
+
 

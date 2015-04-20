@@ -725,6 +725,12 @@ namespace GlyphicsUnitTests
             TestByGridComparison("FillTriangle", "Size3D1 4 4 3;PenColorD1 56;FillTriangle 1 1 0 3 3 1 2 3 2", "000000000038000000003800000000000000000000000000003838000000003800000000000000000000000000003800");
         }
 
+        [TestMethod]
+        public void Glyph_Shadows()
+        {
+            TestByGridComparison("Shadows", "Size3D1 4 4 1;PenColorD4 63 127 255 255;WallCube 1;PenColorD4 255 255 127 255;Plot 2 2 0;Shadows", "3F3F1F3F000000000000FF0000000000");
+        }
+
 
         //Utility to compare run to expected output
         public static void TestByGridComparison(string name, string code, string expected)

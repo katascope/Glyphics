@@ -42,5 +42,11 @@ namespace GlyphicsLibrary.Atomics
             newElement.Transform.CopyFrom(Transform);
             return newElement;
         }
+
+        //Readable description
+        public override string ToString()
+        {
+            return "(" + Transform + "/" + Properties + ")";
+        }
     }
 }

@@ -32,5 +32,8 @@ namespace GlyphicsLibrary
 
         //True if same
         bool CompareTo(IRectList rects);
+
+        //Readable description
+        string ToString();
     }
 }

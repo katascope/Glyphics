@@ -82,5 +82,11 @@ namespace GlyphicsLibrary.Atomics
             if (Height == 1) { StartY = 0; StopY = 0; }
             if (Depth == 1) { StartZ = 0; StopZ = 0; }
         }
+
+        //Readable description
+        public override string ToString()
+        {
+            return "[" + Width + "," + Height + "," + Depth + "]";
+        }
     }
 }

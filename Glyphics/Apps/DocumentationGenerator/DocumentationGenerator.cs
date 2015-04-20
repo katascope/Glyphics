@@ -95,7 +95,7 @@ namespace DocumentationGenerator
                 }
                 else
                 {
-                    //TODO: Implement glyphics example writer later
+                    //Needs example writer for markdown here, if needed
                 }
             }
         }

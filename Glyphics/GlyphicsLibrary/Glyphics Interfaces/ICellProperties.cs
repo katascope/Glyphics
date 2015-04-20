@@ -44,5 +44,8 @@ namespace GlyphicsLibrary
 
         //Interpolate propsA to propsB by mux (0 to 1)
         void Lerp(double mux, ICellProperties propsA, ICellProperties propsB);
+
+        //Duplicate object
+        ICellProperties Clone();
     }
 }

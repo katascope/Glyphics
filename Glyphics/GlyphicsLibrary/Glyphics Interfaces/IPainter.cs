@@ -101,5 +101,6 @@ namespace GlyphicsLibrary
         void ApplyFilterSmooth(IByteGridContext bgc);
 
         void DrawCorners(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2);
+        void DrawShadows(IByteGridContext bgc);
     }
 }

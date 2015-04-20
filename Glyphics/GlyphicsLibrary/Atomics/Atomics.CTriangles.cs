@@ -272,14 +272,23 @@ namespace GlyphicsLibrary.Atomics
         public override string ToString()
         {
             var sb = new StringBuilder();
+
+            sb.Append(_triangleArray.Length + "\n"); 
+            
             foreach (ITriangle triangle in _triangleArray)
             {
-                sb.Append(triangle.Normal.X + " " + triangle.Normal.X + " " + triangle.Normal.X);
-                sb.Append(",");
-                sb.Append(triangle.Vertex1.X + " " + triangle.Vertex1.Y + " " + triangle.Vertex1.Z + " / ");
-                sb.Append(triangle.Vertex2.X + " " + triangle.Vertex2.Y + " " + triangle.Vertex2.Z + " / ");
-                sb.Append(triangle.Vertex2.X + " " + triangle.Vertex2.Y + " " + triangle.Vertex2.Z);
-                sb.Append(" : ");
+                sb.Append("[");
+                sb.Append(triangle.Normal);
+                sb.Append("/");
+                sb.Append(triangle.Vertex1 + ",");
+                sb.Append(triangle.Vertex2 + ",");
+                sb.Append(triangle.Vertex3);
+                if (triangle.properties != null)
+                {
+                    sb.Append("/");
+                    sb.Append(triangle.properties.ToString());
+                }
+                sb.Append("]\n");
             }
             return sb.ToString();
         }
@@ -290,9 +299,7 @@ namespace GlyphicsLibrary.Atomics
             float y = (float)TrianglesBoundaries.Pt1.Y;
 
             foreach (ITriangle triangle in _triangleArray)
-            {
                 triangle.Translate(0, -y, 0);
-            }
         }
     }
 }

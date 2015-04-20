@@ -18,5 +18,11 @@ namespace GlyphicsLibrary.Atomics
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
+
+        //Readable description
+        public override string ToString()
+        {
+            return "(" + (int)X + "," + (int)Y + "," + (int)Z + ")";
+        }
     }
 }

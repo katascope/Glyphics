@@ -9,74 +9,81 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
 namespace GlyphicsLibrary.Atomics
 {
-    //Implementation of ITrianglesList, see for usage
-    internal class CTrianglesList : ITrianglesList
+    //Implementation of IQuadList, see for usage
+    internal class CQuadList : IQuadList
     {
-        //Actual ITriangles list
-        private List<ITriangles> TrianglesSet { get; set; }
-
-        //Create a triangle-based cube 'manually'
-        public void AddDefaultCube()
-        {
-            var triangleList = new List<ITriangle>();
-            IRect rect = GlyphicsApi.CreateRect(0, 0, 0, 1, 1, 1);
-            RectToTriangles.RectToTrianglesCube(ref triangleList, rect);
-            ITriangles triangles = new CTriangles(triangleList.ToArray());
-            triangles.ReduceToUnit();
-            triangles.Name = "DefaultCube";
-            TrianglesSet.Add(triangles);
-        }
+        //Actual list of IQuad
+        private List<IQuad> _quads { get; set; }
 
         //Constructor
-        public CTrianglesList()
+        public CQuadList()
         {
-            TrianglesSet = new List<ITriangles>();
-            AddDefaultCube();
+            _quads = new List<IQuad>();
         }
 
-        public int Count { get { return TrianglesSet.Count; } }
+        //Number of rectangles in list
+        public int Count { get { return _quads.Count; } }
 
-        public void AddTriangles(ITriangles triangles)
+        //Add quad to the list
+        public void AddQuad(IQuad quad)
         {
-            TrianglesSet.Add(triangles);
+            _quads.Add(quad);
         }
 
-        public ITriangles GetTriangles(int id)
+        //Get quad from the list
+        public IQuad GetQuad(int id)
         {
-            if (id >= Count) return null;
-            return TrianglesSet[id];
+            if (id < 0 || id > Count) return null;
+            return _quads[id];
         }
 
-        public void Import(string filename)
+        //True if same
+        public bool CompareTo(IQuadList quads)
         {
-            ITriangles triangles = GlyphicsApi.StlToTriangles(filename);
-            TrianglesSet.Add(triangles);
+            if (quads.Count != Count)
+                return false;
+
+            for (int i = 0; i < Count; i++)
+            {
+                IQuad quad1 = quads.GetQuad(i);
+                IQuad quad2 = _quads[i];
+
+                if (quad1.CompareTo(quad2) == false)
+                    return false;
+            }
+            return true;
         }
 
-        public void ImportAndReduceToUnit(string filename)
+        //Readable description
+        public override string ToString()
         {
-            ITriangles triangles = GlyphicsApi.StlToTriangles(filename);
-            triangles.ReduceToUnit();
-            TrianglesSet.Add(triangles);
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append(_quads.Count + "\n");
+            foreach (IQuad quad in _quads)
+            {
+                sb.Append(quad + "\n");
+            }
+            return sb.ToString();
         }
 
-        //Scales triangles to fit in a 1x1x1 cube
-        public void ReduceToUnit()
+        //Remove a quad 
+        public void RemoveQuad(IQuad quad)
         {
-            foreach (ITriangles triangles in TrianglesSet)
-                triangles.ReduceToUnit();
+            _quads.Remove(quad);
         }
 
         //Make enumerable instead
         #region Implementation of IEnumerable
-        public IEnumerator<ITriangles> GetEnumerator()
+        public IEnumerator<IQuad> GetEnumerator()
         {
-            return TrianglesSet.GetEnumerator();
+            return _quads.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -84,6 +91,5 @@ namespace GlyphicsLibrary.Atomics
             return GetEnumerator();
         }
         #endregion
-
     }
 }

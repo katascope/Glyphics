@@ -29,5 +29,11 @@ namespace GlyphicsLibrary.Language
         {
             return _bytes;
         }
+
+        //Readable description
+        public override string ToString()
+        {
+            return Conversions.BytesToString(_bytes);
+        }
     }
 }

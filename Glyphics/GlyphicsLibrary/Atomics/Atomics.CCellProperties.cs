@@ -49,6 +49,14 @@ namespace GlyphicsLibrary.Atomics
             UnifiedValue = src.UnifiedValue;
         }
 
+        //Duplicate object
+        public ICellProperties Clone()
+        {
+            ICellProperties cp = new CCellProperties();
+            cp.CopyFrom(this);
+            return cp;
+        }
+
         //MathCompare if two properties are equal
         public bool CompareTo(ICellProperties asCell)
         {
@@ -76,11 +84,11 @@ namespace GlyphicsLibrary.Atomics
         {
             byte r, g, b, a;
             Pixel.Ulong2Rgba(Rgba, out r, out g, out b, out a);
-            return "Cell: " + r + "," + g + "," + b + "," + a + ","
+            return "(Cell:" + r + "," + g + "," + b + "," + a + ":"
                 + TextureId + ","
                 + ShapeId + ","
                 + AnimateId + ","
-                + PhysicsId;
+                + PhysicsId + ")";
         }
 
         //Calculate the unified value

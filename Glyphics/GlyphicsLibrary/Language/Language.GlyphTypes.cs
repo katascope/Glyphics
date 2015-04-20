@@ -182,7 +182,8 @@ namespace GlyphicsLibrary.Language
         GlyphSupports       = 127,
         GlyphUpV            = 128,
 
-        GlyphFillTriangle   = 129
+        GlyphFillTriangle   = 129,
+        GlyphShadows        = 130
     };
 
     internal static class Glyphs
@@ -345,7 +346,8 @@ namespace GlyphicsLibrary.Language
                 new CGlyph(GlyphId.GlyphUpV           , "UpV",                0,    5, "# # r g b a", "UpV <reps> <search r> <search g> <search b> <search a>"),
 #endregion
 #region RecentlyAdded
-                new CGlyph(GlyphId.GlyphFillTriangle  , "FillTriangle",       0,    9,  "x y z X Y Z # # #", "Draw Filled Triangle <x1> <y1> <z1> <x2> <y2> <z2> <x3> <y3> <z3>")
+                new CGlyph(GlyphId.GlyphFillTriangle  , "FillTriangle",       0,    9,  "x y z X Y Z # # #", "Draw Filled Triangle <x1> <y1> <z1> <x2> <y2> <z2> <x3> <y3> <z3>"),
+                new CGlyph(GlyphId.GlyphShadows       , "Shadows",            0,    0,  "", "Simulate shadows" )
 #endregion
             };
 

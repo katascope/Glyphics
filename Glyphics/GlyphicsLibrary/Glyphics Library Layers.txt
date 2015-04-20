@@ -6,3 +6,32 @@ Layer 1 [Atomics]
 Layer 0 [Glyphics Interfaces]
 
 
+Code is easiest to write
+Tokens are easiest to execute
+Bytecode is smallest code to encode
+---------Execution barrier---------
+Grids are easiest to draw to
+Rects are easiest and smallest to serialize
+Triangles are easiest to render or print
+Elements are easiest to UI manipulate
+Transforms are elements without properties
+
+Grids/Rects/Triangles/Elements/Quads/Transforms are also: 
+- Octree
+- Palettes
+- Images(and all associated like normal/texture/light-maps, cellular automata-map)
+- Voxel/point-clouds
+- Cube-maps(if you consider them as inverted in 6d), 
+- UI Windows
+- Physics simulation
+- Emergent.. how? 
+
+
+
+Images are just small grids
+Palettes are just small grids
+
+Scenes are sets of elements
+Decks are sets of sccenes
+
+TrianglesLists are sets of triangles

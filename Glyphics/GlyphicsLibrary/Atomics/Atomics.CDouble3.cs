@@ -38,7 +38,7 @@ namespace GlyphicsLibrary.Atomics
         //Readable description
         public override string ToString()
         {
-            return (int)X + "," + (int)Y + "," + (int)Z;
+            return "(" + (int)X + "," + (int)Y + "," + (int)Z + ")";
         }
 
         //Reset XYZ to 0
