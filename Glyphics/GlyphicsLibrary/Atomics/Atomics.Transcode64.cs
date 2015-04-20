@@ -30,6 +30,20 @@ namespace GlyphicsLibrary.Atomics
             return index;
         }
 
+        //Rects
+        public static string SerializeRectPointsToString(IRect rect, int inclusiveOffset)
+        {
+            string result = "";
+            RectMath.MinMax(ref rect);
+            result += To64((int)rect.Pt1.X);
+            result += To64((int)rect.Pt1.Y);
+            result += To64((int)rect.Pt1.Z);
+            result += To64((int)rect.Pt2.X - inclusiveOffset);
+            result += To64((int)rect.Pt2.Y - inclusiveOffset);
+            result += To64((int)rect.Pt2.Z - inclusiveOffset);
+            return result;
+        }
+
         //Convert a hexadecimal character to byte value
         private static byte HexCharToByte(char v)
         {
@@ -72,20 +86,6 @@ namespace GlyphicsLibrary.Atomics
                 bytes.Add((byte)v1);
             }
             return bytes.ToArray();
-        }
-
-        //Rects
-        public static string SerializeRectToString(IRect rect, int inclusiveOffset)
-        {
-            string result = "";
-            RectMath.MinMax(ref rect);
-            result += To64((int)rect.Pt1.X);
-            result += To64((int)rect.Pt1.Y);
-            result += To64((int)rect.Pt1.Z);
-            result += To64((int)rect.Pt2.X - inclusiveOffset);
-            result += To64((int)rect.Pt2.Y - inclusiveOffset);
-            result += To64((int)rect.Pt2.Z - inclusiveOffset);
-            return result;
         }
 
         //Convert one ulong to 4 r/g/b/a 4BPP(32-bit) 

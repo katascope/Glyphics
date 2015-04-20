@@ -21,10 +21,9 @@ namespace CodeScoper
     {
         static void Main()
         {
-            //const string codeString2 = "Size3D1 8 9 1;PenColorD1 1;Text 2 2 0 65;ImgFlipY;Rect 0 0 0 7 8 1";
+            const string codeString = "Text2D,Size3D1 8 9 1;PenColorD1 1;Text 2 2 0 65;ImgFlipY;Rect 0 0 0 7 8 1";
             //const string codeString = "Size3D1 4 4 3;PenColorD1 56;FillTriangle 1 1 0 3 3 1 2 3 2";
-
-            const string codeString = "Size3D1 4 4 1;PenColorD4 63 127 255 255;WallCube 1;PenColorD4 255 255 127 255;Plot 2 2 0;Shadows";
+            //const string codeString = "Scoper,Size3D1 4 4 1;PenColorD4 63 127 255 255;WallCube 1;PenColorD4 255 255 127 255;Plot 2 2 0;Shadows";
 
             SuperDebug(codeString);
         }
@@ -47,6 +46,8 @@ namespace CodeScoper
 
             string serialized = GlyphicsApi.RectsToSerializedRects(rects).SerializedData;
             Console.WriteLine("Serialized Rects: (len={0})\n{1}\n", serialized.Length, serialized);
+
+            Console.WriteLine("Preserialized Code:\n{0}\n", codeString + serialized);
 
             IQuadList quads = GlyphicsApi.RectsToQuads(rects);
             Console.WriteLine("Quads: {0}\n", quads);

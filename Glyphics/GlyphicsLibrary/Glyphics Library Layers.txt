@@ -14,7 +14,7 @@ Grids are easiest to draw to
 Rects are easiest and smallest to serialize
 Triangles are easiest to render or print
 Elements are easiest to UI manipulate
-Transforms are elements without properties
+Transforms are rectangles, really.
 
 Grids/Rects/Triangles/Elements/Quads/Transforms are also: 
 - Octree
@@ -25,13 +25,13 @@ Grids/Rects/Triangles/Elements/Quads/Transforms are also:
 - UI Windows
 - Physics simulation
 - Emergent.. how? 
-
-
+- Starfield
+- Animated image, as is just layers
 
 Images are just small grids
 Palettes are just small grids
 
 Scenes are sets of elements
-Decks are sets of sccenes
+Decks are sets of scenes
 
 TrianglesLists are sets of triangles

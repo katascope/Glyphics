@@ -17,6 +17,38 @@ using GlyphicsLibrary.Renderers;
 
 namespace GlyphicsLibrary
 {
+    //Equivalency chart
+    //----------------------------
+    //Code <=> Tokens
+    //Tokens <=> Bytecode
+    //Bytecode => Grid
+    //Grid <=> Rects
+    //Grid <=> PNG
+    //Grid <=> GIF
+    //Rects => Quads
+    //Rects <=> SerializedRects
+    //Quads => Triangles
+    //Triangles <=> STL
+    //Triangles => Grid
+    //Rects <=> Scene
+    //Scene <=> Simulation
+    //Rects <=> Points
+
+    //Simulation - micropocket worlds
+    // Functions that only process when grid is run if certain values
+    // State machine : Trigger can change state of grid
+
+    //TODO: Lights
+    //TODO: Materials
+    //TODO: Triggers and Sensors
+    //TODO: Editor
+    //TODO: Explorer
+    //TODO: Generate grid of previews of a bunch of other grids (using the scaler)
+    //TODO: Maze Generator algorithm
+
+    //PostProcessors - run after code, on rects?
+
+    //TODO: Integrate with unity?
     //TODO: Future: Render scenes to grid (with animations, full triangles)
     //TODO: Future UI units as equivalent to rects
     //TODO: Future: Speed improvements & profiling
@@ -90,6 +122,8 @@ namespace GlyphicsLibrary
         public static IRectList SerializedRectsToRects(ISerializedRects serializedRects) { return RectSerializer.Deserialize(serializedRects); }
         public static ITriangles RectsToTrianglesCube(IRectList rectSet) { return RectToTriangles.RectsToTrianglesCube(rectSet); }
         public static string RectsToDescription(IRectList rectSet) { return RectMath.RectsToDescription(rectSet); }
+        public static ISerializedRects RectsToSerializedRectsLimit255(IRectList rectSet) { return new CSerializedRects(RectSerializer.SerializeLimit255(rectSet)); }
+
 
         //RGBA-To
         public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a) { return Pixel.Rgba2Ulong(r, g, b, a); }

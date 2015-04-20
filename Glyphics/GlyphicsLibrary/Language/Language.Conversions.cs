@@ -11,7 +11,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #endregion
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using GlyphicsLibrary.Atomics;
 using GlyphicsLibrary.ByteGrid;
@@ -47,13 +46,24 @@ namespace GlyphicsLibrary.Language
         static public string TokensToString(ITokenList glyphTokens, string separator)
         {
             List<string> strings = TokensToList(glyphTokens);
-            return strings.Aggregate((i, j) => i + separator + j);
+            
+            string finalStr = "";
+            foreach (string str in strings)
+            {
+                finalStr += str + separator;
+            }
+            return finalStr;
         }
 
         //Convert tokenList to a List of Glyphics codelines
         static public List<string> TokensToList(ITokenList glyphTokens)
         {
-            return glyphTokens.Select(token => token.ToString()).ToList();
+            List<string> tokenStrList = new List<string>();
+            foreach (IToken token in glyphTokens)
+            {
+                tokenStrList.Add(token.ToString());
+            }
+            return tokenStrList;
         }
 
         //Input: Glyphics code

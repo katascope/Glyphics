@@ -10,7 +10,6 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace GlyphicsLibrary.Atomics
@@ -29,22 +28,33 @@ namespace GlyphicsLibrary.Atomics
         {
             if (rects == null) return null;
 
-            return rects.FirstOrDefault(rectList => rectList[0].Properties.UnifiedValue == unifiedValue);
+            foreach (List<IRect> rectList in rects)
+            { 
+                foreach (IRect rect in rectList)
+                {
+                    if (rectList[0].Properties.UnifiedValue == unifiedValue)
+                        return rectList;
+                }
+            }
+            return null;
         }
 
         //Sort a set of rectangles into a list of rects by unified value
-        private static IEnumerable<List<IRect>> SuperSort(IRectList rects)
+        // - Sorts the rectlist into sets of rectlists where rects have same properties
+        private static IEnumerable<List<IRect>> SuperSortByProperties(IRectList rects)
         {
             var superRects = new List<List<IRect>>();
 
+            //First make sure all are calcuated already
             foreach (IRect rect in rects)
-            {
                 rect.Properties.UnifiedValue = rect.Properties.CalcUnified();
-            }
 
+            //Go through finding or creating a list for each unified value type
             foreach (IRect rect in rects)
             {
                 List<IRect> sortedList = FindListInLists(superRects,rect.Properties.UnifiedValue);
+
+                //If didn't find, create, if did find add.
                 if (sortedList == null)
                 {
                     var newList = new List<IRect>();
@@ -59,9 +69,7 @@ namespace GlyphicsLibrary.Atomics
         //Serialize cellproperties to a string
         private static string SerializeRectProperties(ICellProperties properties)
         {
-            string str = "";
-
-            str += ""+CharRgba;
+            string str = "" + CharRgba;
             byte r, g, b, a;
             Transcode64.RecodeUlongtoRgba(properties.Rgba, out r, out g, out b, out a);
             str += Transcode64.To64(r);
@@ -85,21 +93,55 @@ namespace GlyphicsLibrary.Atomics
             return str;
         }
 
+        //Limits it to 255 strings between carriage returns
+        public static string SerializeLimit255(IRectList rectSet)
+        {
+            IEnumerable<List<IRect>> superRects = SuperSortByProperties(rectSet);
+            string str = "";
+            string runStr = "";
+
+            foreach (List<IRect> rectList in superRects)
+            {
+                runStr += SerializeRectProperties(rectList[0].Properties);
+                foreach (IRect t in rectList)
+                {
+                    runStr += Transcode64.SerializeRectPointsToString(t, 1);
+                    if (runStr.Length > 244)
+                    {
+                        str += runStr + CharLimit255;
+                        runStr = SerializeRectProperties(rectList[0].Properties);
+                    }
+                }
+            }
+            str += runStr + CharLimit255;
+
+            str = str.TrimEnd('\n') + "\n";//ensure only one \n at end
+            return str;
+        }
+
         //Serialize a set of rectangles(IRectList) to ISerializedRects
         public static ISerializedRects Serialize(IRectList rectSet)
         {
             var sb = new StringBuilder();
-            IEnumerable<List<IRect>> superRects = SuperSort(rectSet);
 
+            //Sort the rectlist into sets of rectlists where rects have same properties
+            IEnumerable<List<IRect>> superRects = SuperSortByProperties(rectSet);
+
+            //Iterate through entire set of rectlists
             foreach (List<IRect> rectList in superRects)
             {
-                sb.Append(SerializeRectProperties(rectList[0].Properties));
+                string rectPropertiesSerialized = SerializeRectProperties(rectList[0].Properties);
+                sb.Append(rectPropertiesSerialized);
 
+                //Iterate through each rect in the set (will all have same properties)
+                //Each will inherit properties values when read later from last properties write
                 foreach (IRect rect in rectList)
                 {
-                    sb.Append(Transcode64.SerializeRectToString(rect, 1));
+                    string rectSerialized = Transcode64.SerializeRectPointsToString(rect, 1);
+                    sb.Append(rectSerialized);
                 }
             }
+            //Then return new serialized rect with that string
             return new CSerializedRects(sb.ToString());
         }
 
