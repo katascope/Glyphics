@@ -183,7 +183,8 @@ namespace GlyphicsLibrary.Language
         GlyphUpV            = 128,
 
         GlyphFillTriangle   = 129,
-        GlyphShadows        = 130
+        GlyphShadows        = 130,
+        GlyphMaze           = 131
     };
 
     internal static class Glyphs
@@ -347,7 +348,8 @@ namespace GlyphicsLibrary.Language
 #endregion
 #region RecentlyAdded
                 new CGlyph(GlyphId.GlyphFillTriangle  , "FillTriangle",       0,    9,  "x y z X Y Z # # #", "Draw Filled Triangle <x1> <y1> <z1> <x2> <y2> <z2> <x3> <y3> <z3>"),
-                new CGlyph(GlyphId.GlyphShadows       , "Shadows",            0,    0,  "", "Simulate shadows" )
+                new CGlyph(GlyphId.GlyphShadows       , "Shadows",            0,    0,  "", "Simulate shadows" ),
+                new CGlyph(GlyphId.GlyphMaze          , "Maze",               0,    5,  "x y z X Z", "Generate maze from xyz to XyZ" )
 #endregion
             };
 

@@ -12,7 +12,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 using System;
 using GlyphicsLibrary;
 
-namespace ExampleImageGeneration
+namespace ExampleResizeStl
 {
     /* Example: Resize STL
      * Purpose: Resize an STL and write back out to another STL

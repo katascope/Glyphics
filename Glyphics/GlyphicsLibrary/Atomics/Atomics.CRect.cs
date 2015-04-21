@@ -15,7 +15,6 @@ namespace GlyphicsLibrary.Atomics
     //Implementation of IRect, see for usage
     internal class CRect : IRect
     {
-        //public bool Isolated { get; set; }
         public IDouble3 Pt1 { get; set; }
         public IDouble3 Pt2 { get; set; }
         public ICellProperties Properties { get; set; }
@@ -88,10 +87,10 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //True if same
-        public bool CompareTo(IRect rect)
+        public bool IsEqualTo(IRect rect)
         {
-            if ( (rect.Pt1.CompareTo(Pt1) == false)
-                || (rect.Pt2.CompareTo(Pt2) == false) )
+            if ( (rect.Pt1.IsEqualTo(Pt1) == false)
+                || (rect.Pt2.IsEqualTo(Pt2) == false) )
             {
                 return false;
             }

@@ -93,10 +93,8 @@ namespace DocumentationGenerator
                         file.WriteLine(glyphDoc);
                     }
                 }
-                else
-                {
-                    //Needs example writer for markdown here, if needed
-                }
+                //Needs example writer for markdown here, if needed
+                //else { }
             }
         }
     }
@@ -200,13 +198,13 @@ namespace DocumentationGenerator
 
     class Documenter
     {
-        static IDocumenter documenterHtml = new CDocumenterHtml();
-        static IDocumenter documenterMarkdown = new CDocumenterMarkdown();
+        static readonly IDocumenter DocumenterHtml = new CDocumenterHtml();
+        static readonly IDocumenter DocumenterMarkdown = new CDocumenterMarkdown();
 
         public static void DocumentIndex(string documentationPath)
         {
-            documenterHtml.DocumentIndex(documentationPath + "HTML\\");
-            documenterMarkdown.DocumentIndex(documentationPath + "Markdown\\");
+            DocumenterHtml.DocumentIndex(documentationPath + "HTML\\");
+            DocumenterMarkdown.DocumentIndex(documentationPath + "Markdown\\");
         }
 
         //Generate documentation for a piece of Glyphics code
@@ -214,8 +212,8 @@ namespace DocumentationGenerator
                                            string title,
                                            string code)
         {
-            documenterHtml.DocumentByCode(documentationPath + "HTML\\", title, code);
-            documenterMarkdown.DocumentByCode(documentationPath+ "Markdown\\", title, code);
+            DocumenterHtml.DocumentByCode(documentationPath + "HTML\\", title, code);
+            DocumenterMarkdown.DocumentByCode(documentationPath+ "Markdown\\", title, code);
         }
 
         //High level documentation report generation

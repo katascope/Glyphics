@@ -19,32 +19,32 @@ namespace GlyphicsLibrary.Atomics
     internal class CQuadList : IQuadList
     {
         //Actual list of IQuad
-        private List<IQuad> _quads { get; set; }
+        private List<IQuad> Quads { get; set; }
 
         //Constructor
         public CQuadList()
         {
-            _quads = new List<IQuad>();
+            Quads = new List<IQuad>();
         }
 
         //Number of rectangles in list
-        public int Count { get { return _quads.Count; } }
+        public int Count { get { return Quads.Count; } }
 
         //Add quad to the list
         public void AddQuad(IQuad quad)
         {
-            _quads.Add(quad);
+            Quads.Add(quad);
         }
 
         //Get quad from the list
         public IQuad GetQuad(int id)
         {
             if (id < 0 || id > Count) return null;
-            return _quads[id];
+            return Quads[id];
         }
 
         //True if same
-        public bool CompareTo(IQuadList quads)
+        public bool IsEqualTo(IQuadList quads)
         {
             if (quads.Count != Count)
                 return false;
@@ -52,9 +52,9 @@ namespace GlyphicsLibrary.Atomics
             for (int i = 0; i < Count; i++)
             {
                 IQuad quad1 = quads.GetQuad(i);
-                IQuad quad2 = _quads[i];
+                IQuad quad2 = Quads[i];
 
-                if (quad1.CompareTo(quad2) == false)
+                if (quad1.IsEqualTo(quad2) == false)
                     return false;
             }
             return true;
@@ -63,10 +63,10 @@ namespace GlyphicsLibrary.Atomics
         //Readable description
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            sb.Append(_quads.Count + "\n");
-            foreach (IQuad quad in _quads)
+            sb.Append(Quads.Count + "\n");
+            foreach (IQuad quad in Quads)
             {
                 sb.Append(quad + "\n");
             }
@@ -76,14 +76,14 @@ namespace GlyphicsLibrary.Atomics
         //Remove a quad 
         public void RemoveQuad(IQuad quad)
         {
-            _quads.Remove(quad);
+            Quads.Remove(quad);
         }
 
         //Make enumerable instead
         #region Implementation of IEnumerable
         public IEnumerator<IQuad> GetEnumerator()
         {
-            return _quads.GetEnumerator();
+            return Quads.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

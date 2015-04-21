@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <RegisterForComInterop>false</RegisterForComInterop>
@@ -115,6 +115,7 @@
     <Compile Include="Glyphics Interfaces\IQuadList.cs" />
     <Compile Include="Glyphics Interfaces\IScene.cs" />
     <Compile Include="Glyphics Interfaces\ITransform.cs" />
+    <Compile Include="Painters\Painters.Maze.cs" />
     <Compile Include="Painters\Painters.Shadows.cs" />
     <Compile Include="Renderers\Renderers.RendererTriangles.cs" />
     <Compile Include="Glyphics Interfaces\IGridList.cs" />

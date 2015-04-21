@@ -24,32 +24,32 @@ namespace GlyphicsLibrary.Atomics
         public int SizeZ { get; set; }
 
         //Actual list of IRect
-        private List<IRect> _rects { get; set; }
+        private List<IRect> Rects { get; set; }
 
         //Constructor
         public CRectList()
         {
-            _rects = new List<IRect>();
+            Rects = new List<IRect>();
         }
 
         //Number of rectangles in list
-        public int Count { get { return _rects.Count; } }
+        public int Count { get { return Rects.Count; } }
 
         //Add a rectangle to the list
         public void AddRect(IRect rect)
         {
-            _rects.Add(rect);
+            Rects.Add(rect);
         }
 
         //Get a rectangle from the list
         public IRect GetRect(int id)
         {
             if (id < 0 || id > Count) return null;
-            return _rects[id];
+            return Rects[id];
         }
 
         //True if same
-        public bool CompareTo(IRectList rects)
+        public bool IsEqualTo(IRectList rects)
         {
             if (rects.Count != Count)
                 return false;
@@ -57,9 +57,9 @@ namespace GlyphicsLibrary.Atomics
             for (int i=0;i<Count;i++)
             {
                 IRect rect1 = rects.GetRect(i);
-                IRect rect2 = _rects[i];
+                IRect rect2 = Rects[i];
 
-                if (rect1.CompareTo(rect2) == false)
+                if (rect1.IsEqualTo(rect2) == false)
                     return false;
             }
             return true;
@@ -68,9 +68,9 @@ namespace GlyphicsLibrary.Atomics
         //Readable description
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
-            foreach (IRect rect in _rects)
+            foreach (IRect rect in Rects)
             {
                 sb.Append(rect + "\n");
             }
@@ -81,7 +81,7 @@ namespace GlyphicsLibrary.Atomics
         #region Implementation of IEnumerable
         public IEnumerator<IRect> GetEnumerator()
         {
-            return _rects.GetEnumerator();
+            return Rects.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

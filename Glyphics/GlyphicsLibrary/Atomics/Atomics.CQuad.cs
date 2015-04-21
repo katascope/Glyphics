@@ -9,8 +9,6 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
-using System;
-using System.Collections.Generic;
 
 namespace GlyphicsLibrary.Atomics
 {
@@ -18,7 +16,7 @@ namespace GlyphicsLibrary.Atomics
     public class CQuad : IQuad
     {
         //Properties of the cell
-        public ICellProperties properties { get; set; }
+        public ICellProperties Properties { get; set; }
 
         //Points of a quad
         public IDouble3 Pt1 { get; set; }
@@ -53,9 +51,9 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //True if same
-        public bool CompareTo(IQuad quad)
+        public bool IsEqualTo(IQuad quad)
         {
-            if ((Pt1.CompareTo(quad.Pt1) == false) || (Pt2.CompareTo(quad.Pt2) == false))
+            if ((Pt1.IsEqualTo(quad.Pt1) == false) || (Pt2.IsEqualTo(quad.Pt2) == false))
                 return false;
             return true;
         }
@@ -72,7 +70,7 @@ namespace GlyphicsLibrary.Atomics
         //Readable description
         public override string ToString()
         {
-            string str = "[" + Pt1 + "," + Pt2 + ", " + properties + "]";
+            string str = "[" + Pt1 + "," + Pt2 + ", " + Properties + "]";
             return str;
         }
     }

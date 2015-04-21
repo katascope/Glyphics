@@ -109,14 +109,14 @@ ImgMirrorX
 
             //Save a rendering out to a PNG, why not, too.
             Console.WriteLine("Creating preview grid");
-            IGrid gridFromSTL = GlyphicsApi.CreateGrid(96,96,96, 4);
+            IGrid gridFromStl = GlyphicsApi.CreateGrid(96,96,96, 4);
 
             Console.WriteLine("Rendering triangles to grid");
-            GlyphicsApi.Renderer.RenderTrianglesToGrid(triangles, gridFromSTL);
+            GlyphicsApi.Renderer.RenderTrianglesToGrid(triangles, gridFromStl);
 
             //Then render to a new grid
             Console.WriteLine("Rendering grid to oblique preview grid");
-            IGrid gridObliqueRendered = GlyphicsApi.Renderer.RenderObliqueCells(gridFromSTL);
+            IGrid gridObliqueRendered = GlyphicsApi.Renderer.RenderObliqueCells(gridFromStl);
 
             //Then save            
             const string filenamePreview = "..\\..\\preview.png";

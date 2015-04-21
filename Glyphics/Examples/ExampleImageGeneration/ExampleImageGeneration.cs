@@ -30,17 +30,15 @@ namespace ExampleImageGeneration
             {
                 for (int x = 0; x < grid.SizeX; x++)
                 {
-                    byte r, g, b, a;
                     //Just use some simple procedural effects
                     int sx = (x - grid.SizeX / 2);
                     int sy = (y - grid.SizeY / 2);
-                    r = (byte)((sx * sy) / 10);
-                    g = (byte)((sx & sy) / 63);
-                    b = (byte)((sx *sx + sy * sy) / 25);
-                    a = 255;
+                    var r = (byte)((sx * sy) / 10);
+                    var g = (byte)((sx & sy) / 63);
+                    var b = (byte)((sx * sx + sy * sy) / 25);
 
                     //Convert to ulong 
-                    ulong u = GlyphicsApi.Rgba2Ulong(r, g, b, a);
+                    ulong u = GlyphicsApi.Rgba2Ulong(r, g, b, 255);
 
                     //And plot it
                     grid.Plot(x, y, 0, u);

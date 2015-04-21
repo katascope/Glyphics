@@ -207,6 +207,9 @@
 ![](MaskRect.png)
 [MaskRect](MaskRect.md)
 
+![](Maze.png)
+[Maze](Maze.md)
+
 ![](Nop.png)
 [Nop](Nop.md)
 
@@ -317,6 +320,9 @@
 
 ![](Scissor.png)
 [Scissor](Scissor.md)
+
+![](Shadows.png)
+[Shadows](Shadows.md)
 
 ![](Size1D1.png)
 [Size1D1](Size1D1.md)

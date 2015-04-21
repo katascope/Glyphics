@@ -101,15 +101,15 @@ namespace GlyphicsLibrary.Atomics
         //Convert one quad into two triangles
         public static ITriangles QuadToTwoTriangles(IQuad quad)
         {
-            List<ITriangle> triangleList = new List<ITriangle>();
+            var triangleList = new List<ITriangle>();
             ITriangles triangles = new CTriangles();
 
-            float x1 = (float)quad.Pt1.X;
-            float x2 = (float)quad.Pt2.X;
-            float y1 = (float)quad.Pt1.Y;
-            float y2 = (float)quad.Pt2.Y;
-            float z1 = (float)quad.Pt1.Z;
-            float z2 = (float)quad.Pt2.Z;
+            var x1 = (float)quad.Pt1.X;
+            var x2 = (float)quad.Pt2.X;
+            var y1 = (float)quad.Pt1.Y;
+            var y2 = (float)quad.Pt2.Y;
+            var z1 = (float)quad.Pt1.Z;
+            var z2 = (float)quad.Pt2.Z;
 
             QuadAxis qa = quad.FindAxis();
 
@@ -122,7 +122,7 @@ namespace GlyphicsLibrary.Atomics
                     sameX, y1, z1,
                     sameX, y2, z1,
                     sameX, y2, z2);
-                triangle1.properties = quad.properties.Clone();
+                triangle1.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle1);
 
                 ITriangle triangle2 = new CTriangle();
@@ -130,7 +130,7 @@ namespace GlyphicsLibrary.Atomics
                     sameX, y1, z1,
                     sameX, y1, z2,
                     sameX, y2, z2);
-                triangle2.properties = quad.properties.Clone();
+                triangle2.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle2);
             }
             if (qa == QuadAxis.Y)
@@ -142,7 +142,7 @@ namespace GlyphicsLibrary.Atomics
                     x1, sameY, z1,
                     x1, sameY, z2,
                     x2, sameY, z2);
-                triangle1.properties = quad.properties.Clone();
+                triangle1.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle1);
 
                 ITriangle triangle2 = new CTriangle();
@@ -150,7 +150,7 @@ namespace GlyphicsLibrary.Atomics
                     x1, sameY, z1,
                     x2, sameY, z1,
                     x2, sameY, z2);
-                triangle2.properties = quad.properties.Clone();
+                triangle2.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle2);
             }
             if (qa == QuadAxis.Z)
@@ -162,7 +162,7 @@ namespace GlyphicsLibrary.Atomics
                     x1, y1, sameZ,
                     x1, y2, sameZ,
                     x2, y2, sameZ);
-                triangle1.properties = quad.properties.Clone();
+                triangle1.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle1);
 
                 ITriangle triangle2 = new CTriangle();
@@ -170,7 +170,7 @@ namespace GlyphicsLibrary.Atomics
                     x1, y1, sameZ,
                     x2, y1, sameZ,
                     x2, y2, sameZ);
-                triangle2.properties = quad.properties.Clone();
+                triangle2.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle2);
             }
 
@@ -181,7 +181,7 @@ namespace GlyphicsLibrary.Atomics
         //convert a quad to its two triangles
         public static ITriangles QuadsToTriangles(IQuadList quads)
         {
-            List<ITriangle> triangleList = new List<ITriangle>();
+            var triangleList = new List<ITriangle>();
 
             foreach (IQuad quad in quads)
             {
@@ -206,19 +206,19 @@ namespace GlyphicsLibrary.Atomics
             foreach (IRect rect in rectSet)
             {
                 IQuad quadFront = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt2.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadFront.properties = rect.Properties.Clone();
+                quadFront.Properties = rect.Properties.Clone();
                 IQuad quadBack   = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt1.Z);
-                quadBack.properties = rect.Properties.Clone();
+                quadBack.Properties = rect.Properties.Clone();
 
                 IQuad quadTopper = new CQuad(rect.Pt1.X, rect.Pt2.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadTopper.properties = rect.Properties.Clone();
+                quadTopper.Properties = rect.Properties.Clone();
                 IQuad quadBottom = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt1.Y, rect.Pt2.Z);
-                quadBottom.properties = rect.Properties.Clone();
+                quadBottom.Properties = rect.Properties.Clone();
 
                 IQuad quadRight = new CQuad(rect.Pt2.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadRight.properties = rect.Properties.Clone();
+                quadRight.Properties = rect.Properties.Clone();
                 IQuad quadLeft = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt1.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadLeft.properties = rect.Properties.Clone();
+                quadLeft.Properties = rect.Properties.Clone();
                 
                 quads.AddQuad(quadFront);
                 quads.AddQuad(quadBack);
@@ -248,8 +248,8 @@ namespace GlyphicsLibrary.Atomics
                         IQuad meQuad = quads.GetQuad(me);
                         IQuad youQuad = quads.GetQuad(you);
                         //I saw a duplicate
-                        if  ( (meQuad.Pt1.CompareTo(youQuad.Pt1)==true)
-                              && (meQuad.Pt2.CompareTo(youQuad.Pt2)==true))
+                        if  ( (meQuad.Pt1.IsEqualTo(youQuad.Pt1))
+                              && (meQuad.Pt2.IsEqualTo(youQuad.Pt2)))
                         {
                             //we have a redundancy
                             removedCount++;

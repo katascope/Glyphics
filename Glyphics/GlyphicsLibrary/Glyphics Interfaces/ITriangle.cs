@@ -16,7 +16,7 @@ namespace GlyphicsLibrary
     public interface ITriangle
     {
         //Properties of triangle
-        ICellProperties properties { get; set; }
+        ICellProperties Properties { get; set; }
 
         //Triangle surface normal
         IFloat3 Normal { get; }

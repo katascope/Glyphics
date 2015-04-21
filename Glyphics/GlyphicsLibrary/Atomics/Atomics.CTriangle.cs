@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Atomics
     internal class CTriangle : ITriangle
     {
         //Properties of triangle
-        public ICellProperties properties { get; set; }
+        public ICellProperties Properties { get; set; }
 
         //Actual vertex information
         public IFloat3 Normal { get; private set; }

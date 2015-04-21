@@ -25,7 +25,7 @@ namespace GlyphicsUnitTests
         {
             ICode glyphicscode = GlyphicsApi.CreateCode(Code);
             IGrid grid = GlyphicsApi.CodeToGrid(glyphicscode);
-            Assert.IsTrue(grid.CompareTo(GlyphicsApi.HexDataToBytes(Expected)));
+            Assert.IsTrue(grid.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace GlyphicsUnitTests
             ITokenList tokens = GlyphicsApi.BytecodeToTokens(bytecode);
             IGrid grid = GlyphicsApi.TokensToContext(tokens).Bgc.Grid;
 
-            Assert.IsTrue(grid.CompareTo(GlyphicsApi.HexDataToBytes(Expected)));
+            Assert.IsTrue(grid.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace GlyphicsUnitTests
             IGrid grid2 = GlyphicsApi.CreateGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
             GlyphicsApi.Renderer.RenderRectsToGrid(rects, grid2);
 
-            Assert.IsTrue(grid2.CompareTo(GlyphicsApi.HexDataToBytes(Expected)));
+            Assert.IsTrue(grid2.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
         }
 
         [TestMethod]
@@ -68,7 +68,7 @@ namespace GlyphicsUnitTests
             IGrid grid2 = GlyphicsApi.CreateGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
             GlyphicsApi.Renderer.RenderRectsToGrid(rects, grid2);
 
-            Assert.IsTrue(grid2.CompareTo(GlyphicsApi.HexDataToBytes(Expected)));
+            Assert.IsTrue(grid2.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
         }
 
         [TestMethod]
@@ -84,17 +84,22 @@ namespace GlyphicsUnitTests
 
             IGrid grid2 = GlyphicsApi.CreateGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
             GlyphicsApi.Renderer.RenderRectsToGrid(rects2, grid2);
-            Assert.IsTrue(grid2.CompareTo(GlyphicsApi.HexDataToBytes(Expected)));
+            Assert.IsTrue(grid2.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
         }
 
         [TestMethod]
         public void ConvertCodeToGridToRectsToQuadsToTriangles()
         {
             ICode glyphicscode = GlyphicsApi.CreateCode(Code);
+            Assert.IsNotNull(glyphicscode);
             IGrid grid = GlyphicsApi.CodeToGrid(glyphicscode);
+            Assert.IsNotNull(grid);
             IRectList rects = GlyphicsApi.GridToRects(grid);
+            Assert.IsNotNull(rects);
             IQuadList quads = GlyphicsApi.RectsToQuads(rects);
+            Assert.IsNotNull(quads);
             ITriangles triangles = GlyphicsApi.QuadsToTriangles(quads);
+            Assert.IsNotNull(triangles);
         }
 
         [TestMethod]
@@ -105,20 +110,20 @@ namespace GlyphicsUnitTests
             IRectList rectsFromGrid = GlyphicsApi.GridToRects(grid);
 
             IGrid gridFromRects = grid.Clone();
-            Assert.IsTrue(grid.CompareTo(gridFromRects));
+            Assert.IsTrue(grid.IsEqualTo(gridFromRects));
 
             GlyphicsApi.Renderer.RenderRectsToGrid(rectsFromGrid, gridFromRects);
-            Assert.IsTrue(grid.CompareTo(gridFromRects));
+            Assert.IsTrue(grid.IsEqualTo(gridFromRects));
 
             IScene sceneFromRects = GlyphicsApi.RectsToScene(rectsFromGrid);
             IRectList rectsFromScene = GlyphicsApi.SceneToRects(sceneFromRects);
 
-            Assert.IsTrue(rectsFromGrid.CompareTo(rectsFromScene));
+            Assert.IsTrue(rectsFromGrid.IsEqualTo(rectsFromScene));
 
             IGrid gridMega = grid.Clone();
             GlyphicsApi.Renderer.RenderRectsToGrid(rectsFromScene, gridMega);
 
-            Assert.IsTrue(grid.CompareTo(gridMega));
+            Assert.IsTrue(grid.IsEqualTo(gridMega));
         }
     }
 }

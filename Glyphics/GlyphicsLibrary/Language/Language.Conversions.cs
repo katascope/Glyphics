@@ -58,7 +58,7 @@ namespace GlyphicsLibrary.Language
         //Convert tokenList to a List of Glyphics codelines
         static public List<string> TokensToList(ITokenList glyphTokens)
         {
-            List<string> tokenStrList = new List<string>();
+            var tokenStrList = new List<string>();
             foreach (IToken token in glyphTokens)
             {
                 tokenStrList.Add(token.ToString());
@@ -112,7 +112,7 @@ namespace GlyphicsLibrary.Language
                         builder.Append(val == 0 ? "00 " : String.Format("{0:X2} ", val));
                     }
                     builder.Append("\n");
-                } builder.Append("\n");
+                } //builder.Append("\n");
             }
             return builder.ToString();
         }

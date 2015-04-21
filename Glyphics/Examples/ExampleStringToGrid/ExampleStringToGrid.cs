@@ -12,7 +12,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 using System;
 using GlyphicsLibrary;
 
-namespace ExampleStringToPNG
+namespace ExampleStringToGrid
 {
     /* Example: String To Grid
      * Purpose: Illustrate how to create Glyphics code for drawing a string
@@ -22,13 +22,13 @@ namespace ExampleStringToPNG
      *  2) Render code to oblique cells
      *  3) Save grid to PNG
      */
-    class ExampleStringToPng
+    class ExampleStringToGrid
     {
         //Letter sizing
-        const int letterWidth = 7;
-        const int letterHeight = 6;
-        const int borderX = 1;
-        const int borderY = 1;
+        const int LetterWidth = 7;
+        const int LetterHeight = 6;
+        const int BorderX = 1;
+        const int BorderY = 1;
 
         private static string CreateCodeForText(string str, int x, int y, int z)
         {
@@ -41,29 +41,29 @@ namespace ExampleStringToPNG
             //Iterate through characters in string
             for (int i = 0; i < str.Length;i++ )
             {
-                int c_val = (int)str[i];
+                int cVal = str[i];
 
                 //If carriage return, advance up a letter height and reset x offset
                 if (str[i] == '\n')
                 {
-                    yOffset += letterHeight + borderY;
+                    yOffset += LetterHeight + BorderY;
                     xOffset = 0;
                 }
                 else
                 {
                     //Create glyphics code for it procedurally
                     result += "Text "
-                        + (x + xOffset * (letterWidth + borderX)) + " "
+                        + (x + xOffset * (LetterWidth + BorderX)) + " "
                         + (y - yOffset) + " "
                         + z + " "
-                        + c_val + ";"
+                        + cVal + ";"
                         ;                        
 
                     //Advance to next character offset
                     xOffset++;
                 }
 
-                Console.WriteLine("Letter : '{0}' = {1}\n{2} : {3}\n", str[i], c_val, i, result);
+                Console.WriteLine("Letter : '{0}' = {1}\n{2} : {3}\n", str[i], cVal, i, result);
 
             }
             return result;
@@ -75,13 +75,13 @@ namespace ExampleStringToPNG
             string code =
                 @"TextStringTest,Size3D4 146 31 4;PenColorD4 255 63 63 255;WallCube 1;";
 
-            int top = 16;
+            const int top = 16;
 
             //Draw the bottom text dark to seem like shadows
             code += "PenColorD4 255 127 255 255;";
             code += CreateCodeForText("Hello World\nHow are you doing?", 2, top, 1);
             code += "PenColorD4 31 255 127 255;";
-            code += CreateCodeForText("Well I hope?", 3, top - (letterHeight + borderY) * 2 , 1);
+            code += CreateCodeForText("Well I hope?", 3, top - (LetterHeight + BorderY) * 2 , 1);
             code += "Shadows;";
 
             Console.WriteLine("Code: {0}", code);

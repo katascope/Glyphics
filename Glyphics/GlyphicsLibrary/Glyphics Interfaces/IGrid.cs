@@ -66,10 +66,10 @@ namespace GlyphicsLibrary
         bool InRange(int x, int y, int z);
 
         //Return true if the raw bytes = expectedResult bytes
-        bool CompareTo(byte[] expectedResult);
+        bool CompareBytes(byte[] expectedResult);
 
         //Return true if the raw bytes = expectedResult bytes
-        bool CompareTo(IGrid grid);
+        bool IsEqualTo(IGrid grid);
         
         //Returns the count of non-zero cells
         ulong CountNonZero();

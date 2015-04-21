@@ -32,7 +32,7 @@ namespace GlyphicsLibrary.Language
         //Readable description
         public override string ToString()
         {
-            return "((Tokens:" + GlyphTokens.ToString() + ")(BGC:" + Bgc + "))";
+            return "((Tokens:" + GlyphTokens + ")(BGC:" + Bgc + "))";
         }
     }
 }

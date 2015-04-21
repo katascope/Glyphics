@@ -71,7 +71,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Compare to another ITriangles
-        public bool CompareTo(ITriangles triangles)
+        public bool IsEqualTo(ITriangles triangles)
         {
             if (triangles == null || triangles.Count != Count)
                 return false;
@@ -119,7 +119,7 @@ namespace GlyphicsLibrary.Atomics
         //Duplicate object
         public ITriangles Clone()
         {
-            List<ITriangle> triangleList = new List<ITriangle>();
+            var triangleList = new List<ITriangle>();
 
             foreach (ITriangle triangle in _triangleArray)
             {
@@ -289,10 +289,10 @@ namespace GlyphicsLibrary.Atomics
                 sb.Append(triangle.Vertex1 + ",");
                 sb.Append(triangle.Vertex2 + ",");
                 sb.Append(triangle.Vertex3);
-                if (triangle.properties != null)
+                if (triangle.Properties != null)
                 {
                     sb.Append("/");
-                    sb.Append(triangle.properties.ToString());
+                    sb.Append(triangle.Properties);
                 }
                 sb.Append("]\n");
             }
@@ -302,7 +302,7 @@ namespace GlyphicsLibrary.Atomics
         //For putting on ground (elevation zero, for easy printing)
         public void PutOnGround()
         {
-            float y = (float)TrianglesBoundaries.Pt1.Y;
+            var y = (float)TrianglesBoundaries.Pt1.Y;
 
             foreach (ITriangle triangle in _triangleArray)
                 triangle.Translate(0, -y, 0);

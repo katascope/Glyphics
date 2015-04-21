@@ -31,7 +31,7 @@ namespace GlyphicsLibrary
         void AddRect(IRect rect);
 
         //True if same
-        bool CompareTo(IRectList rects);
+        bool IsEqualTo(IRectList rects);
 
         //Readable description
         string ToString();

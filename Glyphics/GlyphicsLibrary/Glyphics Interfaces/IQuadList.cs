@@ -26,7 +26,7 @@ namespace GlyphicsLibrary
         void AddQuad(IQuad quad);
 
         //True if same
-        bool CompareTo(IQuadList quads);
+        bool IsEqualTo(IQuadList quads);
 
         //Remove a quad 
         void RemoveQuad(IQuad quad);

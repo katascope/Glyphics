@@ -10,17 +10,13 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using GlyphicsLibrary;
 
 namespace ExampleSceneGraph
 {
     class ExampleSceneGraph
     {
-        static void Main(string[] args)
+        static void Main()
         {
             //Simple Glyphics code
             const string code =
@@ -55,14 +51,14 @@ PenColorD4 31 255 127 255;Text 6 3 8 65";
 
             IRectList rectsFromGrid = GlyphicsApi.GridToRects(grid);
             IGrid gridFromRects = grid.Clone();
-            if (grid.CompareTo(gridFromRects) == false)
+            if (grid.IsEqualTo(gridFromRects) == false)
             {
                 Console.WriteLine("Grids are diff");
                 return;
             }
 
             GlyphicsApi.Renderer.RenderRectsToGrid(rectsFromGrid, gridFromRects);
-            if (grid.CompareTo(gridFromRects) == false)
+            if (grid.IsEqualTo(gridFromRects) == false)
             {
                 Console.WriteLine("Grids are diff");
                 return;
@@ -71,7 +67,7 @@ PenColorD4 31 255 127 255;Text 6 3 8 65";
             IScene sceneFromRects = GlyphicsApi.RectsToScene(rectsFromGrid);
             IRectList rectsFromScene = GlyphicsApi.SceneToRects(sceneFromRects);
 
-            if (rectsFromGrid.CompareTo(rectsFromScene) == false)
+            if (rectsFromGrid.IsEqualTo(rectsFromScene) == false)
             {
                 Console.WriteLine("Rects are diff");
                 return;
@@ -80,7 +76,7 @@ PenColorD4 31 255 127 255;Text 6 3 8 65";
             IGrid gridMega = grid.Clone();
             GlyphicsApi.Renderer.RenderRectsToGrid(rectsFromScene, gridMega);
 
-            if (grid.CompareTo(gridMega) == false)
+            if (grid.IsEqualTo(gridMega) == false)
             {
                 Console.WriteLine("Grids are diff");
                 return;

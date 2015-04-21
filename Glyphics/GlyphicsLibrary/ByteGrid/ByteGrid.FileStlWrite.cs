@@ -24,7 +24,7 @@ namespace GlyphicsLibrary.ByteGrid
         {
             string shortname = Path.GetFileNameWithoutExtension(filename);
 
-            using (StreamWriter sw = new StreamWriter(filename))
+            using (var sw = new StreamWriter(filename))
             {
                 sw.WriteLine("solid " + shortname);
 

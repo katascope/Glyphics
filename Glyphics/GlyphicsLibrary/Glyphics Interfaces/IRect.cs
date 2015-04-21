@@ -45,6 +45,6 @@ namespace GlyphicsLibrary
         bool Contains(double x, double y, double z);
 
         //True if same
-        bool CompareTo(IRect rect);
+        bool IsEqualTo(IRect rect);
     }
 }

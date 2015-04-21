@@ -58,7 +58,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //MathCompare if two properties are equal
-        public bool CompareTo(ICellProperties asCell)
+        public bool IsEqualTo(ICellProperties asCell)
         {
             if (asCell == null) return false;
 

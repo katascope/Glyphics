@@ -44,7 +44,7 @@ namespace GlyphicsLibrary.ByteGrid
         //Readable description
         public override string ToString()
         {
-            return "(Grid:" + Grid.ToString() + ")(Pen:" + Pen.ToString() + "(Spawn:" + SpawnPoint + ")";
+            return "(Grid:" + Grid + ")(Pen:" + Pen + "(Spawn:" + SpawnPoint + ")";
         }
     }
 }

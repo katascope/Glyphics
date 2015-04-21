@@ -183,7 +183,7 @@ namespace GlyphicsLibrary.ByteGrid
         }
 
         //Compare grid to another, return true if identical
-        public bool CompareTo(byte[] expectedResult)
+        public bool CompareBytes(byte[] expectedResult)
         {
             if (expectedResult == null)
                 return false;
@@ -201,7 +201,7 @@ namespace GlyphicsLibrary.ByteGrid
         }
 
         //Return true if the raw bytes = expectedResult bytes
-        public bool CompareTo(IGrid grid)
+        public bool IsEqualTo(IGrid grid)
         {
             if ((grid.SizeX != SizeX)
                 || (grid.SizeY != SizeY)
@@ -219,7 +219,7 @@ namespace GlyphicsLibrary.ByteGrid
                         ICellProperties v1 = grid.GetProperty(x, y, z);
                         ICellProperties v2 = GetProperty(x, y, z);
                         
-                        if (v1.CompareTo(v2)== false)
+                        if (v1.IsEqualTo(v2)== false)
                         {
                             return false;
                         }

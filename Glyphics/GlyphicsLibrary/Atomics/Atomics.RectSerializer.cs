@@ -30,11 +30,9 @@ namespace GlyphicsLibrary.Atomics
 
             foreach (List<IRect> rectList in rects)
             { 
-                foreach (IRect rect in rectList)
-                {
-                    if (rectList[0].Properties.UnifiedValue == unifiedValue)
+                //Just check the first in the list, as all others have same unified value
+                if (rectList[0].Properties.UnifiedValue == unifiedValue)
                         return rectList;
-                }
             }
             return null;
         }

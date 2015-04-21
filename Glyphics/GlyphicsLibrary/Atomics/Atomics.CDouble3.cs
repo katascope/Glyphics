@@ -68,7 +68,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //True if same
-        public bool CompareTo(IDouble3 d)
+        public bool IsEqualTo(IDouble3 d)
         {
             if (  (Compare.CompareDoubleAreEqual(d.X, X) == false)
                || (Compare.CompareDoubleAreEqual(d.Y, Y) == false)

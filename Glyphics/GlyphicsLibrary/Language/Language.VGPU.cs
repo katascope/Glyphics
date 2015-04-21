@@ -209,6 +209,7 @@ namespace GlyphicsLibrary.Language
                 case GlyphId.GlyphFillTriangle: Painter.DrawFillTriangle3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
 
                 case GlyphId.GlyphShadows: Painter.DrawShadows(bgc); return;
+                case GlyphId.GlyphMaze: Painter.DrawMaze(bgc, args[0], args[1], args[2], args[3], args[4]); return;
 
             }
         }
