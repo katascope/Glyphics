@@ -33,6 +33,24 @@ namespace Animator
 
         static void Main()
         {
+            const string gifFilename = @"C:\Github\Glyphics\Glyphics\Apps\Animator\banana.gif";
+
+            IGrid grid = GlyphicsApi.GifToGrid(gifFilename);
+            IGrid gridOblique = GlyphicsApi.Renderer.RenderObliqueCells(grid);
+            GlyphicsApi.SaveFlatPng("..\\..\\gridGif.png", gridOblique);
+            IGridList grids = GlyphicsApi.GifToGrids(gifFilename);
+
+            int count = 1;
+            foreach (IGrid gifGrid in grids)
+            {
+                string filename = "..\\..\\gridGif-" + (count++) + ".png";
+                Console.WriteLine("Filename " + filename);
+                //IGrid gifGridOblique = GlyphicsApi.Renderer.RenderObliqueCells(gifGrid);
+                GlyphicsApi.SaveFlatPng(filename, gifGrid);
+            }
+
+            return;
+
             //Simple Glyphics code
             //const string rawCode = "Size3D4 16 16 16;PenColorD4 31 127 255 255;WallCube 1;PenColorD4 255 255 255 255;Rect 0 0 0 15 0 15;PenColorD4 255 31 127 255;FillRect 4 1 4 11 2 11;PenColorD4 31 255 127 255;Text 6 3 8 65";
             

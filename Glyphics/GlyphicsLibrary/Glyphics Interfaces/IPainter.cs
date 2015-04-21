@@ -103,6 +103,6 @@ namespace GlyphicsLibrary
         void DrawCorners(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2);
         void DrawShadows(IByteGridContext bgc);
 
-        void DrawMaze(IByteGridContext bgc, int x1, int y, int z1, int x2, int z2);
+        void DrawMaze(IByteGridContext bgc, byte seed, int x1, int y, int z1, int x2, int z2);
     }
 }

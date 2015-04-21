@@ -21,13 +21,13 @@ namespace GlyphicsLibrary.ByteGrid
         private readonly List<IGrid> _grids = new List<IGrid>();
 
         //Add a grid to library
-        public void AddEntry(IGrid grid)
+        public void AddGrid(IGrid grid)
         {
             _grids.Add(grid);
         }
 
         //Return grid library entry
-        public IGrid GetEntry(int id)
+        public IGrid GetGrid(int id)
         {
             if (_grids.Count == 0) return null;
             if (id < 0 || id > _grids.Count) return null;

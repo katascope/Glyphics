@@ -39,9 +39,11 @@ namespace GlyphicsLibrary.Painters
         public int MaxSize { get; private set; }
         public int[,] Cells { get; private set; }
 
-        public MazeGrid(int width, int height)
+        public MazeGrid(byte seed, int width, int height)
         {
-             rng = new Random(38);
+            if (seed > 0)
+             rng = new Random(seed);
+            else rng = new Random();
 
             MinSize = 0;
 
@@ -173,38 +175,6 @@ namespace GlyphicsLibrary.Painters
             return false;
         }
 
-        public void Print(int[,] cells)
-        {
-            var columns = cells.GetLength(WidthDimension);
-            var rows = cells.GetLength(HeightDimension);
-
-            // Top line
-            Console.Write(" ");
-            for (int i = 0; i < columns; i++)
-                Console.Write(" _");
-            Console.WriteLine();
-
-            for (int y = 0; y < rows; y++)
-            {
-                Console.Write(" |");
-
-                for (int x = 0; x < columns; x++)
-                {
-                    var directions = (Directions) cells[x, y];
-
-                    var s = directions.HasFlag(Directions.S) ? " " : "_";
-
-                    Console.Write(s);
-
-                    s = directions.HasFlag(Directions.E) ? " " : "|";
-
-                    Console.Write(s);
-                }
-
-                Console.WriteLine();
-            }
-        }
-
         public string ToString(int[,] cells)
         {
             var columns = cells.GetLength(WidthDimension);
@@ -212,34 +182,21 @@ namespace GlyphicsLibrary.Painters
 
             string str = "";
 
-            // Top line
-            str += " #";
-            for (int i = 0; i < columns; i++)
-                str += "##";
-                //Console.Write(" _");
-            Console.WriteLine();
-            str += "\n";
-
             for (int y = 0; y < rows; y++)
             {
-                //Console.Write(" |");
                 str += " |";
 
                 for (int x = 0; x < columns; x++)
                 {
                     var directions = (Directions)cells[x, y];
-
+                    
                     var s = directions.HasFlag(Directions.S) ? " " : "_";
-
-                    //Console.Write(s);
                     str += s;
 
                     s = directions.HasFlag(Directions.E) ? " " : "|";
                     str += s;
-                    //Console.Write(s);
                 }
                 str += "\n";
-                //Console.WriteLine();
             }
             return str;
         }
@@ -285,7 +242,7 @@ namespace GlyphicsLibrary.Painters
 
     internal partial class CPainter
     {
-        public void DrawMaze(IByteGridContext bgc, int x1, int y, int z1, int x2, int z2)
+        public void DrawMaze(IByteGridContext bgc, byte seed, int x1, int y, int z1, int x2, int z2)
         {
             if (bgc == null || bgc.Grid == null) return;
             IGrid grid = bgc.Grid;
@@ -296,14 +253,10 @@ namespace GlyphicsLibrary.Painters
             int depth = z2 - z1;
 
             //Scale down by two, to pickup walls
-            MazeGrid mg = new MazeGrid(width/2-1, depth/2-1);
-            mg.Print(mg.Cells);
+            MazeGrid mg = new MazeGrid(seed, width/2, depth/2);
 
             string cells = mg.ToString(mg.Cells);
             string remappedCells = mg.remapCells(cells);
-            Console.WriteLine("orig\n"+mg.ToString(mg.Cells));
-
-            Console.WriteLine("rema\n" + remappedCells);
 
             var cellsWidth = mg.Cells.GetLength(MazeGrid.WidthDimension);
             var cellsHeight = mg.Cells.GetLength(MazeGrid.HeightDimension);
@@ -317,9 +270,8 @@ namespace GlyphicsLibrary.Painters
             {
                 for (int i=0;i<str.Length;i++)
                 {
-                    if (str[i] != ' ') grid.Plot(x1 + i, y, z1 + cursorZ, rgba);
-                    //else grid.Plot(x1 + i, y, z1 + cursorZ, 7);
-                    //grid.Plot(x1 + i, y, z1 + cursorZ, 19);
+                    if (str[i] != ' ')
+                        grid.Plot(x1 + i, y, z1 + cursorZ, rgba);
                 }
                 cursorZ++;
             }

@@ -44,8 +44,6 @@ namespace GlyphicsLibrary
     //TODO: Editor
     //TODO: Explorer
     //TODO: Generate grid of previews of a bunch of other grids (using the scaler)
-    //TODO: Maze Generator algorithm
-
     //PostProcessors - run after code, on rects?
 
     //TODO: Integrate with unity?
@@ -138,6 +136,11 @@ namespace GlyphicsLibrary
         //File IO for PNG files
         public static IGrid PngToGrid(string filename) { return FilePngRead.PngToGrid(filename); }
         public static void SaveFlatPng(string filename, IGrid grid) { FilePngWrite.SaveFlatPng(filename, grid); }
+
+        //File IO for GIF files
+        public static IGrid GifToGrid(string filename) { return FileGifRead.GifToGrid(filename); }
+        public static IGridList GifToGrids(string filename) { return FileGifRead.GifToGrids(filename); }
+        public static void SaveFlatGif(string filename, IGrid grid) { FileGifWrite.SaveFlatGif(filename, grid); }
 
         //File IO for STL files
         public static ITriangles StlToTriangles(string filename) { return FileStlRead.ReadFile(filename); }

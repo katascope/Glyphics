@@ -62,7 +62,7 @@ namespace GlyphicsLibrary.Language
                 {
                     IGrid grid = Executor.Execute(Tokenizer.CodeToTokens(new CCode(line))).Bgc.Grid;
                     if (grid != null)
-                        ArchetypeLibrary.GridList.AddEntry(grid);
+                        ArchetypeLibrary.GridList.AddGrid(grid);
                 }
             }
             return false;

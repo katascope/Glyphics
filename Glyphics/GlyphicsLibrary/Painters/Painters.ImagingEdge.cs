@@ -57,12 +57,18 @@ namespace GlyphicsLibrary.Painters
             grid.InhibitCodeTracking();
             for (int z = 0; z < grid.SizeZ; z++)
             {
-                for (int y = grid.SizeY - 1; y > 3; y--)
+                for (int y = grid.SizeY - 1; y >= 0; y--)
                 {
                     for (int x = 0; x < grid.SizeX; x++)
                     {
                         ulong u = grid.GetRgba(x, y, z);
-                        if (Pixel.Rgba2Ulong(ri, gi, bi, ai) == u)
+                        ulong rgba = Pixel.Rgba2Ulong(ri, gi, bi, ai);
+                        if (u != 0)
+                        {
+                            int foo;
+                            foo = 1;
+                        }
+                        if (rgba == u)
                         {
                             for (int i = 0; i < reps; i++)
                             {

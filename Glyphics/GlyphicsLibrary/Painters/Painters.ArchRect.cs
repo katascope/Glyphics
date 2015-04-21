@@ -23,7 +23,7 @@ namespace GlyphicsLibrary.Painters
             MinMax(ref y1, ref y2);
             MinMax(ref z1, ref z2);
 
-            IGrid grid = ArchetypeLibrary.GridList.GetEntry(shape);
+            IGrid grid = ArchetypeLibrary.GridList.GetGrid(shape);
             if (grid == null)
                 return;
 

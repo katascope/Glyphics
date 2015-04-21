@@ -16,9 +16,9 @@ namespace GlyphicsLibrary
     public interface IGridList : IEnumerable<IGrid>
     {
         //Add a grid to library
-        void AddEntry(IGrid grid);
+        void AddGrid(IGrid grid);
 
         //Return grid library entry
-        IGrid GetEntry(int id);
+        IGrid GetGrid(int id);
     }
 }

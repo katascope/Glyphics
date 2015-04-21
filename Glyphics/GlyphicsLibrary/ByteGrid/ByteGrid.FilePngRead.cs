@@ -21,27 +21,16 @@ namespace GlyphicsLibrary.ByteGrid
     {
         private FilePngRead() { }
 
-        //Load grid and return as 2d Grid
-        public static IGrid PngToGrid(string filename)
+        internal static void CopyBitmapSourceToGrid(BitmapSource bitmapSource, IGrid grid, int z)
         {
-#if !NET2
-
-            Stream imageStreamSource = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-            BitmapSource bitmapSource = decoder.Frames[0];
+            int width = bitmapSource.PixelWidth;
+            int height = bitmapSource.PixelHeight;
 
             int bytesPerPixel = bitmapSource.Format.BitsPerPixel / 8;
             var originalPixels = new byte[bitmapSource.PixelWidth * bitmapSource.PixelHeight * 4];
             int stride = bitmapSource.PixelWidth * bitmapSource.Format.BitsPerPixel / 8;
             stride = stride + (stride % 4) * 4;
             bitmapSource.CopyPixels(originalPixels, stride, 0);
-
-            int width = bitmapSource.PixelWidth;
-            int height = bitmapSource.PixelHeight;
-
-            IGrid grid = GlyphicsApi.CreateGrid(width, height, 1, 4);
-
-            imageStreamSource.Close();
 
             for (int y = 0; y < height; y++)
             {
@@ -61,9 +50,28 @@ namespace GlyphicsLibrary.ByteGrid
                         a = originalPixels[(y * width * bytesPerPixel) + (x * bytesPerPixel + 3)];
 
                     ulong u = GlyphicsApi.Rgba2Ulong(r, g, b, a);
-                    grid.Plot(x, y, 0, u);
+                    grid.Plot(x, y, z, u);
                 }
             }
+        }
+
+        //Load grid and return as 2d Grid
+        public static IGrid PngToGrid(string filename)
+        {
+#if !NET2
+
+            Stream imageStreamSource = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+            var decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            BitmapSource bitmapSource = decoder.Frames[0];
+            int width = bitmapSource.PixelWidth;
+            int height = bitmapSource.PixelHeight;
+
+            IGrid grid = GlyphicsApi.CreateGrid(width, height, 1, 4);
+
+
+            CopyBitmapSourceToGrid(bitmapSource, grid, 0);
+            imageStreamSource.Close();
+
             return grid;
 #else
             return null;
@@ -71,3 +79,33 @@ namespace GlyphicsLibrary.ByteGrid
         }
     }
 }
+
+
+/*
+            int width = 128;
+            int height = width;
+            int stride = width / 8;
+            byte[] pixels = new byte[height * stride];
+
+            // Define the image palette
+            BitmapPalette myPalette = BitmapPalettes.WebPalette;
+
+            // Creates a new empty image with the pre-defined palette
+
+            BitmapSource image = BitmapSource.Create(
+                width,
+                height,
+                96,
+                96,
+                PixelFormats.Indexed1,
+                myPalette,
+                pixels,
+                stride);
+
+            FileStream stream = new FileStream("new.gif", FileMode.Create);
+            GifBitmapEncoder encoder = new GifBitmapEncoder();
+            TextBlock myTextBlock = new TextBlock();
+            myTextBlock.Text = "Codec Author is: " + encoder.CodecInfo.Author.ToString();
+            encoder.Frames.Add(BitmapFrame.Create(image));
+            encoder.Save(stream);
+*/

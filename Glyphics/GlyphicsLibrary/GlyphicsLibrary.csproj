@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GlyphicsLibrary</RootNamespace>
     <AssemblyName>GlyphicsLibrary</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -109,6 +109,8 @@
     <Compile Include="Atomics\Atomics.CTransform.cs" />
     <Compile Include="Atomics\Atomics.SceneGraph.cs" />
     <Compile Include="Atomics\Atomics.CQuad.cs" />
+    <Compile Include="ByteGrid\ByteGrid.FileGifRead.cs" />
+    <Compile Include="ByteGrid\ByteGrid.FileGifWrite.cs" />
     <Compile Include="Glyphics Interfaces\IDeck.cs" />
     <Compile Include="Glyphics Interfaces\IElement.cs" />
     <Compile Include="Glyphics Interfaces\IQuad.cs" />

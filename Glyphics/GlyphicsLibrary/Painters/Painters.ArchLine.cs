@@ -19,7 +19,7 @@ namespace GlyphicsLibrary.Painters
         //Copy an archetype into context
         public void CopyInto(IByteGridContext bgc, int x, int y, int z, int archtype)
         {
-            IGrid grid = ArchetypeLibrary.GridList.GetEntry(archtype);
+            IGrid grid = ArchetypeLibrary.GridList.GetGrid(archtype);
             if (grid == null) return;
             CopyInto(bgc, x, y, z, grid);
         }
@@ -56,7 +56,7 @@ namespace GlyphicsLibrary.Painters
             int count = 0;
             bool firstTime = true;
 
-            IGrid grid = ArchetypeLibrary.GridList.GetEntry(shape);
+            IGrid grid = ArchetypeLibrary.GridList.GetGrid(shape);
             if (grid == null)
                 return;
 

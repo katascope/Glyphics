@@ -52,7 +52,7 @@ namespace GlyphicsLibrary.ByteGrid
         //Readable description
         public override string ToString()
         {
-            return "[Size=" + SizeX + "," + SizeY + "," + SizeZ + "]";
+            return "[Size=" + SizeX + "," + SizeY + "," + SizeZ + "]" + CountNonZero();
         }
 
         //Assignment constructor
