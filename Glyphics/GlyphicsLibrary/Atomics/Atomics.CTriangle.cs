@@ -35,6 +35,12 @@ namespace GlyphicsLibrary.Atomics
         //Basic constructor
         public CTriangle()
         {
+            Allocate();
+        }
+        
+        //Private allocate
+        private void Allocate()
+        {
             Normal = new CFloat3();
             Vertex1 = new CFloat3();
             Vertex2 = new CFloat3();
@@ -45,17 +51,20 @@ namespace GlyphicsLibrary.Atomics
             TexCoords3 = new CFloat2();
         }
 
+        //Assignment normal constructor
+        public CTriangle(float nx, float ny, float nz)
+        {
+            Allocate();
+
+            Normal.X = nx;
+            Normal.Y = ny;
+            Normal.Z = nz;
+        }
+
         //Assignment constructor
         public CTriangle(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3)
         {
-            Normal = new CFloat3();
-            Vertex1 = new CFloat3();
-            Vertex2 = new CFloat3();
-            Vertex3 = new CFloat3();
-
-            TexCoords1 = new CFloat2();
-            TexCoords2 = new CFloat2();
-            TexCoords3 = new CFloat2();
+            Allocate();
 
             SetTriangle(x1, y1, z1, x2, y2, z2, x3, y3, z3);
         }
@@ -74,6 +83,8 @@ namespace GlyphicsLibrary.Atomics
             Vertex3.X = x3;
             Vertex3.Y = y3;
             Vertex3.Z = z3;
+
+            CalcNormal();
         }
 
         //Full assignment 
@@ -87,7 +98,7 @@ namespace GlyphicsLibrary.Atomics
         public void CalcNormal()    			    // Calculates Normal For A Quad Using 3 Points
         {
             var v1 = new float[3];
-            var v2 = new float[3];				// Vector 1 (x,y,z) & Vector 2 (x,y,z)
+            var v2 = new float[3];				    // Vector 1 (x,y,z) & Vector 2 (x,y,z)
             const int x = 0;						// Define X Coord
             const int y = 1;						// Define Y Coord
             const int z = 2;						// Define Z Coord
@@ -104,20 +115,20 @@ namespace GlyphicsLibrary.Atomics
             v2[y] = Vertex2.Y - Vertex3.Y;					// Vector 2.y=Vertex[0].y-Vertex[1].y
             v2[z] = Vertex2.Z - Vertex3.Z;					// Vector 2.z=Vertex[0].z-Vertex[1].z
             // Compute The Cross Product To Give Us A Surface Normal
-            Normal.X = v1[y] * v2[z] - v1[z] * v2[y];				// Cross Product For Y - Z
-            Normal.Y = v1[z] * v2[x] - v1[x] * v2[z];				// Cross Product For X - Z
-            Normal.Z = v1[x] * v2[y] - v1[y] * v2[x];				// Cross Product For X - Y
+            Normal.X = (v1[y] * v2[z] - v1[z] * v2[y]);				// Cross Product For Y - Z
+            Normal.Y = (v1[z] * v2[x] - v1[x] * v2[z]);				// Cross Product For X - Z
+            Normal.Z = (v1[x] * v2[y] - v1[y] * v2[x]);				// Cross Product For X - Y
 
             ReduceToUnit();						    // Normalize The Vectors
         }
 
         //Reduce a normal vector to a unit vector
-        public void ReduceToUnit()                 // Reduces A Normal Vector (3 Coordinates)
+        public void ReduceToUnit()                  // Reduces A Normal Vector (3 Coordinates)
         {                                           // To A Unit Normal Vector With A Length Of One.
             // Holds Unit Length
             var length = (float)Math.Sqrt((Normal.X * Normal.X) + (Normal.Y * Normal.Y) + (Normal.Z * Normal.Z));
 
-            if ((length <= 0.01f)&&(length >= 0))                      // Prevents Divide By 0 Error By Providing
+            if ((length <= 0.01f)&&(length >= 0))    // Prevents Divide By 0 Error By Providing
                 length = 1.00f;                      // An Acceptable Value For Vectors To Close To 0.
 
             Normal.X /= length;                   // Dividing Each Element By
@@ -189,6 +200,7 @@ namespace GlyphicsLibrary.Atomics
             Vertex3.X = x3; Vertex3.Y = y3; 
         }
 
+        //Scale triangle
         public void Scale(float sx, float sy, float sz)
         {
             Vertex1.X *= sx; Vertex1.Y *= sy; Vertex1.Z *= sz;

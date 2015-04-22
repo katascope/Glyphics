@@ -22,7 +22,13 @@ namespace GlyphicsLibrary.Atomics
         public int ShapeId { get; set; }
         public int AnimateId { get; set; }
         public int PhysicsId { get; set; }
-        public ulong UnifiedValue { get; set; }
+        public ulong UnifiedValue
+        {
+            get
+            { 
+                return CalcUnified(); 
+            }
+        }
 
         //Set properties to default values
         public void Identity()
@@ -46,7 +52,6 @@ namespace GlyphicsLibrary.Atomics
             ShapeId = src.ShapeId;
             AnimateId = src.AnimateId;
             PhysicsId = src.PhysicsId;
-            UnifiedValue = src.UnifiedValue;
         }
 
         //Duplicate object
@@ -77,6 +82,7 @@ namespace GlyphicsLibrary.Atomics
             ShapeId   = Lerper.ThresholdAb(mux, propsA.ShapeId, propsB.ShapeId);
             AnimateId = Lerper.ThresholdAb(mux, propsA.AnimateId, propsB.AnimateId);
             PhysicsId = Lerper.ThresholdAb(mux, propsA.PhysicsId, propsB.PhysicsId);
+            CalcUnified();
         }
 
         //Return string describing properties
@@ -92,9 +98,9 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Calculate the unified value
-        public ulong CalcUnified()
+        private ulong CalcUnified()
         {
-            UnifiedValue = Rgba;
+            ulong UnifiedValue = Rgba;
             UnifiedValue |= (ulong)(ShapeId) << 32;
             UnifiedValue |= (ulong)(TextureId) << 40;
             UnifiedValue |= (ulong)(AnimateId) << 48;

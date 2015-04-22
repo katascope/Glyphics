@@ -17,6 +17,15 @@ using GlyphicsLibrary.Renderers;
 
 namespace GlyphicsLibrary
 {
+    //ChangeSet
+    //Cleaned up CellProperties, CRect
+
+    //Cleanups
+    //Pen
+
+
+
+
     //Equivalency chart
     //----------------------------
     //Code <=> Tokens

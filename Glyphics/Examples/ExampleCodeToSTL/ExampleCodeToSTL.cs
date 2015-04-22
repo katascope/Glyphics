@@ -31,7 +31,32 @@ namespace ExampleCodeToSTL
         static void Main()
         {
             //Glyphics code string
-            const string code = @"PrintableNexus,Size3D4 64 64 64;Spawn 25 5 25;PenShape 1;
+            
+                        const string code = @"PrintableNexus,Size3D4 64 64 64;Spawn 25 5 25;PenShape 1;
+            PenColorD4 31 127 255 255;WallCube 1;
+
+            PenColorD4 255 255 255 255;PenSize 1 2 1;Rect 0 0 0 31 0 31;Rect 0 0 32 31 0 63;Rect 32 0 0 63 0 31;Rect 32 0 32 63 0 63;Rect 16 0 16 48 0 48;
+            PenSize 1 1 1;PenColorD4 31 127 255 255;FillRect 17 0 17 47 0 47;FillRect 16 1 49 48 16 63;
+            PenColorD4 0 0 0 0;
+            FillRect 17 1 49 47 15 63;
+            Rect 0 1 0 63 63 63;
+            ImgEdgeX 255 255 255 255;ImgEdgeY 255 255 255 255;ImgEdgeZ 255 255 255 255;
+            #Now draw the multicolor volumes
+            PenShape 2;
+            PenColorD3 127 255 127;FillRect 2 1 2 13 12 13; 
+            PenColorD3 255 127 127;FillRect 2 1 18 13 12 29;
+            PenColorD3 127 127 255;FillRect 2 1 34 13 12 45;
+            PenColorD3 255 255 127;FillRect 2 1 50 13 12 61;
+            PenColorD3 255 127 255;FillRect 18 1 2 29 12 13;
+
+            # Shape on top
+            PenShape 3;PenColorD3 255 255 255;FillRect 26 17 51 36 28 62;
+
+            #Finally create a mirror image to the other side
+            ImgMirrorX
+            "; 
+            /*
+            const string code2 = @"PrintableNexus,Size3D4 64 64 64;Spawn 25 5 25;PenShape 0;
 PenColorD4 31 127 255 255;WallCube 1;
 
 PenColorD4 255 255 255 255;PenSize 1 2 1;Rect 0 0 0 31 0 31;Rect 0 0 32 31 0 63;Rect 32 0 0 63 0 31;Rect 32 0 32 63 0 63;Rect 16 0 16 48 0 48;
@@ -41,7 +66,7 @@ FillRect 17 1 49 47 15 63;
 Rect 0 1 0 63 63 63;
 ImgEdgeX 255 255 255 255;ImgEdgeY 255 255 255 255;ImgEdgeZ 255 255 255 255;
 #Now draw the multicolor volumes
-PenShape 2;
+PenShape 0;
 PenColorD3 127 255 127;FillRect 2 1 2 13 12 13; 
 PenColorD3 255 127 127;FillRect 2 1 18 13 12 29;
 PenColorD3 127 127 255;FillRect 2 1 34 13 12 45;
@@ -49,11 +74,14 @@ PenColorD3 255 255 127;FillRect 2 1 50 13 12 61;
 PenColorD3 255 127 255;FillRect 18 1 2 29 12 13;
 
 # Shape on top
-PenShape 3;PenColorD3 255 255 255;FillRect 26 17 51 36 28 62;
+PenShape 0;
+PenColorD3 255 255 255;FillRect 26 17 51 36 28 62;
 
 #Finally create a mirror image to the other side
 ImgMirrorX
-";
+";*/
+
+//            const string code = @"PrintableNexus,Size3D4 4 4 4;PenColorD4 255 255 255 255;FillRect 0 0 0 4 4 4;";
             Console.WriteLine("Code: {0}", code);
 
             //Glyphics code object
@@ -91,16 +119,18 @@ ImgMirrorX
             Console.WriteLine("Rendering triangles to grid");
              
             //Reduce scale to 1x1x1, making it 1mm x 1mm x 1mm
+            triangles.CalcNormals();
             triangles.ReduceToUnit();
-
+            triangles.Translate(0.5f, 0.5f, 0.5f);
+            
             //Scale up to make an exactly sized models in inches then millimeters
             const float finalSizeInInches = 2;
             const float finalSizeInMillimeters = finalSizeInInches * 25.4f; //Inches to millimeters
             triangles.Scale(finalSizeInMillimeters, finalSizeInMillimeters, finalSizeInMillimeters);
-
+            
             //Save final result to STL file
             Console.WriteLine("Saving triangles to {0}", outputFilename);
-            GlyphicsApi.SaveTrianglesToStl(outputFilename, triangles);
+            GlyphicsApi.SaveTrianglesToStlAscii(outputFilename, triangles);
 
             //So.. as long as we are here.. let's make a preview
 

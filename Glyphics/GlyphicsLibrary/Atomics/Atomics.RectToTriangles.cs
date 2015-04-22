@@ -18,74 +18,20 @@ namespace GlyphicsLibrary.Atomics
     {
         private RectToTriangles() { }
 
-        //Create triangles from quads, along same X axis
-        private static void QuadToTrianglesSameX(ref List<ITriangle> triangles, double y1, double z1, double y2, double z2, double x)
-        {
-            var triangle = new CTriangle();
-            triangle.SetTriangle((float)x, (float)y1, (float)z1,
-                              (float)x, (float)y2, (float)z1,
-                              (float)x, (float)y2, (float)z2);
-
-            triangles.Add(triangle);
-
-            triangle = new CTriangle();
-            triangle.SetTriangle((float)x, (float)y1, (float)z1,
-                              (float)x, (float)y2, (float)z2,
-                              (float)x, (float)y1, (float)z2);
-            triangles.Add(triangle);
-        }
-
-        //Create triangles from quads, along same Y axis
-        private static void QuadToTrianglesSameY(ref List<ITriangle> triangles, double x1, double z1, double x2, double z2, double y)
-        {
-            var triangle = new CTriangle();
-            triangle.SetTriangle((float)x1, (float)y, (float)z1,
-                              (float)x2, (float)y, (float)z2,
-                              (float)x1, (float)y, (float)z2);
-            triangles.Add(triangle);
-
-            triangle = new CTriangle();
-            triangle.SetTriangle((float)x1, (float)y, (float)z1,
-                              (float)x2, (float)y, (float)z1,
-                              (float)x2, (float)y, (float)z2);
-            triangles.Add(triangle);
-        }
-
-        //Create triangles from quads, along same Z axis
-        private static void QuadToTrianglesSameZ(ref List<ITriangle> triangles, double x1, double y1, double x2, double y2, double z)
-        {
-            var triangle = new CTriangle();
-            triangle.SetTriangle((float)x1, (float)y1, (float)z,
-                              (float)x2, (float)y2, (float)z,
-                              (float)x1, (float)y2, (float)z);
-            triangles.Add(triangle);
-
-            triangle = new CTriangle();
-            triangle.SetTriangle((float)x1, (float)y1, (float)z,
-                              (float)x2, (float)y1, (float)z,
-                              (float)x2, (float)y2, (float)z);
-            triangles.Add(triangle);
-        }
-
         //Convert 6 Quads to 12 triangles, along the faces of a cube
         public static void RectToTrianglesCube(ref List<ITriangle> triangles, IRect rect)
         {
-            //Front
-            QuadToTrianglesSameZ(ref triangles, rect.Pt1.X, rect.Pt1.Y, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-            //Back                                  
-            QuadToTrianglesSameZ(ref triangles, rect.Pt1.X, rect.Pt1.Y, rect.Pt2.X, rect.Pt2.Y, rect.Pt1.Z);
+            IQuadList quads = RectToQuads(rect);
+            //RectToTrianglesCube(ref triangles, rect);
 
-            //Top                                   
-            QuadToTrianglesSameY(ref triangles, rect.Pt1.X, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Z, rect.Pt2.Y);
-            //Bottom                                
-            QuadToTrianglesSameY(ref triangles, rect.Pt1.X, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Z, rect.Pt1.Y);
-
-            //Left                                  
-            QuadToTrianglesSameX(ref triangles, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.Y, rect.Pt2.Z, rect.Pt1.X);
-            //Right                                 
-            QuadToTrianglesSameX(ref triangles, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.Y, rect.Pt2.Z, rect.Pt2.X);
+            foreach (IQuad quad in quads)
+            {
+                ITriangles twoTriangles = QuadToTwoTriangles(quad);
+                triangles.Add(twoTriangles.GetTriangleArray()[0]);
+                triangles.Add(twoTriangles.GetTriangleArray()[1]);
+            }
         }
-
+        
         //This should be deprecated as it creates it's own vertices instead of using STL
         public static ITriangles RectsToTrianglesCube(IRectList rectSet)
         {
@@ -93,7 +39,17 @@ namespace GlyphicsLibrary.Atomics
 
             //Iterate through reach rectangle(volume/cube) creating triangles
             foreach (IRect rect in rectSet)
-                RectToTrianglesCube(ref triangles, rect);
+            {
+                IQuadList quads = RectToQuads(rect);
+                //RectToTrianglesCube(ref triangles, rect);
+                
+                foreach (IQuad quad in quads)
+                {
+                    ITriangles twoTriangles = QuadToTwoTriangles(quad);
+                    triangles.Add(twoTriangles.GetTriangleArray()[0]);
+                    triangles.Add(twoTriangles.GetTriangleArray()[1]);
+                }
+            }
 
             return new CTriangles(triangles.ToArray());
         }
@@ -121,7 +77,15 @@ namespace GlyphicsLibrary.Atomics
                 triangle1.SetTriangle(
                     sameX, y1, z1,
                     sameX, y2, z1,
-                    sameX, y2, z2);
+                    sameX, y2, z2
+                    );
+
+                /*
+                    sameX, y1, z1,
+                    sameX, y2, z1,
+                    sameX, y2, z2
+                 * );
+                 */
                 triangle1.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle1);
 
@@ -140,8 +104,8 @@ namespace GlyphicsLibrary.Atomics
                 ITriangle triangle1 = new CTriangle();
                 triangle1.SetTriangle(
                     x1, sameY, z1,
-                    x1, sameY, z2,
-                    x2, sameY, z2);
+                    x2, sameY, z2,
+                    x1, sameY, z2);
                 triangle1.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle1);
 
@@ -160,8 +124,8 @@ namespace GlyphicsLibrary.Atomics
                 ITriangle triangle1 = new CTriangle();
                 triangle1.SetTriangle(
                     x1, y1, sameZ,
-                    x1, y2, sameZ,
-                    x2, y2, sameZ);
+                    x2, y2, sameZ,
+                    x1, y2, sameZ);
                 triangle1.Properties = quad.Properties.Clone();
                 triangleList.Add(triangle1);
 
@@ -198,40 +162,53 @@ namespace GlyphicsLibrary.Atomics
             return trianglesPack;
         }
 
-        //Convert rectangles to their 6 quads
-        public static IQuadList RectsToQuads(IRectList rectSet)
+        //Convert rectangle to its 6 quads
+        public static IQuadList RectToQuads(IRect rect)
         {
             IQuadList quads = new CQuadList();
 
+            IQuad quadTopper = new CQuad(rect.Pt1.X, rect.Pt2.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
+            quadTopper.Properties = rect.Properties.Clone();
+            IQuad quadBottom = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt1.Y, rect.Pt2.Z);
+            quadBottom.Properties = rect.Properties.Clone();
+
+            IQuad quadFront = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt2.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
+            quadFront.Properties = rect.Properties.Clone();
+            IQuad quadBack = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt1.Z);
+            quadBack.Properties = rect.Properties.Clone();
+
+            IQuad quadRight = new CQuad(rect.Pt2.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
+            quadRight.Properties = rect.Properties.Clone();
+            IQuad quadLeft = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt1.X, rect.Pt2.Y, rect.Pt2.Z);
+            quadLeft.Properties = rect.Properties.Clone();
+
+            quads.AddQuad(quadFront);
+            quads.AddQuad(quadBack);
+            quads.AddQuad(quadTopper);
+            quads.AddQuad(quadBottom);
+            quads.AddQuad(quadRight);
+            quads.AddQuad(quadLeft);
+
+            return quads;
+        }
+
+        //Convert rectangles to their 6 quads
+        public static IQuadList RectsToQuads(IRectList rectSet)
+        {
+            IQuadList quadsMacro = new CQuadList();
+
             foreach (IRect rect in rectSet)
             {
-                IQuad quadFront = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt2.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadFront.Properties = rect.Properties.Clone();
-                IQuad quadBack   = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt1.Z);
-                quadBack.Properties = rect.Properties.Clone();
+                IQuadList quads = RectToQuads(rect);
 
-                IQuad quadTopper = new CQuad(rect.Pt1.X, rect.Pt2.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadTopper.Properties = rect.Properties.Clone();
-                IQuad quadBottom = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt1.Y, rect.Pt2.Z);
-                quadBottom.Properties = rect.Properties.Clone();
-
-                IQuad quadRight = new CQuad(rect.Pt2.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt2.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadRight.Properties = rect.Properties.Clone();
-                IQuad quadLeft = new CQuad(rect.Pt1.X, rect.Pt1.Y, rect.Pt1.Z, rect.Pt1.X, rect.Pt2.Y, rect.Pt2.Z);
-                quadLeft.Properties = rect.Properties.Clone();
-                
-                quads.AddQuad(quadFront);
-                quads.AddQuad(quadBack);
-                quads.AddQuad(quadTopper);
-                quads.AddQuad(quadBottom);
-                quads.AddQuad(quadRight);
-                quads.AddQuad(quadLeft);
+                foreach (IQuad quad in quads)
+                    quadsMacro.AddQuad(quad);
             }
 
             //Remove redundant ones automatically
-            RemoveRedundantQuads(quads);
+            RemoveRedundantQuads(quadsMacro);
 
-            return quads;
+            return quadsMacro;
         }
 
         //Remove redundant quads to reduce total count
@@ -259,6 +236,65 @@ namespace GlyphicsLibrary.Atomics
                 }
             }
             return removedCount;
+        }
+
+        public static ITriangles GetUnitCube()
+        {
+            List<ITriangle> triangles = new List<ITriangle>();
+
+            ITriangle triangle = null;
+
+            //Front lower right
+            triangle = new CTriangle(0.0f, 0.0f, 1.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
+            triangles.Add(triangle);
+            //Front Upper left
+            triangle = new CTriangle(0.0f, 0.0f, 1.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+            triangles.Add(triangle);
+            
+            //Left Side back bottom
+            triangle = new CTriangle(-1.0f, 0.0f, 0.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f);
+            triangles.Add(triangle);
+            //Left side front top
+            triangle = new CTriangle(-1.0f, 0.0f, 0.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f);
+            triangles.Add(triangle);
+            
+            //Top
+            triangle = new CTriangle(0.0f, 1.0f, 0.0f);
+            triangle.SetTriangle(0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f);
+            triangles.Add(triangle);
+            triangle = new CTriangle(0.0f, 1.0f, 0.0f);
+            triangle.SetTriangle(0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+            triangles.Add(triangle);
+
+            //Right
+            triangle = new CTriangle(1.0f, 0.0f, 0.0f);
+            triangle.SetTriangle(1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f);
+            triangles.Add(triangle);
+            triangle = new CTriangle(1.0f, 0.0f, 0.0f);
+            triangle.SetTriangle(1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f);
+            triangles.Add(triangle);
+            
+            //Bottom
+            triangle = new CTriangle(0.0f, -1.0f, 0.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f);
+            triangles.Add(triangle);
+            triangle = new CTriangle(0.0f, -1.0f, 0.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
+            triangles.Add(triangle);
+
+            //Back
+            triangle = new CTriangle(0.0f, 0.0f, 1.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f);
+            triangles.Add(triangle);
+            triangle = new CTriangle(0.0f, 0.0f, 1.0f);
+            triangle.SetTriangle(0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f);
+            triangles.Add(triangle);
+            
+            return new CTriangles(triangles.ToArray());
         }
     }
 }

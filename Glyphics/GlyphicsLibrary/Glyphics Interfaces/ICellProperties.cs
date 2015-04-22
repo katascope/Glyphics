@@ -28,10 +28,7 @@ namespace GlyphicsLibrary
         int PhysicsId { get; set; }
 
         //Grand unified value of texture/shape/animation/physics
-        ulong UnifiedValue { get; set; }
-
-        //Calculate the unified values for the property
-        ulong CalcUnified();
+        ulong UnifiedValue { get; }
 
         //Check to compare if another cell matches this cell
         bool IsEqualTo(ICellProperties asCell);

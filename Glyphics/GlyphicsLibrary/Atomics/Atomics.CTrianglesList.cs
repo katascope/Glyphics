@@ -23,13 +23,16 @@ namespace GlyphicsLibrary.Atomics
         //Create a triangle-based cube 'manually'
         public void AddDefaultCube()
         {
-            var triangleList = new List<ITriangle>();
             IRect rect = GlyphicsApi.CreateRect(0, 0, 0, 1, 1, 1);
+            /*
+            List<ITriangle> triangleList = new List<ITriangle>();
             RectToTriangles.RectToTrianglesCube(ref triangleList, rect);
             ITriangles triangles = new CTriangles(triangleList.ToArray());
             triangles.ReduceToUnit();
             triangles.Name = "DefaultCube";
             TrianglesSet.Add(triangles);
+            */
+            TrianglesSet.Add(RectToTriangles.GetUnitCube());
         }
 
         //Constructor
@@ -39,25 +42,30 @@ namespace GlyphicsLibrary.Atomics
             AddDefaultCube();
         }
 
+        //Number of triangles sets in set
         public int Count { get { return TrianglesSet.Count; } }
 
+        //Add another triangle set to set
         public void AddTriangles(ITriangles triangles)
         {
             TrianglesSet.Add(triangles);
         }
 
+        //Get triangle set id, null if out of range
         public ITriangles GetTriangles(int id)
         {
-            if (id >= Count) return null;
+            if (id < 0 || id >= Count) return null;
             return TrianglesSet[id];
         }
 
+        //Import another file straight from .stl
         public void Import(string filename)
         {
             ITriangles triangles = GlyphicsApi.StlToTriangles(filename);
             TrianglesSet.Add(triangles);
         }
 
+        //Import AND Reduce triangles to unit (1x1x1) size
         public void ImportAndReduceToUnit(string filename)
         {
             ITriangles triangles = GlyphicsApi.StlToTriangles(filename);

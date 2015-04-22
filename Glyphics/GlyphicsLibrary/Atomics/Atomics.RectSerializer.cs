@@ -34,6 +34,8 @@ namespace GlyphicsLibrary.Atomics
                 if (rectList[0].Properties.UnifiedValue == unifiedValue)
                         return rectList;
             }
+
+            //If couldn't find, just return null
             return null;
         }
 
@@ -42,10 +44,6 @@ namespace GlyphicsLibrary.Atomics
         private static IEnumerable<List<IRect>> SuperSortByProperties(IRectList rects)
         {
             var superRects = new List<List<IRect>>();
-
-            //First make sure all are calcuated already
-            foreach (IRect rect in rects)
-                rect.Properties.UnifiedValue = rect.Properties.CalcUnified();
 
             //Go through finding or creating a list for each unified value type
             foreach (IRect rect in rects)

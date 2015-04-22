@@ -65,8 +65,8 @@ namespace GlyphicsLibrary.ByteGrid
                 {
                     //Write normal as float
                     writer.Write(triangle.Normal.X);
-                    writer.Write(triangle.Normal.Z);
                     writer.Write(triangle.Normal.Y);
+                    writer.Write(triangle.Normal.Z);
 
                     //Write vertex1 as float
                     writer.Write(triangle.Vertex1.X);

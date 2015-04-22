@@ -307,5 +307,14 @@ namespace GlyphicsLibrary.Atomics
             foreach (ITriangle triangle in _triangleArray)
                 triangle.Translate(0, -y, 0);
         }
+
+        //Calculate normals for all triangles
+        public void CalcNormals()
+        {
+            foreach (ITriangle triangle in _triangleArray)
+            {
+                triangle.CalcNormal();
+            }
+        }
     }
 }

@@ -38,6 +38,9 @@ namespace GlyphicsLibrary
         //Gets the min/max range of triangles as a 3d rectangle
         IRect TrianglesBoundaries { get; }
 
+        //Calculate normals for all triangles
+        void CalcNormals();
+
         //Scales triangles to fit in a 1x1x1 cube
         void ReduceToUnit();
 
