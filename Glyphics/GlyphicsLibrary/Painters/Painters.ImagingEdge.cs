@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Color edges an RGBA
-        public void EdgeColor(IByteGridContext bgc, int axis, byte ri, byte gi, byte bi, byte ai)
+        public void EdgeColor(IGridContext bgc, int axis, byte ri, byte gi, byte bi, byte ai)
         {
             if (bgc == null) return;
             IGrid grid = bgc.Grid;
@@ -33,13 +33,13 @@ namespace GlyphicsLibrary.Painters
                         {
                             if (axis == 0)
                                 if (((grid.GetRgba(x + 1, y, z) == 0) && (grid.GetRgba(x - 1, y, z) != 0)) || ((grid.GetRgba(x + 1, y, z) != 0) && (grid.GetRgba(x - 1, y, z) == 0)))
-                                    u = Pixel.Rgba2Ulong(ri, gi, bi, ai);
+                                    u = Converter.Rgba2Ulong(ri, gi, bi, ai);
                             if (axis == 1)
                                 if (((grid.GetRgba(x, y + 1, z) == 0) && (grid.GetRgba(x, y - 1, z) != 0)) || ((grid.GetRgba(x, y + 1, z) != 0) && (grid.GetRgba(x, y - 1, z) == 0)))
-                                    u = Pixel.Rgba2Ulong(ri, gi, bi, ai);
+                                    u = Converter.Rgba2Ulong(ri, gi, bi, ai);
                             if (axis == 2)
                                 if (((grid.GetRgba(x, y, z + 1) == 0) && (grid.GetRgba(x, y, z - 1) != 0)) || ((grid.GetRgba(x, y, z + 1) != 0) && (grid.GetRgba(x, y, z - 1) == 0)))
-                                    u = Pixel.Rgba2Ulong(ri, gi, bi, ai);
+                                    u = Converter.Rgba2Ulong(ri, gi, bi, ai);
                             grid.Plot(x, y, z, u, 0, (byte)grid.GetProperty(x, y, z).ShapeId, (byte)grid.GetProperty(x, y, z).TextureId, 0);//bgc.Pen.shape_byte, bgc.Pen.texture_byte);
                         }
                     }
@@ -49,7 +49,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Add rgba blocks above edge neighbors
-        public void UpV(IByteGridContext bgc, int reps, byte ri, byte gi, byte bi, byte ai)
+        public void UpV(IGridContext bgc, int reps, byte ri, byte gi, byte bi, byte ai)
         {
             if (bgc == null) return;
             IGrid grid = bgc.Grid;
@@ -62,7 +62,7 @@ namespace GlyphicsLibrary.Painters
                     for (int x = 0; x < grid.SizeX; x++)
                     {
                         ulong u = grid.GetRgba(x, y, z);
-                        ulong rgba = Pixel.Rgba2Ulong(ri, gi, bi, ai);
+                        ulong rgba = Converter.Rgba2Ulong(ri, gi, bi, ai);
                         if (u != 0)
                         {
                             int foo;

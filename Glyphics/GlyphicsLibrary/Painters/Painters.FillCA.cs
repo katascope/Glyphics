@@ -37,7 +37,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw supports underneath any suspended block
-        public static void DrawSupports1D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public static void DrawSupports1D(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             //Ensure x2 >= x1, y2 >= y1, z2 >= z1
             MinMax(ref x1, ref x2);
@@ -105,7 +105,7 @@ namespace GlyphicsLibrary.Painters
 
 
         //Draw supports under suspended corner points
-        public void DrawCorners(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void DrawCorners(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             if (bgc == null) return;
 

@@ -14,10 +14,8 @@ using System.Collections.Generic;
 namespace GlyphicsLibrary.Language
 {
     //Glyphics compiler
-    internal class Compiler
+    internal partial class Converter
     {
-        private Compiler() { }
-
         //Compile Glyphics tokenList to bytes
         public static IBytecode TokensToBytes(ITokenList glyphTokens)
         {
@@ -31,11 +29,11 @@ namespace GlyphicsLibrary.Language
             IBytecode ibc = new CBytecode(byteArray);
             return ibc;
         }
-        
+        /*
         //Compile Glyphics code to bytes
         public static IBytecode CodeToBytes(ICode glyphicsCode)
         {
-            return TokensToBytes(Tokenizer.CodeToTokens(glyphicsCode));
-        }
+            return TokensToBytes(Converter.CodeToTokens(glyphicsCode));
+        }*/
     }
 }

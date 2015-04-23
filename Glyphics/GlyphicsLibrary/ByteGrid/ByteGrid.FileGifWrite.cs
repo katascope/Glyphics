@@ -44,7 +44,7 @@ namespace GlyphicsLibrary.ByteGrid
                     }
                     long offset = (y * grid.SizeX * pngBpp) + (x * pngBpp);
                     byte r, g, b, a;
-                    Pixel.Ulong2Rgba(val, out r, out g, out b, out a);
+                    Atomics.Converter.Ulong2Rgba(val, out r, out g, out b, out a);
 
                     if (grid.Bpp == 1)
                     {

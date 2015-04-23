@@ -13,7 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 namespace GlyphicsLibrary.Atomics
 {
     //Utility for converting from/to elements, scenes
-    internal class SceneGraph
+    internal partial class Converter
     {
         //Convert a rectangle volume to Translation XYZ, Scale XYZ, useful for elements
         private static void Rect2TranslateAndScale(IRect rect, out double tx, out double ty, out double tz, out double sx, out double sy, out double sz)

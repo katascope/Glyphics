@@ -60,7 +60,7 @@ namespace GlyphicsLibrary.Language
                 string line;
                 while ((line = file.ReadLine()) != null)
                 {
-                    IGrid grid = Executor.Execute(Tokenizer.CodeToTokens(new CCode(line))).Bgc.Grid;
+                    IGrid grid = Executor.Execute(Converter.CodeToTokens(new CCode(line))).Bgc.Grid;
                     if (grid != null)
                         ArchetypeLibrary.GridList.AddGrid(grid);
                 }
@@ -82,12 +82,12 @@ namespace GlyphicsLibrary.Language
                     code = code.Split('*')[0];
                 }
 
-                IGrid grid = Executor.Execute(Tokenizer.CodeToTokens(new CCode(code))).Bgc.Grid;
+                IGrid grid = Executor.Execute(Converter.CodeToTokens(new CCode(code))).Bgc.Grid;
 
                 if (grid != null)
                 {
-                    IRectList rectSet = RectReducer.GridToRects(grid);
-                    string serializedRects = RectSerializer.Serialize(rectSet).SerializedData;
+                    IRectList rectSet = ByteGrid.Converter.GridToRects(grid);
+                    string serializedRects = Atomics.Converter.RectsToSerializedRects(rectSet).SerializedData;
                     code = code + serializedRects;
                     t.Code = code;
                 }

@@ -22,7 +22,7 @@ namespace GlyphicsLibrary.Renderers
         {
             if (pngFilename == null || glyphicsCode == null) return;
 
-            IGrid grid = Conversions.CodeToGrid(glyphicsCode.Code);
+            IGrid grid = Language.Converter.CodeToGrid(glyphicsCode.Code);
             IGrid grid2 = RenderObliqueCells(grid);
             FilePngWrite.SaveFlatPng(pngFilename, grid2);
         }

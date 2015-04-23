@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
         /// <summary>
         /// Mirror Grid on X-axis
         /// </summary>
-        public void MirrorX(IByteGridContext bgc)
+        public void MirrorX(IGridContext bgc)
         {
             if (bgc == null) return;
 
@@ -43,7 +43,7 @@ namespace GlyphicsLibrary.Painters
         /// <summary>
         /// Mirror Grid on Y-axis
         /// </summary>
-        public void MirrorY(IByteGridContext bgc)
+        public void MirrorY(IGridContext bgc)
         {
             if (bgc == null) return;
 
@@ -70,7 +70,7 @@ namespace GlyphicsLibrary.Painters
         /// <summary>
         /// Mirror Grid on Z-axis
         /// </summary>
-        public void MirrorZ(IByteGridContext bgc)
+        public void MirrorZ(IGridContext bgc)
         {
             if (bgc == null) return;
 

@@ -14,7 +14,7 @@ using System;
 namespace GlyphicsLibrary.Atomics
 {
     //Partial pixel utility class - HSV
-    internal static partial class Pixel
+    internal partial class Converter
     {
         /* Convert an HSL value to a ulong RGBA value
          * Inputs:
@@ -75,7 +75,7 @@ namespace GlyphicsLibrary.Atomics
             var g = (byte)(fg * 256f);
             var b = (byte)(fb * 256f);
 
-            return Rgba2Ulong(r, g, b, 255);
+            return Converter.Rgba2Ulong(r, g, b, 255);
         }
 
         //Convert an R/G/B value to an HSL value
@@ -120,25 +120,25 @@ namespace GlyphicsLibrary.Atomics
         public static void Brightness(double factor, ref ulong u)
         {
             byte r, g, b, a;
-            Ulong2Rgba(u, out r, out g, out b, out a);
+            Converter.Ulong2Rgba(u, out r, out g, out b, out a);
             factor = factor / 100.0f;
             r = (byte)Math.Min(r * factor, 255);
             g = (byte)Math.Min(g * factor, 255);
             b = (byte)Math.Min(b * factor, 255);
-            u = Rgba2Ulong(r, g, b, a);
+            u = Converter.Rgba2Ulong(r, g, b, a);
         }
 
         //Adjust the saturation level of a r/g/b/a value
         public static void Saturation(double factor, ref ulong u)
         {
             byte r, g, b, a;
-            Ulong2Rgba(u, out r, out g, out b, out a);
+            Converter.Ulong2Rgba(u, out r, out g, out b, out a);
             double h, s, l;
             Rgb2Hsl(r, g, b, out h, out s, out l);
             factor = factor / 100.0f;
             l *= factor;
             u = Hsl2Rgb(h, s, l);
-            u = SetAlpha(u, a);
+            u = Converter.SetAlpha(u, a);
         }
     }
 }

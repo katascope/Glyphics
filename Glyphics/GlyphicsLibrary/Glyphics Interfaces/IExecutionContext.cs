@@ -19,6 +19,6 @@ namespace GlyphicsLibrary
         ITokenList GlyphTokens { get; set; }
 
         //Context to execute upon
-        IByteGridContext Bgc {get; set; }
+        IGridContext Bgc {get; set; }
     }
 }

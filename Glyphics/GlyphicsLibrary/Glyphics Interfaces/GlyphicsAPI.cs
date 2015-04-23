@@ -17,14 +17,35 @@ using GlyphicsLibrary.Renderers;
 
 namespace GlyphicsLibrary
 {
-    //ChangeSet
-    //Cleaned up CellProperties, CRect
+//Revamp project
+    //Glyphics Prima language
+    // Code, can convert to rects, and back to code
+    //creating a subset language of glyphics, like just enough to create grids, set colors, and draw rects
 
-    //Cleanups
-    //Pen
+    //New style of calls
 
+    // ITriangles triangles = new CTriangle(new CRect
+    // Triangles.From(Rects.From(code.From("Nexus,Size3D4 1 1 1")));
 
+    //Universal: 
+    // All: Clone, Serialize, Deserialize, ToString
+    // Lists: Get, Add, Count
 
+    //Universal function:
+    // ISerializedRects ApplyFunction(ISerializedRects)
+
+    //Serialize method for all data types
+    // .. but then need deserialize..
+    // Candidates
+    // Rects
+    // Grid
+    // Code
+    // Compiled code
+    // Tokens
+    // Quads
+    // Triangles
+    // Scene
+    // Element
 
     //Equivalency chart
     //----------------------------
@@ -57,7 +78,7 @@ namespace GlyphicsLibrary
 
     //TODO: Integrate with unity?
     //TODO: Future: Render scenes to grid (with animations, full triangles)
-    //TODO: Future UI units as equivalent to rects
+    //TODO: Future: UI units as equivalent to rects
     //TODO: Future: Speed improvements & profiling
     //TODO: Future: Corner/STL-solving issue for supports & smoothing
     //TODO: Future: Importers/Exporters for .obj, .mesh, .gif, .minecraft?
@@ -84,7 +105,7 @@ namespace GlyphicsLibrary
         public static IRenderer Renderer { get { return RealRenderer; } }
 
         //Creational
-        public static IByteGridContext CreateContext(IGrid grid) { return new CByteGridContext(grid); }
+        public static IGridContext CreateContext(IGrid grid) { return new CGridContext(grid); }
         public static IDouble3 CreatePoint(int x, int y, int z) { return new CDouble3(x, y, z); }
         public static IGrid CreateGrid(int x, int y, int z, int bpp) { return new CGrid(x, y, z, bpp); }
         public static ICode CreateCode(string code) { return new CCode(code); }
@@ -101,40 +122,38 @@ namespace GlyphicsLibrary
         public static int GetId(string name) { return Glyphs.GetId(name); }
 
         //Code-To
-        public static IGrid CodeToGrid(ICode glyphicsCode) { if (glyphicsCode == null) return null; return Conversions.CodeToGrid(glyphicsCode.Code); }
-        public static IRectList CodeToRects(ICode glyphicsCode) { return Conversions.CodeToRects(glyphicsCode); }
+        public static IGrid CodeToGrid(ICode glyphicsCode) { if (glyphicsCode == null) return null; return Language.Converter.CodeToGrid(glyphicsCode.Code); }
+        public static IRectList CodeToRects(ICode glyphicsCode) { return Language.Converter.CodeToRects(glyphicsCode); }
         public static IGrid CodeToObliqueCells(ICode glyphicsCode) { return Renderer.RenderObliqueCells(CodeToGrid(glyphicsCode)); }
-        public static ITokenList CodeToTokens(ICode glyphicsCode) { return Tokenizer.CodeToTokens(glyphicsCode); }
+        public static ITokenList CodeToTokens(ICode glyphicsCode) { return Language.Converter.CodeToTokens(glyphicsCode); }
         public static ICodename CodeToCodename(ICode glyphicsCode) { return new CCodename(glyphicsCode); }
-        public static IBytecode CodeToBytes(ICode glyphicsCode) { return Compiler.CodeToBytes(glyphicsCode); }
+        public static IBytecode CodeToBytes(ICode glyphicsCode) { return Language.Converter.TokensToBytes(Language.Converter.CodeToTokens(glyphicsCode)); }
         public static ICode CodeToRescaledCode(ICode glyphicsCode, int toX, int toY, int toZ) { return Rescaler.Rescale(glyphicsCode, toX, toY, toZ); }
 
         //Tokens-To
         public static IExecutionContext TokensToContext(ITokenList glyphTokens) { return Executor.Execute(glyphTokens); }
-        public static IBytecode TokensToBytes(ITokenList glyphTokens) { return Compiler.TokensToBytes(glyphTokens); }
-        public static string TokensToString(ITokenList glyphTokens, string separator) { return Conversions.TokensToString(glyphTokens, separator); }
-        public static ITokenList BytecodeToTokens(IBytecode glyphicsBytecode) { return Disassembler.BytecodeToTokens(glyphicsBytecode); }
+        public static IBytecode TokensToBytes(ITokenList glyphTokens) { return Language.Converter.TokensToBytes(glyphTokens); }
+        //public static string TokensToString(ITokenList glyphTokens, string separator) { return Conversions.TokensToString(glyphTokens, separator); }
+        public static ITokenList BytecodeToTokens(IBytecode glyphicsBytecode) { return Language.Converter.BytecodeToTokens(glyphicsBytecode); }
 
         //Context-To
         public static IGrid ContextToGrid(IExecutionContext gec) { if (gec == null || gec.Bgc == null) return null; return gec.Bgc.Grid; }
 
         //Grid-To
-        public static IRectList GridToRects(IGrid grid) { return RectReducer.GridToRects(grid); }
-        public static string GridTo3DDescription(IGrid grid, int ax, int ay, int az) { return Conversions.GridTo3DDescription(grid, ax, ay, az); }
-        public static string GridToHexDescription(IGrid grid) { return Conversions.GridToHexDescription(grid); }
+        public static IRectList GridToRects(IGrid grid) { return ByteGrid.Converter.GridToRects(grid); }
+        public static string GridTo3DDescription(IGrid grid, int ax, int ay, int az) { return ByteGrid.ConverterGridTo3DDescription.GridTo3DDescription(grid, ax, ay, az); }
+        public static string GridToHexDescription(IGrid grid) { return ByteGrid.ConverterGridToHex.GridToHexDescription(grid); }
 
         //Rect(s)-To
-        public static IRect RectsToBoundaries(IRectList rectSet) { return RectMath.RectsToBoundaries(rectSet); }
-        public static ISerializedRects RectsToSerializedRects(IRectList rectSet) { return RectSerializer.Serialize(rectSet); }
-        public static IRectList SerializedRectsToRects(ISerializedRects serializedRects) { return RectSerializer.Deserialize(serializedRects); }
-        public static ITriangles RectsToTrianglesCube(IRectList rectSet) { return RectToTriangles.RectsToTrianglesCube(rectSet); }
-        public static string RectsToDescription(IRectList rectSet) { return RectMath.RectsToDescription(rectSet); }
-        public static ISerializedRects RectsToSerializedRectsLimit255(IRectList rectSet) { return new CSerializedRects(RectSerializer.SerializeLimit255(rectSet)); }
-
+        public static IRect RectsToBoundaries(IRectList rectSet) { return rectSet.GetBoundaries(); }
+        public static ISerializedRects RectsToSerializedRects(IRectList rectSet) { return Atomics.Converter.RectsToSerializedRects(rectSet); }
+        public static IRectList SerializedRectsToRects(ISerializedRects serializedRects) { return Atomics.Converter.SerializedRectsToRects(serializedRects); }
+        public static ITriangles RectsToTrianglesCube(IRectList rectSet) { return Atomics.Converter.RectsToTrianglesCube(rectSet); }
+        public static ISerializedRects RectsToSerializedRectsLimit255(IRectList rectSet) { return new CSerializedRects(Atomics.Converter.SerializeLimit255(rectSet)); }
 
         //RGBA-To
-        public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a) { return Pixel.Rgba2Ulong(r, g, b, a); }
-        public static void Ulong2Rgba(ulong val, out byte r, out byte g, out byte b, out byte a) { Pixel.Ulong2Rgba(val, out r, out g, out b, out a); }
+        public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a) { return Atomics.Converter.Rgba2Ulong(r, g, b, a); }
+        public static void Ulong2Rgba(ulong val, out byte r, out byte g, out byte b, out byte a) { Atomics.Converter.Ulong2Rgba(val, out r, out g, out b, out a); }
 
         //File IO for Glyphics files
         public static bool CodesToGly(string filename, ICodeList codes) { return GlyphicsFile.CodesToGly(filename, codes); }
@@ -164,13 +183,13 @@ namespace GlyphicsLibrary
         public static byte[] HexDataToBytes(string data) { return Transcode64.HexDataToBytes(data); }
 
         //Bytes
-        public static string BytesToString(byte[] bytes) { return Conversions.BytesToString(bytes); }        
+        public static string BytesToString(byte[] bytes) { return Atomics.Converter.BytesToString(bytes); }        
         public static bool CompareBytes(byte[] result, byte[] expectedResult) { return Compare.CompareBytes(result, expectedResult); }
 
         //IQuad and IQuadList
-        public static IQuadList RectsToQuads(IRectList rectSet) { return RectToTriangles.RectsToQuads(rectSet); }
-        public static ITriangles QuadsToTriangles(IQuadList quads) { return RectToTriangles.QuadsToTriangles(quads); }
-        public static int RemoveRedundantQuads(IQuadList quads) { return RectToTriangles.RemoveRedundantQuads(quads); }
+        public static IQuadList RectsToQuads(IRectList rectSet) { return Atomics.Converter.RectsToQuads(rectSet); }
+        public static ITriangles QuadsToTriangles(IQuadList quads) { return Atomics.Converter.QuadsToTriangles(quads); }
+        public static int RemoveRedundantQuads(IQuadList quads) { return Atomics.Converter.RemoveRedundantQuads(quads); }
 
         #region SceneGraph
         //Scenegraph Creational 
@@ -180,10 +199,10 @@ namespace GlyphicsLibrary
         public static IDeck CreateDeck() { return new CDeck(); }
 
         //Scenegraph functions
-        public static IScene RectsToScene(IRectList rects) { return SceneGraph.RectsToScene(rects); }
-        public static IRectList SceneToRects(IScene scene) { return SceneGraph.SceneToRects(scene); }
-        public static IRect ElementToRect(IElement element) { return SceneGraph.ElementToRect(element); }
-        public static IElement RectToElement(IRect rect) { return SceneGraph.RectToElement(rect); }
+        public static IScene RectsToScene(IRectList rects) { return Atomics.Converter.RectsToScene(rects); }
+        public static IRectList SceneToRects(IScene scene) { return Atomics.Converter.SceneToRects(scene); }
+        public static IRect ElementToRect(IElement element) { return Atomics.Converter.ElementToRect(element); }
+        public static IElement RectToElement(IRect rect) { return Atomics.Converter.RectToElement(rect); }
 
         // ICodelist to IDeck
         //public static ICodeList DeckToCodelist(IDeck deck);

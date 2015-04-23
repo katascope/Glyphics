@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Colorize all pixels in Grid
-        public void Colorize(IByteGridContext bgc, double hue, double saturation)
+        public void Colorize(IGridContext bgc, double hue, double saturation)
         {
             if (bgc == null) return;
 
@@ -31,11 +31,11 @@ namespace GlyphicsLibrary.Painters
                     {
                         ulong u = grid.GetRgba(x, y, z);
                         byte r, g, b, a;
-                        Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                        Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                         double lum = (byte)((r + g + b) / 3);
                         lum = lum / 5f;
-                        u = Pixel.Hsl2Rgb(hue, saturation, lum);
-                        u = Pixel.SetAlpha(u, a);
+                        u = Converter.Hsl2Rgb(hue, saturation, lum);
+                        u = Converter.SetAlpha(u, a);
                         grid.Plot(x, y, z, u);
                     }
                 }

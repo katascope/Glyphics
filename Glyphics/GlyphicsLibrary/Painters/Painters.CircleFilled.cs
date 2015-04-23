@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw filled circle in two dimensions
-        public void DrawFillCircle2D(IByteGridContext bgc, PenTwist ptt, int x1, int y1, int z, int radius)
+        public void DrawFillCircle2D(IGridContext bgc, PenTwist ptt, int x1, int y1, int z, int radius)
         {
             int sx = radius, sy = 0;
             int radiusError = 1 - sx;

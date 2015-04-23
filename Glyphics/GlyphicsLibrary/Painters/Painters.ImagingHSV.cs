@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Adjust hue of Grid
-        public void HueShift(IByteGridContext bgc, double hue)
+        public void HueShift(IGridContext bgc, double hue)
         {
             if (bgc == null) return;
 
@@ -29,13 +29,13 @@ namespace GlyphicsLibrary.Painters
                     {
                         ulong u = grid.GetRgba(x, y, z);
                         byte r, g, b, a;
-                        Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                        Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                         double h, s, l;
-                        Pixel.Rgb2Hsl(r, g, b, out h, out s, out l);
+                        Converter.Rgb2Hsl(r, g, b, out h, out s, out l);
                         h += hue;
                         if (h > 360.0f) h -= 360.0f;
-                        u = Pixel.Hsl2Rgb(h, s, l);
-                        u = Pixel.SetAlpha(u, a);
+                        u = Converter.Hsl2Rgb(h, s, l);
+                        u = Converter.SetAlpha(u, a);
                         grid.Plot(x, y, z, u);
                     }
                 }
@@ -43,7 +43,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Adjust brightness of Grid
-        public void Brightness(IByteGridContext bgc, double factor)
+        public void Brightness(IGridContext bgc, double factor)
         {
             if (bgc == null) return;
 
@@ -55,7 +55,7 @@ namespace GlyphicsLibrary.Painters
                     for (int x = 0; x < grid.SizeX; x++)
                     {
                         ulong u = grid.GetRgba(x, y, z);
-                        Pixel.Brightness(factor, ref u);
+                        Converter.Brightness(factor, ref u);
                         grid.Plot(x, y, z, u);
                     }
                 }
@@ -63,7 +63,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Adjust saturation of Grid
-        public void Saturation(IByteGridContext bgc, double factor)
+        public void Saturation(IGridContext bgc, double factor)
         {
             if (bgc == null) return;
 
@@ -75,7 +75,7 @@ namespace GlyphicsLibrary.Painters
                     for (int x = 0; x < grid.SizeX; x++)
                     {
                         ulong u = grid.GetRgba(x, y, z);
-                        Pixel.Saturation(factor, ref u);
+                        Converter.Saturation(factor, ref u);
                         grid.Plot(x, y, z, u);
                     }
                 }

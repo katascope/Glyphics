@@ -32,7 +32,7 @@ namespace GlyphicsLibrary.Atomics
             triangles.Name = "DefaultCube";
             TrianglesSet.Add(triangles);
             */
-            TrianglesSet.Add(RectToTriangles.GetUnitCube());
+            TrianglesSet.Add(TriangleUnitCube.GetUnitCube());
         }
 
         //Constructor

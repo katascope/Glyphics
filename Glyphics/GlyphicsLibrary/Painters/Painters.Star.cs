@@ -14,7 +14,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw two points to Grid
-        private static void Dualplot(IByteGridContext bgc, int x1, int y, int x2, int zc)
+        private static void Dualplot(IGridContext bgc, int x1, int y, int x2, int zc)
         {
             IGrid grid = bgc.Grid;
             ulong color = bgc.Pen.Rgba;
@@ -24,7 +24,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw set points to Grid
-        private static void Fastcpoints(IByteGridContext bgc, int x, int y, int xc, int yc, int zc)
+        private static void Fastcpoints(IGridContext bgc, int x, int y, int xc, int yc, int zc)
         {
             Dualplot(bgc, -x + xc, y + yc, x + xc, zc);
             Dualplot(bgc, -y + xc, x + yc, y + xc, zc);
@@ -33,7 +33,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw an 8-bit star to Grid
-        public void DrawStar(IByteGridContext bgc, int xc, int yc, int zc, int radius)
+        public void DrawStar(IGridContext bgc, int xc, int yc, int zc, int radius)
         {
             int x = 0;
             int y = radius;

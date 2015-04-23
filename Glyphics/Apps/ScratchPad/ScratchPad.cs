@@ -26,7 +26,7 @@ namespace ScratchPad
             Console.WriteLine("Codename: {0}\n", codename);
 
             ITokenList glyphTokens = GlyphicsApi.CodeToTokens(code);
-            string tokenDesc = "Tokens:\n" + GlyphicsApi.TokensToString(glyphTokens, "\n") + "\n";
+            string tokenDesc = "Tokens:\n" + glyphTokens.ToString() + "\n";
             Console.WriteLine(tokenDesc);
 
             IBytecode glyphicsBytecode = GlyphicsApi.TokensToBytes(glyphTokens);

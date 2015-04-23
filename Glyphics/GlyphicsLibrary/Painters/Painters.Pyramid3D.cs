@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw filled pyramid between two XYZ coords
-        public void Pyramid3D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void Pyramid3D(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             int y = y1;
             do

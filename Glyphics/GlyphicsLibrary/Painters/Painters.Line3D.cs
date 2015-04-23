@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw a line in 3D to Grid
-        public void DrawLine3D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void DrawLine3D(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             //MinMax(ref x1, ref x2);
             //MinMax(ref y1, ref y2);

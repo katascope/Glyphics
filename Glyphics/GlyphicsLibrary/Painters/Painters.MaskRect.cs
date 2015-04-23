@@ -28,7 +28,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw a facemask-mitigated filled rect
-        public void DrawMaskFillRect(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, byte bitmask)
+        public void DrawMaskFillRect(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, byte bitmask)
         {
             if ((bitmask & (int)CubeFaceMask.Left) != 0)   DrawFillRect(bgc, x1, y1, z1, x1, y2, z2);
             if ((bitmask & (int)CubeFaceMask.Right) != 0)  DrawFillRect(bgc, x2, y1, z1, x2, y2, z2);
@@ -39,7 +39,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw a facemask-mitigated hollow rect
-        public void DrawMaskHollowRect(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, byte bitmask)
+        public void DrawMaskHollowRect(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, byte bitmask)
         {
             if ((bitmask & (int)CubeFaceMask.Left) != 0) DrawHollowRect(bgc, x1, y1, z1, x1, y2, z2);
             if ((bitmask & (int)CubeFaceMask.Right) != 0) DrawHollowRect(bgc, x2, y1, z1, x2, y2, z2);

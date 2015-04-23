@@ -12,10 +12,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 namespace GlyphicsLibrary.ByteGrid
 {
-    //General producer for various things
-    internal class Producer
+    //General creator for various things
+    internal class GridCreator
     {
-        private Producer() { }
+        private GridCreator() { }
 
         //Return a cloned copy of a grid
         public static IGrid GridClone(IGrid grid)

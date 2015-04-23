@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw an arbitrary shape at XYZ
-        public void DrawShape(IByteGridContext bgc, PenTwist twistType, int type, int x, int y, int z, int scale)
+        public void DrawShape(IGridContext bgc, PenTwist twistType, int type, int x, int y, int z, int scale)
         {
             switch (type)
             {
@@ -35,7 +35,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Extrude shape along X-axis
-        public void ExtrudeX(IByteGridContext bgc, int startX, int startY, int startZ, int stopX, int shape, int startScale, int stopScale, int skips)
+        public void ExtrudeX(IGridContext bgc, int startX, int startY, int startZ, int stopX, int shape, int startScale, int stopScale, int skips)
         {
             for (int x=startX;x<stopX;x++)
             {
@@ -47,7 +47,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Extrude shape along Y-axis
-        public void ExtrudeY(IByteGridContext bgc, int startX, int startY, int startZ, int stopY, int shape, int startScale, int stopScale, int skips)
+        public void ExtrudeY(IGridContext bgc, int startX, int startY, int startZ, int stopY, int shape, int startScale, int stopScale, int skips)
         {
             for (int y = startY; y < stopY; y++)
             {
@@ -59,7 +59,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Extrude shape along Z-axis
-        public void ExtrudeZ(IByteGridContext bgc, int startX, int startY, int startZ, int stopZ, int shape, int startScale, int stopScale, int skips)
+        public void ExtrudeZ(IGridContext bgc, int startX, int startY, int startZ, int stopZ, int shape, int startScale, int stopScale, int skips)
         {
             for (int z = startZ; z < stopZ; z++)
             {
@@ -71,7 +71,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Extrude shape along path line
-        public void Extrude(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int shape, int startScale, int stopScale)
+        public void Extrude(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int shape, int startScale, int stopScale)
         {
             int xd, yd, zd;
             int dx = x2 - x1;

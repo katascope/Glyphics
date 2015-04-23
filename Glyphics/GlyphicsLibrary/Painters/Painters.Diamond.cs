@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw a diamond in 2d
-        public void Diamond2D(IByteGridContext bgc, int sx, int sy, int sz, int width, int height)
+        public void Diamond2D(IGridContext bgc, int sx, int sy, int sz, int width, int height)
         {
             int y;
             double len = 1;

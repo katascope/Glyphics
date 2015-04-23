@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw archetype (shape) to Grid rectangle
-        public void ArchRect(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int shape, int rotation, int spacing)
+        public void ArchRect(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int shape, int rotation, int spacing)
         {
             MinMax(ref x1, ref x2);
             MinMax(ref y1, ref y2);

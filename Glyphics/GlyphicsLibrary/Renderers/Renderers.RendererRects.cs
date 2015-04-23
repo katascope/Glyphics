@@ -22,7 +22,7 @@ namespace GlyphicsLibrary.Renderers
         {
             if (rects == null || grid == null) return;
 
-            IByteGridContext bgc = new CByteGridContext(grid);
+            IGridContext bgc = new CGridContext(grid);
             IPainter painter = new CPainter();
 
             //Draw background

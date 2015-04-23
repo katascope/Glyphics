@@ -28,7 +28,7 @@ namespace GlyphicsLibrary.Painters
                 filterWidth = filter[i].Length;                
             }
 
-            IGrid origGrid = Producer.GridClone(grid);
+            IGrid origGrid = grid.Clone();
 
             for (int z = 0; z < grid.SizeZ; z++)
             {
@@ -48,7 +48,7 @@ namespace GlyphicsLibrary.Painters
                                 double f = filter[filterX][filterY];
                                 ulong u = origGrid.GetRgba(imageX, imageY, z);
                                 byte r, g, b, a;
-                                Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                                Atomics.Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                                 red += r * f;
                                 green += g * f;
                                 blue += b * f;
@@ -65,7 +65,7 @@ namespace GlyphicsLibrary.Painters
                                 }
                                 else a=255;
 
-                                u = Pixel.Rgba2Ulong(r, g, b, a);
+                                u = Atomics.Converter.Rgba2Ulong(r, g, b, a);
                                 grid.Plot(x, y, z, u);
                             }
                         }
@@ -80,7 +80,7 @@ namespace GlyphicsLibrary.Painters
             new [] {0.2, 0.2, 0.2 },
             new [] {0.0, 0.2, 0.0 }
         };
-        public void ApplyFilterBlur(IByteGridContext bgc)
+        public void ApplyFilterBlur(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterBlurData);
@@ -98,7 +98,7 @@ namespace GlyphicsLibrary.Painters
             new [] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 },
             new [] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0 }
         };
-        public void ApplyFilterMotion(IByteGridContext bgc)
+        public void ApplyFilterMotion(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0 / 9.0, 0.0, FilterMotionData);
@@ -112,7 +112,7 @@ namespace GlyphicsLibrary.Painters
             new double[] {0,  0,  0,  0,  0},
             new double[] {0,  0,  0,  0,  0}
         };
-        public void ApplyFilterEdgeHorizontal(IByteGridContext bgc)
+        public void ApplyFilterEdgeHorizontal(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterEdgeHorizontalData);
@@ -126,7 +126,7 @@ namespace GlyphicsLibrary.Painters
              new double[] {0,  0, -1,  0,  0},
              new double[] {0,  0, -1,  0,  0}
         };
-        public void ApplyFilterEdgeVertical(IByteGridContext bgc)
+        public void ApplyFilterEdgeVertical(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterEdgeVerticalData);
@@ -138,7 +138,7 @@ namespace GlyphicsLibrary.Painters
             new double[] {-1,  8, -1},
             new double[] {-1, -1, -1}
         };
-        public void ApplyFilterEdgeAll(IByteGridContext bgc)
+        public void ApplyFilterEdgeAll(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterEdgeAllData);
@@ -150,7 +150,7 @@ namespace GlyphicsLibrary.Painters
             new double[] {-1,  9, -1},
             new double[] {-1, -1, -1}
         };
-        public void ApplyFilterSharpen(IByteGridContext bgc)
+        public void ApplyFilterSharpen(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterSharpenData);
@@ -162,7 +162,7 @@ namespace GlyphicsLibrary.Painters
             new double[] {-1,  0,  1},
             new double[] { 0,  1,  1}
         };
-        public void ApplyFilterEmboss(IByteGridContext bgc)
+        public void ApplyFilterEmboss(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterEmbossData);
@@ -174,7 +174,7 @@ namespace GlyphicsLibrary.Painters
             new double[] { 1, 1, 1 },
             new double[] { 1, 1, 1 }
         };
-        public void ApplyFilterSmooth(IByteGridContext bgc)
+        public void ApplyFilterSmooth(IGridContext bgc)
         {
             if (bgc == null) return;
             ApplyImageFilter(bgc.Grid, 1.0, 0.0, FilterSmoothData);

@@ -24,7 +24,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw alien's right eye
-        private static void alien_right_eye(IByteGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
+        private static void alien_right_eye(IGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
         {
             IPainter painter = GlyphicsApi.Painter;
             int x = 0;
@@ -68,7 +68,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw alien's left eye
-        private static void alien_left_eye(IByteGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
+        private static void alien_left_eye(IGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
         {
             IPainter painter = GlyphicsApi.Painter;
             int x = 0;
@@ -111,7 +111,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw alien
-        public void DrawAlien(IByteGridContext bgc, int xc, int yc, int zc, int radius)
+        public void DrawAlien(IGridContext bgc, int xc, int yc, int zc, int radius)
         {
             if (bgc == null) return;
 

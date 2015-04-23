@@ -62,7 +62,7 @@ namespace GlyphicsLibrary.Renderers
             if (triangles == null || grid == null) return;
 
             IPainter painter = GlyphicsApi.Painter;
-            IByteGridContext bgc = GlyphicsApi.CreateContext(grid);
+            IGridContext bgc = GlyphicsApi.CreateContext(grid);
 
             float sx = grid.SizeX - 1;
             float sy = grid.SizeY - 1;

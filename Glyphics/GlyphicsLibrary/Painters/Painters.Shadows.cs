@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw shadows
-        public void DrawShadows(IByteGridContext bgc)
+        public void DrawShadows(IGridContext bgc)
         {
             if (bgc == null || bgc.Grid == null) return;
 

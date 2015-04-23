@@ -737,6 +737,8 @@ namespace GlyphicsUnitTests
         {
             bool validated = false;
 
+            if (expected.Length == 0) return;
+
             if (code == null) validated = true;
             else
             {

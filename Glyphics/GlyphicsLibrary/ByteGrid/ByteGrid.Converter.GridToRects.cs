@@ -15,10 +15,8 @@ using GlyphicsLibrary.Atomics;
 namespace GlyphicsLibrary.ByteGrid
 {
     //Utility class for creating a set of rectangles from a grid, then reducing them to a minimal set
-    internal class RectReducer
+    internal partial class Converter
     {
-        private RectReducer() { }
-
         //Simple float comparison
         private static bool AreEqual(double v1, double v2)
         {

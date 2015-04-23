@@ -9,30 +9,42 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System.Collections.Generic;
+using GlyphicsLibrary.Atomics;
 
-using GlyphicsLibrary.ByteGrid;
-
-namespace GlyphicsLibrary.Language
+namespace GlyphicsLibrary.ByteGrid
 {
-    //Result of executing Glyphics tokens
-    internal class CGlyphicsExecutionContext : IExecutionContext
+    //Implementation of IGridContext, see for usage
+    internal class CGridContext : IGridContext
     {
-        //Actual ITokenList of IToken to execute
-        public ITokenList GlyphTokens { get; set; }
+        //Actual values
+        public IGrid Grid { get; set; }
+        public IPen Pen { get; set; }
+        public List<IGrid> Palettes { get; set; }
+        public IDouble3 SpawnPoint { get; set; }
 
-        //Actual IByteGridContext to execute ITokenList upon
-        public IByteGridContext Bgc { get; set; }
+        //Return IGrid if within range, otherwise null
+        public IGrid GetPalette(int pal) { return (pal < Palettes.Count) ? Palettes[pal] : null; }
 
-        //Default constructor
-        public CGlyphicsExecutionContext()
+        //Assignment constructor only
+        public CGridContext(IGrid newGrid)
         {
-            Bgc = new CByteGridContext(null);
+            Grid = newGrid;
+            Pen = new CPen();
+            Palettes = new List<IGrid>();
+            SpawnPoint = new CDouble3();
+        }
+
+        //Add a grid to the palette
+        public void AddPalette(IGrid pal)
+        {
+            Palettes.Add(pal);
         }
 
         //Readable description
         public override string ToString()
         {
-            return "((Tokens:" + GlyphTokens + ")(BGC:" + Bgc + "))";
+            return "(Grid:" + Grid + ")(Pen:" + Pen + "(Spawn:" + SpawnPoint + ")";
         }
     }
 }

@@ -19,7 +19,7 @@ namespace GlyphicsLibrary.Renderers
     internal partial class Renderer
     {
         //Render a cell at x,y coords
-        public static void RenderCell(IByteGridContext bgc, int x, int y)
+        public static void RenderCell(IGridContext bgc, int x, int y)
         {
             IPainter painter = new CPainter();
             const int cellSize = 12;
@@ -27,16 +27,16 @@ namespace GlyphicsLibrary.Renderers
             const int subSize = 8;
             const int tinSize = (cellSize - subSize);
             byte r, g, b, a;
-            Pixel.Ulong2Rgba(color, out r, out g, out b, out a);
+            Atomics.Converter.Ulong2Rgba(color, out r, out g, out b, out a);
 
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong(16, 16, 16, 255);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong(16, 16, 16, 255);
             painter.DrawHollowRect(bgc, x + tinSize, y, 0, x + cellSize - 1, y + subSize - 1, 0);
 
             int ir = r;
             int ig = g;
             int ib = b;
             //Top side
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong((byte)ir, (byte)ig, (byte)ib, 255);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong((byte)ir, (byte)ig, (byte)ib, 255);
             painter.DrawLine2D(bgc, x + tinSize, y + 1, x + subSize + 1, y + 1, 0);
             painter.DrawLine2D(bgc, x + tinSize - 1, y + 2, x + subSize, y + 2, 0);
             painter.DrawLine2D(bgc, x + tinSize - 2, y + 3, x + subSize - 1, y + 3, 0);
@@ -45,20 +45,20 @@ namespace GlyphicsLibrary.Renderers
             ir = r;
             ig = g;
             ib = b;
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong((byte)ir, (byte)ig, (byte)ib, 255);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong((byte)ir, (byte)ig, (byte)ib, 255);
             painter.DrawFastFillRect(bgc, x + 1, y + tinSize + 1, 0, x + subSize, y + subSize + 2, 0);
 
             //Right side
             ir = r / 2;
             ig = g / 2;
             ib = b / 2;
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong((byte)ir, (byte)ig, (byte)ib, 255);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong((byte)ir, (byte)ig, (byte)ib, 255);
             painter.DrawLine2D(bgc, x + cellSize - 2, y + 2, x + cellSize - 2, y + subSize, 0);
             painter.DrawLine2D(bgc, x + cellSize - 3, y + 2, x + cellSize - 3, y + subSize, 0);
             painter.DrawLine2D(bgc, x + cellSize - 4, y + 3, x + cellSize - 4, y + subSize + 1, 0);
 
             //Front rect
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong(32, 32, 32, 255);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong(32, 32, 32, 255);
             painter.DrawHollowRect(bgc, x, y + tinSize, 0, x + subSize - 1, y + cellSize - 1, 0);
 
             //Lines
@@ -70,7 +70,7 @@ namespace GlyphicsLibrary.Renderers
         //Render a grid into another grid with oblique perspective and iconic cells
         public static void RenderObliqueCellsSet(IGrid gridSrc, IGrid gridDst)
         {
-            IByteGridContext bgc = new CByteGridContext(gridDst);
+            IGridContext bgc = new CGridContext(gridDst);
 
             const int cellSize = 7;
             const int tinSize = 4;
@@ -107,8 +107,8 @@ namespace GlyphicsLibrary.Renderers
             int iy = grid.SizeY * cellSize;
             IGrid grid2 = new CGrid(ix, iy, 1, grid.Bpp);
 
-            IByteGridContext bgc = new CByteGridContext(grid2);
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong(255, 255, 255, 255);
+            IGridContext bgc = new CGridContext(grid2);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong(255, 255, 255, 255);
 
             IPainter painter = new CPainter();
             painter.DrawFastFillRect(bgc, 0, 0, 0, grid2.SizeX, grid2.SizeY, 1);
@@ -120,7 +120,7 @@ namespace GlyphicsLibrary.Renderers
         //Render a grid into another grid with oblique perspective and iconic cells
         public static void RenderObliqueCellsSetRects(IRectList rects, IGrid gridDst)
         {
-            IByteGridContext bgc = new CByteGridContext(gridDst);
+            IGridContext bgc = new CGridContext(gridDst);
 
             const int cellSize = 7;
             const int tinSize = 4;
@@ -163,8 +163,8 @@ namespace GlyphicsLibrary.Renderers
             int iy = rects.SizeY * cellSize;
             IGrid grid2 = new CGrid(ix, iy, 1, 4);
 
-            IByteGridContext bgc = new CByteGridContext(grid2);
-            bgc.Pen.Rgba = Pixel.Rgba2Ulong(255, 255, 255, 255);
+            IGridContext bgc = new CGridContext(grid2);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong(255, 255, 255, 255);
 
             IPainter painter = new CPainter();
             painter.DrawFastFillRect(bgc, 0, 0, 0, grid2.SizeX, grid2.SizeY, 1);

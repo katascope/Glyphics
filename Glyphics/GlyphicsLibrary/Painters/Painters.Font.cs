@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw an arbitrary letter to Grid
-        public void DrawLetter(IByteGridContext bgc, PenTwist twistType, int x, int y, int z, int letter, bool flip)
+        public void DrawLetter(IGridContext bgc, PenTwist twistType, int x, int y, int z, int letter, bool flip)
         {
             string[] font = GetCharacterFont((char)letter);
             if (font == null) return;

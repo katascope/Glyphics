@@ -15,7 +15,7 @@ using System.Text;
 namespace GlyphicsLibrary.Atomics
 {
     //Serializer for rectangles
-    internal class RectSerializer
+    internal partial class Converter
     {
         //Parsing characters
         public const char CharRgba = '*';
@@ -116,7 +116,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Serialize a set of rectangles(IRectList) to ISerializedRects
-        public static ISerializedRects Serialize(IRectList rectSet)
+        public static ISerializedRects RectsToSerializedRects(IRectList rectSet)
         {
             var sb = new StringBuilder();
 
@@ -142,7 +142,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Deserialized ISerializedRects back to set of rectangles(IRectList)
-        public static IRectList Deserialize(ISerializedRects serializedRects)
+        public static IRectList SerializedRectsToRects(ISerializedRects serializedRects)
         {
             IRectList rects = new CRectList();
             char state = ' ';

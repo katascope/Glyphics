@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw Polygon to Grid
-        public void DrawPolygon(IByteGridContext bgc, PenTwist twistType, int x, int y, int z, int radius, int sides)
+        public void DrawPolygon(IGridContext bgc, PenTwist twistType, int x, int y, int z, int radius, int sides)
         {
             double angleSize = 360.0 / sides;
             for (int i = 0; i < sides; i++)

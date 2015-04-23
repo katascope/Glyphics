@@ -58,7 +58,7 @@ namespace GlyphicsLibrary.Language
         public static ICode Rescale(ICode glyphicsCode, int toX, int toY, int toZ)
         {
             string code = glyphicsCode.Code;
-            ITokenList glyphTokens = Tokenizer.CodeToTokens(new CCode(code));
+            ITokenList glyphTokens = Converter.CodeToTokens(new CCode(code));
 
             string prepend = code.Split(glyphicsCode.NameCodeSplitCharacter)[0];
 
@@ -93,7 +93,7 @@ namespace GlyphicsLibrary.Language
                 IToken token = t;
                 RescaleGlyphToken(ref token, scaleX, scaleY, scaleZ);
             }
-            return new CCode(prepend + "," + Conversions.TokensToString(glyphTokens));
+            return new CCode(prepend + "," + Converter.TokensToString(glyphTokens));
         }
     }
 }

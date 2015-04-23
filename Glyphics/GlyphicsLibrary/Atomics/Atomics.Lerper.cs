@@ -46,15 +46,15 @@ namespace GlyphicsLibrary.Atomics
             byte g1, g2;
             byte b1, b2;
             byte a1, a2;
-            Pixel.Ulong2Rgba(v1, out r1, out g1, out b1, out a1);
-            Pixel.Ulong2Rgba(v2, out r2, out g2, out b2, out a2);
+            Converter.Ulong2Rgba(v1, out r1, out g1, out b1, out a1);
+            Converter.Ulong2Rgba(v2, out r2, out g2, out b2, out a2);
 
             byte r = Lerp1D(mux, r1, r2);
             byte g = Lerp1D(mux, g1, g2);
             byte b = Lerp1D(mux, b1, b2);
             byte a = Lerp1D(mux, a1, a2);
 
-            return Pixel.Rgba2Ulong(r, g, b, a);
+            return Converter.Rgba2Ulong(r, g, b, a);
         }
     }
 }

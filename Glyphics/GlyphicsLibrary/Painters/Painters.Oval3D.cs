@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw an oval in 3d
-        public void DrawOval3D(IByteGridContext bgc, int sx, int sy, int sz, int width, int height, int depth)
+        public void DrawOval3D(IGridContext bgc, int sx, int sy, int sz, int width, int height, int depth)
         {
             for (int z = sz - depth; z <= sz + depth; z++)
             {

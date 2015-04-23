@@ -28,23 +28,30 @@ namespace GlyphicsLibrary.Language
      * Z - z2
      * */
 
+
     //Enums here both help identify the glyphs.. and binds them to a number permanently so bytecode is reusable
     public enum GlyphId
     {
-        GlyphNoid=0,
-        GlyphNop     = 1,
-        GlyphSize1D1 = 2,
-        GlyphSize2D1 = 3,
-        GlyphSize3D1 = 4,
-        GlyphSize1D2 = 5,
-        GlyphSize2D2 = 6,
-        GlyphSize3D2 = 7,
-        GlyphSize1D3 = 8,
-        GlyphSize2D3 = 9,
-        GlyphSize3D3 = 10,
-        GlyphSize1D4 = 11,
-        GlyphSize2D4 = 12,
-        GlyphSize3D4 = 13,
+        //Prima Glyphs, the essential language "PrimaGlyphics"
+        //Rules:
+        // RGBA grids, always 3-dimensional
+        // A pen, rect, and fill rect for drawing
+        // No other operations, no "nop" operations.
+        GlyphPrimaNop  = 0,//Nothingness
+        GlyphPrimaSize = 1,// Size XYZ, assume RGBA
+        GlyphPrimaRGBA = 2,// Pen Color, assume RGBA
+        GlyphPrimaRect = 3,// FillRect, with pen
+
+        GlyphReserved1= 4,
+        GlyphReserved2= 5,
+        GlyphReserved3= 6,
+        GlyphReserved4= 7,
+        GlyphReserved5= 8,
+        GlyphReserved6= 9,
+        GlyphReserved7 = 10,
+        GlyphReserved8 = 11,
+        GlyphReserved9 = 12,
+        GlyphReserved10 = 13,
 
         GlyphPenColorD1 = 14,
         GlyphPenColorD2 = 15,
@@ -184,14 +191,45 @@ namespace GlyphicsLibrary.Language
 
         GlyphFillTriangle   = 129,
         GlyphShadows        = 130,
-        GlyphMaze           = 131
+        GlyphMaze           = 131,
+
+        GlyphSize1D1 = 132,
+        GlyphSize2D1 = 133,
+        GlyphSize3D1 = 134,
+        GlyphSize1D2 = 135,
+        GlyphSize2D2 = 136,
+        GlyphSize3D2 = 137,
+        GlyphSize1D3 = 138,
+        GlyphSize2D3 = 139,
+        GlyphSize3D3 = 140,
+        GlyphSize1D4 = 141,
+        GlyphSize2D4 = 142,
+        GlyphSize3D4 = 143
+
     };
 
     internal static class Glyphs
     {
         private static readonly IGlyph[] GlyphDefs = 
             {
-                new CGlyph(GlyphId.GlyphNop,            "Nop",                0,    0,  "", "No operation" ),
+#region Prima
+                new CGlyph(GlyphId.GlyphPrimaNop,         "Nop",                  0,    0,  "", "No operation" ),
+                new CGlyph(GlyphId.GlyphPrimaSize,        "PrimaSize",            0,    3,  "x y z", "PrimaSize" ),
+                new CGlyph(GlyphId.GlyphPrimaRGBA,        "PrimaRGBA",            0,    4,  "r g b a", "PrimaRGBA" ),
+                new CGlyph(GlyphId.GlyphPrimaRect,        "PrimaRect",            0,    6,  "x y z X Y Z", "Prima Fill Rect" ),
+#endregion Prima
+#region Reserved
+                new CGlyph(GlyphId.GlyphReserved1,        "Reserved1",            0,    0,  "", "Reserved1" ),
+                new CGlyph(GlyphId.GlyphReserved2,        "Reserved2",            0,    0,  "", "Reserved2" ),
+                new CGlyph(GlyphId.GlyphReserved3,        "Reserved3",            0,    0,  "", "Reserved3" ),
+                new CGlyph(GlyphId.GlyphReserved4,        "Reserved4",            0,    0,  "", "Reserved4" ),
+                new CGlyph(GlyphId.GlyphReserved5,        "Reserved5",            0,    0,  "", "Reserved5" ),
+                new CGlyph(GlyphId.GlyphReserved6,        "Reserved6",            0,    0,  "", "Reserved6" ),
+                new CGlyph(GlyphId.GlyphReserved7,        "Reserved7",            0,    0,  "", "Reserved7" ),
+                new CGlyph(GlyphId.GlyphReserved8,        "Reserved8",            0,    0,  "", "Reserved8" ),
+                new CGlyph(GlyphId.GlyphReserved9,        "Reserved9",            0,    0,  "", "Reserved9" ),
+                new CGlyph(GlyphId.GlyphReserved10,       "Reserved10",           0,    0,  "", "Reserved10" ),
+#endregion Reserved
 #region ByteGrid
                 new CGlyph(GlyphId.GlyphSize1D1,        "Size1D1",            0,    1,  "w", "Create 1-byte 1D grid of <width>" ),
                 new CGlyph(GlyphId.GlyphSize2D1,        "Size2D1",            0,    2,  "w h", "Create 1-byte 2D grid of <width> <height>" ),
@@ -357,15 +395,20 @@ namespace GlyphicsLibrary.Language
         public static int GetId(string str)
         {
             foreach (IGlyph g in GlyphDefs)
-                if (g.Name == str) return g.Id;
-            return -1;
+                if (g.Name == str)
+                    return g.Id;
+            return 0;
         }
 
         //Get glyph at id, null if out of range
+        //TODO: Optimize this
         public static IGlyph GetGlyph(int id)
         {
             if (id < 0 || id >= GlyphDefs.Length) return null;
-            return GlyphDefs[id];
+
+            foreach (IGlyph g in GlyphDefs)
+                if (g.Id == id) return g;
+            return null;
         }
 
         //Return an array of all the glyphs

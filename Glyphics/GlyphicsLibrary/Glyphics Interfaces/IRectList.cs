@@ -35,5 +35,8 @@ namespace GlyphicsLibrary
 
         //Readable description
         string ToString();
+
+        //From a list of rectangles, calculate the macro-boundary
+        IRect GetBoundaries();
     }
 }

@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Rotate Grid on X
-        public void RotateX(IByteGridContext bgc)
+        public void RotateX(IGridContext bgc)
         {
             if (bgc == null) return;
 
@@ -42,7 +42,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Rotate Grid on Y
-        public void RotateY(IByteGridContext bgc)
+        public void RotateY(IGridContext bgc)
         {
             if (bgc == null) return;
 
@@ -67,7 +67,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Rotate Grid on Z
-        public void RotateZ(IByteGridContext bgc)
+        public void RotateZ(IGridContext bgc)
         {
             if (bgc == null) return;
 

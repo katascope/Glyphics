@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw a horizontal line to Grid
-        public void DrawHorizontalLine(IByteGridContext bgc, PenTwist ptt, int x1, int x2, int y, int z)
+        public void DrawHorizontalLine(IGridContext bgc, PenTwist ptt, int x1, int x2, int y, int z)
         {
             MinMax(ref x1, ref x2);
             for (int x = x1; x < x2; x++)

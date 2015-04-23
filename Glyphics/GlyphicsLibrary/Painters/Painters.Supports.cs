@@ -14,7 +14,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draws supports underneath suspended blocks
-        public void DrawSupports(IByteGridContext bgc)
+        public void DrawSupports(IGridContext bgc)
         {
             if (bgc == null) return;
 

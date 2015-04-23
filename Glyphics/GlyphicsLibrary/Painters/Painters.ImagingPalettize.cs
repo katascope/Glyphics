@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Palettize all pixels in Grid
-        public void Palettize(IByteGridContext bgc, IGrid palette)
+        public void Palettize(IGridContext bgc, IGrid palette)
         {
             if (bgc == null || palette == null) return;
 
@@ -29,7 +29,7 @@ namespace GlyphicsLibrary.Painters
                     {
                         ulong u = grid.GetRgba(x, y, z);
                         byte r, g, b, a;
-                        Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                        Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                         var lum = (byte)((r + g + b) / 3);
                         u = palette.GetRgba(lum, 0, 0);
                         grid.Plot(x, y, z, u);

@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw a filled 3d rectangle
-        public void DrawFillRect(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void DrawFillRect(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             if (bgc == null) return;
 
@@ -30,7 +30,7 @@ namespace GlyphicsLibrary.Painters
         }
         
         //Draw a 3d fast filled rectangle (ignores pen)
-        public void DrawFastFillRect(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void DrawFastFillRect(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             if (bgc == null) return;
 
@@ -45,7 +45,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw a 3d hollow rectangle
-        public void DrawHollowRect(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void DrawHollowRect(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             if (bgc == null) return;
 

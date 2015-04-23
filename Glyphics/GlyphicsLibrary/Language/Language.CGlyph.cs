@@ -42,7 +42,7 @@ namespace GlyphicsLibrary.Language
             Name = nName;
 
             Glyph = glyphId;
-            Id = (byte)Glyph - 1;
+            Id = (byte)Glyph;
 
             Varargs = nVarargs;
             Args = nArgs;

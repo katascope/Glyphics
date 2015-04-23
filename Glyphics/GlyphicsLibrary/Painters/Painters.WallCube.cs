@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw walls mitigated by bitmask
-        public void DrawWallCube(IByteGridContext bgc, byte bitmask)
+        public void DrawWallCube(IGridContext bgc, byte bitmask)
         {
             if (bgc == null) return;
 

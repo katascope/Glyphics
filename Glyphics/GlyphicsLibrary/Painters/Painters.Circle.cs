@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw a circle on any 3d axis
-        public void DrawCircle2DAnyAxis(IByteGridContext bgc, PenTwist ptt, int x0, int y0, int z, int radius)
+        public void DrawCircle2DAnyAxis(IGridContext bgc, PenTwist ptt, int x0, int y0, int z, int radius)
         {
             int sx = radius, sy = 0;
             int radiusError = 1 - sx;

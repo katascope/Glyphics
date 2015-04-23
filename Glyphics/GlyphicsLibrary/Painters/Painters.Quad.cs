@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw Quad to Grid
-        public void Quad2D(IByteGridContext bgc, int x1, int y1, int x2, int y2, int z, int height)
+        public void Quad2D(IGridContext bgc, int x1, int y1, int x2, int y2, int z, int height)
         {
             MinMax(ref x1, ref x2);
 

@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Greyscale all pixels in Grid
-        public void Grayscale(IByteGridContext bgc)
+        public void Grayscale(IGridContext bgc)
         {
             if (bgc == null) return;
 
@@ -29,10 +29,10 @@ namespace GlyphicsLibrary.Painters
                     {
                         ulong u = grid.GetRgba(x, y, z);
                         byte r, g, b, a;
-                        Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                        Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                         var lum = (byte)((r + g + b) / 3);
                         r = g = b = lum;
-                        u = Pixel.Rgba2Ulong(r, g, b, a);
+                        u = Converter.Rgba2Ulong(r, g, b, a);
                         grid.Plot(x, y, z, u);
                     }
                 }

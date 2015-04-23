@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Invert all pixels Grid
-        public void Invert(IByteGridContext bgc)
+        public void Invert(IGridContext bgc)
         {
             if (bgc == null) return;
 
@@ -30,13 +30,13 @@ namespace GlyphicsLibrary.Painters
                         {
                             ulong u = grid.GetRgba(x, y, z);
                             byte r, g, b, a;
-                            Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                            Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                             if (a > 0)
                             {
                                 r = (byte)(255 - r);
                                 g = (byte)(255 - g);
                                 b = (byte)(255 - b);
-                                u = Pixel.Rgba2Ulong(r, g, b, a);
+                                u = Converter.Rgba2Ulong(r, g, b, a);
                                 grid.Plot(x, y, z, u);
                             }
                         }

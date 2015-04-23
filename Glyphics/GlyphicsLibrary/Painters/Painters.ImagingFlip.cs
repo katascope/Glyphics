@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Flip Grid horizontally
-        public void FlipX(IByteGridContext bgc)
+        public void FlipX(IGridContext bgc)
         {
             if (bgc == null) return;
             
@@ -35,7 +35,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Flip Grid vertically
-        public void FlipY(IByteGridContext bgc)
+        public void FlipY(IGridContext bgc)
         {
             if (bgc == null) return;
             
@@ -55,7 +55,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Flip Grid along depth
-        public void FlipZ(IByteGridContext bgc)
+        public void FlipZ(IGridContext bgc)
         {
             if (bgc == null) return;
 

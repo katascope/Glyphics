@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Re-direct and draw a pen to Grid
-        public void DrawAxisPen(IByteGridContext bgc, PenTwist penTwist, int x, int y, int z)
+        public void DrawAxisPen(IGridContext bgc, PenTwist penTwist, int x, int y, int z)
         {
             if (bgc == null) return;
 
@@ -28,7 +28,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw the pen to a Grid
-        public void DrawPen(IByteGridContext bgc, int x, int y, int z)
+        public void DrawPen(IGridContext bgc, int x, int y, int z)
         {
             if (bgc == null) return;
 

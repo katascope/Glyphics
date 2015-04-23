@@ -16,13 +16,13 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw an arbitrary 2d line to Grid
-        public void DrawLine2D(IByteGridContext bgc, int x1, int y1, int x2, int y2, int z)
+        public void DrawLine2D(IGridContext bgc, int x1, int y1, int x2, int y2, int z)
         {
             DrawAxisLine2D(bgc, PenTwist.XYaxis, x1, y1, x2, y2, z);
         }
 
         //Draw an arbitrary 2d line along twisted axis to Grid
-        public void DrawAxisLine2D(IByteGridContext bgc, PenTwist twistType, int x1, int y1, int x2, int y2, int z)
+        public void DrawAxisLine2D(IGridContext bgc, PenTwist twistType, int x1, int y1, int x2, int y2, int z)
         {
             int dx = Math.Abs(x2 - x1), sx = x1 < x2 ? 1 : -1;
             int dy = Math.Abs(y2 - y1), sy = y1 < y2 ? 1 : -1;

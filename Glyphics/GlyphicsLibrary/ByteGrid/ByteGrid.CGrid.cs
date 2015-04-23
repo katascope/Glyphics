@@ -162,19 +162,19 @@ namespace GlyphicsLibrary.ByteGrid
                 if (_bpp == 4)
                 {
                     byte r, g, b, a;
-                    Pixel.Ulong2Rgba(_properties[i].Rgba, out r, out g, out b, out a);
+                    Atomics.Converter.Ulong2Rgba(_properties[i].Rgba, out r, out g, out b, out a);
                     bytes.Add(r); bytes.Add(g); bytes.Add(b); bytes.Add(a);
                 }
                 else if (_bpp == 3)
                 {
                     byte r, g, b, a;
-                    Pixel.Ulong2Rgba(_properties[i].Rgba, out r, out g, out b, out a);
+                    Atomics.Converter.Ulong2Rgba(_properties[i].Rgba, out r, out g, out b, out a);
                     bytes.Add(r); bytes.Add(g); bytes.Add(b);
                 }
                 else if (_bpp == 2)
                 {
                     byte r, g, b, a;
-                    Pixel.Ulong2Rgba(_properties[i].Rgba, out r, out g, out b, out a);
+                    Atomics.Converter.Ulong2Rgba(_properties[i].Rgba, out r, out g, out b, out a);
                     bytes.Add(r); bytes.Add(g);
                 }
                 else bytes.Add((byte)_properties[i].Rgba);

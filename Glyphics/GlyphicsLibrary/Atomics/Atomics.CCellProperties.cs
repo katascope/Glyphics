@@ -89,7 +89,7 @@ namespace GlyphicsLibrary.Atomics
         public override string ToString()
         {
             byte r, g, b, a;
-            Pixel.Ulong2Rgba(Rgba, out r, out g, out b, out a);
+            Converter.Ulong2Rgba(Rgba, out r, out g, out b, out a);
             return "(Cell:" + r + "," + g + "," + b + "," + a + ":"
                 + TextureId + ","
                 + ShapeId + ","

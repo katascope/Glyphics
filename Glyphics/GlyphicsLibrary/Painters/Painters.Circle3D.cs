@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw filled 3d circle to Grid
-        public void DrawFillCircle3D(IByteGridContext bgc, int sx, int sy, int sz, int radius)
+        public void DrawFillCircle3D(IGridContext bgc, int sx, int sy, int sz, int radius)
         {
             for (int z = sz - radius; z <= sz + radius; z++)
             {
@@ -40,7 +40,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw a circle in 3d
-        public void DrawCircle3D(IByteGridContext bgc, int sx, int sy, int sz, int radius)
+        public void DrawCircle3D(IGridContext bgc, int sx, int sy, int sz, int radius)
         {
             for (int z = sz - radius; z <= sz + radius; z++)
             {

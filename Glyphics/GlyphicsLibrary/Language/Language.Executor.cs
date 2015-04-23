@@ -20,7 +20,7 @@ namespace GlyphicsLibrary.Language
         //Executes the ITokenList and returns the IExecutionContext
         public static IExecutionContext Execute(ITokenList glyphTokens)
         {
-            IExecutionContext context = new CGlyphicsExecutionContext();
+            IExecutionContext context = new CExecutionContext();
             context.GlyphTokens = glyphTokens;
             Vrgpu.ExecuteGlyphTokens(context.Bgc, glyphTokens);
             return context;

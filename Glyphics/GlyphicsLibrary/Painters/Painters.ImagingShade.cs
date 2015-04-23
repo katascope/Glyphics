@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Shade all pixels in Grid
-        public void Shade(IByteGridContext bgc, int axis, byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
+        public void Shade(IGridContext bgc, int axis, byte r1, byte g1, byte b1, byte r2, byte g2, byte b2)
         {
             if (bgc == null) return;
 
@@ -36,11 +36,11 @@ namespace GlyphicsLibrary.Painters
                         if (u > 0)
                         {
                             byte r, g, b, a;
-                            Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+                            Converter.Ulong2Rgba(u, out r, out g, out b, out a);
                             r = (byte)((Lerper.Lerp1D(factor, r1, r2)) / 1);
                             g = (byte)((Lerper.Lerp1D(factor, g1, g2)) / 1);
                             b = (byte)((Lerper.Lerp1D(factor, b1, b2)) / 1);
-                            u = Pixel.Rgba2Ulong(r, g, b, a);
+                            u = Converter.Rgba2Ulong(r, g, b, a);
                         }
 
                         grid.Plot(x, y, z, u, 0, (byte)grid.GetProperty(x, y, z).ShapeId, (byte)grid.GetProperty(x, y, z).TextureId, 0);

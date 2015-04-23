@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw hollow triangle in 2D to Grid
-        public void DrawTriangle2D(IByteGridContext bgc, int x1, int y1, int x2, int y2, int x3, int y3, int z)
+        public void DrawTriangle2D(IGridContext bgc, int x1, int y1, int x2, int y2, int x3, int y3, int z)
         {
             DrawLine2D(bgc, x1, y1, x2, y2, z);
             DrawLine2D(bgc, x2, y2, x3, y3, z);
@@ -25,7 +25,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw hollow triangle in 3D to Grid
-        public void DrawTriangle3D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int x3, int y3, int z3)
+        public void DrawTriangle3D(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int x3, int y3, int z3)
         {
             DrawLine3D(bgc, x1, y1, z1, x2, y2, z2);
             DrawLine3D(bgc, x2, y2, z2, x3, y3, z3);
@@ -33,7 +33,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw filled triangle 2d to Grid
-        public void DrawFillTriangle2D(IByteGridContext bgc, int x1, int y1, int x2, int y2, int x3, int y3)
+        public void DrawFillTriangle2D(IGridContext bgc, int x1, int y1, int x2, int y2, int x3, int y3)
         {
             var vtx = new IDouble3[3];
             var order = new int[3];
@@ -140,7 +140,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Tries to draw a true 3d triangle, really lazily
-        public void DrawFillTriangle3D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int x3, int y3, int z3)
+        public void DrawFillTriangle3D(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int x3, int y3, int z3)
         {
             if (bgc == null) return;
 
@@ -151,7 +151,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //This function is so lazy and bad I'm too lazy to explain it
-        private void BresenhamCallingBresnhamLine3D(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int originX, int originY, int originZ)
+        private void BresenhamCallingBresnhamLine3D(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int originX, int originY, int originZ)
         {
             MinMax(ref x1, ref x2);
             MinMax(ref y1, ref y2);

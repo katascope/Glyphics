@@ -14,7 +14,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw stairs to grid
-        public void DrawStairs(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int w, int h, int d)
+        public void DrawStairs(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int w, int h, int d)
         {
             if (bgc == null) return;
 

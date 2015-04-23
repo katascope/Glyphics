@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Blit a Grid into a Grid, with palette usage
-        public void PaletteBlit(IByteGridContext bgc, IGrid grid, IGrid palette)
+        public void PaletteBlit(IGridContext bgc, IGrid grid, IGrid palette)
         {
             if (bgc == null || grid == null || palette == null) return;
 

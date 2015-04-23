@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Draw an Arc to Grid
-        public void DrawArc(IByteGridContext bgc, PenTwist twistType, int x, int y, int z, int radius, int startAnglePercent, int stopAnglePercent)
+        public void DrawArc(IGridContext bgc, PenTwist twistType, int x, int y, int z, int radius, int startAnglePercent, int stopAnglePercent)
         {
             var realStartAngle = (int)(startAnglePercent * 3.6);
             var realStopAngle = (int)(stopAnglePercent * 3.6);

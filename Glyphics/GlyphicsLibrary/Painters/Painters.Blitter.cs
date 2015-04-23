@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Basic Blitter for one grid to another at XYZ location
-        public void Blit(IByteGridContext bgc, IGrid pal, int x, int y, int z)
+        public void Blit(IGridContext bgc, IGrid pal, int x, int y, int z)
         {
             if (bgc == null || pal == null) return;
 
@@ -28,7 +28,7 @@ namespace GlyphicsLibrary.Painters
         }
         
         //Blit one grid's rectangle portion into another
-        public void RectBlit(IByteGridContext bgc, IGrid pal, int x1, int y1, int z1, int x2, int y2, int z2)
+        public void RectBlit(IGridContext bgc, IGrid pal, int x1, int y1, int z1, int x2, int y2, int z2)
         {
             if (bgc == null || pal == null) return;
 

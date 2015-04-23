@@ -15,10 +15,8 @@ using GlyphicsLibrary.Atomics;
 namespace GlyphicsLibrary.Language
 {
     //Tokenizer class for parsing Glyphics code into tokens
-    internal class Tokenizer
+    internal partial class Converter
     {
-        private Tokenizer() { }
-
         //Tokenize a single command
         private static IToken TokenizeLine2Token(string line, int codeLine)
         {
@@ -70,7 +68,7 @@ namespace GlyphicsLibrary.Language
 
             if (code.Contains("*"))
             {
-                code = code.Split(RectSerializer.CharRgba)[0];
+                code = code.Split(Atomics.Converter.CharRgba)[0];
             }
             char[] splits = { '\n', ';' };
             string[] lines = code.Split(splits);
@@ -78,10 +76,11 @@ namespace GlyphicsLibrary.Language
             if ((code == null) || (code.Length < 2))
             {
                 return null;
-                //throw new GlyphicsException(GlyphicsError.NoCode, 0, code);
             }
 
             ITokenList tokens = new CTokenList();
+            //if (tokens.Count == 0)                return tokens;
+
             int lineNumber = 0;
             foreach (string iterationLine in lines)
             {
@@ -96,7 +95,16 @@ namespace GlyphicsLibrary.Language
                     {
                         IToken token = TokenizeLine2Token(line, lineNumber);
                         if (token != null)
-                            tokens.AddToken(token);
+                        {
+                            if (token.Glyph.Glyph == GlyphId.GlyphPrimaNop)
+                            {
+                                throw new GlyphicsError("No code");
+                            }
+                            else
+                            {
+                                tokens.AddToken(token);
+                            }
+                        }
                     }
                 }
                 lineNumber++;

@@ -104,11 +104,15 @@
     <Compile Include="Atomics\Atomics.CElement.cs" />
     <Compile Include="Atomics\Atomics.CFloat3.cs" />
     <Compile Include="Atomics\Atomics.CFloat2.cs" />
+    <Compile Include="Atomics\Atomics.Converter.QuadsToTriangles.cs" />
     <Compile Include="Atomics\Atomics.CQuadList.cs" />
     <Compile Include="Atomics\Atomics.CScene.cs" />
     <Compile Include="Atomics\Atomics.CTransform.cs" />
-    <Compile Include="Atomics\Atomics.SceneGraph.cs" />
+    <Compile Include="Atomics\Atomics.Converter.SceneGraph.cs" />
     <Compile Include="Atomics\Atomics.CQuad.cs" />
+    <Compile Include="Atomics\Atomics.Converter.BytesToString.cs" />
+    <Compile Include="Atomics\Atomics.TriangleUnitCube.cs" />
+    <Compile Include="ByteGrid\ByteGrid.Converter.GridToHex.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifRead.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifWrite.cs" />
     <Compile Include="Glyphics Interfaces\IDeck.cs" />
@@ -117,6 +121,9 @@
     <Compile Include="Glyphics Interfaces\IQuadList.cs" />
     <Compile Include="Glyphics Interfaces\IScene.cs" />
     <Compile Include="Glyphics Interfaces\ITransform.cs" />
+    <Compile Include="Language\Language.Converter.CodeToContext.cs" />
+    <Compile Include="Language\Language.Converter.CodeToGrid.cs" />
+    <Compile Include="Language\Language.Converter.CodeToRects.cs" />
     <Compile Include="Painters\Painters.Maze.cs" />
     <Compile Include="Painters\Painters.Shadows.cs" />
     <Compile Include="Renderers\Renderers.RendererTriangles.cs" />
@@ -142,7 +149,7 @@
     <Compile Include="Glyphics Interfaces\ITriangles.cs" />
     <Compile Include="Glyphics Interfaces\ITrianglesList.cs" />
     <Compile Include="Atomics\Atomics.Compare.cs" />
-    <Compile Include="Atomics\Atomics.PixelHSV.cs" />
+    <Compile Include="Atomics\Atomics.Converter.HSL2RGB.cs" />
     <Compile Include="Painters\Painters.FillCA.cs" />
     <Compile Include="Painters\Painters.BlitBlend.cs" />
     <Compile Include="Painters\Painters.BlitPalette.cs" />
@@ -178,7 +185,7 @@
     <Compile Include="Painters\Painters.Star.cs" />
     <Compile Include="Painters\Painters.Triangle.cs" />
     <Compile Include="Painters\Painters.WallCube.cs" />
-    <Compile Include="ByteGrid\ByteGrid.RectReducer.cs" />
+    <Compile Include="ByteGrid\ByteGrid.Converter.GridToRects.cs" />
     <Compile Include="Glyphics Interfaces\ICellProperties.cs" />
     <Compile Include="Glyphics Interfaces\IPainter.cs" />
     <Compile Include="Glyphics Interfaces\IExecutionContext.cs" />
@@ -187,7 +194,7 @@
     <Compile Include="Atomics\Atomics.RectMath.cs" />
     <Compile Include="Painters\Painters.MaskRect.cs" />
     <Compile Include="Language\Language.GlyphicsFile.cs" />
-    <Compile Include="ByteGrid\ByteGrid.CByteGridContext.cs" />
+    <Compile Include="ByteGrid\ByteGrid.CGridContext.cs" />
     <Compile Include="Atomics\Atomics.Transcode64.cs" />
     <Compile Include="Painters\Painters.ArchRect.cs" />
     <Compile Include="Painters\Painters.Blitter.cs" />
@@ -199,9 +206,9 @@
     <Compile Include="Painters\Painters.Arc.cs" />
     <Compile Include="Painters\Painters.Extrude.cs" />
     <Compile Include="ByteGrid\ByteGrid.CGrid.cs" />
-    <Compile Include="Language\Language.Compiler.cs" />
+    <Compile Include="Language\Language.Converter.TokensToBytes.cs" />
     <Compile Include="Language\Language.Conversions.cs" />
-    <Compile Include="Language\Language.CGlyphicsExecutionContext.cs" />
+    <Compile Include="Language\Language.CExecutionContext.cs" />
     <Compile Include="Language\Language.Rescaler.cs" />
     <Compile Include="Language\Language.GlyphicsError.cs" />
     <Compile Include="Language\Language.VGPU.cs" />
@@ -216,13 +223,13 @@
     <Compile Include="Painters\Painters.Basic.cs" />
     <Compile Include="Painters\Painters.Polygon.cs" />
     <Compile Include="Painters\Painters.ImagingRotate.cs" />
-    <Compile Include="Atomics\Atomics.PixelRGBA.cs" />
-    <Compile Include="ByteGrid\ByteGrid.Producer.cs" />
-    <Compile Include="Atomics\Atomics.RectSerializer.cs" />
-    <Compile Include="Glyphics Interfaces\IByteGridContext.cs" />
+    <Compile Include="Atomics\Atomics.Converter.Pixel.cs" />
+    <Compile Include="ByteGrid\ByteGrid.GridCreator.cs" />
+    <Compile Include="Atomics\Atomics.Converter.RectSerializer.cs" />
+    <Compile Include="Glyphics Interfaces\IGridContext.cs" />
     <Compile Include="Glyphics Interfaces\IPen.cs" />
-    <Compile Include="Language\Language.Tokenizer.cs" />
-    <Compile Include="Language\Language.Disassembler.cs" />
+    <Compile Include="Language\Language.Converter.CodeToTokens.cs" />
+    <Compile Include="Language\Language.Converter.BytecodeToTokens.cs" />
     <Compile Include="ByteGrid\ByteGrid.ArchetypeLibrary.cs" />
     <Compile Include="Language\Language.Executor.cs" />
     <Compile Include="Language\Language.GlyphTypes.cs" />
@@ -232,7 +239,7 @@
     <Compile Include="Atomics\Atomics.CPen.cs" />
     <Compile Include="Glyphics Interfaces\GlyphicsAPI.cs" />
     <Compile Include="Glyphics Interfaces\ITriangle.cs" />
-    <Compile Include="Atomics\Atomics.RectToTriangles.cs" />
+    <Compile Include="Atomics\Atomics.Converter.RectToTriangles.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileStlRead.cs" />
     <Compile Include="Atomics\Atomics.CTriangle.cs" />
     <Compile Include="Atomics\Atomics.Trigonometry.cs" />
@@ -243,7 +250,12 @@
   <ItemGroup>
     <Content Include="Glyphics Library Layers.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Atomics\Atomics.Converter.RectsToQuads.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ByteGrid\ByteGrid.Converter.GridTo3dDescription.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="RemoveObjAndBin" AfterTargets="Clean">
     <RemoveDir Directories=".\ProjectName\bin" />

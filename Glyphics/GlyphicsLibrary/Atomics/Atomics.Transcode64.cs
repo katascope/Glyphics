@@ -91,7 +91,7 @@ namespace GlyphicsLibrary.Atomics
         //Convert one ulong to 4 r/g/b/a 4BPP(32-bit) 
         public static void RecodeUlongtoRgba(ulong u, out byte r, out byte g, out byte b, out byte a)
         {
-            Pixel.Ulong2Rgba(u, out r, out g, out b, out a);
+            Converter.Ulong2Rgba(u, out r, out g, out b, out a);
             r = (byte)(r >> 2);
             g = (byte)(g >> 2);
             b = (byte)(b >> 2);
@@ -105,7 +105,7 @@ namespace GlyphicsLibrary.Atomics
             g = (byte)(g << 2 | 7);
             b = (byte)(b << 2 | 7);
             a = (byte)(a << 2 | 7);
-            return Pixel.Rgba2Ulong(r, g, b, a);
+            return Converter.Rgba2Ulong(r, g, b, a);
         }
     }
 }

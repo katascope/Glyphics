@@ -16,7 +16,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Blit a Grid into a Grid, blended
-        public void BlendBlit(IByteGridContext bgc, IGrid pal, int x1, int y1, int z1, int x2, int y2, int z2, int blend)
+        public void BlendBlit(IGridContext bgc, IGrid pal, int x1, int y1, int z1, int x2, int y2, int z2, int blend)
         {
             if (bgc == null || pal == null) return;
 
@@ -43,11 +43,11 @@ namespace GlyphicsLibrary.Painters
                         ulong v2 = bgc.Grid.GetRgba((int)scaledx, (int)scaledy, (int)scaledz);
 
                         byte r1, g1, b1, a1;
-                        Pixel.Ulong2Rgba(v1, out r1, out g1, out b1, out a1);
+                        Converter.Ulong2Rgba(v1, out r1, out g1, out b1, out a1);
                         byte r2, g2, b2, a2;
-                        Pixel.Ulong2Rgba(v2, out r2, out g2, out b2, out a2);
+                        Converter.Ulong2Rgba(v2, out r2, out g2, out b2, out a2);
 
-                        ulong v = Pixel.Rgba2Ulong(
+                        ulong v = Converter.Rgba2Ulong(
                             Lerper.Lerp1D((double)blend / 100, r1, r2),
                             Lerper.Lerp1D((double)blend / 100, g1, g2),
                             Lerper.Lerp1D((double)blend / 100, b1, b2),

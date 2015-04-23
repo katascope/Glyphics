@@ -24,7 +24,7 @@ namespace GlyphicsLibrary.Language
         private static readonly IPainter Painter = new CPainter();
 
         //Execute a given IGlyph on the IByteGridContext, tracked by glyphics code line, and arguments to the glyph
-        internal static void ExecuteGlyph(IByteGridContext bgc, byte glyphicsCodeLine, IGlyph glyph, byte[] args)
+        internal static void ExecuteGlyph(IGridContext bgc, byte glyphicsCodeLine, IGlyph glyph, byte[] args)
         {
             //No context, nothing to do
             if (bgc == null) 
@@ -37,7 +37,11 @@ namespace GlyphicsLibrary.Language
             //Big switch to map each Glyph to the command
             switch (glyph.Glyph)
             {
-                case GlyphId.GlyphNop: return;
+                case GlyphId.GlyphPrimaNop: return;
+
+                case GlyphId.GlyphPrimaSize: bgc.Grid = new CGrid(args[0], args[1], args[2], 4); return; //same as Size3D4
+                case GlyphId.GlyphPrimaRGBA: bgc.Pen.SetColor(args[0], args[1], args[2], args[3]); return; //same as PenColorD4
+                case GlyphId.GlyphPrimaRect: Painter.DrawFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return; //same as FillRect
 
                 case GlyphId.GlyphSize1D1: bgc.Grid = new CGrid(args[0], 1, 1, 1); return;
                 case GlyphId.GlyphSize2D1: bgc.Grid = new CGrid(args[0], args[1], 1, 1); return;
@@ -157,12 +161,12 @@ namespace GlyphicsLibrary.Language
                 case GlyphId.GlyphPal1D: bgc.AddPalette(new CGrid(args[0], 1, 1, bgc.Grid.Bpp)); return;
                 case GlyphId.GlyphPal2D: bgc.AddPalette(new CGrid(args[0], args[1], 1, bgc.Grid.Bpp)); return;
                 case GlyphId.GlyphPal3D: bgc.AddPalette(new CGrid(args[0], args[1], args[2], bgc.Grid.Bpp)); return;
-                case GlyphId.GlyphPalFromVal1D: bgc.AddPalette(Producer.CreateGridFromValues(args[0], 1, 1, bgc.Grid.Bpp, args)); return;
-                case GlyphId.GlyphPalFromVal2D: bgc.AddPalette(Producer.CreateGridFromValues(args[0], args[1], 1, bgc.Grid.Bpp, args)); return;
-                case GlyphId.GlyphPalFromVal3D: bgc.AddPalette(Producer.CreateGridFromValues(args[0], args[1], args[2], bgc.Grid.Bpp, args)); return;
-                case GlyphId.GlyphPalFromGrid1D: bgc.AddPalette(Producer.CreateGridFromRectangle(bgc.Grid, args[0], 0, 0, args[1], 1, 1)); return;
-                case GlyphId.GlyphPalFromGrid2D: bgc.AddPalette(Producer.CreateGridFromRectangle(bgc.Grid, args[0], args[1], 0, args[2], args[3], 1)); return;
-                case GlyphId.GlyphPalFromGrid3D: bgc.AddPalette(Producer.CreateGridFromRectangle(bgc.Grid, args[0], args[1], args[2], args[3], args[4], args[5])); return;
+                case GlyphId.GlyphPalFromVal1D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], 1, 1, bgc.Grid.Bpp, args)); return;
+                case GlyphId.GlyphPalFromVal2D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], args[1], 1, bgc.Grid.Bpp, args)); return;
+                case GlyphId.GlyphPalFromVal3D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], args[1], args[2], bgc.Grid.Bpp, args)); return;
+                case GlyphId.GlyphPalFromGrid1D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], 0, 0, args[1], 1, 1)); return;
+                case GlyphId.GlyphPalFromGrid2D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], args[1], 0, args[2], args[3], 1)); return;
+                case GlyphId.GlyphPalFromGrid3D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], args[1], args[2], args[3], args[4], args[5])); return;
                 case GlyphId.GlyphPalGen1D1: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], 0, 0, 0, args[2], 0, 0, 0); return;
                 case GlyphId.GlyphPalGen1D2: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], 0, 0, args[3], args[4], 0, 0); return;
                 case GlyphId.GlyphPalGen1D3: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], args[3], 0, args[4], args[5], args[6], 0); return;
@@ -215,7 +219,7 @@ namespace GlyphicsLibrary.Language
         }
 
         //TokensToContext a list of glyph tokenList against a Grid context
-        static public void ExecuteGlyphTokens(IByteGridContext bgc, ITokenList glyphTokens)
+        static public void ExecuteGlyphTokens(IGridContext bgc, ITokenList glyphTokens)
         {
             byte line = 0;
             

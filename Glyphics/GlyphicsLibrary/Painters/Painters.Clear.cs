@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Clear entire grid
-        public void DrawClear(IByteGridContext bgc)
+        public void DrawClear(IGridContext bgc)
         {
             if (bgc == null) return;
 

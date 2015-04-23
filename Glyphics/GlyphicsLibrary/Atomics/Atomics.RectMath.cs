@@ -44,7 +44,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //GetToken the smallest power of 2 that will fit V
-        private static int SmallestPowerOfN(int v)
+        public static int SmallestPowerOfN(int v)
         {
             //Find smallest power of 2 max fits in
             int m = 0;
@@ -58,42 +58,6 @@ namespace GlyphicsLibrary.Atomics
             else if (v <= 128) m = 128;
             else if (v <= 256) m = 256;
             return m;
-        }
-
-        //From a list of rectangles, calculate the macro-boundary
-        public static IRect RectsToBoundaries(IRectList rectSet)
-        {
-            double maxX = 0;
-            double maxY = 0;
-            double maxZ = 0;
-            foreach (IRect rect in rectSet)
-            {
-                if (rect.Pt1.X > maxX) maxX = rect.Pt1.X;
-                if (rect.Pt2.X > maxX) maxX = rect.Pt2.X;
-                if (rect.Pt1.Y > maxY) maxY = rect.Pt1.Y;
-                if (rect.Pt2.Y > maxY) maxY = rect.Pt2.Y;
-                if (rect.Pt1.Z > maxZ) maxZ = rect.Pt1.Z;
-                if (rect.Pt2.Z > maxZ) maxZ = rect.Pt2.Z;
-            }
-
-            maxX = SmallestPowerOfN((int)maxX) - 1;
-            maxY = SmallestPowerOfN((int)maxY) - 1;
-            maxZ = SmallestPowerOfN((int)maxZ) - 1;
-
-            return new CRect(0, 0, 0, maxX, maxY, maxZ);
-        }
-
-        //GetToken a human-readable description of a list of rectangles
-        public static string RectsToDescription(IRectList rectSet)
-        {
-            string result = "";
-            int count = 0;
-            foreach (IRect rect in rectSet)
-            {
-                result += count+" "+rect+"\n";
-                count++;
-            }
-            return result;
         }
     }
 }

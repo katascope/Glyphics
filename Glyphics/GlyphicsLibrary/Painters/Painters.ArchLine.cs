@@ -17,7 +17,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Copy an archetype into context
-        public void CopyInto(IByteGridContext bgc, int x, int y, int z, int archtype)
+        public void CopyInto(IGridContext bgc, int x, int y, int z, int archtype)
         {
             IGrid grid = ArchetypeLibrary.GridList.GetGrid(archtype);
             if (grid == null) return;
@@ -25,7 +25,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Copy a grid into context
-        private static void CopyInto(IByteGridContext bgc, int x, int y, int z, IGrid grid)
+        private static void CopyInto(IGridContext bgc, int x, int y, int z, IGrid grid)
         {
             if (bgc == null || grid == null) return;
 
@@ -38,7 +38,7 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw Archetype (shape) to Grid line
-        public void ArchLine(IByteGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int shape, int rotation, int spacing)
+        public void ArchLine(IGridContext bgc, int x1, int y1, int z1, int x2, int y2, int z2, int shape, int rotation, int spacing)
         {
             int xd, yd, zd;
             int dx = x2 - x1;

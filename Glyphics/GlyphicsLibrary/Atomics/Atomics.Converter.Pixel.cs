@@ -12,8 +12,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 namespace GlyphicsLibrary.Atomics
 {
-    //Partial pixel utility class - RGBA
-    internal static partial class Pixel
+    internal partial class Converter
     {        
         //Convert r/g/b/a to a ulong
         public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a)

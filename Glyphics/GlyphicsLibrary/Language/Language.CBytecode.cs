@@ -33,7 +33,7 @@ namespace GlyphicsLibrary.Language
         //Readable description
         public override string ToString()
         {
-            return Conversions.BytesToString(_bytes);
+            return Atomics.Converter.BytesToString(_bytes);
         }
     }
 }

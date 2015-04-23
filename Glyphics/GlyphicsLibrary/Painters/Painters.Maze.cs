@@ -242,7 +242,7 @@ namespace GlyphicsLibrary.Painters
 
     internal partial class CPainter
     {
-        public void DrawMaze(IByteGridContext bgc, byte seed, int x1, int y, int z1, int x2, int z2)
+        public void DrawMaze(IGridContext bgc, byte seed, int x1, int y, int z1, int x2, int z2)
         {
             if (bgc == null || bgc.Grid == null) return;
             IGrid grid = bgc.Grid;
