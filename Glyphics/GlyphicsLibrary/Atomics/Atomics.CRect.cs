@@ -89,6 +89,9 @@ namespace GlyphicsLibrary.Atomics
         //True if same
         public bool IsEqualTo(IRect rect)
         {
+            if (rect == null)
+                return false;
+
             if ( (rect.Pt1.IsEqualTo(Pt1) == false)
                 || (rect.Pt2.IsEqualTo(Pt2) == false) )
             {

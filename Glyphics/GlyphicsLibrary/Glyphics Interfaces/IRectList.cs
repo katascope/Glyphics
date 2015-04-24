@@ -21,6 +21,9 @@ namespace GlyphicsLibrary
         int SizeY { get; set; }
         int SizeZ { get; set; }
 
+        //From a list of rectangles, calculate the macro-boundary
+        IRect Boundaries { get; }
+
         //Get IRect at id, null if out of range
         IRect GetRect(int id);
 
@@ -35,8 +38,5 @@ namespace GlyphicsLibrary
 
         //Readable description
         string ToString();
-
-        //From a list of rectangles, calculate the macro-boundary
-        IRect GetBoundaries();
     }
 }

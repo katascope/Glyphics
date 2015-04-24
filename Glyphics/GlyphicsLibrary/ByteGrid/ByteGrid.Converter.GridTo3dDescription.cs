@@ -15,7 +15,7 @@ using GlyphicsLibrary.Atomics;
 
 namespace GlyphicsLibrary.ByteGrid
 {
-    internal class ConverterGridTo3DDescription
+    internal partial class Converter
     {
         //Input: Grid
         //Output: Pseudo-rendering to text of Grid

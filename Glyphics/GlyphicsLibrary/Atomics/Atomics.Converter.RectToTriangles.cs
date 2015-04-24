@@ -18,20 +18,7 @@ namespace GlyphicsLibrary.Atomics
     {
         private Converter() { }
 
-        //Convert 6 Quads to 12 triangles, along the faces of a cube
-        public static void RectToTrianglesCube(ref List<ITriangle> triangles, IRect rect)
-        {
-            IQuadList quads = Converter.RectToQuads(rect);
-            //RectToTrianglesCube(ref triangles, rect);
-
-            foreach (IQuad quad in quads)
-            {
-                ITriangles twoTriangles = Converter.QuadToTwoTriangles(quad);
-                triangles.Add(twoTriangles.GetTriangleArray()[0]);
-                triangles.Add(twoTriangles.GetTriangleArray()[1]);
-            }
-        }
-        
+       
         //This should be deprecated as it creates it's own vertices instead of using STL
         public static ITriangles RectsToTrianglesCube(IRectList rectSet)
         {

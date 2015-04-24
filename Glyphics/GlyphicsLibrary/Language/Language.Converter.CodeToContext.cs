@@ -26,7 +26,7 @@ namespace GlyphicsLibrary.Language
         //Output: Execution
         public static IExecutionContext CodeToContext(string code)
         {
-            return Executor.Execute(Converter.CodeToTokens(new CCode(code)));
+            return TokensToExecutionContext(Converter.CodeToTokens(new CCode(code)));
         }
     }
 }

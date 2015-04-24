@@ -37,10 +37,10 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Add element to the list
-        public void AddScene(IScene element)
+        public void AddScene(IScene scene)
         {
-            if (!_scenes.Contains(element))
-                _scenes.Add(element);
+            if (!_scenes.Contains(scene))
+                _scenes.Add(scene);
         }
 
         //Duplicate object

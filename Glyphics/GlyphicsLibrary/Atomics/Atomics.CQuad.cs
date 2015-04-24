@@ -39,20 +39,35 @@ namespace GlyphicsLibrary.Atomics
         //Assignment constructor
         public CQuad(IDouble3 fromPt1, IDouble3 fromPt2)
         {
-            Pt1 = new CDouble3(fromPt1.X, fromPt1.Y, fromPt1.Z);
-            Pt2 = new CDouble3(fromPt2.X, fromPt2.Y, fromPt2.Z);
+            if (fromPt1 != null)
+                Pt1 = new CDouble3(fromPt1.X, fromPt1.Y, fromPt1.Z);
+            else Pt1 = new CDouble3();
+
+            if (fromPt2 != null)
+                Pt2 = new CDouble3(fromPt2.X, fromPt2.Y, fromPt2.Z);
+            else Pt2 = new CDouble3();
         }
 
         //Copy properties from sourceTransform
         public void CopyFrom(IQuad sourceQuad)
         {
-            Pt1.CopyFrom(sourceQuad.Pt1);
-            Pt2.CopyFrom(sourceQuad.Pt2);
+            if (sourceQuad != null)
+            {
+                Pt1.CopyFrom(sourceQuad.Pt1);
+                Pt2.CopyFrom(sourceQuad.Pt2);
+            }
+            else
+            {
+                Pt1 = new CDouble3();
+                Pt2 = new CDouble3();
+            }
         }
 
         //True if same
         public bool IsEqualTo(IQuad quad)
         {
+            if (quad == null) return false;
+
             if ((Pt1.IsEqualTo(quad.Pt1) == false) || (Pt2.IsEqualTo(quad.Pt2) == false))
                 return false;
             return true;

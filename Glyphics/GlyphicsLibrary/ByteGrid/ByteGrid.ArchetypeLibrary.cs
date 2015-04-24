@@ -15,6 +15,8 @@ namespace GlyphicsLibrary.ByteGrid
     //Archetype library of grids
     internal class ArchetypeLibrary
     {
+        private ArchetypeLibrary() { }
+
         private static IGridList _gridList;
 
         //IGridList - list of IGrid

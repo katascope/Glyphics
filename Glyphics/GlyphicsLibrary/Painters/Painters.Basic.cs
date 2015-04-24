@@ -14,7 +14,8 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter : IPainter
     {
         //Order two ints by magnitude
-        public static void MinMax(ref int v1, ref int v2) {
+        public static void MinMax(ref int v1, ref int v2)
+        {
             if (v1 <= v2) return;
             int temp = v1; v1 = v2; v2 = temp;
         }

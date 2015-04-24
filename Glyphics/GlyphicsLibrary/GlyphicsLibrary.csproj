@@ -24,8 +24,8 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
@@ -207,9 +207,9 @@
     <Compile Include="Painters\Painters.Extrude.cs" />
     <Compile Include="ByteGrid\ByteGrid.CGrid.cs" />
     <Compile Include="Language\Language.Converter.TokensToBytes.cs" />
-    <Compile Include="Language\Language.Conversions.cs" />
+    <Compile Include="Language\Language.Converter.TokensToCode.cs" />
     <Compile Include="Language\Language.CExecutionContext.cs" />
-    <Compile Include="Language\Language.Rescaler.cs" />
+    <Compile Include="Language\Language.Converter.CodeToRescaledCode.cs" />
     <Compile Include="Language\Language.GlyphicsError.cs" />
     <Compile Include="Language\Language.VGPU.cs" />
     <Compile Include="Language\Language.CGlyph.cs" />
@@ -231,7 +231,7 @@
     <Compile Include="Language\Language.Converter.CodeToTokens.cs" />
     <Compile Include="Language\Language.Converter.BytecodeToTokens.cs" />
     <Compile Include="ByteGrid\ByteGrid.ArchetypeLibrary.cs" />
-    <Compile Include="Language\Language.Executor.cs" />
+    <Compile Include="Language\Language.Converter.TokensToExecutionContext.cs" />
     <Compile Include="Language\Language.GlyphTypes.cs" />
     <Compile Include="Glyphics Interfaces\IRect.cs" />
     <Compile Include="Glyphics Interfaces\IDouble3.cs" />

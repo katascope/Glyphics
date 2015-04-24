@@ -63,11 +63,6 @@ namespace GlyphicsLibrary.Painters
                     {
                         ulong u = grid.GetRgba(x, y, z);
                         ulong rgba = Converter.Rgba2Ulong(ri, gi, bi, ai);
-                        if (u != 0)
-                        {
-                            int foo;
-                            foo = 1;
-                        }
                         if (rgba == u)
                         {
                             for (int i = 0; i < reps; i++)

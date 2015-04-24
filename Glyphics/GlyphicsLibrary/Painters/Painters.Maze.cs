@@ -175,7 +175,7 @@ namespace GlyphicsLibrary.Painters
             return false;
         }
 
-        public string ToString(int[,] cells)
+        public static string ToString(int[,] cells)
         {
             var columns = cells.GetLength(WidthDimension);
             var rows = cells.GetLength(HeightDimension);
@@ -201,7 +201,7 @@ namespace GlyphicsLibrary.Painters
             return str;
         }
 
-        public string remapCells(string cellStr)
+        public static string remapCells(string cellStr)
         {
             string returnStr = "";
 
@@ -255,11 +255,8 @@ namespace GlyphicsLibrary.Painters
             //Scale down by two, to pickup walls
             MazeGrid mg = new MazeGrid(seed, width/2, depth/2);
 
-            string cells = mg.ToString(mg.Cells);
-            string remappedCells = mg.remapCells(cells);
-
-            var cellsWidth = mg.Cells.GetLength(MazeGrid.WidthDimension);
-            var cellsHeight = mg.Cells.GetLength(MazeGrid.HeightDimension);
+            string cells = MazeGrid.ToString(mg.Cells);
+            string remappedCells = MazeGrid.remapCells(cells);
 
             string[] remappedStrings = remappedCells.Split('\n');
 

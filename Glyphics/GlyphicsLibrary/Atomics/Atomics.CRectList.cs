@@ -51,7 +51,7 @@ namespace GlyphicsLibrary.Atomics
         //True if same
         public bool IsEqualTo(IRectList rects)
         {
-            if (rects.Count != Count)
+            if (rects == null || rects.Count != Count)
                 return false;
 
             for (int i=0;i<Count;i++)
@@ -78,26 +78,29 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //From a list of rectangles, calculate the macro-boundary
-        public IRect GetBoundaries()
+        public IRect Boundaries
         {
-            double maxX = 0;
-            double maxY = 0;
-            double maxZ = 0;
-            foreach (IRect rect in Rects)
+            get
             {
-                if (rect.Pt1.X > maxX) maxX = rect.Pt1.X;
-                if (rect.Pt2.X > maxX) maxX = rect.Pt2.X;
-                if (rect.Pt1.Y > maxY) maxY = rect.Pt1.Y;
-                if (rect.Pt2.Y > maxY) maxY = rect.Pt2.Y;
-                if (rect.Pt1.Z > maxZ) maxZ = rect.Pt1.Z;
-                if (rect.Pt2.Z > maxZ) maxZ = rect.Pt2.Z;
+                double maxX = 0;
+                double maxY = 0;
+                double maxZ = 0;
+                foreach (IRect rect in Rects)
+                {
+                    if (rect.Pt1.X > maxX) maxX = rect.Pt1.X;
+                    if (rect.Pt2.X > maxX) maxX = rect.Pt2.X;
+                    if (rect.Pt1.Y > maxY) maxY = rect.Pt1.Y;
+                    if (rect.Pt2.Y > maxY) maxY = rect.Pt2.Y;
+                    if (rect.Pt1.Z > maxZ) maxZ = rect.Pt1.Z;
+                    if (rect.Pt2.Z > maxZ) maxZ = rect.Pt2.Z;
+                }
+
+                maxX = RectMath.SmallestPowerOfN((int)maxX) - 1;
+                maxY = RectMath.SmallestPowerOfN((int)maxY) - 1;
+                maxZ = RectMath.SmallestPowerOfN((int)maxZ) - 1;
+
+                return new CRect(0, 0, 0, maxX, maxY, maxZ);
             }
-
-            maxX = RectMath.SmallestPowerOfN((int)maxX) - 1;
-            maxY = RectMath.SmallestPowerOfN((int)maxY) - 1;
-            maxZ = RectMath.SmallestPowerOfN((int)maxZ) - 1;
-
-            return new CRect(0, 0, 0, maxX, maxY, maxZ);
         }
 
         //Make enumerable instead

@@ -9,21 +9,41 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System;
+using System.Collections.Generic;
+using System.Text;
+using GlyphicsLibrary.Atomics;
+using GlyphicsLibrary.ByteGrid;
 
 namespace GlyphicsLibrary.Language
 {
-    //Glyphics executor
-    internal class Executor
+    //General converters
+    internal partial class Converter
     {
-        private Executor() { }
-
-        //Executes the ITokenList and returns the IExecutionContext
-        public static IExecutionContext Execute(ITokenList glyphTokens)
+        //Convert tokenList to one-line string
+        static public string TokensToCodeString(ITokenList glyphTokens)
         {
-            IExecutionContext context = new CExecutionContext();
-            context.GlyphTokens = glyphTokens;
-            Vrgpu.ExecuteGlyphTokens(context.Bgc, glyphTokens);
-            return context;
+            return TokensToString(glyphTokens, ";");
+        }
+
+        //Convert tokenList to a seperator-delimited string.
+        static private string TokensToString(ITokenList glyphTokens, string separator)
+        {
+            List<string> strings = TokensToList(glyphTokens);
+            
+            string finalStr = "";
+            foreach (string str in strings)
+                finalStr += str + separator;
+            return finalStr;
+        }
+
+        //Convert tokenList to a List of Glyphics codelines
+        static private List<string> TokensToList(ITokenList glyphTokens)
+        {
+            var tokenStrList = new List<string>();
+            foreach (IToken token in glyphTokens)
+                tokenStrList.Add(token.ToString());
+            return tokenStrList;
         }
     }
 }

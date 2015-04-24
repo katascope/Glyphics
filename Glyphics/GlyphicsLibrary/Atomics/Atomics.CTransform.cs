@@ -35,6 +35,9 @@ namespace GlyphicsLibrary.Atomics
         //Copy properties from sourceTransform
         public void CopyFrom(ITransform sourceTransform)
         {
+            if (sourceTransform == null)
+                return;
+
             Translation.CopyFrom(sourceTransform.Translation);
             Rotation.CopyFrom(sourceTransform.Rotation);
             Scale.CopyFrom(sourceTransform.Scale);

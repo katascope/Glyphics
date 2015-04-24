@@ -17,19 +17,6 @@ namespace GlyphicsLibrary.ByteGrid
     {
         private GridCreator() { }
 
-        //Return a cloned copy of a grid
-        public static IGrid GridClone(IGrid grid)
-        {
-            IGrid newGrid = new CGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
-            for (int z = 0; z < grid.SizeZ; z++)
-                for (int y = 0; y < grid.SizeY; y++)
-                    for (int x = 0; x < grid.SizeX; x++)
-                    {
-                        newGrid.Plot(x, y, z, grid.GetRgba(x, y, z));
-                    }
-            return newGrid;
-        }
-
         //Create a grid directly from bytes
         public static IGrid CreateGridFromValues(int dimx, int dimy, int dimz, int bpp, byte[] vals)
         {

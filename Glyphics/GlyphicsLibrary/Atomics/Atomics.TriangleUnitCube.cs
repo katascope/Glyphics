@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GlyphicsLibrary.Atomics
-{
+{    
     internal class TriangleUnitCube
     {
+        private TriangleUnitCube() { }
+
         public static ITriangles GetUnitCube()
         {
             List<ITriangle> triangles = new List<ITriangle>();

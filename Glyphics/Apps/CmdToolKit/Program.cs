@@ -224,7 +224,7 @@ namespace GlyphicsInfo
 
             if (args.Length == 1)
             {
-                Console.WriteLine("Glyphics version {0} \"{1}\"", GlyphicsApi.GetVersion(), GlyphicsApi.GetVersionName());
+                Console.WriteLine("Glyphics version {0} \"{1}\"", GlyphicsApi.Version, GlyphicsApi.VersionName);
             }
             else
             {

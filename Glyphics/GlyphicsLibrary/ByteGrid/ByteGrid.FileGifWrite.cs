@@ -80,12 +80,14 @@ namespace GlyphicsLibrary.ByteGrid
 #if !NET2
             BitmapSource image = BitmapSource.Create(width, height, 96, 96, PixelFormats.Bgra32, null, pixels, stride);
 
-            var stream = new FileStream(filename, FileMode.Create);
-            var encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(image));
-            encoder.Save(stream);
+            using (var stream = new FileStream(filename, FileMode.Create))
+            {
+                var encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image));
+                encoder.Save(stream);
+            }
 
-            stream.Close();
+            //stream.Close();
 #endif
         }
     }

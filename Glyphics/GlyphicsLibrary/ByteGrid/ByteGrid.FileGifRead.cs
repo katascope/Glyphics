@@ -33,7 +33,6 @@ namespace GlyphicsLibrary.ByteGrid
             int height = bitmapSource.PixelHeight;
             BitmapPalette palette = bitmapSource.Palette;
 
-            int bytesPerPixel = bitmapSource.Format.BitsPerPixel / 8;
             var originalPixels = new byte[bitmapSource.PixelWidth * bitmapSource.PixelHeight * 4];
             int stride = bitmapSource.PixelWidth * bitmapSource.Format.BitsPerPixel / 8;
             stride = stride + (stride % 4) * 4;
@@ -84,7 +83,6 @@ namespace GlyphicsLibrary.ByteGrid
             int maxWidth = 0;
             for (int i = 0; i < decoder.Frames.Count; i++)
             {
-                BitmapFrame bitmapSourceFrame = decoder.Frames[i];
                 // Get a clone copy of the metadata
                 BitmapMetadata sourceMetadata = decoder.Frames[i].Metadata as BitmapMetadata;
                 int Left = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Left").ToString());
@@ -102,7 +100,6 @@ namespace GlyphicsLibrary.ByteGrid
             int maxHeight = 0;
             for (int i = 0; i < decoder.Frames.Count; i++)
             {
-                BitmapFrame bitmapSourceFrame = decoder.Frames[i];
                 // Get a clone copy of the metadata
                 BitmapMetadata sourceMetadata = decoder.Frames[i].Metadata as BitmapMetadata;
                 int Top = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Top").ToString());
@@ -124,7 +121,6 @@ namespace GlyphicsLibrary.ByteGrid
             Stream imageStreamSource = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
             GifBitmapDecoder decoder = new GifBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
             decoder.Frames[0].Metadata.Freeze();
-            BitmapSource bitmapSource = decoder.Frames[0];
 
             int width = GetMaxX(decoder);
             int height = GetMaxY(decoder);

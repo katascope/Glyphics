@@ -23,15 +23,6 @@ namespace GlyphicsLibrary.Atomics
         //Create a triangle-based cube 'manually'
         public void AddDefaultCube()
         {
-            IRect rect = GlyphicsApi.CreateRect(0, 0, 0, 1, 1, 1);
-            /*
-            List<ITriangle> triangleList = new List<ITriangle>();
-            RectToTriangles.RectToTrianglesCube(ref triangleList, rect);
-            ITriangles triangles = new CTriangles(triangleList.ToArray());
-            triangles.ReduceToUnit();
-            triangles.Name = "DefaultCube";
-            TrianglesSet.Add(triangles);
-            */
             TrianglesSet.Add(TriangleUnitCube.GetUnitCube());
         }
 

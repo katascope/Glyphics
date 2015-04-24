@@ -16,6 +16,8 @@ namespace GlyphicsLibrary.Atomics
     //Comparisong utility class
     internal class Compare
     {
+        private Compare() { }
+
         //MathCompare two doubles
         public static bool CompareFloatAreEqual(float v1, float v2)
         {

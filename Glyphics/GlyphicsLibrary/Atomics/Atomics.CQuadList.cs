@@ -46,7 +46,7 @@ namespace GlyphicsLibrary.Atomics
         //True if same
         public bool IsEqualTo(IQuadList quads)
         {
-            if (quads.Count != Count)
+            if (quads == null || quads.Count != Count)
                 return false;
 
             for (int i = 0; i < Count; i++)

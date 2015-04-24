@@ -28,7 +28,6 @@ namespace GlyphicsLibrary.Language
      * Z - z2
      * */
 
-
     //Enums here both help identify the glyphs.. and binds them to a number permanently so bytecode is reusable
     public enum GlyphId
     {
@@ -193,18 +192,18 @@ namespace GlyphicsLibrary.Language
         GlyphShadows        = 130,
         GlyphMaze           = 131,
 
-        GlyphSize1D1 = 132,
-        GlyphSize2D1 = 133,
-        GlyphSize3D1 = 134,
-        GlyphSize1D2 = 135,
-        GlyphSize2D2 = 136,
-        GlyphSize3D2 = 137,
-        GlyphSize1D3 = 138,
-        GlyphSize2D3 = 139,
-        GlyphSize3D3 = 140,
-        GlyphSize1D4 = 141,
-        GlyphSize2D4 = 142,
-        GlyphSize3D4 = 143
+        GlyphSize1D1        = 132,
+        GlyphSize2D1        = 133,
+        GlyphSize3D1        = 134,
+        GlyphSize1D2        = 135,
+        GlyphSize2D2        = 136,
+        GlyphSize3D2        = 137,
+        GlyphSize1D3        = 138,
+        GlyphSize2D3        = 139,
+        GlyphSize3D3        = 140,
+        GlyphSize1D4        = 141,
+        GlyphSize2D4        = 142,
+        GlyphSize3D4        = 143
 
     };
 

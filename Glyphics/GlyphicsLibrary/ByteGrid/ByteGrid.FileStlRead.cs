@@ -26,74 +26,68 @@ namespace GlyphicsLibrary.ByteGrid
         {
             var trianglesList = new List<ITriangle>();
 
-            try
+            using (var reader = new StreamReader(filename))
             {
-                using (var reader = new StreamReader(filename))
+                ITriangle triangle = null;
+                int vertexcount = 0;
+                while (reader.EndOfStream == false)
                 {
-                    ITriangle triangle = null;
-                    int vertexcount = 0;
-                    while (reader.EndOfStream == false)
+                    string str = reader.ReadLine().TrimStart();
+                    string command = str.Split(' ')[0];
+
+
+                    if (command == "solid") { }
+                    if (command == "facet")
                     {
-                        string str = reader.ReadLine().TrimStart();
-                        string command = str.Split(' ')[0];
+                        //compact those open white spaces
+                        str = str.Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
+                        string[] splits = str.Split(' ');
 
+                        triangle = new CTriangle();
+                        trianglesList.Add(triangle);
 
-                        if (command == "solid") { }
-                        if (command == "facet")
+                        //flip y/z
+                        triangle.Normal.X = float.Parse(splits[2]);
+                        triangle.Normal.Z = float.Parse(splits[3]);
+                        triangle.Normal.Y = float.Parse(splits[4]);
+                        vertexcount = 0;
+                    }
+                    if (command == "vertex")
+                    {
+                        str = str.Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
+                        string[] splits = str.Split(' ');
+
+                        //flip y/z
+                        float x = float.Parse(splits[1]);
+                        float z = float.Parse(splits[2]);
+                        float y = float.Parse(splits[3]);
+
+                        if (vertexcount == 0)
                         {
-                            //compact those open white spaces
-                            str = str.Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
-                            string[] splits = str.Split(' ');
-
-                            triangle = new CTriangle();
-                            trianglesList.Add(triangle);
-
-                            //flip y/z
-                            triangle.Normal.X = float.Parse(splits[2]);
-                            triangle.Normal.Z = float.Parse(splits[3]);
-                            triangle.Normal.Y = float.Parse(splits[4]);
-                            vertexcount = 0;
+                            triangle.Vertex1.X = x;
+                            triangle.Vertex1.Y = y;
+                            triangle.Vertex1.Z = z;
                         }
-                        if (command == "vertex")
+                        if (vertexcount == 1)
                         {
-                            str = str.Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
-                            string[] splits = str.Split(' ');
-
-                            //flip y/z
-                            float x = float.Parse(splits[1]);
-                            float z = float.Parse(splits[2]);
-                            float y = float.Parse(splits[3]);
-                            
-                            if (vertexcount == 0)
-                            {
-                                triangle.Vertex1.X = x;
-                                triangle.Vertex1.Y = y;
-                                triangle.Vertex1.Z = z;
-                            }
-                            if (vertexcount == 1)
-                            {
-                                triangle.Vertex2.X = x;
-                                triangle.Vertex2.Y = y;
-                                triangle.Vertex2.Z = z;
-                            }
-                            if (vertexcount == 2)
-                            {
-                                triangle.Vertex3.X = x;
-                                triangle.Vertex3.Y = y;
-                                triangle.Vertex3.Z = z;
-                            }
-                            vertexcount++;
+                            triangle.Vertex2.X = x;
+                            triangle.Vertex2.Y = y;
+                            triangle.Vertex2.Z = z;
                         }
+                        if (vertexcount == 2)
+                        {
+                            triangle.Vertex3.X = x;
+                            triangle.Vertex3.Y = y;
+                            triangle.Vertex3.Z = z;
+                        }
+                        vertexcount++;
                     }
                 }
-                ITriangles triangles = new CTriangles(trianglesList.ToArray());
-                triangles.Name = filename;
-                return triangles;
             }
-            catch (Exception)
-            {
-                return null;
-            }
+                
+            ITriangles triangles = new CTriangles(trianglesList.ToArray());
+            triangles.Name = filename;
+            return triangles;
         }
 
         //Read a binary STL file, or call the ascii reader
@@ -130,7 +124,7 @@ namespace GlyphicsLibrary.ByteGrid
 
                     //Normals and vertices
                     for (int facet = 0; facet < numTriangles; facet++)
-                    {
+                    { 
                         var sf = new CTriangle();
 
                         //Read normal = 3 floats

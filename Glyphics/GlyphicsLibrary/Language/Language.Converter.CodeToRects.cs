@@ -20,7 +20,7 @@ namespace GlyphicsLibrary.Language
                 string start = code.Substring(code.IndexOf('*'));
                 return Atomics.Converter.SerializedRectsToRects(new Atomics.CSerializedRects(start));
             }
-            IRectList rectSet = ByteGrid.Converter.GridToRects(Executor.Execute(Converter.CodeToTokens(glyphicsCode)).Bgc.Grid);
+            IRectList rectSet = ByteGrid.Converter.GridToRects(Language.Converter.TokensToExecutionContext(Converter.CodeToTokens(glyphicsCode)).Bgc.Grid);
             return rectSet;
         }
     }

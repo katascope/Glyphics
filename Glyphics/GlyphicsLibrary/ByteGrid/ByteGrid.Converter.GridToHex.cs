@@ -16,7 +16,7 @@ using GlyphicsLibrary.Atomics;
 namespace GlyphicsLibrary.ByteGrid
 {
     //Convert bytes to serialized string, similar in function (but not result) to a CDATA
-    internal class ConverterGridToHex
+    internal partial class Converter
     {
         //Input: Grid
         //Output: Hexadecimal description of Grid

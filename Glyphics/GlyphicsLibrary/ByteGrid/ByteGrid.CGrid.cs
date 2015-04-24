@@ -203,7 +203,9 @@ namespace GlyphicsLibrary.ByteGrid
         //Return true if the raw bytes = expectedResult bytes
         public bool IsEqualTo(IGrid grid)
         {
-            if ((grid.SizeX != SizeX)
+
+            if ( (grid == null)
+                || (grid.SizeX != SizeX)
                 || (grid.SizeY != SizeY)
                 || (grid.SizeZ != SizeZ)
                 || (grid.Bpp != Bpp)

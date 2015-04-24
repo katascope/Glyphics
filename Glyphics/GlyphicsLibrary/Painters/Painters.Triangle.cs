@@ -32,32 +32,39 @@ namespace GlyphicsLibrary.Painters
             DrawLine3D(bgc, x3, y3, z3, x1, y1, z1);
         }
 
+        private bool QuickTriangle2D(IGridContext bgc, int x1, int y1, int x2, int y2, int x3, int y3)
+        {
+            if ((x1 == x2) && (y1 == y2) && (x1 == x3) && (y1 == y3))
+            {
+                DrawPen(bgc, x1, y1, 0);
+                return true;
+            }
+            if ((x1 == x2) && (y1 == y2))
+            {
+                DrawLine2D(bgc, x1, y1, x3, y3, 0);
+                return true;
+            }
+            if ((x1 == x3) && (y1 == y3))
+            {
+                DrawLine2D(bgc, x1, y1, x2, y2, 0);
+                return true;
+            }
+            if ((x2 == x3) && (y2 == y3))
+            {
+                DrawLine2D(bgc, x1, y1, x3, y3, 0);
+                return true;
+            }
+            return false;
+        }
+
         //Draw filled triangle 2d to Grid
         public void DrawFillTriangle2D(IGridContext bgc, int x1, int y1, int x2, int y2, int x3, int y3)
         {
             var vtx = new IDouble3[3];
             var order = new int[3];
 
-            if ((x1 == x2) && (y1 == y2) && (x1 == x3) && (y1 == y3))
-            {
-                DrawPen(bgc, x1, y1, 0);
-                return; // single pixel
-            }
-            if ( (x1 == x2) && (y1 == y2) )
-            {
-                DrawLine2D(bgc, x1, y1, x3, y3, 0);
+            if (QuickTriangle2D(bgc,x1,y1,x2,y2,x3,y3)) 
                 return;
-            }
-            if ((x1 == x3) && (y1 == y3))
-            {
-                DrawLine2D(bgc, x1, y1, x2, y2, 0);
-                return;
-            }
-            if ((x2 == x3) && (y2 == y3))
-            {
-                DrawLine2D(bgc, x1, y1, x3, y3, 0);
-                return;
-            }
 
 
             vtx[0] = new CDouble3(x1, y1, 0);

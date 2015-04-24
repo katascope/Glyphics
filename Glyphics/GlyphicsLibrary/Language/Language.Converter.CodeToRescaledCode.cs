@@ -9,14 +9,13 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
+using System.Collections.Generic;
 
 namespace GlyphicsLibrary.Language
 {
     //Rescales the arguments to functions in a set of tokens, allows rescaling (up or down) of code to grids
-    internal class Rescaler
+    internal partial class Converter
     {
-        private Rescaler() { }
-
         //Resize a glyphics token
         private static void RescaleGlyphToken(ref IToken token, double scaleX, double scaleY, double scaleZ)
         {
@@ -55,7 +54,7 @@ namespace GlyphicsLibrary.Language
         }
 
         //Resize a glyphics code
-        public static ICode Rescale(ICode glyphicsCode, int toX, int toY, int toZ)
+        public static ICode CodeToRescaledCode(ICode glyphicsCode, int toX, int toY, int toZ)
         {
             string code = glyphicsCode.Code;
             ITokenList glyphTokens = Converter.CodeToTokens(new CCode(code));
@@ -93,7 +92,7 @@ namespace GlyphicsLibrary.Language
                 IToken token = t;
                 RescaleGlyphToken(ref token, scaleX, scaleY, scaleZ);
             }
-            return new CCode(prepend + "," + Converter.TokensToString(glyphTokens));
+            return new CCode(prepend + "," + Converter.TokensToCodeString(glyphTokens));
         }
     }
 }
