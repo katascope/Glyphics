@@ -26,6 +26,14 @@ namespace GlyphicsLibrary.ByteGrid
         //Return IGrid if within range, otherwise null
         public IGrid GetPalette(int pal) { return (pal < Palettes.Count) ? Palettes[pal] : null; }
 
+        //Constructor only
+        public CGridContext()
+        {
+            Pen = new CPen();
+            Palettes = new List<IGrid>();
+            SpawnPoint = new CDouble3();
+        }
+
         //Assignment constructor only
         public CGridContext(IGrid newGrid)
         {

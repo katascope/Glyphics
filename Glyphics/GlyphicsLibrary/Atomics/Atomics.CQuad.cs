@@ -39,13 +39,9 @@ namespace GlyphicsLibrary.Atomics
         //Assignment constructor
         public CQuad(IDouble3 fromPt1, IDouble3 fromPt2)
         {
-            if (fromPt1 != null)
-                Pt1 = new CDouble3(fromPt1.X, fromPt1.Y, fromPt1.Z);
-            else Pt1 = new CDouble3();
+            Pt1 = fromPt1 != null ? new CDouble3(fromPt1.X, fromPt1.Y, fromPt1.Z) : new CDouble3();
 
-            if (fromPt2 != null)
-                Pt2 = new CDouble3(fromPt2.X, fromPt2.Y, fromPt2.Z);
-            else Pt2 = new CDouble3();
+            Pt2 = fromPt2 != null ? new CDouble3(fromPt2.X, fromPt2.Y, fromPt2.Z) : new CDouble3();
         }
 
         //Copy properties from sourceTransform

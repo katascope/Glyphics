@@ -16,9 +16,27 @@ namespace ScratchPad
 {
     /* Example: ScratchPad */
     class ScratchPad
-    {
+    {   
         static void SuperDebug(string codeString)
         {
+            IGrid grid = GlyphicsApi.CreateGrid(32, 32, 32, 4);
+
+            //const string inputFilenameObj = "..\\..\\..\\..\\..\\..\\diamond.obj";
+            //ITriangles triangles = GlyphicsApi.ObjToTriangles(inputFilenameObj);
+
+            //Console.WriteLine("trianglesObj: {0}", trianglesObj);            
+
+            const string inputFilenameStl = "..\\..\\..\\..\\..\\..\\shield.stl";
+            Console.WriteLine("Input filename: {0}", inputFilenameStl);
+
+            //Load the triangles from the STL file and reduce to a unit 1x1x1 size
+            ITriangles triangles = GlyphicsApi.StlToTriangles(inputFilenameStl);
+            triangles.ReduceToUnit();
+            Console.WriteLine("Triangle count: {0}", triangles.Count);
+
+            //Render the triangles to the grid, will autosize to grid size
+            GlyphicsApi.Renderer.RenderTrianglesToGrid(triangles, grid);
+            
             ICode code = GlyphicsApi.CreateCode(codeString);
             Console.WriteLine("Code: {0}\n", codeString);
 
@@ -26,20 +44,17 @@ namespace ScratchPad
             Console.WriteLine("Codename: {0}\n", codename);
 
             ITokenList glyphTokens = GlyphicsApi.CodeToTokens(code);
-            string tokenDesc = "Tokens:\n" + glyphTokens.ToString() + "\n";
+            string tokenDesc = "Tokens:\n" + glyphTokens + "\n";
             Console.WriteLine(tokenDesc);
 
             IBytecode glyphicsBytecode = GlyphicsApi.TokensToBytes(glyphTokens);
             Console.WriteLine("Bytecode:\n{0}\n", glyphicsBytecode);
 
-            IExecutionContext context = GlyphicsApi.TokensToContext(glyphTokens);
-            Console.WriteLine("Context:\n{0}\n", context);
-
-            IGrid grid = GlyphicsApi.CodeToGrid(code);
-            Console.WriteLine("Grid: {0} {1} non-empty\n", grid, grid.CountNonZero());
+          //  IGrid grid = GlyphicsApi.CodeToGrid(code);
+            //Console.WriteLine("Grid: {0} {1} non-empty\n", grid, grid.CountNonZero());
 
             string bytesDesc = GlyphicsApi.BytesToString(grid.CloneData());
-            Console.WriteLine("GridBytes:\n{0}\n", bytesDesc);
+            //Console.WriteLine("GridBytes:\n{0}\n", bytesDesc);
 
             IRectList rects = GlyphicsApi.GridToRects(grid);
             //Console.WriteLine("Rects: {0}\n{1}", rects.Count, rects);
@@ -47,10 +62,18 @@ namespace ScratchPad
             string serialized = GlyphicsApi.RectsToSerializedRectsLimit255(rects).SerializedData;
             Console.WriteLine("Serialized Rects: (len={0})\n{1}\n", serialized.Length, serialized);
 
+            ICode codeFromRects = GlyphicsApi.RectsToCode(rects);
+            //Console.WriteLine("New code string:\n\"" + codeFromRects + "\"");
+
+            GlyphicsApi.SaveFlatText("..\\..\\foo.txt", serialized);
+
+            IGrid gridOblique = GlyphicsApi.Renderer.RenderObliqueCells(grid);
+            GlyphicsApi.SaveFlatPng("..\\..\\oblique.png", gridOblique);
+
             //IScene scene = GlyphicsApi.RectsToScene(rects);Console.WriteLine("Scene: {0}", scene);
             //IQuadList quads = GlyphicsApi.RectsToQuads(rects);Console.WriteLine("Quads: {0}", quads);
             //ITriangles triangles = GlyphicsApi.QuadsToTriangles(quads);Console.WriteLine("Triangles: {0}", triangles);
-
+            
             //Console.WriteLine("2d view:\n{0}", GlyphicsApi.GridToHexDescription(grid));
             //Console.WriteLine("3d view:\n{0}", GlyphicsApi.GridTo3DDescription(grid, 0, 0, 0));
         }

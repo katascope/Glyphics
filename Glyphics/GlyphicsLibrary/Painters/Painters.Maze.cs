@@ -11,8 +11,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #endregion
 using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
-using System.Windows.Forms;
 
 namespace GlyphicsLibrary.Painters
 {
@@ -33,7 +31,7 @@ namespace GlyphicsLibrary.Painters
         public const int WidthDimension = 0;
         public const int HeightDimension = 1;
 
-        private static Random rng;
+        private static Random _rng;
 
         public int MinSize { get; private set; }
         public int MaxSize { get; private set; }
@@ -41,14 +39,11 @@ namespace GlyphicsLibrary.Painters
 
         public MazeGrid(byte seed, int width, int height)
         {
-            if (seed > 0)
-             rng = new Random(seed);
-            else rng = new Random();
+            _rng = seed > 0 ? new Random(seed) : new Random();
 
             MinSize = 0;
 
-            if (height > width) MaxSize = height;
-            else MaxSize = width;
+            MaxSize = height > width ? height : width;
 
             Cells = Initialise(width, height);
             Cells = Generate();
@@ -81,7 +76,7 @@ namespace GlyphicsLibrary.Painters
             return cells;
         }
 
-        private Dictionary<Directions, int> DirectionX = new Dictionary<Directions, int>
+        private readonly Dictionary<Directions, int> _directionX = new Dictionary<Directions, int>
         {
             {Directions.N, 0},
             {Directions.S, 0},
@@ -89,7 +84,7 @@ namespace GlyphicsLibrary.Painters
             {Directions.W, -1}
         };
 
-        private Dictionary<Directions, int> DirectionY = new Dictionary<Directions, int>
+        private readonly Dictionary<Directions, int> _directionY = new Dictionary<Directions, int>
         {
             {Directions.N, -1},
             {Directions.S, 1},
@@ -97,7 +92,7 @@ namespace GlyphicsLibrary.Painters
             {Directions.W, 0}
         };
 
-        private Dictionary<Directions, Directions> Opposite = new Dictionary<Directions, Directions>
+        private readonly Dictionary<Directions, Directions> _opposite = new Dictionary<Directions, Directions>
         {
             {Directions.N, Directions.S},
             {Directions.S, Directions.N},
@@ -119,14 +114,14 @@ namespace GlyphicsLibrary.Painters
             while (n > 1)
             {
                 n--;
-                int k = rng.Next(n + 1);
+                int k = _rng.Next(n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
         }
 
-        private void Randomize(ref List<Directions> directions)
+        private static void Randomize(ref List<Directions> directions)
         {
             //Shuffle as many times as there are entries
             for (int i = 0; i < directions.Count; i++)
@@ -137,7 +132,7 @@ namespace GlyphicsLibrary.Painters
 
         private void CarvePassagesFrom(int currentX, int currentY, ref int[,] grid)
         {
-            List<Directions> directions = new List<Directions>
+            var directions = new List<Directions>
             {
                 Directions.E,
                 Directions.N,
@@ -148,8 +143,8 @@ namespace GlyphicsLibrary.Painters
 
             foreach (Directions direction in directions)
             {
-                var nextX = currentX + DirectionX[direction];
-                var nextY = currentY + DirectionY[direction];
+                var nextX = currentX + _directionX[direction];
+                var nextY = currentY + _directionY[direction];
 
                 if (IsOutOfBounds(nextX, nextY, grid))
                     continue;
@@ -158,13 +153,13 @@ namespace GlyphicsLibrary.Painters
                     continue;
 
                 grid[currentX, currentY] |= (int) direction;
-                grid[nextX, nextY] |= (int) Opposite[direction];
+                grid[nextX, nextY] |= (int) _opposite[direction];
 
                 CarvePassagesFrom(nextX, nextY, ref grid);
             }
         }
 
-        private bool IsOutOfBounds(int x, int y, int[,] grid)
+        private static bool IsOutOfBounds(int x, int y, int[,] grid)
         {
             if (x < 0 || x > grid.GetLength(WidthDimension) - 1)
                 return true;
@@ -201,7 +196,7 @@ namespace GlyphicsLibrary.Painters
             return str;
         }
 
-        public static string remapCells(string cellStr)
+        public static string RemapCells(string cellStr)
         {
             string returnStr = "";
 
@@ -220,7 +215,7 @@ namespace GlyphicsLibrary.Painters
                     }
                     else
                     {
-                        char ch = '#';
+                        const char ch = '#';
                         if (str[c] == '|') 
                             returnStr += ch;
                         else returnStr += str[c];
@@ -253,10 +248,10 @@ namespace GlyphicsLibrary.Painters
             int depth = z2 - z1;
 
             //Scale down by two, to pickup walls
-            MazeGrid mg = new MazeGrid(seed, width/2, depth/2);
+            var mg = new MazeGrid(seed, width/2, depth/2);
 
             string cells = MazeGrid.ToString(mg.Cells);
-            string remappedCells = MazeGrid.remapCells(cells);
+            string remappedCells = MazeGrid.RemapCells(cells);
 
             string[] remappedStrings = remappedCells.Split('\n');
 

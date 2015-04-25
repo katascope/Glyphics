@@ -206,10 +206,10 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Relative scale XYZ
-        public void Scale(float x, float y, float z)
+        public void Scale(float scaleX, float scaleY, float scaleZ)
         {
             foreach (ITriangle triangle in _triangleArray)
-                triangle.Scale(x, y, z);
+                triangle.Scale(scaleX, scaleY, scaleZ);
         }
 
         //Flip X

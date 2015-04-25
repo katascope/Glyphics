@@ -37,162 +37,162 @@ namespace GlyphicsLibrary.Language
             //Big switch to map each Glyph to the command
             switch (glyph.Glyph)
             {
-                case GlyphId.GlyphPrimaNop: return;
+                case GlyphId.PrimaNop: return;
 
-                case GlyphId.GlyphPrimaSize: bgc.Grid = new CGrid(args[0], args[1], args[2], 4); return; //same as Size3D4
-                case GlyphId.GlyphPrimaRGBA: bgc.Pen.SetColor(args[0], args[1], args[2], args[3]); return; //same as PenColorD4
-                case GlyphId.GlyphPrimaRect: Painter.DrawFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return; //same as FillRect
+                case GlyphId.PrimaSize: bgc.Grid = new CGrid(args[0], args[1], args[2], 4); return; //same as Size3D4
+                case GlyphId.PrimaRgba: bgc.Pen.SetColor(args[0], args[1], args[2], args[3]); return; //same as PenColorD4
+                case GlyphId.PrimaRect: Painter.DrawFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return; //same as FillRect
 
-                case GlyphId.GlyphSize1D1: bgc.Grid = new CGrid(args[0], 1, 1, 1); return;
-                case GlyphId.GlyphSize2D1: bgc.Grid = new CGrid(args[0], args[1], 1, 1); return;
-                case GlyphId.GlyphSize3D1: bgc.Grid = new CGrid(args[0], args[1], args[2], 1); return;
-                case GlyphId.GlyphSize1D2: bgc.Grid = new CGrid(args[0], 1, 1, 2); return;
-                case GlyphId.GlyphSize2D2: bgc.Grid = new CGrid(args[0], args[1], 1, 2); return;
-                case GlyphId.GlyphSize3D2: bgc.Grid = new CGrid(args[0], args[1], args[2], 2); return;
-                case GlyphId.GlyphSize1D3: bgc.Grid = new CGrid(args[0], 1, 1, 3); return;
-                case GlyphId.GlyphSize2D3: bgc.Grid = new CGrid(args[0], args[1], 1, 3); return;
-                case GlyphId.GlyphSize3D3: bgc.Grid = new CGrid(args[0], args[1], args[2], 3); return;
-                case GlyphId.GlyphSize1D4: bgc.Grid = new CGrid(args[0], 1, 1, 3); return;
-                case GlyphId.GlyphSize2D4: bgc.Grid = new CGrid(args[0], args[1], 1, 4); return;
-                case GlyphId.GlyphSize3D4: bgc.Grid = new CGrid(args[0], args[1], args[2], 4); return;
+                case GlyphId.Size1D1: bgc.Grid = new CGrid(args[0], 1, 1, 1); return;
+                case GlyphId.Size2D1: bgc.Grid = new CGrid(args[0], args[1], 1, 1); return;
+                case GlyphId.Size3D1: bgc.Grid = new CGrid(args[0], args[1], args[2], 1); return;
+                case GlyphId.Size1D2: bgc.Grid = new CGrid(args[0], 1, 1, 2); return;
+                case GlyphId.Size2D2: bgc.Grid = new CGrid(args[0], args[1], 1, 2); return;
+                case GlyphId.Size3D2: bgc.Grid = new CGrid(args[0], args[1], args[2], 2); return;
+                case GlyphId.Size1D3: bgc.Grid = new CGrid(args[0], 1, 1, 3); return;
+                case GlyphId.Size2D3: bgc.Grid = new CGrid(args[0], args[1], 1, 3); return;
+                case GlyphId.Size3D3: bgc.Grid = new CGrid(args[0], args[1], args[2], 3); return;
+                case GlyphId.Size1D4: bgc.Grid = new CGrid(args[0], 1, 1, 3); return;
+                case GlyphId.Size2D4: bgc.Grid = new CGrid(args[0], args[1], 1, 4); return;
+                case GlyphId.Size3D4: bgc.Grid = new CGrid(args[0], args[1], args[2], 4); return;
 
-                case GlyphId.GlyphPenColorD1: bgc.Pen.SetColor(args[0]); return;
-                case GlyphId.GlyphPenColorD2: bgc.Pen.SetColor(args[0], args[1]); return;
-                case GlyphId.GlyphPenColorD3: bgc.Pen.SetColor(args[0], args[1], args[2]); return;
-                case GlyphId.GlyphPenColorD4: bgc.Pen.SetColor(args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphPenWidth: bgc.Pen.SetSize(args[0], bgc.Pen.Height, bgc.Pen.Depth); return;
-                case GlyphId.GlyphPenHeight: bgc.Pen.SetSize(bgc.Pen.Width, args[0], bgc.Pen.Depth); return;
-                case GlyphId.GlyphPenDepth: bgc.Pen.SetSize(bgc.Pen.Width, bgc.Pen.Height, args[0]); return;
-                case GlyphId.GlyphPenSize: bgc.Pen.SetSize(args[0], args[1], args[2]); return;
-                case GlyphId.GlyphPenHatch: bgc.Pen.SetHatch(args[0], args[1], args[2]); return;
-                case GlyphId.GlyphPenShape: bgc.Pen.SetShape(args[0]); return;
-                case GlyphId.GlyphPenTex: bgc.Pen.SetTexture(args[0]); return;
-                case GlyphId.GlyphPenAnim: bgc.Pen.SetAnimation(args[0]); return;
-                case GlyphId.GlyphPenPhysics: bgc.Pen.SetPhysics(args[0]); return;
+                case GlyphId.PenColorD1: bgc.Pen.SetColor(args[0]); return;
+                case GlyphId.PenColorD2: bgc.Pen.SetColor(args[0], args[1]); return;
+                case GlyphId.PenColorD3: bgc.Pen.SetColor(args[0], args[1], args[2]); return;
+                case GlyphId.PenColorD4: bgc.Pen.SetColor(args[0], args[1], args[2], args[3]); return;
+                case GlyphId.PenWidth: bgc.Pen.SetSize(args[0], bgc.Pen.Height, bgc.Pen.Depth); return;
+                case GlyphId.PenHeight: bgc.Pen.SetSize(bgc.Pen.Width, args[0], bgc.Pen.Depth); return;
+                case GlyphId.PenDepth: bgc.Pen.SetSize(bgc.Pen.Width, bgc.Pen.Height, args[0]); return;
+                case GlyphId.PenSize: bgc.Pen.SetSize(args[0], args[1], args[2]); return;
+                case GlyphId.PenHatch: bgc.Pen.SetHatch(args[0], args[1], args[2]); return;
+                case GlyphId.PenShape: bgc.Pen.SetShape(args[0]); return;
+                case GlyphId.PenTex: bgc.Pen.SetTexture(args[0]); return;
+                case GlyphId.PenAnim: bgc.Pen.SetAnimation(args[0]); return;
+                case GlyphId.PenPhysics: bgc.Pen.SetPhysics(args[0]); return;
 
-                case GlyphId.GlyphPlot: Painter.DrawPen(bgc, args[0], args[1], args[2]); return;
-                case GlyphId.GlyphClear: Painter.DrawClear(bgc); return;
+                case GlyphId.Plot: Painter.DrawPen(bgc, args[0], args[1], args[2]); return;
+                case GlyphId.Clear: Painter.DrawClear(bgc); return;
 
-                case GlyphId.GlyphWallCube: Painter.DrawWallCube(bgc, args[0]); return;
+                case GlyphId.WallCube: Painter.DrawWallCube(bgc, args[0]); return;
 
-                case GlyphId.GlyphLine: Painter.DrawLine3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphStairs: Painter.DrawStairs(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
-                case GlyphId.GlyphFillRect: Painter.DrawFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphRect: Painter.DrawHollowRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphScissor: bgc.Grid.SetScissor(new CRect(args[0], args[1], args[2], args[3], args[4], args[5])); return;
+                case GlyphId.Line: Painter.DrawLine3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Stairs: Painter.DrawStairs(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.FillRect: Painter.DrawFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Rect: Painter.DrawHollowRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Scissor: bgc.Grid.SetScissor(new CRect(args[0], args[1], args[2], args[3], args[4], args[5])); return;
 
-                case GlyphId.GlyphCircle2D:
-                case GlyphId.GlyphCircle2Dxy: Painter.DrawCircle2DAnyAxis(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphCircle2Dyz: Painter.DrawCircle2DAnyAxis(bgc, PenTwist.YZaxis, args[2], args[1], args[0], args[3]); return;
-                case GlyphId.GlyphCircle2Dxz: Painter.DrawCircle2DAnyAxis(bgc, PenTwist.XZaxis, args[0], args[2], args[1], args[3]); return;
-                case GlyphId.GlyphFillCircle2D:
-                case GlyphId.GlyphFillCircle2Dxy: Painter.DrawFillCircle2D(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphFillCircle2Dyz: Painter.DrawFillCircle2D(bgc, PenTwist.YZaxis, args[2], args[1], args[0], args[3]); return;
-                case GlyphId.GlyphFillCircle2Dxz: Painter.DrawFillCircle2D(bgc, PenTwist.XZaxis, args[0], args[2], args[1], args[3]); return;
+                case GlyphId.Circle2D:
+                case GlyphId.Circle2Dxy: Painter.DrawCircle2DAnyAxis(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.Circle2Dyz: Painter.DrawCircle2DAnyAxis(bgc, PenTwist.YZaxis, args[2], args[1], args[0], args[3]); return;
+                case GlyphId.Circle2Dxz: Painter.DrawCircle2DAnyAxis(bgc, PenTwist.XZaxis, args[0], args[2], args[1], args[3]); return;
+                case GlyphId.FillCircle2D:
+                case GlyphId.FillCircle2Dxy: Painter.DrawFillCircle2D(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.FillCircle2Dyz: Painter.DrawFillCircle2D(bgc, PenTwist.YZaxis, args[2], args[1], args[0], args[3]); return;
+                case GlyphId.FillCircle2Dxz: Painter.DrawFillCircle2D(bgc, PenTwist.XZaxis, args[0], args[2], args[1], args[3]); return;
 
-                case GlyphId.GlyphArcXy: Painter.DrawArc(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphArcYz: Painter.DrawArc(bgc, PenTwist.YZaxis, args[2], args[1], args[0], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphArcXz: Painter.DrawArc(bgc, PenTwist.XZaxis, args[0], args[2], args[1], args[3], args[4], args[5]); return;
+                case GlyphId.ArcXy: Painter.DrawArc(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.ArcYz: Painter.DrawArc(bgc, PenTwist.YZaxis, args[2], args[1], args[0], args[3], args[4], args[5]); return;
+                case GlyphId.ArcXz: Painter.DrawArc(bgc, PenTwist.XZaxis, args[0], args[2], args[1], args[3], args[4], args[5]); return;
 
-                case GlyphId.GlyphMaskRect: Painter.DrawMaskHollowRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); return;
-                case GlyphId.GlyphMaskFillRect: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); return;
-                case GlyphId.GlyphTubeXy: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], (int)(CubeFaceMask.Left | CubeFaceMask.Right | CubeFaceMask.Top | CubeFaceMask.Bottom)); return;
-                case GlyphId.GlyphTubeYz: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], (int)(CubeFaceMask.Left | CubeFaceMask.Right | CubeFaceMask.Front | CubeFaceMask.Back)); return;
-                case GlyphId.GlyphTubeXz: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], (int)(CubeFaceMask.Front | CubeFaceMask.Back | CubeFaceMask.Top | CubeFaceMask.Bottom)); return;
+                case GlyphId.MaskRect: Painter.DrawMaskHollowRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); return;
+                case GlyphId.MaskFillRect: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6]); return;
+                case GlyphId.TubeXy: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], (int)(CubeFaceMask.Left | CubeFaceMask.Right | CubeFaceMask.Top | CubeFaceMask.Bottom)); return;
+                case GlyphId.TubeYz: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], (int)(CubeFaceMask.Left | CubeFaceMask.Right | CubeFaceMask.Front | CubeFaceMask.Back)); return;
+                case GlyphId.TubeXz: Painter.DrawMaskFillRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], (int)(CubeFaceMask.Front | CubeFaceMask.Back | CubeFaceMask.Top | CubeFaceMask.Bottom)); return;
 
-                case GlyphId.GlyphCircle3D: Painter.DrawCircle3D(bgc, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphOval3D: Painter.DrawOval3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphDiamond2D: Painter.Diamond2D(bgc, args[0], args[1], args[2], args[3], args[4]); return;
-                case GlyphId.GlyphQuad2D: Painter.Quad2D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphPyramid3D: Painter.Pyramid3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Circle3D: Painter.DrawCircle3D(bgc, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.Oval3D: Painter.DrawOval3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Diamond2D: Painter.Diamond2D(bgc, args[0], args[1], args[2], args[3], args[4]); return;
+                case GlyphId.Quad2D: Painter.Quad2D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Pyramid3D: Painter.Pyramid3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
 
-                case GlyphId.GlyphFillCircle3D: Painter.DrawFillCircle3D(bgc, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphTriangle: Painter.DrawTriangle3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
-                case GlyphId.GlyphFillTriangle2D: Painter.DrawFillTriangle2D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphPolygon: Painter.DrawPolygon(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3], args[4]); return;
-                case GlyphId.GlyphText:  Painter.DrawLetter(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3], true); return;
+                case GlyphId.FillCircle3D: Painter.DrawFillCircle3D(bgc, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.Triangle: Painter.DrawTriangle3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.FillTriangle2D: Painter.DrawFillTriangle2D(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Polygon: Painter.DrawPolygon(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3], args[4]); return;
+                case GlyphId.Text:  Painter.DrawLetter(bgc, PenTwist.XYaxis, args[0], args[1], args[2], args[3], true); return;
 
-                case GlyphId.GlyphExtrudeX: Painter.ExtrudeX(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
-                case GlyphId.GlyphExtrudeY: Painter.ExtrudeY(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
-                case GlyphId.GlyphExtrudeZ: Painter.ExtrudeZ(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
-                case GlyphId.GlyphExtrudeLine: Painter.Extrude(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.ExtrudeX: Painter.ExtrudeX(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
+                case GlyphId.ExtrudeY: Painter.ExtrudeY(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
+                case GlyphId.ExtrudeZ: Painter.ExtrudeZ(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
+                case GlyphId.ExtrudeLine: Painter.Extrude(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
 
-                case GlyphId.GlyphUpV: Painter.UpV(bgc, args[0], args[1], args[2], args[3], args[4]); return;
+                case GlyphId.UpV: Painter.UpV(bgc, args[0], args[1], args[2], args[3], args[4]); return;
 
-                case GlyphId.GlyphImgFlipX: Painter.FlipX(bgc); return;
-                case GlyphId.GlyphImgFlipY: Painter.FlipY(bgc); return;
-                case GlyphId.GlyphImgFlipZ: Painter.FlipZ(bgc); return;
-                case GlyphId.GlyphImgMirrorX: Painter.MirrorX(bgc); return;
-                case GlyphId.GlyphImgMirrorY: Painter.MirrorY(bgc); return;
-                case GlyphId.GlyphImgMirrorZ: Painter.MirrorZ(bgc); return;
-                case GlyphId.GlyphImgRotX: Painter.RotateX(bgc); return;
-                case GlyphId.GlyphImgRotY: Painter.RotateY(bgc); return;
-                case GlyphId.GlyphImgRotZ: Painter.RotateZ(bgc); return;
+                case GlyphId.ImgFlipX: Painter.FlipX(bgc); return;
+                case GlyphId.ImgFlipY: Painter.FlipY(bgc); return;
+                case GlyphId.ImgFlipZ: Painter.FlipZ(bgc); return;
+                case GlyphId.ImgMirrorX: Painter.MirrorX(bgc); return;
+                case GlyphId.ImgMirrorY: Painter.MirrorY(bgc); return;
+                case GlyphId.ImgMirrorZ: Painter.MirrorZ(bgc); return;
+                case GlyphId.ImgRotX: Painter.RotateX(bgc); return;
+                case GlyphId.ImgRotY: Painter.RotateY(bgc); return;
+                case GlyphId.ImgRotZ: Painter.RotateZ(bgc); return;
 
-                case GlyphId.GlyphImgPalettize: Painter.Palettize(bgc, bgc.GetPalette(args[0])); return;
-                case GlyphId.GlyphImgInvert: Painter.Invert(bgc); return;
-                case GlyphId.GlyphImgGrayscale: Painter.Grayscale(bgc); return;
-                case GlyphId.GlyphImgColorize: Painter.Colorize(bgc, args[0], args[1]); return;
-                case GlyphId.GlyphImgHueshift: Painter.HueShift(bgc, args[0]); return;
-                case GlyphId.GlyphImgSaturate: Painter.Saturation(bgc, args[0]); return;
-                case GlyphId.GlyphImgBrightness: Painter.Brightness(bgc, args[0]); return;
+                case GlyphId.ImgPalettize: Painter.Palettize(bgc, bgc.GetPalette(args[0])); return;
+                case GlyphId.ImgInvert: Painter.Invert(bgc); return;
+                case GlyphId.ImgGrayscale: Painter.Grayscale(bgc); return;
+                case GlyphId.ImgColorize: Painter.Colorize(bgc, args[0], args[1]); return;
+                case GlyphId.ImgHueshift: Painter.HueShift(bgc, args[0]); return;
+                case GlyphId.ImgSaturate: Painter.Saturation(bgc, args[0]); return;
+                case GlyphId.ImgBrightness: Painter.Brightness(bgc, args[0]); return;
 
-                case GlyphId.GlyphImgShadeX: Painter.Shade(bgc, 0, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphImgShadeY: Painter.Shade(bgc, 1, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphImgShadeZ: Painter.Shade(bgc, 2, args[0], args[1], args[2], args[3], args[4], args[5]); return;
-                case GlyphId.GlyphImgEdge:
+                case GlyphId.ImgShadeX: Painter.Shade(bgc, 0, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.ImgShadeY: Painter.Shade(bgc, 1, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.ImgShadeZ: Painter.Shade(bgc, 2, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.ImgEdge:
                     Painter.EdgeColor(bgc, 0, args[0], args[1], args[2], args[3]);
                     Painter.EdgeColor(bgc, 1, args[0], args[1], args[2], args[3]);
                     Painter.EdgeColor(bgc, 2, args[0], args[1], args[2], args[3]);
                     return;
-                case GlyphId.GlyphImgEdgeX: Painter.EdgeColor(bgc, 0, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphImgEdgeY: Painter.EdgeColor(bgc, 1, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphImgEdgeZ: Painter.EdgeColor(bgc, 2, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.ImgEdgeX: Painter.EdgeColor(bgc, 0, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.ImgEdgeY: Painter.EdgeColor(bgc, 1, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.ImgEdgeZ: Painter.EdgeColor(bgc, 2, args[0], args[1], args[2], args[3]); return;
 
-                case GlyphId.GlyphFilterBlur: Painter.ApplyFilterBlur(bgc); return;
-                case GlyphId.GlyphFilterMotion: Painter.ApplyFilterMotion(bgc); return;
-                case GlyphId.GlyphFilterEdgeHor: Painter.ApplyFilterEdgeHorizontal(bgc); return;
-                case GlyphId.GlyphFilterEdgeVer: Painter.ApplyFilterEdgeVertical(bgc); return;
-                case GlyphId.GlyphFilterEdgeAll: Painter.ApplyFilterEdgeAll(bgc); return;
-                case GlyphId.GlyphFilterSharpen: Painter.ApplyFilterSharpen(bgc); return;
-                case GlyphId.GlyphFilterEmboss: Painter.ApplyFilterEmboss(bgc); return;
-                case GlyphId.GlyphFilterSmooth: Painter.ApplyFilterSmooth(bgc); return;
+                case GlyphId.FilterBlur: Painter.ApplyFilterBlur(bgc); return;
+                case GlyphId.FilterMotion: Painter.ApplyFilterMotion(bgc); return;
+                case GlyphId.FilterEdgeHor: Painter.ApplyFilterEdgeHorizontal(bgc); return;
+                case GlyphId.FilterEdgeVer: Painter.ApplyFilterEdgeVertical(bgc); return;
+                case GlyphId.FilterEdgeAll: Painter.ApplyFilterEdgeAll(bgc); return;
+                case GlyphId.FilterSharpen: Painter.ApplyFilterSharpen(bgc); return;
+                case GlyphId.FilterEmboss: Painter.ApplyFilterEmboss(bgc); return;
+                case GlyphId.FilterSmooth: Painter.ApplyFilterSmooth(bgc); return;
 
-                case GlyphId.GlyphPal1D: bgc.AddPalette(new CGrid(args[0], 1, 1, bgc.Grid.Bpp)); return;
-                case GlyphId.GlyphPal2D: bgc.AddPalette(new CGrid(args[0], args[1], 1, bgc.Grid.Bpp)); return;
-                case GlyphId.GlyphPal3D: bgc.AddPalette(new CGrid(args[0], args[1], args[2], bgc.Grid.Bpp)); return;
-                case GlyphId.GlyphPalFromVal1D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], 1, 1, bgc.Grid.Bpp, args)); return;
-                case GlyphId.GlyphPalFromVal2D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], args[1], 1, bgc.Grid.Bpp, args)); return;
-                case GlyphId.GlyphPalFromVal3D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], args[1], args[2], bgc.Grid.Bpp, args)); return;
-                case GlyphId.GlyphPalFromGrid1D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], 0, 0, args[1], 1, 1)); return;
-                case GlyphId.GlyphPalFromGrid2D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], args[1], 0, args[2], args[3], 1)); return;
-                case GlyphId.GlyphPalFromGrid3D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], args[1], args[2], args[3], args[4], args[5])); return;
-                case GlyphId.GlyphPalGen1D1: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], 0, 0, 0, args[2], 0, 0, 0); return;
-                case GlyphId.GlyphPalGen1D2: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], 0, 0, args[3], args[4], 0, 0); return;
-                case GlyphId.GlyphPalGen1D3: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], args[3], 0, args[4], args[5], args[6], 0); return;
-                case GlyphId.GlyphPalGen1D4: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.Pal1D: bgc.AddPalette(new CGrid(args[0], 1, 1, bgc.Grid.Bpp)); return;
+                case GlyphId.Pal2D: bgc.AddPalette(new CGrid(args[0], args[1], 1, bgc.Grid.Bpp)); return;
+                case GlyphId.Pal3D: bgc.AddPalette(new CGrid(args[0], args[1], args[2], bgc.Grid.Bpp)); return;
+                case GlyphId.PalFromVal1D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], 1, 1, bgc.Grid.Bpp, args)); return;
+                case GlyphId.PalFromVal2D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], args[1], 1, bgc.Grid.Bpp, args)); return;
+                case GlyphId.PalFromVal3D: bgc.AddPalette(GridCreator.CreateGridFromValues(args[0], args[1], args[2], bgc.Grid.Bpp, args)); return;
+                case GlyphId.PalFromGrid1D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], 0, 0, args[1], 1, 1)); return;
+                case GlyphId.PalFromGrid2D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], args[1], 0, args[2], args[3], 1)); return;
+                case GlyphId.PalFromGrid3D: bgc.AddPalette(GridCreator.CreateGridFromRectangle(bgc.Grid, args[0], args[1], args[2], args[3], args[4], args[5])); return;
+                case GlyphId.PalGen1D1: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], 0, 0, 0, args[2], 0, 0, 0); return;
+                case GlyphId.PalGen1D2: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], 0, 0, args[3], args[4], 0, 0); return;
+                case GlyphId.PalGen1D3: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], args[3], 0, args[4], args[5], args[6], 0); return;
+                case GlyphId.PalGen1D4: Painter.PalGen1D(bgc.GetPalette(args[0]), args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
 
-                case GlyphId.GlyphBlit1D: Painter.Blit(bgc, bgc.GetPalette(args[0]), args[1], 0, 0); return;
-                case GlyphId.GlyphBlit2D: Painter.Blit(bgc, bgc.GetPalette(args[0]), args[1], args[2], 0); return;
-                case GlyphId.GlyphBlit3D: Painter.Blit(bgc, bgc.GetPalette(args[0]), args[1], args[2], args[3]); return;
-                case GlyphId.GlyphRectBlit1D: Painter.RectBlit(bgc, bgc.GetPalette(args[0]), args[1], 0, 0, args[2], 0, 0); return;
-                case GlyphId.GlyphRectBlit2D: Painter.RectBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], 0, args[3], args[4], 0); return;
-                case GlyphId.GlyphRectBlit3D: Painter.RectBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], args[3], args[4], args[5], args[6]); return;
-                case GlyphId.GlyphBlendBlit1D: Painter.BlendBlit(bgc, bgc.GetPalette(args[0]), args[1], 0, 0, args[2], 0, 0, args[3]); return;
-                case GlyphId.GlyphBlendBlit2D: Painter.BlendBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], 0, args[3], args[4], 0, args[5]); return;
-                case GlyphId.GlyphBlendBlit3D: Painter.BlendBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
+                case GlyphId.Blit1D: Painter.Blit(bgc, bgc.GetPalette(args[0]), args[1], 0, 0); return;
+                case GlyphId.Blit2D: Painter.Blit(bgc, bgc.GetPalette(args[0]), args[1], args[2], 0); return;
+                case GlyphId.Blit3D: Painter.Blit(bgc, bgc.GetPalette(args[0]), args[1], args[2], args[3]); return;
+                case GlyphId.RectBlit1D: Painter.RectBlit(bgc, bgc.GetPalette(args[0]), args[1], 0, 0, args[2], 0, 0); return;
+                case GlyphId.RectBlit2D: Painter.RectBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], 0, args[3], args[4], 0); return;
+                case GlyphId.RectBlit3D: Painter.RectBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], args[3], args[4], args[5], args[6]); return;
+                case GlyphId.BlendBlit1D: Painter.BlendBlit(bgc, bgc.GetPalette(args[0]), args[1], 0, 0, args[2], 0, 0, args[3]); return;
+                case GlyphId.BlendBlit2D: Painter.BlendBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], 0, args[3], args[4], 0, args[5]); return;
+                case GlyphId.BlendBlit3D: Painter.BlendBlit(bgc, bgc.GetPalette(args[0]), args[1], args[2], args[3], args[4], args[5], args[6], args[7]); return;
 
-                case GlyphId.GlyphArchPut:  Painter.CopyInto(bgc, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphArchRect: Painter.ArchRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
-                case GlyphId.GlyphArchLine: Painter.ArchLine(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.ArchPut:  Painter.CopyInto(bgc, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.ArchRect: Painter.ArchRect(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.ArchLine: Painter.ArchLine(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
 
-                case GlyphId.GlyphSpawn:
+                case GlyphId.Spawn:
                     bgc.SpawnPoint.X = args[0];
                     bgc.SpawnPoint.Y = args[1];
                     bgc.SpawnPoint.Z = args[2];
                     return;
 
-                case GlyphId.GlyphGenesis3D:
+                case GlyphId.Genesis3D:
                     {
                         int size = args[0];
                         bgc.Grid = new CGrid(args[0], args[0], args[0], 4);
@@ -205,15 +205,15 @@ namespace GlyphicsLibrary.Language
                         return;
                     }
 
-                case GlyphId.GlyphAlien: Painter.DrawAlien(bgc, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphStar: Painter.DrawStar(bgc, args[0], args[1], args[2], args[3]); return;
-                case GlyphId.GlyphSupports: Painter.DrawSupports(bgc); return;
-                case GlyphId.GlyphCornerSupports: Painter.DrawCorners(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Alien: Painter.DrawAlien(bgc, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.Star: Painter.DrawStar(bgc, args[0], args[1], args[2], args[3]); return;
+                case GlyphId.Supports: Painter.DrawSupports(bgc); return;
+                case GlyphId.CornerSupports: Painter.DrawCorners(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
 
-                case GlyphId.GlyphFillTriangle: Painter.DrawFillTriangle3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
+                case GlyphId.FillTriangle: Painter.DrawFillTriangle3D(bgc, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8]); return;
 
-                case GlyphId.GlyphShadows: Painter.DrawShadows(bgc); return;
-                case GlyphId.GlyphMaze: Painter.DrawMaze(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
+                case GlyphId.Shadows: Painter.DrawShadows(bgc); return;
+                case GlyphId.Maze: Painter.DrawMaze(bgc, args[0], args[1], args[2], args[3], args[4], args[5]); return;
 
             }
         }

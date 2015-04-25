@@ -100,12 +100,12 @@ namespace GlyphicsLibrary.Atomics
         //Calculate the unified value
         private ulong CalcUnified()
         {
-            ulong UnifiedValue = Rgba;
-            UnifiedValue |= (ulong)(ShapeId) << 32;
-            UnifiedValue |= (ulong)(TextureId) << 40;
-            UnifiedValue |= (ulong)(AnimateId) << 48;
-            UnifiedValue |= (ulong)(PhysicsId) << 56;
-            return UnifiedValue;
+            ulong uv = Rgba;
+            uv |= (ulong)(ShapeId) << 32;
+            uv |= (ulong)(TextureId) << 40;
+            uv |= (ulong)(AnimateId) << 48;
+            uv |= (ulong)(PhysicsId) << 56;
+            return uv;
         }
     }
 }

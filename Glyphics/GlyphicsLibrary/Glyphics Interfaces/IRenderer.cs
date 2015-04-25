@@ -25,7 +25,7 @@ namespace GlyphicsLibrary
         IGrid RenderObliqueCellsRects(IRectList rects);
 
         //Renders ICode directly out to a PNG filename
-        void RenderObliqueOut(string pngFilename, ICode glyphicsCode);
+        void RenderObliqueOut(string fileName, ICode glyphicsCode);
 
         //Renders IRectList using ITrianglesList to a new ITriangles
         ITriangles RenderRectsAsStlMapping(IRectList rects, ITrianglesList trianglesList);

@@ -11,12 +11,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #endregion
 using System.IO;
 using System;
-using System.Collections.Generic;
 #if !NET2
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 #endif
 
@@ -81,15 +76,15 @@ namespace GlyphicsLibrary.ByteGrid
         public static int GetMaxX(GifBitmapDecoder decoder)
         {
             int maxWidth = 0;
-            for (int i = 0; i < decoder.Frames.Count; i++)
+            foreach (BitmapFrame frame in decoder.Frames)
             {
-                // Get a clone copy of the metadata
-                BitmapMetadata sourceMetadata = decoder.Frames[i].Metadata as BitmapMetadata;
-                int Left = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Left").ToString());
+// Get a clone copy of the metadata
+                var sourceMetadata = frame.Metadata as BitmapMetadata;
+                int left = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Left").ToString());
 
                 int width = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Width").ToString());
-                if ((width+Left) > maxWidth)
-                    maxWidth = width+Left;
+                if ((width+left) > maxWidth)
+                    maxWidth = width+left;
             }
             return maxWidth;
         }
@@ -98,15 +93,15 @@ namespace GlyphicsLibrary.ByteGrid
         public static int GetMaxY(GifBitmapDecoder decoder)
         {
             int maxHeight = 0;
-            for (int i = 0; i < decoder.Frames.Count; i++)
+            foreach (BitmapFrame frame in decoder.Frames)
             {
-                // Get a clone copy of the metadata
-                BitmapMetadata sourceMetadata = decoder.Frames[i].Metadata as BitmapMetadata;
-                int Top = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Top").ToString());
+// Get a clone copy of the metadata
+                var sourceMetadata = frame.Metadata as BitmapMetadata;
+                int top = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Top").ToString());
 
                 int height = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Height").ToString());
-                if ((height + Top) > maxHeight)
-                    maxHeight = height + Top;
+                if ((height + top) > maxHeight)
+                    maxHeight = height + top;
             }
             return maxHeight;
         }
@@ -119,24 +114,22 @@ namespace GlyphicsLibrary.ByteGrid
 
             // Open a Stream and decode a GIF image
             Stream imageStreamSource = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
-            GifBitmapDecoder decoder = new GifBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+            var decoder = new GifBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
             decoder.Frames[0].Metadata.Freeze();
 
             int width = GetMaxX(decoder);
             int height = GetMaxY(decoder);
 
-            for (int i = 0; i < decoder.Frames.Count; i++)
+            foreach (BitmapFrame frame in decoder.Frames)
             {
-                decoder.Frames[i].Freeze();
-                BitmapFrame bitmapSourceFrame = decoder.Frames[i];
-
+                frame.Freeze();
                 // Get a clone copy of the metadata
-                BitmapMetadata sourceMetadata = decoder.Frames[i].Metadata as BitmapMetadata;
-                int Top = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Top").ToString());
-                int Left = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Left").ToString());
+                var sourceMetadata = frame.Metadata as BitmapMetadata;
+                int top = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Top").ToString());
+                int left = Int32.Parse(sourceMetadata.GetQuery("/imgdesc/Left").ToString());
 
                 IGrid grid = new CGrid(width, height, 1, 4);
-                CopyBitmapSourceToGridPalette(bitmapSourceFrame, grid, Top, Left);
+                CopyBitmapSourceToGridPalette(frame, grid, top, left);
                 grids.AddGrid(grid);
             }
             return grids;

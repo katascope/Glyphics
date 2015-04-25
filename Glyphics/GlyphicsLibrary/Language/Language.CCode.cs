@@ -38,5 +38,11 @@ namespace GlyphicsLibrary.Language
             str = str.Replace("; ", ";");
             return str;
         }
+
+        //Readable description
+        public override string ToString()
+        {
+            return Code;
+        }
     }
 }

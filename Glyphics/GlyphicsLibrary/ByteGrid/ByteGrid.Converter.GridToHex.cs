@@ -11,7 +11,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #endregion
 using System;
 using System.Text;
-using GlyphicsLibrary.Atomics;
 
 namespace GlyphicsLibrary.ByteGrid
 {
@@ -34,7 +33,7 @@ namespace GlyphicsLibrary.ByteGrid
                         builder.Append(val == 0 ? "00 " : String.Format("{0:X2} ", val));
                     }
                     builder.Append("\n");
-                } //builder.Append("\n");
+                }
             }
             return builder.ToString();
         }

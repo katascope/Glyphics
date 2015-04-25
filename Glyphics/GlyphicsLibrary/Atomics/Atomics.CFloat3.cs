@@ -19,6 +19,17 @@ namespace GlyphicsLibrary.Atomics
         public float Y { get; set; }
         public float Z { get; set; }
 
+        //Defauit constructor
+        public CFloat3()
+        {
+        }
+
+        //Assignment constructor
+        public CFloat3(float nx, float ny, float nz)
+        {
+            X = nx; Y = ny; Z = nz;
+        }
+
         //Readable description
         public override string ToString()
         {

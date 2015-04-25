@@ -35,56 +35,9 @@ namespace GlyphicsUnitTests
 
             IBytecode bytecode = GlyphicsApi.CodeToBytes(glyphicscode);
             ITokenList tokens = GlyphicsApi.BytecodeToTokens(bytecode);
-            IGrid grid = GlyphicsApi.TokensToContext(tokens).Bgc.Grid;
+            IGrid grid = GlyphicsApi.TokensToGrid(tokens);
 
             Assert.IsTrue(grid.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
-        }
-
-        [TestMethod]
-        public void ConvertCodeToTokensToContextToGridToRectsToGrid()
-        {
-            ICode glyphicscode = GlyphicsApi.CreateCode(Code);
-            ITokenList tokens = GlyphicsApi.CodeToTokens(glyphicscode);
-            IExecutionContext ec = GlyphicsApi.TokensToContext(tokens);
-            IGrid grid = ec.Bgc.Grid;
-
-            IRectList rects = GlyphicsApi.GridToRects(grid);
-            IGrid grid2 = GlyphicsApi.CreateGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
-            GlyphicsApi.Renderer.RenderRectsToGrid(rects, grid2);
-
-            Assert.IsTrue(grid2.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
-        }
-
-        [TestMethod]
-        public void ConvertCodeToBytesToTokensToContextToGridToRectsToGrid()
-        {
-            ICode glyphicscode = GlyphicsApi.CreateCode(Code);
-            IBytecode bytecode = GlyphicsApi.CodeToBytes(glyphicscode);
-            ITokenList tokens = GlyphicsApi.BytecodeToTokens(bytecode);
-            IExecutionContext ec = GlyphicsApi.TokensToContext(tokens);
-            IGrid grid = ec.Bgc.Grid;
-
-            IRectList rects = GlyphicsApi.GridToRects(grid);
-            IGrid grid2 = GlyphicsApi.CreateGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
-            GlyphicsApi.Renderer.RenderRectsToGrid(rects, grid2);
-
-            Assert.IsTrue(grid2.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
-        }
-
-        [TestMethod]
-        public void ConvertCodeToTokensToContextToGridToSerializedToDeserializedToRectsToGrid()
-        {
-            ICode glyphicscode = GlyphicsApi.CreateCode(Code);
-            ITokenList tokens = GlyphicsApi.CodeToTokens(glyphicscode);
-            IExecutionContext ec = GlyphicsApi.TokensToContext(tokens);
-            IGrid grid = ec.Bgc.Grid;
-            IRectList rects = GlyphicsApi.GridToRects(grid);
-            ISerializedRects serRects = GlyphicsApi.RectsToSerializedRects(rects);
-            IRectList rects2 = GlyphicsApi.SerializedRectsToRects(serRects);
-
-            IGrid grid2 = GlyphicsApi.CreateGrid(grid.SizeX, grid.SizeY, grid.SizeZ, grid.Bpp);
-            GlyphicsApi.Renderer.RenderRectsToGrid(rects2, grid2);
-            Assert.IsTrue(grid2.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
         }
 
         [TestMethod]

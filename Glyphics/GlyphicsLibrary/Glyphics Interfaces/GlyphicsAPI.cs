@@ -18,65 +18,77 @@ using GlyphicsLibrary.Renderers;
 namespace GlyphicsLibrary
 {
 //Revamp project
+
+    //Project Insidious - Version after Vernacular
+    //to create a space between the spaces, a conduit where one can be used for the other
+    //Example: Editing in sl, exporting back to serial, then used elsewhere
+    //Example: Javascript editors
+    //Example: Into Unity environment
+    //Example: To STL, for 3d-printing
+    //Example: To Isometric 
+    //Example: To Minecraft
+    //Example: From Minecraft
+    //Example: From 3d editors
+    //Example: From jpegs/photos
+    //Example: From OBJ, for splitting into multiple prints
+    //Example: From GIS, for generating height maps
+    //Example: From heightmaps..
+
+    //Meta-language for actions
+    // "code" > rects > triangles > translate 4 0 4 ; clone ; translate
+
+    //To multiple STL
+    //Easy image to glyphics, extrudable then in that world
+    //Good idea
+    // Using 'inside detection' to make a scissoring area
+    // Can calculate area by making another grid and 'clearing' which are fully inside
+
+    //TODO: Prima
+    //TODO: Secundus
+
+    //New use cases
+    // * 3D editor
+    // * Unity interface with oculus support
+    // * Animation support
+    // * Deformation triangle creator logic - for corners
+    // * Prima engine
+    // * PostProcessors - run after code, on rects?
+
+    //Flesh out new model
+    // Need to understand Anything-to-Anything model better
+    
+    // For UI: "document" - grid?
+    //  Primary view - grid to oblique ( or changeable)
+    //  Use cases:
+    //   Code editor
+    //   Export ortho to png
+    //   Export grid to png
+    //   Copy serialized to clipboard
+    //   
+
+
     //Glyphics Prima language
     // Code, can convert to rects, and back to code
-    //creating a subset language of glyphics, like just enough to create grids, set colors, and draw rects
+    // Subset language of glyphics(first four operations), like just enough to create grids, set colors, and draw rects
+    // Nop, Size3D4, PenColorD4, FillRect
 
-    //New style of calls
-
-    // ITriangles triangles = new CTriangle(new CRect
-    // Triangles.From(Rects.From(code.From("Nexus,Size3D4 1 1 1")));
-
-    //Universal: 
-    // All: Clone, Serialize, Deserialize, ToString, ToCode
-    // Lists: Get, Add, Count
-
-    //Universal function:
-    // ISerializedRects ApplyFunction(ISerializedRects)
-
-    //Serialize method for all data types
-    // .. but then need deserialize..
-    // Candidates
-    // Rects
-    // Grid
-    // Code
-    // Compiled code
-    // Tokens
-    // Quads
-    // Triangles
-    // Scene
-    // Element
-
-    //Equivalency chart
-    //----------------------------
-    //Code <=> Tokens
-    //Tokens <=> Bytecode
-    //Bytecode => Grid
-    //Grid <=> Rects
-    //Grid <=> PNG
-    //Grid <=> GIF
-    //Rects => Quads
-    //Rects <=> SerializedRects
-    //Quads => Triangles
-    //Triangles <=> STL
-    //Triangles => Grid
-    //Rects <=> Scene
-    //Scene <=> Simulation
-    //Rects <=> Points
+    //Glyphics Secundus language
+    //first 16 or so?, candidates?
+    // Rect-Equivalents: Clear, Plot, HollowRect, 
+    // Special: Line, 
 
     //Simulation - micropocket worlds
     // Functions that only process when grid is run if certain values
     // State machine : Trigger can change state of grid
 
-    //TODO: Lights
-    //TODO: Materials
-    //TODO: Triggers and Sensors
-    //TODO: Editor
-    //TODO: Explorer
-    //TODO: Generate grid of previews of a bunch of other grids (using the scaler)
-    //PostProcessors - run after code, on rects?
+    //TODO: Future: Lights
+    //TODO: Future: Materials
+    //TODO: Future: Triggers and Sensors
+    //TODO: Future: Editor
+    //TODO: Future: Explorer
+    //TODO: Future: Generate grid of previews of a bunch of other grids (using the scaler)
 
-    //TODO: Integrate with unity?
+    //TODO: Future: Integrate with unity?
     //TODO: Future: Render scenes to grid (with animations, full triangles)
     //TODO: Future: UI units as equivalent to rects
     //TODO: Future: Speed improvements & profiling
@@ -86,7 +98,7 @@ namespace GlyphicsLibrary
     //TODO: Future: Render rects to oblique grid, without borders or cells - as triangles/quads
 
     //Primary Glyphics API call - intended for use by other programs
-    public static class GlyphicsApi
+    public static class GlyphicsApi 
     {
         //Versioning for API
         private const string CurrentVersion = "1.01";
@@ -129,15 +141,18 @@ namespace GlyphicsLibrary
         public static ICodename CodeToCodename(ICode glyphicsCode) { return new CCodename(glyphicsCode); }
         public static IBytecode CodeToBytes(ICode glyphicsCode) { return Language.Converter.TokensToBytes(Language.Converter.CodeToTokens(glyphicsCode)); }
         public static ICode CodeToRescaledCode(ICode glyphicsCode, int toX, int toY, int toZ) { return Language.Converter.CodeToRescaledCode(glyphicsCode, toX, toY, toZ); }
+        //Generate thumbnail grids from code by rescaling the codelines
+        public static IGridList CodeToThumbnailed(ICode code) { return Thumbnails.CodeToThumbnailed(code); }
 
         //Tokens-To
-        public static IExecutionContext TokensToContext(ITokenList glyphTokens) { return Language.Converter.TokensToExecutionContext(glyphTokens); }
+        public static IGrid TokensToGrid(ITokenList tokens) { return Language.Converter.TokensToGrid(tokens); }
+        //public static IExecutionContext TokensToContext(ITokenList glyphTokens) { return Language.Converter.TokensToExecutionContext(glyphTokens); }
         public static IBytecode TokensToBytes(ITokenList glyphTokens) { return Language.Converter.TokensToBytes(glyphTokens); }
         //public static string TokensToString(ITokenList glyphTokens, string separator) { return Conversions.TokensToString(glyphTokens, separator); }
         public static ITokenList BytecodeToTokens(IBytecode glyphicsBytecode) { return Language.Converter.BytecodeToTokens(glyphicsBytecode); }
 
         //Context-To
-        public static IGrid ContextToGrid(IExecutionContext gec) { if (gec == null || gec.Bgc == null) return null; return gec.Bgc.Grid; }
+        //public static IGrid ContextToGrid(IExecutionContext gec) { if (gec == null || gec.GridContext == null) return null; return gec.GridContext.Grid; }
 
         //Grid-To
         public static IRectList GridToRects(IGrid grid) { return ByteGrid.Converter.GridToRects(grid); }
@@ -145,6 +160,7 @@ namespace GlyphicsLibrary
         public static string GridToHexDescription(IGrid grid) { return ByteGrid.Converter.GridToHexDescription(grid); }
 
         //Rect(s)-To
+        public static ICode RectsToCode(IRectList rectSet) { if (rectSet == null) return null; return Language.Converter.RectsToCode(rectSet); }
         public static IRect RectsToBoundaries(IRectList rectSet) { if (rectSet == null) return null; return rectSet.Boundaries; }
         public static ISerializedRects RectsToSerializedRects(IRectList rectSet) { return Atomics.Converter.RectsToSerializedRects(rectSet); }
         public static IRectList SerializedRectsToRects(ISerializedRects serializedRects) { return Atomics.Converter.SerializedRectsToRects(serializedRects); }
@@ -154,6 +170,15 @@ namespace GlyphicsLibrary
         //RGBA-To
         public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a) { return Atomics.Converter.Rgba2Ulong(r, g, b, a); }
         public static void Ulong2Rgba(ulong val, out byte r, out byte g, out byte b, out byte a) { Atomics.Converter.Ulong2Rgba(val, out r, out g, out b, out a); }
+
+        //OBJ file
+        public static ITriangles ObjToTriangles(string filename) { return FileObjRead.ReadfileAscii(filename); }
+
+        //DAE Collada/Mesh file
+        public static void SaveDae(string filename, IRectList rects) { ByteGrid.FileDaeWrite.ExportRectsCollada.WriteMesh(filename, rects); }
+
+        //Text file
+        public static void SaveFlatText(string filename, string text) { Atomics.FileTxtWrite.SaveFlatText(filename,text); }
 
         //File IO for Glyphics files
         public static bool CodesToGly(string filename, ICodeList codes) { return GlyphicsFile.CodesToGly(filename, codes); }

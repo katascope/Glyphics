@@ -25,7 +25,7 @@
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
@@ -111,10 +111,13 @@
     <Compile Include="Atomics\Atomics.Converter.SceneGraph.cs" />
     <Compile Include="Atomics\Atomics.CQuad.cs" />
     <Compile Include="Atomics\Atomics.Converter.BytesToString.cs" />
+    <Compile Include="Atomics\Atomics.FileTxtWrite.cs" />
     <Compile Include="Atomics\Atomics.TriangleUnitCube.cs" />
     <Compile Include="ByteGrid\ByteGrid.Converter.GridToHex.cs" />
+    <Compile Include="ByteGrid\ByteGrid.FileDaeWrite.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifRead.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifWrite.cs" />
+    <Compile Include="ByteGrid\ByteGrid.FileObjRead.cs" />
     <Compile Include="Glyphics Interfaces\IDeck.cs" />
     <Compile Include="Glyphics Interfaces\IElement.cs" />
     <Compile Include="Glyphics Interfaces\IQuad.cs" />
@@ -124,6 +127,8 @@
     <Compile Include="Language\Language.Converter.CodeToContext.cs" />
     <Compile Include="Language\Language.Converter.CodeToGrid.cs" />
     <Compile Include="Language\Language.Converter.CodeToRects.cs" />
+    <Compile Include="Language\Language.Converter.RectsToCode.cs" />
+    <Compile Include="Language\Language.Thumbnails.cs" />
     <Compile Include="Painters\Painters.Maze.cs" />
     <Compile Include="Painters\Painters.Shadows.cs" />
     <Compile Include="Renderers\Renderers.RendererTriangles.cs" />
@@ -188,7 +193,6 @@
     <Compile Include="ByteGrid\ByteGrid.Converter.GridToRects.cs" />
     <Compile Include="Glyphics Interfaces\ICellProperties.cs" />
     <Compile Include="Glyphics Interfaces\IPainter.cs" />
-    <Compile Include="Glyphics Interfaces\IExecutionContext.cs" />
     <Compile Include="Glyphics Interfaces\IGlyph.cs" />
     <Compile Include="Glyphics Interfaces\IToken.cs" />
     <Compile Include="Atomics\Atomics.RectMath.cs" />
@@ -202,13 +206,12 @@
     <Compile Include="Renderers\Renderers.RendererRects.cs" />
     <Compile Include="ByteGrid\ByteGrid.FilePngWrite.cs" />
     <Compile Include="Glyphics Interfaces\IGrid.cs" />
-    <Compile Include="ByteGrid\ByteGrid.GridList.cs" />
+    <Compile Include="ByteGrid\ByteGrid.CGridList.cs" />
     <Compile Include="Painters\Painters.Arc.cs" />
     <Compile Include="Painters\Painters.Extrude.cs" />
     <Compile Include="ByteGrid\ByteGrid.CGrid.cs" />
     <Compile Include="Language\Language.Converter.TokensToBytes.cs" />
     <Compile Include="Language\Language.Converter.TokensToCode.cs" />
-    <Compile Include="Language\Language.CExecutionContext.cs" />
     <Compile Include="Language\Language.Converter.CodeToRescaledCode.cs" />
     <Compile Include="Language\Language.GlyphicsError.cs" />
     <Compile Include="Language\Language.VGPU.cs" />
@@ -231,7 +234,7 @@
     <Compile Include="Language\Language.Converter.CodeToTokens.cs" />
     <Compile Include="Language\Language.Converter.BytecodeToTokens.cs" />
     <Compile Include="ByteGrid\ByteGrid.ArchetypeLibrary.cs" />
-    <Compile Include="Language\Language.Converter.TokensToExecutionContext.cs" />
+    <Compile Include="Language\Language.Converter.TokensToGrid.cs" />
     <Compile Include="Language\Language.GlyphTypes.cs" />
     <Compile Include="Glyphics Interfaces\IRect.cs" />
     <Compile Include="Glyphics Interfaces\IDouble3.cs" />

@@ -742,11 +742,11 @@ namespace GlyphicsUnitTests
             if (code == null) validated = true;
             else
             {
-                IExecutionContext context = GlyphicsApi.TokensToContext(GlyphicsApi.CodeToTokens(GlyphicsApi.CreateCode(code)));
+                IGrid grid =  GlyphicsApi.TokensToGrid(GlyphicsApi.CodeToTokens(GlyphicsApi.CreateCode(code)));
 
-                if (context.Bgc.Grid != null)
+                if (grid != null)
                 {
-                    if (GlyphicsApi.CompareBytes(context.Bgc.Grid.CloneData(), GlyphicsApi.HexDataToBytes(expected)))
+                    if (GlyphicsApi.CompareBytes(grid.CloneData(), GlyphicsApi.HexDataToBytes(expected)))
                         validated = true;
                 }
                 else validated = true;

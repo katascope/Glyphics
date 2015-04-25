@@ -27,12 +27,12 @@ namespace GlyphicsLibrary.Atomics
             //Iterate through reach rectangle(volume/cube) creating triangles
             foreach (IRect rect in rectSet)
             {
-                IQuadList quads = Converter.RectToQuads(rect);
+                IQuadList quads = RectToQuads(rect);
                 //RectToTrianglesCube(ref triangles, rect);
                 
                 foreach (IQuad quad in quads)
                 {
-                    ITriangles twoTriangles = Converter.QuadToTwoTriangles(quad);
+                    ITriangles twoTriangles = QuadToTwoTriangles(quad);
                     triangles.Add(twoTriangles.GetTriangleArray()[0]);
                     triangles.Add(twoTriangles.GetTriangleArray()[1]);
                 }

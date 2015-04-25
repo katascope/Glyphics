@@ -53,7 +53,7 @@ namespace GlyphicsLibrary
         void RotateZ(float angle);
 
         //Transform:Scale a relative amount
-        void Scale(float sx, float sy, float sz);
+        void Scale(float scaleX, float scaleY, float scaleZ);
 
         //Transform:Flip X/Y/Z values, equivalent to scale(1,-1,-1), etc
         void MirrorX();

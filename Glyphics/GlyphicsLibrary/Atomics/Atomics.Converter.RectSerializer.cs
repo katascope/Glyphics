@@ -41,7 +41,7 @@ namespace GlyphicsLibrary.Atomics
 
         //Sort a set of rectangles into a list of rects by unified value
         // - Sorts the rectlist into sets of rectlists where rects have same properties
-        private static IEnumerable<List<IRect>> SuperSortByProperties(IRectList rects)
+        private static IEnumerable<List<IRect>> SuperSortByProperties(IEnumerable<IRect> rects)
         {
             var superRects = new List<List<IRect>>();
 

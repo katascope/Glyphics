@@ -36,6 +36,6 @@ namespace GlyphicsLibrary
         string ToString();
 
         //True if same
-        bool IsEqualTo(IDouble3 d);
+        bool IsEqualTo(IDouble3 value);
     }
 }

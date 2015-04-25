@@ -109,20 +109,6 @@ namespace GlyphicsUnitTests
         }
 
         [TestMethod]
-        public void TestCodeToContext()
-        {
-            ICode code = GlyphicsApi.CreateCode(FinalCubeCode);
-            ITokenList tokens = GlyphicsApi.CodeToTokens(code);
-            IExecutionContext context = GlyphicsApi.TokensToContext(tokens);
-
-            IGrid grid = GlyphicsApi.ContextToGrid(context);
-
-            Assert.IsTrue(grid.SizeX == 8);
-            Assert.IsTrue(grid.SizeY == 8);
-            Assert.IsTrue(grid.SizeZ == 8);
-        }
-
-        [TestMethod]
         public void TestCodeToGrid()
         {
             ICode code = GlyphicsApi.CreateCode(FinalCubeCode);
