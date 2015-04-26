@@ -65,10 +65,9 @@ namespace GlyphicsLibrary.Atomics
         {
             var sb = new StringBuilder();
 
-            sb.Append(Quads.Count + "\n");
             foreach (IQuad quad in Quads)
             {
-                sb.Append(quad + "\n");
+                sb.Append(quad + "\r\n");
             }
             return sb.ToString();
         }

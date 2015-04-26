@@ -99,6 +99,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Atomics\Atomics.CBytes.cs" />
     <Compile Include="Atomics\Atomics.CCellProperties.cs" />
     <Compile Include="Atomics\Atomics.CDeck.cs" />
     <Compile Include="Atomics\Atomics.CElement.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="ByteGrid\ByteGrid.FileGifRead.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifWrite.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileObjRead.cs" />
+    <Compile Include="Glyphics Interfaces\IBytes.cs" />
     <Compile Include="Glyphics Interfaces\IDeck.cs" />
     <Compile Include="Glyphics Interfaces\IElement.cs" />
     <Compile Include="Glyphics Interfaces\IQuad.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Language\Language.Converter.CodeToGrid.cs" />
     <Compile Include="Language\Language.Converter.CodeToRects.cs" />
     <Compile Include="Language\Language.Converter.RectsToCode.cs" />
+    <Compile Include="Language\Language.DownSolver.cs" />
     <Compile Include="Language\Language.Thumbnails.cs" />
     <Compile Include="Painters\Painters.Maze.cs" />
     <Compile Include="Painters\Painters.Shadows.cs" />

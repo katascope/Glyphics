@@ -76,7 +76,7 @@ namespace GlyphicsLibrary.Atomics
         }
 
         //Convert a string of hexadecimal data to a byte array
-        public static byte[] HexDataToBytes(string data)
+        public static byte[] HexDataToByteArray(string data)
         {
             var bytes = new List<byte>();
             for (int i = 0; i < data.Length; i += 2)

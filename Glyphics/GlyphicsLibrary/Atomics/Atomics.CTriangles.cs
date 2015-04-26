@@ -279,7 +279,7 @@ namespace GlyphicsLibrary.Atomics
         {
             var sb = new StringBuilder();
 
-            sb.Append(_triangleArray.Length + "\n"); 
+            //sb.Append(_triangleArray.Length + "\r\n"); 
             
             foreach (ITriangle triangle in _triangleArray)
             {
@@ -294,7 +294,7 @@ namespace GlyphicsLibrary.Atomics
                     sb.Append("/");
                     sb.Append(triangle.Properties);
                 }
-                sb.Append("]\n");
+                sb.Append("]\r\n");
             }
             return sb.ToString();
         }

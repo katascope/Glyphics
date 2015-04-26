@@ -25,19 +25,21 @@ namespace GlyphicsUnitTests
         {
             ICode glyphicscode = GlyphicsApi.CreateCode(Code);
             IGrid grid = GlyphicsApi.CodeToGrid(glyphicscode);
-            Assert.IsTrue(grid.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
+
+            byte[] bytes = GlyphicsApi.HexDataToByteArray(Expected);
+            Assert.IsTrue(grid.CompareBytes(bytes));
         }
 
         [TestMethod]
         public void ConvertCodeToBytesToTokensToContextToGrid()
         {
             ICode glyphicscode = GlyphicsApi.CreateCode(Code);
-
             IBytecode bytecode = GlyphicsApi.CodeToBytes(glyphicscode);
             ITokenList tokens = GlyphicsApi.BytecodeToTokens(bytecode);
             IGrid grid = GlyphicsApi.TokensToGrid(tokens);
 
-            Assert.IsTrue(grid.CompareBytes(GlyphicsApi.HexDataToBytes(Expected)));
+            byte[] bytes = GlyphicsApi.HexDataToByteArray(Expected);
+            Assert.IsTrue(grid.CompareBytes(bytes));
         }
 
         [TestMethod]

@@ -16,111 +16,6 @@ using GlyphicsLibrary;
 //CommandLine app - general commandline tool for glyphics
 namespace GlyphicsCommandLine
 {
-    //FlowSolver class, not really that efficient, but good for making inputs solve out to all possible outputs
-    class FlowSolver
-    {
-        public ICodeList codes;
-        public IGridList grids;
-        public ICode code;
-        public IBytecode bytecode;
-        public ICodename codename;
-        public ITokenList tokens;
-        public IGrid grid;
-        public IGrid gridOblique;
-        public IRectList rects;
-        public ISerializedRects serializedRects;
-        public ISerializedRects serializedRectsLimit255;
-        public IQuadList quads;
-        public ITriangles triangles;
-        public byte[] rawbytes;
-
-        public FlowSolver(ICode inCode) { FromCode(inCode); }
-        public FlowSolver(string filename) { FromFilename(filename); }
-        public FlowSolver(ICodename inCodename) { codename = inCodename; }
-        public FlowSolver(IBytecode inBytecode) { FromBytecode(inBytecode); }
-        public FlowSolver(ITokenList inTokens) { FromTokens(inTokens); }
-        public FlowSolver(IGrid inGrid) { FromGrid(inGrid); }
-        public FlowSolver(IRectList inRects) { FromRects(inRects); }
-        public FlowSolver(ISerializedRects inSerializedRects) { FromSerializedRects(inSerializedRects); }
-        public FlowSolver(IQuadList inQuads) { FromQuads(inQuads); }
-        public FlowSolver(ITriangles inTriangles) { FromTriangles(inTriangles); }
-
-        private void FromFilename(string filename)
-        {
-            if (filename.ToUpper().Contains(".PNG")) FromGrid(GlyphicsApi.PngToGrid(filename));
-            if (filename.ToUpper().Contains(".STL")) FromTriangles(GlyphicsApi.StlToTriangles(filename));
-            if (filename.ToUpper().Contains(".OBJ")) FromTriangles(GlyphicsApi.ObjToTriangles(filename));
-            if (filename.ToUpper().Contains(".GIF"))
-            {
-                grids = GlyphicsApi.GifToGrids(filename);
-                grid = grids.GetGrid(0);
-                FromGrid(grid);
-            }
-            if (filename.ToUpper().Contains(".GLY"))
-            {
-                codes = GlyphicsApi.GlyToCodes(filename);
-                code = codes.GetCode(0);
-                FromCode(code);
-            }
-        }
-
-        private void FromCode(ICode inCode)
-        {
-            code = inCode;
-            codename = GlyphicsApi.CodeToCodename(code);
-            tokens = GlyphicsApi.CodeToTokens(code);
-            FromTokens(tokens);
-        }
-
-        private void FromBytecode(IBytecode inBytecode)
-        {
-            bytecode = inBytecode;
-            tokens = GlyphicsApi.BytecodeToTokens(bytecode);
-            FromTokens(tokens);
-        }
-
-        private void FromTokens(ITokenList inTokens)
-        {
-            tokens = inTokens;
-            grid = GlyphicsApi.TokensToGrid(tokens);
-            FromGrid(grid);
-        }
-
-        private void FromGrid(IGrid inGrid)
-        {
-            grid = inGrid;
-            gridOblique = GlyphicsApi.Renderer.RenderObliqueCells(grid);
-            rects = GlyphicsApi.GridToRects(grid);
-            FromRects(rects);
-        }
-
-        private void FromRects(IRectList inRects)
-        {
-            rects = inRects;
-            serializedRects = GlyphicsApi.RectsToSerializedRects(rects);
-            serializedRectsLimit255 = GlyphicsApi.RectsToSerializedRectsLimit255(rects);
-            FromSerializedRects(serializedRects);
-        }
-
-        private void FromSerializedRects(ISerializedRects inSerializedRects)
-        {
-            serializedRects = inSerializedRects;
-            rects = GlyphicsApi.SerializedRectsToRects(serializedRects);
-            quads = GlyphicsApi.RectsToQuads(rects);
-            FromQuads(quads);
-        }
-
-        private void FromQuads(IQuadList quads)
-        {
-            triangles = GlyphicsApi.QuadsToTriangles(quads);
-            FromTriangles(triangles);
-        }
-
-        private void FromTriangles(ITriangles inTriangles)
-        {
-            triangles = inTriangles;
-        }
-    }
 
     class CommandLine
     {
@@ -176,7 +71,7 @@ namespace GlyphicsCommandLine
 
             string result = "";
             string outputText = "";
-            FlowSolver hc = null;
+            GlyphicsLibrary.Language.DownSolver hc = null;
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -185,14 +80,14 @@ namespace GlyphicsCommandLine
                 if (i < args.Length - 1)
                     nextArg = args[i + 1];
 
-                if (String.CompareOrdinal(arg, "-icode") == 0) { Console.WriteLine("Input code: {0}", nextArg); hc = new FlowSolver(GlyphicsApi.CreateCode(nextArg)); }
-                if (String.CompareOrdinal(arg, "-iser") == 0) { Console.WriteLine("Input serialized rects:\n{0}", nextArg); hc = new FlowSolver(GlyphicsApi.CreateSerializedRects(nextArg)); }
+                if (String.CompareOrdinal(arg, "-icode") == 0) { Console.WriteLine("Input code: {0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(GlyphicsApi.CreateCode(nextArg)); }
+                if (String.CompareOrdinal(arg, "-iser") == 0) { Console.WriteLine("Input serialized rects:\n{0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(GlyphicsApi.CreateSerializedRects(nextArg)); }
                 //if (String.CompareOrdinal(arg, "-ibytes") == 0) { hc = new FlowSolve(GlyphicsApi.createBytecode)
-                if (String.CompareOrdinal(arg, "-ipng") == 0) { Console.WriteLine("Input PNG filename: {0}", nextArg); hc = new FlowSolver(nextArg); }
-                if (String.CompareOrdinal(arg, "-igif") == 0) { Console.WriteLine("Input GIF filename: {0}", nextArg); hc = new FlowSolver(nextArg); }
-                if (String.CompareOrdinal(arg, "-istl") == 0) { Console.WriteLine("Input STL filename: {0}", nextArg); hc = new FlowSolver(nextArg); }
-                if (String.CompareOrdinal(arg, "-iobj") == 0) { Console.WriteLine("Input OBJ filename: {0}", nextArg); hc = new FlowSolver(nextArg); }
-                if (String.CompareOrdinal(arg, "-igly") == 0) { Console.WriteLine("Input GLY filename: {0}", nextArg); hc = new FlowSolver(nextArg); }
+                if (String.CompareOrdinal(arg, "-ipng") == 0) { Console.WriteLine("Input PNG filename: {0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(nextArg); }
+                if (String.CompareOrdinal(arg, "-igif") == 0) { Console.WriteLine("Input GIF filename: {0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(nextArg); }
+                if (String.CompareOrdinal(arg, "-istl") == 0) { Console.WriteLine("Input STL filename: {0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(nextArg); }
+                if (String.CompareOrdinal(arg, "-iobj") == 0) { Console.WriteLine("Input OBJ filename: {0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(nextArg); }
+                if (String.CompareOrdinal(arg, "-igly") == 0) { Console.WriteLine("Input GLY filename: {0}", nextArg); hc = new GlyphicsLibrary.Language.DownSolver(nextArg); }
                 //if (String.CompareOrdinal(arg, "-idae") == 0) { Console.WriteLine("Input DAE filename: {0}", nextArg); hc = new FlowSolve(nextArg); }
             }
 
@@ -217,18 +112,18 @@ namespace GlyphicsCommandLine
                 if (String.CompareOrdinal(arg, "-oser255") == 0) result = (hc.serializedRectsLimit255 != null) ? hc.serializedRectsLimit255.ToString() : "implement more converters.";
                 if (String.CompareOrdinal(arg, "-opng") == 0)
                 {
-                    Console.WriteLine("Output file: " + nextArg);
+                    Console.WriteLine("PNG Output file: " + nextArg);
                     GlyphicsApi.SaveFlatPng(nextArg, hc.grid);
                 }
                 if (String.CompareOrdinal(arg, "-oopng") == 0)
                 {
-                    Console.WriteLine("Output file: " + nextArg);
+                    Console.WriteLine("Oblique PNG Output file: " + nextArg);
                     GlyphicsApi.SaveFlatPng(nextArg, hc.gridOblique);
                 }
                 if (String.CompareOrdinal(arg, "-ostl") == 0)
                 {
                     result = (hc.triangles != null) ? hc.triangles.ToString() : "implement more converters.";
-                    Console.WriteLine("Output file: " + nextArg);
+                    Console.WriteLine("STL Output file: " + nextArg);
                     GlyphicsApi.SaveTrianglesToStl(nextArg, hc.triangles);
                 }
             }

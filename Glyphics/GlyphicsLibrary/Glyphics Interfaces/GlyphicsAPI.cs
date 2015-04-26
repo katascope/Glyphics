@@ -140,18 +140,12 @@ namespace GlyphicsLibrary
         public static ICodename CodeToCodename(ICode glyphicsCode) { return new CCodename(glyphicsCode); }
         public static IBytecode CodeToBytes(ICode glyphicsCode) { return Language.Converter.TokensToBytes(Language.Converter.CodeToTokens(glyphicsCode)); }
         public static ICode CodeToRescaledCode(ICode glyphicsCode, int toX, int toY, int toZ) { return Language.Converter.CodeToRescaledCode(glyphicsCode, toX, toY, toZ); }
-        //Generate thumbnail grids from code by rescaling the codelines
         public static IGridList CodeToThumbnailed(ICode code) { return Thumbnails.CodeToThumbnailed(code); }
 
         //Tokens-To
         public static IGrid TokensToGrid(ITokenList tokens) { return Language.Converter.TokensToGrid(tokens); }
-        //public static IExecutionContext TokensToContext(ITokenList glyphTokens) { return Language.Converter.TokensToExecutionContext(glyphTokens); }
         public static IBytecode TokensToBytes(ITokenList glyphTokens) { return Language.Converter.TokensToBytes(glyphTokens); }
-        //public static string TokensToString(ITokenList glyphTokens, string separator) { return Conversions.TokensToString(glyphTokens, separator); }
         public static ITokenList BytecodeToTokens(IBytecode glyphicsBytecode) { return Language.Converter.BytecodeToTokens(glyphicsBytecode); }
-
-        //Context-To
-        //public static IGrid ContextToGrid(IExecutionContext gec) { if (gec == null || gec.GridContext == null) return null; return gec.GridContext.Grid; }
 
         //Grid-To
         public static IRectList GridToRects(IGrid grid) { return ByteGrid.Converter.GridToRects(grid); }
@@ -179,7 +173,7 @@ namespace GlyphicsLibrary
         //Text file
         public static void SaveFlatText(string filename, string text) { Atomics.FileTxtWrite.SaveFlatText(filename,text); }
 
-        //File IO for Glyphics files
+        //File IO for GLY Glyphics files
         public static bool CodesToGly(string filename, ICodeList codes) { return GlyphicsFile.CodesToGly(filename, codes); }
         public static ICodeList GlyToCodes(string filename) { return GlyphicsFile.GlyToCodes(filename); }
         public static bool LoadArchetypes(string filename) { return GlyphicsFile.LoadArchetypes(filename); }
@@ -204,7 +198,8 @@ namespace GlyphicsLibrary
         public static bool FloatsAreEqual(float v1, float v2)  { return Compare.CompareFloatAreEqual(v1, v2); }
 
         //Translates hex data in string format to byte array
-        public static byte[] HexDataToBytes(string data) { return Transcode64.HexDataToBytes(data); }
+        public static byte[] HexDataToByteArray(string data) { return Transcode64.HexDataToByteArray(data); }
+        public static IBytes HexDataToBytes(string data) { return new Atomics.CBytes(Transcode64.HexDataToByteArray(data)); }
 
         //Bytes
         public static string BytesToString(byte[] bytes) { return Atomics.Converter.BytesToString(bytes); }        

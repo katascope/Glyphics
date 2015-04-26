@@ -72,7 +72,7 @@ namespace GlyphicsLibrary.Atomics
 
             foreach (IRect rect in Rects)
             {
-                sb.Append(rect + "\n");
+                sb.Append(rect + "\r\n");
             }
             return sb.ToString();
         }

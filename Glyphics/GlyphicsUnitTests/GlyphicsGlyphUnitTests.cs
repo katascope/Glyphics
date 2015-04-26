@@ -746,7 +746,7 @@ namespace GlyphicsUnitTests
 
                 if (grid != null)
                 {
-                    if (GlyphicsApi.CompareBytes(grid.CloneData(), GlyphicsApi.HexDataToBytes(expected)))
+                    if (GlyphicsApi.CompareBytes(grid.CloneData(), GlyphicsApi.HexDataToByteArray(expected)))
                         validated = true;
                 }
                 else validated = true;
