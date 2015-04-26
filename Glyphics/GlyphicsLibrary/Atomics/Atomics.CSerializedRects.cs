@@ -23,5 +23,11 @@ namespace GlyphicsLibrary.Atomics
         {
             SerializedData = data;
         }
+
+        //Readable description
+        public override string ToString()
+        {
+            return SerializedData;
+        }
     }
 }

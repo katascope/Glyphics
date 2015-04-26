@@ -32,7 +32,7 @@ namespace GlyphicsLibrary.Language
                 {
                     rgba = rect.Properties.Rgba;
                     byte r, g, b, a;
-                    GlyphicsApi.Ulong2Rgba(rect.Properties.Rgba, out r, out g, out b, out a);
+                    Atomics.Converter.Ulong2Rgba(rect.Properties.Rgba, out r, out g, out b, out a);
                     string rgbaStr = ";PenColorD4 " + r + " " + g + " " + b + " " + a;
                     sb.Append(rgbaStr);
                 }

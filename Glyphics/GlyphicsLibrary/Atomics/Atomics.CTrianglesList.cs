@@ -49,9 +49,10 @@ namespace GlyphicsLibrary.Atomics
             return TrianglesSet[id];
         }
 
+        //TODO: Refactor and move FileStl down to Atomics layer
         //Import another file straight from .stl
         public void Import(string filename)
-        {
+        {            
             ITriangles triangles = GlyphicsApi.StlToTriangles(filename);
             TrianglesSet.Add(triangles);
         }
@@ -83,6 +84,5 @@ namespace GlyphicsLibrary.Atomics
             return GetEnumerator();
         }
         #endregion
-
     }
 }

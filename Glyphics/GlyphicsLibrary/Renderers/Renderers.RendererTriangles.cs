@@ -46,7 +46,7 @@ namespace GlyphicsLibrary.Renderers
 
                 MapRectToTriangles(ref renderedTriangleSoup, triangles, rect);
             }
-            ITriangles triangleSet = GlyphicsApi.CreateTriangles();
+            ITriangles triangleSet = new Atomics.CTriangles();
             ITriangle[] triangleArray = renderedTriangleSoup.ToArray();
             triangleSet.SetTriangles(triangleArray);
 
@@ -61,14 +61,14 @@ namespace GlyphicsLibrary.Renderers
         {
             if (triangles == null || grid == null) return;
 
-            IPainter painter = GlyphicsApi.Painter;
-            IGridContext bgc = GlyphicsApi.CreateContext(grid);
+            IPainter painter = new Painters.CPainter();
+            IGridContext bgc = new ByteGrid.CGridContext(grid);
 
             float sx = grid.SizeX - 1;
             float sy = grid.SizeY - 1;
             float sz = grid.SizeZ - 1;
 
-            bgc.Pen.Rgba = GlyphicsApi.Rgba2Ulong(255, 255, 255, 255);
+            bgc.Pen.Rgba = Atomics.Converter.Rgba2Ulong(255, 255, 255, 255);
             foreach (ITriangle triangle in triangles.GetTriangleArray())
             {
                 var x1 = (int)((triangle.Vertex1.X + 0.5f) * sx);

@@ -38,12 +38,12 @@ namespace GlyphicsLibrary.Painters
                             )
                         {
                             byte r, g, b, a;
-                            GlyphicsApi.Ulong2Rgba(ubelow2, out r, out g, out b, out a);
+                            Atomics.Converter.Ulong2Rgba(ubelow2, out r, out g, out b, out a);
                             r /= 2;
                             g /= 2;
                             b /= 2;
-                            
-                            ubelow2 = GlyphicsApi.Rgba2Ulong(r, g, b, a);
+
+                            ubelow2 = Atomics.Converter.Rgba2Ulong(r, g, b, a);
                             grid.Plot(x, y - 2, z, ubelow2);
                         }
                     }

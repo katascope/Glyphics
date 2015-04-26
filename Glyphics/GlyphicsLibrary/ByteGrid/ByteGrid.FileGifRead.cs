@@ -53,7 +53,7 @@ namespace GlyphicsLibrary.ByteGrid
 
                     if (a == 255)
                     {
-                        ulong u = GlyphicsApi.Rgba2Ulong(r, g, b, a);
+                        ulong u = Atomics.Converter.Rgba2Ulong(r, g, b, a);
 
                         grid.Plot(x + top, y + left, 0, u);
                     }

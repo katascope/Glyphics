@@ -49,7 +49,7 @@ namespace GlyphicsLibrary.ByteGrid
                     if (bitmapSource.Format.BitsPerPixel > 3)
                         a = originalPixels[(y * width * bytesPerPixel) + (x * bytesPerPixel + 3)];
 
-                    ulong u = GlyphicsApi.Rgba2Ulong(r, g, b, a);
+                    ulong u = Atomics.Converter.Rgba2Ulong(r, g, b, a);
                     grid.Plot(x, y, z, u);
                 }
             }
@@ -59,15 +59,13 @@ namespace GlyphicsLibrary.ByteGrid
         public static IGrid PngToGrid(string filename)
         {
 #if !NET2
-
             Stream imageStreamSource = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
             var decoder = new PngBitmapDecoder(imageStreamSource, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
             BitmapSource bitmapSource = decoder.Frames[0];
             int width = bitmapSource.PixelWidth;
             int height = bitmapSource.PixelHeight;
 
-            IGrid grid = GlyphicsApi.CreateGrid(width, height, 1, 4);
-
+            IGrid grid = new CGrid(width, height, 1, 4);
 
             CopyBitmapSourceToGrid(bitmapSource, grid, 0);
             imageStreamSource.Close();

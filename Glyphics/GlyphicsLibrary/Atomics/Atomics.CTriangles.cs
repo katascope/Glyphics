@@ -92,26 +92,26 @@ namespace GlyphicsLibrary.Atomics
 
         private static bool CompareVertices(ITriangle triangle1, ITriangle triangle2)
         {
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex1.X, triangle2.Vertex1.X)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex1.Y, triangle2.Vertex1.Y)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex1.Z, triangle2.Vertex1.Z)) return true;
-                                                                                           
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex2.X, triangle2.Vertex2.X)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex2.Y, triangle2.Vertex2.Y)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex2.Z, triangle2.Vertex2.Z)) return true;
-                                                                                           
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex3.X, triangle2.Vertex3.X)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex3.Y, triangle2.Vertex3.Y)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Vertex3.Z, triangle2.Vertex3.Z)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex1.X, triangle2.Vertex1.X)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex1.Y, triangle2.Vertex1.Y)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex1.Z, triangle2.Vertex1.Z)) return true;
+
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex2.X, triangle2.Vertex2.X)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex2.Y, triangle2.Vertex2.Y)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex2.Z, triangle2.Vertex2.Z)) return true;
+
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex3.X, triangle2.Vertex3.X)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex3.Y, triangle2.Vertex3.Y)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Vertex3.Z, triangle2.Vertex3.Z)) return true;
             
             return false;
         }
 
         private static bool CompareNormals(ITriangle triangle1, ITriangle triangle2)
         {
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Normal.X, triangle2.Normal.X)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Normal.Y, triangle2.Normal.Y)) return true;
-            if (GlyphicsApi.FloatsAreEqual(triangle1.Normal.Z, triangle2.Normal.Z)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Normal.X, triangle2.Normal.X)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Normal.Y, triangle2.Normal.Y)) return true;
+            if (Compare.CompareFloatAreEqual(triangle1.Normal.Z, triangle2.Normal.Z)) return true;
 
             return false;
         }
@@ -138,7 +138,7 @@ namespace GlyphicsLibrary.Atomics
             get
             {
                 const int limit = 10000;
-                IRect rect = GlyphicsApi.CreateRect(limit, limit, limit, -limit, -limit, -limit);
+                IRect rect = new CRect(limit, limit, limit, -limit, -limit, -limit);
 
                 foreach (ITriangle triangle in _triangleArray)
                 {

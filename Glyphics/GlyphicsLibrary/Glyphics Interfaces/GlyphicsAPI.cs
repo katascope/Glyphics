@@ -18,7 +18,6 @@ using GlyphicsLibrary.Renderers;
 namespace GlyphicsLibrary
 {
 //Revamp project
-
     //Project Insidious - Version after Vernacular
     //to create a space between the spaces, a conduit where one can be used for the other
     //Example: Editing in sl, exporting back to serial, then used elsewhere

@@ -15,7 +15,7 @@ namespace GlyphicsLibrary.Painters
     internal partial class CPainter
     {
         //Plots a thicker point to a grid without using penshape
-        private static void Thickplot(IGrid grid, int x, int y, int z, ulong color)
+        private void Thickplot(IGrid grid, int x, int y, int z, ulong color)
         {
             int height = grid.SizeY;
             grid.Plot(x, height-y, z, color);
@@ -24,9 +24,8 @@ namespace GlyphicsLibrary.Painters
         }
 
         //Draw alien's right eye
-        private static void alien_right_eye(IGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
+        private void alien_right_eye(IGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
         {
-            IPainter painter = GlyphicsApi.Painter;
             int x = 0;
             int y = radius;
             int d = 3 - (2 * radius);
@@ -63,14 +62,13 @@ namespace GlyphicsLibrary.Painters
                 Thickplot(bgc.Grid, xc - x + radius / 2, yc - y - radius / 2, zc, color);
             }
             int height = bgc.Grid.SizeY;
-            painter.DrawLine2D(bgc, xc - lx, height-(yc - ly), xc - x + radius / 2, height-(yc - y - radius / 2), zc);
-            painter.DrawLine2D(bgc, xc + lx, height-(yc + ly), xc + x + radius / 2, height-(yc + y - radius / 2), zc);
+            DrawLine2D(bgc, xc - lx, height-(yc - ly), xc - x + radius / 2, height-(yc - y - radius / 2), zc);
+            DrawLine2D(bgc, xc + lx, height-(yc + ly), xc + x + radius / 2, height-(yc + y - radius / 2), zc);
         }
 
         //Draw alien's left eye
-        private static void alien_left_eye(IGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
+        private void alien_left_eye(IGridContext bgc, int xc, int yc, int zc, int radius, ulong color)
         {
-            IPainter painter = GlyphicsApi.Painter;
             int x = 0;
             int y = radius;
             int d = 3 - (2 * radius);
@@ -106,8 +104,8 @@ namespace GlyphicsLibrary.Painters
                 Thickplot(bgc.Grid, xc + x - radius / 2, yc - y - radius / 2, zc, color);
             }
             int height = bgc.Grid.SizeY;
-            painter.DrawLine2D(bgc, xc + lx, height - (yc - ly), xc + x - radius / 2, height - (yc - y - radius / 2), zc);
-            painter.DrawLine2D(bgc, xc - lx, height - (yc + ly), xc - x - radius / 2, height - (yc + y - radius / 2), zc);
+            DrawLine2D(bgc, xc + lx, height - (yc - ly), xc + x - radius / 2, height - (yc - y - radius / 2), zc);
+            DrawLine2D(bgc, xc - lx, height - (yc + ly), xc - x - radius / 2, height - (yc + y - radius / 2), zc);
         }
 
         //Draw alien

@@ -300,6 +300,15 @@
 ![](Polygon.png)
 [Polygon](Polygon.md)
 
+![](PrimaRect.png)
+[PrimaRect](PrimaRect.md)
+
+![](PrimaRGBA.png)
+[PrimaRGBA](PrimaRGBA.md)
+
+![](PrimaSize.png)
+[PrimaSize](PrimaSize.md)
+
 ![](Pyramid3D.png)
 [Pyramid3D](Pyramid3D.md)
 
@@ -317,6 +326,36 @@
 
 ![](RectBlit3D.png)
 [RectBlit3D](RectBlit3D.md)
+
+![](Reserved1.png)
+[Reserved1](Reserved1.md)
+
+![](Reserved10.png)
+[Reserved10](Reserved10.md)
+
+![](Reserved2.png)
+[Reserved2](Reserved2.md)
+
+![](Reserved3.png)
+[Reserved3](Reserved3.md)
+
+![](Reserved4.png)
+[Reserved4](Reserved4.md)
+
+![](Reserved5.png)
+[Reserved5](Reserved5.md)
+
+![](Reserved6.png)
+[Reserved6](Reserved6.md)
+
+![](Reserved7.png)
+[Reserved7](Reserved7.md)
+
+![](Reserved8.png)
+[Reserved8](Reserved8.md)
+
+![](Reserved9.png)
+[Reserved9](Reserved9.md)
 
 ![](Scissor.png)
 [Scissor](Scissor.md)
