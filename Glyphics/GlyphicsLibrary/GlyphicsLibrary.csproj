@@ -117,6 +117,7 @@
     <Compile Include="Atomics\Atomics.TriangleUnitCube.cs" />
     <Compile Include="Atomics\Atomics.CInt3.cs" />
     <Compile Include="ByteGrid\ByteGrid.Converter.GridToHex.cs" />
+    <Compile Include="ByteGrid\ByteGrid.Converter.GridToHiddenBlockGrid.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileDaeWrite.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifRead.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifWrite.cs" />

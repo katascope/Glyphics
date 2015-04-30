@@ -20,6 +20,20 @@ namespace GlyphicsLibrary
 //Revamp project
     //Project Insidious - Version after Vernacular
     //to create a space between the spaces, a conduit where one can be used for the other
+
+    //Newtech: forcing a 3d model onto a 3d raster (integer) grid, which would sort of blockify it some, but also make for those sort of "smooth blocks" I've been trying to achieve.
+    //Corner possibilities: 
+    //just map it to moore neighborhood!
+    // That's the generational possibilities anyway
+
+    //Need inside out detector
+    // Solve by starting on borders and working inwards connecting
+
+    //adjancency test
+
+
+    //other triangles?
+
     //Example: Editing in sl, exporting back to serial, then used elsewhere
     //Example: Javascript editors
     //Example: Into Unity environment
@@ -32,6 +46,9 @@ namespace GlyphicsLibrary
     //Example: From OBJ, for splitting into multiple prints
     //Example: From GIS, for generating height maps
     //Example: From heightmaps..
+
+    //TODO: New glyph - TexFunc, generates a texture used by texture id
+    //TODO: New Glyph - ShpFunc, generates a shape used by shape id
 
     //TODO: To JSON
     //TODO: To WebGL
@@ -216,6 +233,7 @@ namespace GlyphicsLibrary
         public static ITriangles QuadsToTriangles(IQuadList quads) { return Atomics.Converter.QuadsToTriangles(quads); }
         public static int RemoveRedundantQuads(IQuadList quads) { return Atomics.Converter.RemoveRedundantQuads(quads); }
 
+        public static IGrid GridToHiddenBlockGrids(IGrid grid) { return ByteGrid.Converter.GridToHiddenBlockGrids(grid); }
         #region SceneGraph
         //Scenegraph Creational 
         public static ITransform CreateTransform() { return new CTransform(); }
