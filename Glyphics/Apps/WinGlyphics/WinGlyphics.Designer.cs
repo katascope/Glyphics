@@ -30,17 +30,29 @@
         {
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.openGlyphicsFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGlyphicsFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.saveDirectPNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveObliquePNGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.meshDAEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sterelithographySTLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.animationGIFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serializedRectsTXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serializedRectsLimit255TXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copySerializedRectsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copySerializedRectsLimit255ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyWebGLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBoxMain = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBoxSerializedRects = new System.Windows.Forms.TextBox();
@@ -57,6 +69,8 @@
             this.textBoxQuads = new System.Windows.Forms.TextBox();
             this.labelTriangles = new System.Windows.Forms.Label();
             this.textBoxTriangles = new System.Windows.Forms.TextBox();
+            this.labelIndexedTriangles = new System.Windows.Forms.Label();
+            this.textBoxIndexedTriangles = new System.Windows.Forms.TextBox();
             this.menuMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,15 +89,47 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importToolStripMenuItem,
+            this.newToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.openGlyphicsFileToolStripMenuItem,
+            this.saveGlyphicsFileToolStripMenuItem,
             this.toolStripSeparator1,
-            this.saveDirectPNGToolStripMenuItem,
-            this.saveObliquePNGToolStripMenuItem,
+            this.importToolStripMenuItem,
+            this.exportToolStripMenuItem,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(169, 6);
+            // 
+            // openGlyphicsFileToolStripMenuItem
+            // 
+            this.openGlyphicsFileToolStripMenuItem.Name = "openGlyphicsFileToolStripMenuItem";
+            this.openGlyphicsFileToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.openGlyphicsFileToolStripMenuItem.Text = "&Open Glyphics File";
+            // 
+            // saveGlyphicsFileToolStripMenuItem
+            // 
+            this.saveGlyphicsFileToolStripMenuItem.Name = "saveGlyphicsFileToolStripMenuItem";
+            this.saveGlyphicsFileToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.saveGlyphicsFileToolStripMenuItem.Text = "&Save Glyphics File";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
             // 
             // importToolStripMenuItem
             // 
@@ -91,50 +137,88 @@
             this.gridToolStripMenuItem,
             this.modelToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.importToolStripMenuItem.Text = "&Import";
             // 
             // gridToolStripMenuItem
             // 
             this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
-            this.gridToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gridToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.gridToolStripMenuItem.Text = "Grid";
             this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
             // 
             // modelToolStripMenuItem
             // 
             this.modelToolStripMenuItem.Name = "modelToolStripMenuItem";
-            this.modelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modelToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.modelToolStripMenuItem.Text = "Model";
             this.modelToolStripMenuItem.Click += new System.EventHandler(this.modelToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // exportToolStripMenuItem
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(167, 6);
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.meshDAEToolStripMenuItem,
+            this.sterelithographySTLToolStripMenuItem,
+            this.animationGIFToolStripMenuItem,
+            this.serializedRectsTXTToolStripMenuItem,
+            this.serializedRectsLimit255TXTToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.exportToolStripMenuItem.Text = "&Export";
             // 
-            // saveDirectPNGToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.saveDirectPNGToolStripMenuItem.Name = "saveDirectPNGToolStripMenuItem";
-            this.saveDirectPNGToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.saveDirectPNGToolStripMenuItem.Text = "Save Direct PNG";
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(232, 22);
+            this.toolStripMenuItem1.Text = "Save Oblique PNG";
             // 
-            // saveObliquePNGToolStripMenuItem
+            // toolStripMenuItem2
             // 
-            this.saveObliquePNGToolStripMenuItem.Name = "saveObliquePNGToolStripMenuItem";
-            this.saveObliquePNGToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.saveObliquePNGToolStripMenuItem.Text = "Save Oblique PNG";
-            this.saveObliquePNGToolStripMenuItem.Click += new System.EventHandler(this.saveObliquePNGToolStripMenuItem_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(232, 22);
+            this.toolStripMenuItem2.Text = "Save Direct PNG";
+            // 
+            // meshDAEToolStripMenuItem
+            // 
+            this.meshDAEToolStripMenuItem.Name = "meshDAEToolStripMenuItem";
+            this.meshDAEToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.meshDAEToolStripMenuItem.Text = "Mesh .DAE";
+            // 
+            // sterelithographySTLToolStripMenuItem
+            // 
+            this.sterelithographySTLToolStripMenuItem.Name = "sterelithographySTLToolStripMenuItem";
+            this.sterelithographySTLToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.sterelithographySTLToolStripMenuItem.Text = "Sterelithography .STL";
+            // 
+            // animationGIFToolStripMenuItem
+            // 
+            this.animationGIFToolStripMenuItem.Name = "animationGIFToolStripMenuItem";
+            this.animationGIFToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.animationGIFToolStripMenuItem.Text = "Animation .GIF";
+            // 
+            // serializedRectsTXTToolStripMenuItem
+            // 
+            this.serializedRectsTXTToolStripMenuItem.Name = "serializedRectsTXTToolStripMenuItem";
+            this.serializedRectsTXTToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.serializedRectsTXTToolStripMenuItem.Text = "Serialized Rects .TXT";
+            // 
+            // serializedRectsLimit255TXTToolStripMenuItem
+            // 
+            this.serializedRectsLimit255TXTToolStripMenuItem.Name = "serializedRectsLimit255TXTToolStripMenuItem";
+            this.serializedRectsLimit255TXTToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.serializedRectsLimit255TXTToolStripMenuItem.Text = "Serialized Rects Limit 255 .TXT";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(167, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -142,7 +226,9 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copySerializedRectsToolStripMenuItem,
-            this.copySerializedRectsLimit255ToolStripMenuItem});
+            this.copySerializedRectsLimit255ToolStripMenuItem,
+            this.copyImageToolStripMenuItem,
+            this.copyWebGLToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "&Edit";
@@ -160,6 +246,19 @@
             this.copySerializedRectsLimit255ToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.copySerializedRectsLimit255ToolStripMenuItem.Text = "Copy Serialized Rects Limit 255";
             this.copySerializedRectsLimit255ToolStripMenuItem.Click += new System.EventHandler(this.copySerializedRectsLimit255ToolStripMenuItem_Click);
+            // 
+            // copyImageToolStripMenuItem
+            // 
+            this.copyImageToolStripMenuItem.Name = "copyImageToolStripMenuItem";
+            this.copyImageToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.copyImageToolStripMenuItem.Text = "Copy Image";
+            // 
+            // copyWebGLToolStripMenuItem
+            // 
+            this.copyWebGLToolStripMenuItem.Name = "copyWebGLToolStripMenuItem";
+            this.copyWebGLToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.copyWebGLToolStripMenuItem.Text = "Copy WebGL";
+            this.copyWebGLToolStripMenuItem.Click += new System.EventHandler(this.copyWebGLToolStripMenuItem_Click);
             // 
             // textBoxMain
             // 
@@ -185,7 +284,7 @@
             this.textBoxSerializedRects.Multiline = true;
             this.textBoxSerializedRects.Name = "textBoxSerializedRects";
             this.textBoxSerializedRects.ReadOnly = true;
-            this.textBoxSerializedRects.Size = new System.Drawing.Size(394, 177);
+            this.textBoxSerializedRects.Size = new System.Drawing.Size(394, 92);
             this.textBoxSerializedRects.TabIndex = 3;
             // 
             // buttonExecute
@@ -210,7 +309,7 @@
             // labelSerializedRectsLimit255
             // 
             this.labelSerializedRectsLimit255.AutoSize = true;
-            this.labelSerializedRectsLimit255.Location = new System.Drawing.Point(1075, 258);
+            this.labelSerializedRectsLimit255.Location = new System.Drawing.Point(1075, 174);
             this.labelSerializedRectsLimit255.Name = "labelSerializedRectsLimit255";
             this.labelSerializedRectsLimit255.Size = new System.Drawing.Size(130, 13);
             this.labelSerializedRectsLimit255.TabIndex = 6;
@@ -218,7 +317,7 @@
             // 
             // textBoxSerializedRectsLimit255
             // 
-            this.textBoxSerializedRectsLimit255.Location = new System.Drawing.Point(1078, 274);
+            this.textBoxSerializedRectsLimit255.Location = new System.Drawing.Point(1078, 190);
             this.textBoxSerializedRectsLimit255.Multiline = true;
             this.textBoxSerializedRectsLimit255.Name = "textBoxSerializedRectsLimit255";
             this.textBoxSerializedRectsLimit255.ReadOnly = true;
@@ -230,7 +329,7 @@
             this.comboBoxGly.FormattingEnabled = true;
             this.comboBoxGly.Location = new System.Drawing.Point(94, 30);
             this.comboBoxGly.Name = "comboBoxGly";
-            this.comboBoxGly.Size = new System.Drawing.Size(1302, 21);
+            this.comboBoxGly.Size = new System.Drawing.Size(1375, 21);
             this.comboBoxGly.TabIndex = 8;
             this.comboBoxGly.SelectedIndexChanged += new System.EventHandler(this.comboBoxGly_SelectedIndexChanged);
             // 
@@ -256,7 +355,7 @@
             // labelRects
             // 
             this.labelRects.AutoSize = true;
-            this.labelRects.Location = new System.Drawing.Point(1078, 357);
+            this.labelRects.Location = new System.Drawing.Point(1078, 273);
             this.labelRects.Name = "labelRects";
             this.labelRects.Size = new System.Drawing.Size(35, 13);
             this.labelRects.TabIndex = 11;
@@ -264,7 +363,7 @@
             // 
             // textBoxRects
             // 
-            this.textBoxRects.Location = new System.Drawing.Point(1078, 373);
+            this.textBoxRects.Location = new System.Drawing.Point(1078, 289);
             this.textBoxRects.Multiline = true;
             this.textBoxRects.Name = "textBoxRects";
             this.textBoxRects.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -274,7 +373,7 @@
             // labelQuads
             // 
             this.labelQuads.AutoSize = true;
-            this.labelQuads.Location = new System.Drawing.Point(1078, 468);
+            this.labelQuads.Location = new System.Drawing.Point(1078, 384);
             this.labelQuads.Name = "labelQuads";
             this.labelQuads.Size = new System.Drawing.Size(38, 13);
             this.labelQuads.TabIndex = 13;
@@ -282,17 +381,17 @@
             // 
             // textBoxQuads
             // 
-            this.textBoxQuads.Location = new System.Drawing.Point(1081, 484);
+            this.textBoxQuads.Location = new System.Drawing.Point(1081, 400);
             this.textBoxQuads.Multiline = true;
             this.textBoxQuads.Name = "textBoxQuads";
             this.textBoxQuads.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxQuads.Size = new System.Drawing.Size(388, 143);
+            this.textBoxQuads.Size = new System.Drawing.Size(388, 104);
             this.textBoxQuads.TabIndex = 14;
             // 
             // labelTriangles
             // 
             this.labelTriangles.AutoSize = true;
-            this.labelTriangles.Location = new System.Drawing.Point(1081, 630);
+            this.labelTriangles.Location = new System.Drawing.Point(1081, 509);
             this.labelTriangles.Name = "labelTriangles";
             this.labelTriangles.Size = new System.Drawing.Size(50, 13);
             this.labelTriangles.TabIndex = 15;
@@ -300,18 +399,39 @@
             // 
             // textBoxTriangles
             // 
-            this.textBoxTriangles.Location = new System.Drawing.Point(1081, 646);
+            this.textBoxTriangles.Location = new System.Drawing.Point(1081, 525);
             this.textBoxTriangles.Multiline = true;
             this.textBoxTriangles.Name = "textBoxTriangles";
             this.textBoxTriangles.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxTriangles.Size = new System.Drawing.Size(388, 129);
+            this.textBoxTriangles.Size = new System.Drawing.Size(388, 108);
             this.textBoxTriangles.TabIndex = 16;
+            // 
+            // labelIndexedTriangles
+            // 
+            this.labelIndexedTriangles.AutoSize = true;
+            this.labelIndexedTriangles.Location = new System.Drawing.Point(1081, 636);
+            this.labelIndexedTriangles.Name = "labelIndexedTriangles";
+            this.labelIndexedTriangles.Size = new System.Drawing.Size(91, 13);
+            this.labelIndexedTriangles.TabIndex = 17;
+            this.labelIndexedTriangles.Text = "Indexed Triangles";
+            // 
+            // textBoxIndexedTriangles
+            // 
+            this.textBoxIndexedTriangles.Location = new System.Drawing.Point(1081, 652);
+            this.textBoxIndexedTriangles.Multiline = true;
+            this.textBoxIndexedTriangles.Name = "textBoxIndexedTriangles";
+            this.textBoxIndexedTriangles.ReadOnly = true;
+            this.textBoxIndexedTriangles.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxIndexedTriangles.Size = new System.Drawing.Size(385, 104);
+            this.textBoxIndexedTriangles.TabIndex = 18;
             // 
             // WinGlyphics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1481, 857);
+            this.Controls.Add(this.textBoxIndexedTriangles);
+            this.Controls.Add(this.labelIndexedTriangles);
             this.Controls.Add(this.textBoxTriangles);
             this.Controls.Add(this.labelTriangles);
             this.Controls.Add(this.textBoxQuads);
@@ -363,8 +483,6 @@
         private System.Windows.Forms.ComboBox comboBoxGly;
         private System.Windows.Forms.Label labelTokens;
         private System.Windows.Forms.TextBox textBoxTokens;
-        private System.Windows.Forms.ToolStripMenuItem saveDirectPNGToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveObliquePNGToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Label labelRects;
         private System.Windows.Forms.TextBox textBoxRects;
@@ -372,6 +490,22 @@
         private System.Windows.Forms.TextBox textBoxQuads;
         private System.Windows.Forms.Label labelTriangles;
         private System.Windows.Forms.TextBox textBoxTriangles;
+        private System.Windows.Forms.ToolStripMenuItem openGlyphicsFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveGlyphicsFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem copyImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meshDAEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sterelithographySTLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem animationGIFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serializedRectsTXTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serializedRectsLimit255TXTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem copyWebGLToolStripMenuItem;
+        private System.Windows.Forms.Label labelIndexedTriangles;
+        private System.Windows.Forms.TextBox textBoxIndexedTriangles;
     }
 }
 

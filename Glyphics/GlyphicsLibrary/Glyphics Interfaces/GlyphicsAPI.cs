@@ -33,6 +33,9 @@ namespace GlyphicsLibrary
     //Example: From GIS, for generating height maps
     //Example: From heightmaps..
 
+    //TODO: To JSON
+    //TODO: To WebGL
+
     //Meta-language for actions
     // "code" > rects > triangles > translate 4 0 4 ; clone ; translate
 
@@ -159,6 +162,9 @@ namespace GlyphicsLibrary
         public static IRectList SerializedRectsToRects(ISerializedRects serializedRects) { return Atomics.Converter.SerializedRectsToRects(serializedRects); }
         public static ITriangles RectsToTrianglesCube(IRectList rectSet) { return Atomics.Converter.RectsToTrianglesCube(rectSet); }
         public static ISerializedRects RectsToSerializedRectsLimit255(IRectList rectSet) { return new CSerializedRects(Atomics.Converter.SerializeLimit255(rectSet)); }
+
+        //Triangles-To
+        public static string TrianglesToWebGL(ITriangles triangles, string declarationName) { return Atomics.Converter.TrianglesToWebGL(triangles, declarationName); }
 
         //RGBA-To
         public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a) { return Atomics.Converter.Rgba2Ulong(r, g, b, a); }

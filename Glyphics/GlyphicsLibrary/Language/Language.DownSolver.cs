@@ -35,6 +35,7 @@ namespace GlyphicsLibrary.Language
         public ITriangles triangles;
         public byte[] rawbytes;
 
+        public DownSolver() { }
         public DownSolver(ICode inCode) { FromCode(inCode); }
         public DownSolver(string filename) { FromFilename(filename); }
         public DownSolver(ICodename inCodename) { codename = inCodename; }

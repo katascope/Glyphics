@@ -63,7 +63,9 @@ ImgMirrorX
         private void UpdateDisplay()
         {
             bitmap = new CBitmap();
-            bitmap.GridToBitmap(hc.gridOblique);
+
+            if (hc.gridOblique != null)
+                bitmap.GridToBitmap(hc.gridOblique);
 
             textBoxTokens.Text = (hc.tokens == null) ? null : hc.tokens.ToString();
             textBoxSerializedRects.Text = (hc.serializedRects == null) ? null : hc.serializedRects.ToString();
@@ -71,6 +73,7 @@ ImgMirrorX
             textBoxRects.Text = (hc.rects == null) ? null : hc.rects.ToString();
             textBoxQuads.Text = (hc.quads == null) ? null : hc.quads.ToString();
             textBoxTriangles.Text = (hc.triangles == null) ? null : hc.triangles.ToString();
+            textBoxIndexedTriangles.Text = (hc.triangles == null) ? null : GlyphicsApi.TrianglesToWebGL(hc.triangles,"Name");
             this.Refresh();
         }
 
@@ -143,6 +146,21 @@ ImgMirrorX
             {
                 hc = new GlyphicsLibrary.Language.DownSolver(resultName);
                 UpdateDisplay();
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            hc = new GlyphicsLibrary.Language.DownSolver();
+            UpdateDisplay();
+        }
+
+        private void copyWebGLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (hc.triangles != null)
+            {
+                string webglTriangles = GlyphicsApi.TrianglesToWebGL(hc.triangles, "Tester");
+                Clipboard.SetText(webglTriangles);
             }
         }
     }

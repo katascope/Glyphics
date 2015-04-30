@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html><head><style>body { margin: 0px; padding: 0px;} </style></head>
+<!-- http://mrdoob.com/projects/voxels/#A/ -->
+  <body style="background-color: #090909">
+    <div id="container"></div>
+    <script src="http://www.html5canvastutorials.com/libraries/three.min.js"></script>
+    <script defer="deserialize">
+      var $_GET = {};
+      function ParseGET()
+      {
+        var args = location.search.substr(1).split(/&/);
+        for (var i=0; i<args.length; ++i) {
+            var tmp = args[i].split(/=/);
+            if (tmp[0] != "") {
+                $_GET[decodeURIComponent(tmp[0])] = decodeURIComponent(tmp.slice(1).join("").replace("+", " "));
+            }
+        }
+      }
+
+      var deserializerLookup = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@";
+      function From64(character)
+      {
+       for (var i = 0; i < deserializerLookup.length; i++)
+       {
+         if (deserializerLookup[i] == character)
+          return i;
+       }
+       return 0;
+      }
+
+      // revolutions per second
+      var angularSpeed = 0.2;
+      var lastTime = 0;
+ 
+      // this function is executed on each animation frame
+      function animate(){
+        // update
+        var time = (new Date()).getTime();
+        var timeDiff = time - lastTime;
+        var angleChange = angularSpeed * timeDiff * 2 * Math.PI / 1000;
+//        cube.rotation.y += angleChange;
+        lastTime = time;
+
+        // render
+        renderer.render(scene, camera);
+
+        // request new frame
+        requestAnimationFrame(function(){
+//            animate();
+        });
+      }
+
+      ParseGET();
+      document.write("Serialized data: " + $_GET['serialized'] + "<br>\n");
+      //Nexus : *@@@@10000@0000100uv01w1f@01@0ug0gL1gg0hg1uv0hw1uL0hL1u00v@0w00x00!g0xg1Lv0xw1LL0xL1L@0x@0!g0ML1Mg0Ng0!v0Nw0!L0NL0!00@@0@11v!1wg1!g1!L1!L1!g2NgfNL2NLfNg2@gf@L2@Lf@ggNLgNggOgg!LgOLg!gg@Lg@*7v@@10101u0fx01!0f10gf0uM0g!0uh0hu0ux0hK0u10xf0!h0xu0Lx0xK0LM0x!0!h0Nu0!x0NK0!g1Ng1ZL1NL1Zg2Ogf!L2OLf!hgOKg!*v@v@20212dcdO12Zcd*@v@@20i12tcdy12Jcd*@vv@2021idctO1iZct*vv@@2021ydcJO1yZcJ*@@v@2021OdcZO1OZcZ*@@@@30qhPBs!
+      //Ascent: *@@@@00000@0000100uv01w0f@01@0ug0gL0gg0hg0uL0hL0u00vg0wL0v@0w00x00!g0xg0KL0xL0K@0x@0!g0LL0Lv0Mw0!O0OS0OW0OZ0OO0PO0YZ0PZ0YO0ZZ0Z00@@0@O1OOcOS1OS7OW1OW7OZ1OZcOO1ZOcZZ1ZZcZT8OV8OOdOZdOOdPOdYZdPZdYOdZZdZ2v4Wv42v52v9Wv5WvR2vaPvaQvbQvLovoAvoovpovzAvpAvyovAuvAmvMPvMmvNmvRmvSWvSbP2@P2bP3bP9@P3@PSbPaVPaWPbWPM2PNVPN2PO2PSVPOVQO2PT@PTVQaVQaVQNVQNURaUSOTTaTTaTTOTTOSUaSUaSUOSUOTVaTWOWWTYWVfWW!WWfWXfWX!WX!WXfWY!WYUXaUYOWXQYXUWYOYYRVZa@ZaVZbVZN@Zb@ZNVZO@ZO*7v@M00101u0fx01!0f10gf0uM0g!0u10xf0LM0x!0L10Mu0!x0M!0Nx0ON0ZT0OV0O!0O!0ZP0PY0Yx0!!0!*7v@@00h0hK0KcP3!P9*MvM@00n1is1in2js2jn3ks3kn4ls4ln5ms5mn6ns6nn7os7on8ps8pn9qs9qnarsarnbssbsnctsctndusdunevsevnfwsfwngxsgxnhyshynizsiznjAsjAnkBskBhkVmkWnlCslChlSmlUnmDsmDhmPmmRtnAynDnnEynMhnNynOnnPynTtnUynYhoKmoMhpHmpJiqEnqGirBnrDisznsAitwntyiutnuv2vb7vbivrnvs2wc7wd2xe7xf2yg7yh2zi7zj2Ak7Al2Bm7Bn2Co7Co2Dp7Dq2Er7Es2Ft7Fu2Gv7Gw2Hx7Hy2Iz7Iz2JA7JB2KC7KD2LE7LF2MG7MH2NI7NJ2OK7OLdPbiPe2PM7PMdQfiQkdRliRrdSsiSxdTyiTEdUFiULdVMiVRdWSiWV*vMv@00w1uytuv1vvtvz1vztvw1wytwvvzAvLuwzuwLBwzBxLtxztyLCyzCzLszzszLrAzrALDAzDALsBzsCLCBzCCLtDztELBDzBELuFzAFL*vvM@00P1OR7OX1OY7OO1PO3YZ1PZcYP1ZYcZO4PO7RO4XO7YP8OS8OW8OY8OO8POcYP9OYcOPdPYdYpvpzvypvzuvz*vvMf00O4SO7W*Mvv@003v5Vv9QvaVvaRvbVvLQvMVvMnvNVvR3POUPO3PP!PS*MMv@00WPa!PaXPb!PMWPN!POVQbVQMTTbTTNSUbSUNWZb!ZN*vMM@00gWXZWX
+      //Arena : *UUU@04000@0000100!@01@0!00@@0@616V1661761UV17V1Ui1hJ1hh1ihdJK1iKdJj1sj1sn1sn1si1KJbK61VV1Vc2cs8cz2cO8cc2dcdPs2ds8gz2dz8gP2dPdPi2hs8hz2hJ8hj2tn2uc2QPeQj3vj3vn3vn3vj4wn4xj5yj5yn5yn5yj6zn6Aj7Bn7Cj8Dj8Dn8Dn8Dc9cOdci9hJdhj9En9FjaGjaGnaGnaGjbHnbIjcJncJicKicKocKJcKidKJdKcecceccePPeP*7v@@04101!0!717U1g71hh1hK1hU1h71ig1JL1iU1Jk1sm1s71Kh1KK1KU1K71LU1Ud2dr8gA2dO8gd2hhdhK2hOdhd2igdJL2iOdJd2KhdKK2KOdKd2LOdPk3vm3vk5ym5yk8Dm8Dd9dOdgkaGmaGjcKncKdecOeccedceOPedPeO*vvvv0pV15Z15V26Z26V37Z37V48Z48V59Z59V6aZ6aV7bZ7bV8cZ8cV9dZ9dVaeZaeVbfZbfVcgZcgVdhZdhVeiZeiVfjZfjVgkZgkVhlZhlVimZimVjnZjnVkoZkoVlpZlpVmqZmqVnrZnrVosZosVptZptVquZquVrvZrvVswZswVtxZtxVuyZuyVvzZvzVwAZwAVxBZxBVyCZyCVzDZzDVAEZAEVBFZBFVCGZCGVDHZDHVEIZEIVFJZFJVGKZGKVHLZHLVIMZIMVJNZJNVKOZKOVLPZLPVMQZMQVNRZNRVOSZOSVPTZPTVQUZQU*@@@@ae828cFbP29TFc82RcFUP2RTFU*UUU@0p3R2BR23R33R6BR3BRdoR6wR62R72RonR7nRoxR7xR9wRawRfAReARjvRgvRlzRkzRpuRmuRr2Rpn!pyRqyRvtRstRwxRwxRAsRxsRCwRBwRGrRDrRIvRHvRMqRJqROuRNuRSpRPpRYtRTtRUuRVZRVZRWZRYpRZZRZ2S72Z72SnnZn2So2!onSon!o2!7n!72!82!nn!8n!n*v@7@0p4R3AR54R6nR6xR6AR6*@77@0p3R7mRoyR7AR9xRaARdxRezRfwRgzRjwRkyRlvRmyRpvRqxRruRsxRvuRwwRwtRxwRAtRBvRCsRDvRGsRHuRIrRJuRMrRNtROqRPtRSqRTsRUqRVtRV2S82Zm3Som!o3!8m!n*7v@@0pqRWYRY
+
+      // renderer
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // camera
+      var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+      camera.position.x = 50;
+      camera.position.y = 50;
+      camera.position.z = -200;
+      camera.lookAt(new THREE.Vector3())
+
+      // scene
+      var scene = new THREE.Scene();
+
+      var data = $_GET['serialized'];
+
+      var state = 0;
+      
+      var R = 0;
+      var G = 0;
+      var B = 0;
+      var A = 0;
+      var shapeId = 0;
+      var textureId = 0;
+
+      for (var i = 0, len = data.length; i < len; i++)
+      {
+        if (data[i] == '*') state = 0;
+        if (data[i] == ':') state = 1;
+        if (state == 0)
+        {
+          i++;
+          R = (From64(data[i++]) <<2)|3;
+          G = (From64(data[i++]) <<2)|3;
+          B = (From64(data[i++]) <<2)|3;
+          A = (From64(data[i++]) <<2)|3;
+          
+          R /= 255.0;
+          G /= 255.0;
+          B /= 255.0;
+          A /= 255.0;
+
+          shapeId = From64(data[i++]);
+          textureId = From64(data[i]);
+
+          document.write("RGBA "+R+","+G+","+B+","+A+" shp="+shapeId+ " tex="+textureId + "<br>\n");
+
+          state = 1;
+        }
+        else if (state == 1)
+        {
+            var x1 = From64(data[i++]);
+            var y1 = From64(data[i++]);
+            var z1 = From64(data[i++]);
+            var x2 = From64(data[i++]);
+            var y2 = From64(data[i++]);
+            var z2 = From64(data[i]);
+            
+            x2++;
+            y2++;
+            z2++;
+
+            var width = x2 - x1;
+            var height = y2 - y1;
+            var depth = z2 - z1;
+
+            // cube
+            var material = new THREE.MeshBasicMaterial( )
+            material.color.setRGB(R,G,B);
+
+            var cube = new THREE.Mesh(new THREE.CubeGeometry(1,1,1), material);
+//                         var cube = new THREE.Mesh(new THREE.CubeGeometry(1,1,1), new THREE.MeshNormalMaterial());
+
+            cube.position.x = (64-(x1 + width/2));
+            cube.position.y = y1 + height/2 - 32;
+            cube.position.z = z1 + depth/2 - 32;
+
+            cube.scale.x = width;
+            cube.scale.y = height;
+            cube.scale.z = depth;
+
+
+            cube.overdraw = true;
+            scene.add(cube);
+
+  //        document.write("Rect "+x1+","+y1+","+z1+" - "+x2+","+y2+","+z2+"<BR>\n");
+        }
+      }
+
+      // start animation
+      animate();
+    </script>
+  </body>
+</html>
+

@@ -106,6 +106,7 @@
     <Compile Include="Atomics\Atomics.CFloat3.cs" />
     <Compile Include="Atomics\Atomics.CFloat2.cs" />
     <Compile Include="Atomics\Atomics.Converter.QuadsToTriangles.cs" />
+    <Compile Include="Atomics\Atomics.Converter.TrianglesToWebGL.cs" />
     <Compile Include="Atomics\Atomics.CQuadList.cs" />
     <Compile Include="Atomics\Atomics.CScene.cs" />
     <Compile Include="Atomics\Atomics.CTransform.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Atomics\Atomics.Converter.BytesToString.cs" />
     <Compile Include="Atomics\Atomics.FileTxtWrite.cs" />
     <Compile Include="Atomics\Atomics.TriangleUnitCube.cs" />
+    <Compile Include="Atomics\Atomics.CInt3.cs" />
     <Compile Include="ByteGrid\ByteGrid.Converter.GridToHex.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileDaeWrite.cs" />
     <Compile Include="ByteGrid\ByteGrid.FileGifRead.cs" />
@@ -122,6 +124,8 @@
     <Compile Include="Glyphics Interfaces\IBytes.cs" />
     <Compile Include="Glyphics Interfaces\IDeck.cs" />
     <Compile Include="Glyphics Interfaces\IElement.cs" />
+    <Compile Include="Glyphics Interfaces\IIndexedTriangles.cs" />
+    <Compile Include="Glyphics Interfaces\IInt3.cs" />
     <Compile Include="Glyphics Interfaces\IQuad.cs" />
     <Compile Include="Glyphics Interfaces\IQuadList.cs" />
     <Compile Include="Glyphics Interfaces\IScene.cs" />

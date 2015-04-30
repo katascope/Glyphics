@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html><head><style>body { margin: 0px; padding: 0px;} </style></head>
+  <body>
+    <div id="container"></div>
+    <script src="http://www.html5canvastutorials.com/libraries/three.min.js"></script>
+    <script defer="deserialize">
+      var $_GET = {};
+      function ParseGET()
+      {
+        var args = location.search.substr(1).split(/&/);
+        for (var i=0; i<args.length; ++i) {
+            var tmp = args[i].split(/=/);
+            if (tmp[0] != "") {
+                $_GET[decodeURIComponent(tmp[0])] = decodeURIComponent(tmp.slice(1).join("").replace("+", " "));
+            }
+        }
+      }
+
+      var deserializerLookup = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@";
+      function From64(character)
+      {
+       for (var i = 0; i < deserializerLookup.length; i++)
+       {
+         if (deserializerLookup[i] == character)
+          return i;
+       }
+       return 0;
+      }
+
+      function Deserialize(data)
+      {
+       var state = 0;
+
+       for (var i = 0, len = data.length; i < len; i++)
+       {
+         if (data[i] == '*') state = 0;
+         if (data[i] == ':') state = 1;
+
+         if (state == 0)
+         {
+           i++;
+           var R = (From64(data[i++]) <<2)|3;
+           var G = (From64(data[i++]) <<2)|3;
+           var B = (From64(data[i++]) <<2)|3;
+           var A = (From64(data[i++]) <<2)|3;
+
+           var shapeId = From64(data[i++]);
+           var textureId = From64(data[i]);
+
+           document.write("RGBA "+R+","+G+","+B+","+A+" shp="+shapeId+ " tex="+textureId + "<br>\n");
+
+           state = 1;
+         }
+         else if (state == 1)
+         {
+             var x1 = From64(data[i++]);
+             var y1 = From64(data[i++]);
+             var z1 = From64(data[i++]);
+             var x2 = From64(data[i++]);
+             var y2 = From64(data[i++]);
+             var z2 = From64(data[i]);
+           document.write("Rect "+x1+","+y1+","+z1+" - "+x2+","+y2+","+z2+"<BR>\n");
+         }
+       }
+      }
+
+      ParseGET();
+      document.write("Serialized data: " + $_GET['serialized'] + "<br>\n");
+
+      var serializedData = "*@@@@10000@0000100uv01w1f@01@0ug0gL1gg0hg1uv0hw1uL0hL1u00v@0w00x00!g0xg1Lv0xw1LL0xL1L@0x@0!g0ML1Mg0Ng0!v0Nw0!L0NL0!00@@0@11v!1wg1!g1!L1!L1!g2NgfNL2NLfNg2@gf@L2@Lf@ggNLgNggOgg!LgOLg!gg@Lg@*7v@@10101u0fx01!0f10gf0uM0g!0uh0hu0ux0hK0u10xf0!h0xu0Lx0xK0LM0x!0!h0Nu0!x0NK0!g1Ng1ZL1NL1Zg2Ogf!L2OLf!hgOKg!*v@v@20212dcdO12Zcd*@v@@20i12tcdy12Jcd*@vv@2021idctO1iZct*vv@@2021ydcJO1yZcJ*@@v@2021OdcZO1OZcZ*@@@@30qhPBs!";
+
+      Deserialize($_GET['serialized']);
+
+    </script>
+  </body>
+</html>
+
