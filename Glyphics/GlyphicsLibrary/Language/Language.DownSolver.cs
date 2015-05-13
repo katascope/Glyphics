@@ -9,36 +9,31 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlyphicsLibrary.Language
 {
     //FlowSolver class, not really that efficient, but good for making inputs solve out to all possible outputs
     public class DownSolver
     {
-        public ICodeList codes;
-        public IGridList grids;
-        public ICode code;
-        public IBytecode bytecode;
-        public ICodename codename;
-        public ITokenList tokens;
-        public IGrid grid;
-        public IGrid gridOblique;
-        public IRectList rects;
-        public ISerializedRects serializedRects;
-        public ISerializedRects serializedRectsLimit255;
-        public IQuadList quads;
-        public ITriangles triangles;
-        public byte[] rawbytes;
+        public ICodeList Codes;
+        public IGridList Grids;
+        public ICode Code;
+        public IBytecode Bytecode;
+        public ICodename Codename;
+        public ITokenList Tokens;
+        public IGrid Grid;
+        public IGrid GridOblique;
+        public IRectList Rects;
+        public ISerializedRects SerializedRects;
+        public ISerializedRects SerializedRectsLimit255;
+        public IQuadList Quads;
+        public ITriangles Triangles;
+        public byte[] Rawbytes;
 
         public DownSolver() { }
         public DownSolver(ICode inCode) { FromCode(inCode); }
         public DownSolver(string filename) { FromFilename(filename); }
-        public DownSolver(ICodename inCodename) { codename = inCodename; }
+        public DownSolver(ICodename inCodename) { Codename = inCodename; }
         public DownSolver(IBytecode inBytecode) { FromBytecode(inBytecode); }
         public DownSolver(ITokenList inTokens) { FromTokens(inTokens); }
         public DownSolver(IGrid inGrid) { FromGrid(inGrid); }
@@ -54,73 +49,73 @@ namespace GlyphicsLibrary.Language
             if (filename.ToUpper().Contains(".OBJ")) FromTriangles(GlyphicsApi.ObjToTriangles(filename));
             if (filename.ToUpper().Contains(".GIF"))
             {
-                grids = GlyphicsApi.GifToGrids(filename);
-                grid = grids.GetGrid(0);
-                FromGrid(grid);
+                Grids = GlyphicsApi.GifToGrids(filename);
+                Grid = Grids.GetGrid(0);
+                FromGrid(Grid);
             }
             if (filename.ToUpper().Contains(".GLY"))
             {
-                codes = GlyphicsApi.GlyToCodes(filename);
-                code = codes.GetCode(0);
-                FromCode(code);
+                Codes = GlyphicsApi.GlyToCodes(filename);
+                Code = Codes.GetCode(0);
+                FromCode(Code);
             }
         }
 
         public void FromCode(ICode inCode)
         {
-            code = inCode;
-            codename = GlyphicsApi.CodeToCodename(code);
-            tokens = GlyphicsApi.CodeToTokens(code);
-            FromTokens(tokens);
+            Code = inCode;
+            Codename = GlyphicsApi.CodeToCodename(Code);
+            Tokens = GlyphicsApi.CodeToTokens(Code);
+            FromTokens(Tokens);
         }
 
         public void FromBytecode(IBytecode inBytecode)
         {
-            bytecode = inBytecode;
-            tokens = GlyphicsApi.BytecodeToTokens(bytecode);
-            FromTokens(tokens);
+            Bytecode = inBytecode;
+            Tokens = GlyphicsApi.BytecodeToTokens(Bytecode);
+            FromTokens(Tokens);
         }
 
         public void FromTokens(ITokenList inTokens)
         {
-            tokens = inTokens;
-            grid = GlyphicsApi.TokensToGrid(tokens);
-            FromGrid(grid);
+            Tokens = inTokens;
+            Grid = GlyphicsApi.TokensToGrid(Tokens);
+            FromGrid(Grid);
         }
 
         public void FromGrid(IGrid inGrid)
         {
-            grid = inGrid;
-            gridOblique = GlyphicsApi.Renderer.RenderObliqueCells(grid);
-            rects = GlyphicsApi.GridToRects(grid);
-            FromRects(rects);
+            Grid = inGrid;
+            GridOblique = GlyphicsApi.Renderer.RenderObliqueCells(Grid);
+            Rects = GlyphicsApi.GridToRects(Grid);
+            FromRects(Rects);
         }
 
         public void FromRects(IRectList inRects)
         {
-            rects = inRects;
-            serializedRects = GlyphicsApi.RectsToSerializedRects(rects);
-            serializedRectsLimit255 = GlyphicsApi.RectsToSerializedRectsLimit255(rects);
-            FromSerializedRects(serializedRects);
+            Rects = inRects;
+            SerializedRects = GlyphicsApi.RectsToSerializedRects(Rects);
+            SerializedRectsLimit255 = GlyphicsApi.RectsToSerializedRectsLimit255(Rects);
+            FromSerializedRects(SerializedRects);
         }
 
         public void FromSerializedRects(ISerializedRects inSerializedRects)
         {
-            serializedRects = inSerializedRects;
-            rects = GlyphicsApi.SerializedRectsToRects(serializedRects);
-            quads = GlyphicsApi.RectsToQuads(rects);
-            FromQuads(quads);
+            SerializedRects = inSerializedRects;
+            Rects = GlyphicsApi.SerializedRectsToRects(SerializedRects);
+            Quads = GlyphicsApi.RectsToQuads(Rects);
+            FromQuads(Quads);
         }
 
         public void FromQuads(IQuadList quads)
         {
-            triangles = GlyphicsApi.QuadsToTriangles(quads);
-            FromTriangles(triangles);
+            Triangles = GlyphicsApi.QuadsToTriangles(quads);
+            FromTriangles(Triangles);
         }
 
         public void FromTriangles(ITriangles inTriangles)
         {
-            triangles = inTriangles;
+            Triangles = inTriangles;
         }
     }
 }

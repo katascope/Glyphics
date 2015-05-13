@@ -14,8 +14,8 @@ namespace GlyphicsLibrary
 {
     public interface IInt3
     {
-        int v1 { get; set; }
-        int v2 { get; set; }
-        int v3 { get; set; }
+        int V1 { get; set; }
+        int V2 { get; set; }
+        int V3 { get; set; }
     }
 }

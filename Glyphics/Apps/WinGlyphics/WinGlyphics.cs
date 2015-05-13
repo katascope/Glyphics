@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GlyphicsLibrary;
 
@@ -13,8 +7,8 @@ namespace WinGlyphics
 {
     public partial class WinGlyphics : Form
     {
-        GlyphicsLibrary.Language.DownSolver hc;
-        private CBitmap bitmap = null;
+        GlyphicsLibrary.Language.DownSolver _hc;
+        private CBitmap _bitmap;
 
         public WinGlyphics()
         {
@@ -51,30 +45,30 @@ ImgMirrorX
 ";
             textBoxMain.Text = codeString;
 
-            hc = new GlyphicsLibrary.Language.DownSolver("..\\..\\..\\..\\..\\Glyph Cores\\default.gly");
+            _hc = new GlyphicsLibrary.Language.DownSolver("..\\..\\..\\..\\..\\Glyph Cores\\default.gly");
 
-            foreach (ICode code in hc.codes)
+            foreach (ICode code in _hc.Codes)
             {
                 comboBoxGly.Items.Add(code.ToString());
             }
-            comboBoxGly.Text = hc.codes.GetCode(0).ToString();
+            comboBoxGly.Text = _hc.Codes.GetCode(0).ToString();
         }
 
         private void UpdateDisplay()
         {
-            bitmap = new CBitmap();
+            _bitmap = new CBitmap();
 
-            if (hc.gridOblique != null)
-                bitmap.GridToBitmap(hc.gridOblique);
+            if (_hc.GridOblique != null)
+                _bitmap.GridToBitmap(_hc.GridOblique);
 
-            textBoxTokens.Text = (hc.tokens == null) ? null : hc.tokens.ToString();
-            textBoxSerializedRects.Text = (hc.serializedRects == null) ? null : hc.serializedRects.ToString();
-            textBoxSerializedRectsLimit255.Text = (hc.serializedRectsLimit255 == null) ? null : hc.serializedRectsLimit255.ToString();
-            textBoxRects.Text = (hc.rects == null) ? null : hc.rects.ToString();
-            textBoxQuads.Text = (hc.quads == null) ? null : hc.quads.ToString();
-            textBoxTriangles.Text = (hc.triangles == null) ? null : hc.triangles.ToString();
-            textBoxIndexedTriangles.Text = (hc.triangles == null) ? null : GlyphicsApi.TrianglesToWebGL(hc.triangles,"Name");
-            this.Refresh();
+            textBoxTokens.Text = (_hc.Tokens == null) ? null : _hc.Tokens.ToString();
+            textBoxSerializedRects.Text = (_hc.SerializedRects == null) ? null : _hc.SerializedRects.ToString();
+            textBoxSerializedRectsLimit255.Text = (_hc.SerializedRectsLimit255 == null) ? null : _hc.SerializedRectsLimit255.ToString();
+            textBoxRects.Text = (_hc.Rects == null) ? null : _hc.Rects.ToString();
+            textBoxQuads.Text = (_hc.Quads == null) ? null : _hc.Quads.ToString();
+            textBoxTriangles.Text = (_hc.Triangles == null) ? null : _hc.Triangles.ToString();
+            textBoxIndexedTriangles.Text = (_hc.Triangles == null) ? null : GlyphicsApi.TrianglesToWebGl(_hc.Triangles,"Name");
+            Refresh();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -83,38 +77,33 @@ ImgMirrorX
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            if (bitmap.GetBitmap() != null)
-                e.Graphics.DrawImage(bitmap.GetBitmap(), 0, 0);
+            if (_bitmap.GetBitmap() != null)
+                e.Graphics.DrawImage(_bitmap.GetBitmap(), 0, 0);
         }
 
         //Clipboard.SetImage(Bitmap.GetBitmap());
         private void copySerializedRectsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (hc.serializedRects != null)
-                Clipboard.SetText(hc.serializedRects.ToString());
+            if (_hc.SerializedRects != null)
+                Clipboard.SetText(_hc.SerializedRects.ToString());
         }
 
         private void copySerializedRectsLimit255ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (hc.serializedRectsLimit255 != null)
-                Clipboard.SetText(hc.serializedRectsLimit255.ToString());
+            if (_hc.SerializedRectsLimit255 != null)
+                Clipboard.SetText(_hc.SerializedRectsLimit255.ToString());
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void saveObliquePNGToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            Close();
         }
 
         private void comboBoxGly_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strCode = comboBoxGly.Text;
             ICode code = GlyphicsApi.CreateCode(strCode);
-            hc = new GlyphicsLibrary.Language.DownSolver(code);
+            _hc = new GlyphicsLibrary.Language.DownSolver(code);
             UpdateDisplay();
         }
 
@@ -122,64 +111,64 @@ ImgMirrorX
         {
             string strCode = textBoxMain.Text.Replace(";;",";");
             ICode code = GlyphicsApi.CreateCode(strCode);
-            hc = new GlyphicsLibrary.Language.DownSolver(code);
+            _hc = new GlyphicsLibrary.Language.DownSolver(code);
             UpdateDisplay();
         }
 
         private void modelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string resultName = FileIO.GetOpenFilename("Open a model File", "Stereolithography file (*.STL)|*.stl|OBJ file (*.OBJ)|*.obj|All files (*.*)|*.*");
+            string resultName = FileIo.GetOpenFilename("Open a model File", "Stereolithography file (*.STL)|*.stl|OBJ file (*.OBJ)|*.obj|All files (*.*)|*.*");
             if (resultName != null)
             {
                 ITriangles triangles = GlyphicsApi.StlToTriangles(resultName);
                 IGrid grid = GlyphicsApi.CreateGrid(16, 16, 16, 4);
                 GlyphicsApi.Renderer.RenderTrianglesToGrid(triangles, grid);
-                hc = new GlyphicsLibrary.Language.DownSolver(grid);
+                _hc = new GlyphicsLibrary.Language.DownSolver(grid);
                 UpdateDisplay();
             }
         }
 
         private void gridToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string resultName = FileIO.GetSaveAsFilename("Save a PNG Image File", "PNG Image|*.png|All files (*.*)|*.*");
+            string resultName = FileIo.GetSaveAsFilename("Save a PNG Image File", "PNG Image|*.png|All files (*.*)|*.*");
             if (resultName != null)
             {
-                hc = new GlyphicsLibrary.Language.DownSolver(resultName);
+                _hc = new GlyphicsLibrary.Language.DownSolver(resultName);
                 UpdateDisplay();
             }
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            hc = new GlyphicsLibrary.Language.DownSolver();
+            _hc = new GlyphicsLibrary.Language.DownSolver();
             UpdateDisplay();
         }
 
         private void copyWebGLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (hc.triangles != null)
+            if (_hc.Triangles != null)
             {
-                string webglTriangles = GlyphicsApi.TrianglesToWebGL(hc.triangles, "Tester");
+                string webglTriangles = GlyphicsApi.TrianglesToWebGl(_hc.Triangles, "Tester");
                 Clipboard.SetText(webglTriangles);
             }
         }
     }
     class CBitmap
     {
-        Bitmap bitmap;
+        Bitmap _bitmap;
 
-        public Bitmap GetBitmap() { return bitmap; }
+        public Bitmap GetBitmap() { return _bitmap; }
 
         public void Save(string fileName)
         {
-            bitmap.Save(fileName);
+            _bitmap.Save(fileName);
         }
 
         public void Plot(IntPtr data, int stride, int x, int y, int z, byte r, byte g, byte b)
         {
             unsafe
             {
-                byte* ptr = (byte*)data;
+                var ptr = (byte*)data;
                 int offset = y * stride + x * 3;
                 ptr[offset + 0] = b;
                 ptr[offset + 1] = g;
@@ -189,13 +178,13 @@ ImgMirrorX
 
         public void GridToBitmap(IGrid grid)
         {
-            bitmap = new Bitmap(grid.SizeX, grid.SizeY);
-            System.Drawing.Imaging.BitmapData data = bitmap.LockBits(new Rectangle(0, 0, grid.SizeX, grid.SizeY),
+            if (grid != null)
+            {
+                _bitmap = new Bitmap(grid.SizeX, grid.SizeY);
+                System.Drawing.Imaging.BitmapData data = _bitmap.LockBits(new Rectangle(0, 0, grid.SizeX, grid.SizeY),
                               System.Drawing.Imaging.ImageLockMode.ReadWrite,
                               System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
-            if (grid != null)
-            {
                 for (int z = 0; z < grid.SizeZ; z++)
                     for (int y = 0; y < grid.SizeY; y++)
                         for (int x = 0; x < grid.SizeX; x++)
@@ -205,16 +194,15 @@ ImgMirrorX
                             GlyphicsApi.Ulong2Rgba(v, out r, out g, out b, out a);
                             Plot(data.Scan0, data.Stride, x, y, z, r, g, b);
                         }
+                _bitmap.UnlockBits(data);
             }
-
-            bitmap.UnlockBits(data);
         }
     }
-    public class FileIO
+    public class FileIo
     {
         public static string GetSaveAsFilename(string title, string filter)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            var saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = filter;
             saveFileDialog1.Title = title;
             saveFileDialog1.ShowDialog();
@@ -227,7 +215,7 @@ ImgMirrorX
         }
         public static string GetOpenFilename(string title, string filter)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            var openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.InitialDirectory = ".";
             openFileDialog1.Title = title;

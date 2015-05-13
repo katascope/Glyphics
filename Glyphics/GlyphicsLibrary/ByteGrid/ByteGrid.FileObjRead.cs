@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using GlyphicsLibrary.Atomics;
 
 namespace GlyphicsLibrary.ByteGrid
@@ -16,38 +14,36 @@ namespace GlyphicsLibrary.ByteGrid
         {
             using (var reader = new StreamReader(filename))
             {
-                List<ITriangle> triangles = new List<ITriangle>();
-                int vertexcount = 0;
-
-                List<IFloat3> vertices = new List<IFloat3>();
+                var triangles = new List<ITriangle>();
+                var vertices = new List<IFloat3>();
 
                 while (reader.EndOfStream == false)
                 {
                     string str = reader.ReadLine().TrimStart();
                     string command = str.Split(' ')[0];
 
-                    if (String.Compare("#", command)==0)
+                    if (String.CompareOrdinal("#", command)==0)
                     {
                         //Just a comment, ignore
                     }
-                    if (String.Compare("g", command)==0)
+                    if (String.CompareOrdinal("g", command)==0)
                     {
                         //g Object001
                     }
-                    if (String.Compare("v", command)==0)
+                    if (String.CompareOrdinal("v", command)==0)
                     {
                         //v 0.000000E+00 0.000000E+00 78.0000
 
                         string[] parts = str.Split(' ');
-                        float x = (float)Convert.ToDouble(parts[1]);
-                        float y = (float)Convert.ToDouble(parts[2]);
-                        float z = (float)Convert.ToDouble(parts[3]);
+                        var x = (float)Convert.ToDouble(parts[1]);
+                        var y = (float)Convert.ToDouble(parts[2]);
+                        var z = (float)Convert.ToDouble(parts[3]);
 
                         //Flip y, z
-                        IFloat3 float3 = new Atomics.CFloat3(x, z, y);
+                        IFloat3 float3 = new CFloat3(x, z, y);
                         vertices.Add(float3);
                     }
-                    if (String.Compare("f", command) == 0)
+                    if (String.CompareOrdinal("f", command) == 0)
                     {
                         //f   1 2 3
                         str = str.Replace("  ", " ").Replace("  ", " ").Replace("  ", " ");
@@ -56,7 +52,7 @@ namespace GlyphicsLibrary.ByteGrid
                         int v2 = Convert.ToInt32(parts[2]) - 1;
                         int v3 = Convert.ToInt32(parts[3]) - 1;
  
-                        ITriangle triangle = new Atomics.CTriangle(
+                        ITriangle triangle = new CTriangle(
                                         vertices[v1].X,
                                         vertices[v1].Y,
                                         vertices[v1].Z,
@@ -74,7 +70,6 @@ namespace GlyphicsLibrary.ByteGrid
                 triangleSet.SetTriangles(triangles.ToArray());
                 return triangleSet;
             }
-            return null; 
         }
     }
 }

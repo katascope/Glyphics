@@ -181,7 +181,7 @@ namespace GlyphicsLibrary
         public static ISerializedRects RectsToSerializedRectsLimit255(IRectList rectSet) { return new CSerializedRects(Atomics.Converter.SerializeLimit255(rectSet)); }
 
         //Triangles-To
-        public static string TrianglesToWebGL(ITriangles triangles, string declarationName) { return Atomics.Converter.TrianglesToWebGL(triangles, declarationName); }
+        public static string TrianglesToWebGl(ITriangles triangles, string declarationName) { return Atomics.Converter.TrianglesToWebGl(triangles, declarationName); }
 
         //RGBA-To
         public static ulong Rgba2Ulong(byte r, byte g, byte b, byte a) { return Atomics.Converter.Rgba2Ulong(r, g, b, a); }
@@ -191,10 +191,10 @@ namespace GlyphicsLibrary
         public static ITriangles ObjToTriangles(string filename) { return FileObjRead.ReadfileAscii(filename); }
 
         //DAE Collada/Mesh file
-        public static void SaveDae(string filename, IRectList rects) { ByteGrid.FileDaeWrite.ExportRectsCollada.WriteMesh(filename, rects); }
+        public static void SaveDae(string filename, IRectList rects) { FileDaeWrite.ExportRectsCollada.WriteMesh(filename, rects); }
 
         //Text file
-        public static void SaveFlatText(string filename, string text) { Atomics.FileTxtWrite.SaveFlatText(filename,text); }
+        public static void SaveFlatText(string filename, string text) { FileTxtWrite.SaveFlatText(filename,text); }
 
         //File IO for GLY Glyphics files
         public static bool CodesToGly(string filename, ICodeList codes) { return GlyphicsFile.CodesToGly(filename, codes); }
@@ -222,7 +222,7 @@ namespace GlyphicsLibrary
 
         //Translates hex data in string format to byte array
         public static byte[] HexDataToByteArray(string data) { return Transcode64.HexDataToByteArray(data); }
-        public static IBytes HexDataToBytes(string data) { return new Atomics.CBytes(Transcode64.HexDataToByteArray(data)); }
+        public static IBytes HexDataToBytes(string data) { return new CBytes(Transcode64.HexDataToByteArray(data)); }
 
         //Bytes
         public static string BytesToString(byte[] bytes) { return Atomics.Converter.BytesToString(bytes); }        

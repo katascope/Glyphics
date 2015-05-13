@@ -53,7 +53,7 @@ namespace ScratchPad
           //  IGrid grid = GlyphicsApi.CodeToGrid(code);
             //Console.WriteLine("Grid: {0} {1} non-empty\n", grid, grid.CountNonZero());
 
-            string bytesDesc = GlyphicsApi.BytesToString(grid.CloneData());
+            //string bytesDesc = GlyphicsApi.BytesToString(grid.CloneData());
             //Console.WriteLine("GridBytes:\n{0}\n", bytesDesc);
 
             IRectList rects = GlyphicsApi.GridToRects(grid);
@@ -62,7 +62,7 @@ namespace ScratchPad
             string serialized = GlyphicsApi.RectsToSerializedRectsLimit255(rects).SerializedData;
             Console.WriteLine("Serialized Rects: (len={0})\n{1}\n", serialized.Length, serialized);
 
-            ICode codeFromRects = GlyphicsApi.RectsToCode(rects);
+            //ICode codeFromRects = GlyphicsApi.RectsToCode(rects);
             //Console.WriteLine("New code string:\n\"" + codeFromRects + "\"");
 
             GlyphicsApi.SaveFlatText("..\\..\\foo.txt", serialized);

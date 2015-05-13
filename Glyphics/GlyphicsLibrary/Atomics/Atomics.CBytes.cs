@@ -15,12 +15,12 @@ namespace GlyphicsLibrary.Atomics
     //Byte array class
     internal class CBytes : IBytes
     {
-        private byte[] _byteArray;
+        public byte[] ByteArray { get; set; }
 
         //Assignment constructor
         public CBytes(byte[] newByteArray)
         {
-            _byteArray = newByteArray;
+            ByteArray = newByteArray;
         }
     }
 }

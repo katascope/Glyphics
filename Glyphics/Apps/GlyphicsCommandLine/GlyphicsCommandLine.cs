@@ -70,7 +70,6 @@ namespace GlyphicsCommandLine
             }
 
             string result = "";
-            string outputText = "";
             GlyphicsLibrary.Language.DownSolver hc = null;
 
             for (int i = 0; i < args.Length; i++)
@@ -98,33 +97,33 @@ namespace GlyphicsCommandLine
                 if (i < args.Length - 1)
                     nextArg = args[i + 1];
 
-                if (String.CompareOrdinal(arg, "-ocode") == 0) result = (hc.code != null) ? hc.code.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-ocodename") == 0) result = (hc.codename != null) ? hc.code.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-otokens") == 0) result = (hc.tokens != null) ? hc.tokens.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-obytecode") == 0) result = (hc.bytecode != null) ? hc.bytecode.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-ogrid") == 0) result = (hc.grid != null) ? hc.grid.ToString() : "Filename ";
-                if (String.CompareOrdinal(arg, "-oogrid") == 0) result = (hc.gridOblique != null) ? hc.gridOblique.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-orawbytes") == 0) result = (hc.rawbytes != null) ? hc.rawbytes.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-orects") == 0) result = (hc.rects != null) ? hc.rects.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-oquads") == 0) result = (hc.quads != null) ? hc.quads.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-oser") == 0) result = (hc.serializedRects != null) ? hc.serializedRects.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-oser") == 0) result = (hc.serializedRects != null) ? hc.serializedRects.ToString() : "implement more converters.";
-                if (String.CompareOrdinal(arg, "-oser255") == 0) result = (hc.serializedRectsLimit255 != null) ? hc.serializedRectsLimit255.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-ocode") == 0) result = (hc.Code != null) ? hc.Code.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-ocodename") == 0) result = (hc.Codename != null) ? hc.Code.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-otokens") == 0) result = (hc.Tokens != null) ? hc.Tokens.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-obytecode") == 0) result = (hc.Bytecode != null) ? hc.Bytecode.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-ogrid") == 0) result = (hc.Grid != null) ? hc.Grid.ToString() : "Filename ";
+                if (String.CompareOrdinal(arg, "-oogrid") == 0) result = (hc.GridOblique != null) ? hc.GridOblique.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-orawbytes") == 0) result = (hc.Rawbytes != null) ? hc.Rawbytes.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-orects") == 0) result = (hc.Rects != null) ? hc.Rects.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-oquads") == 0) result = (hc.Quads != null) ? hc.Quads.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-oser") == 0) result = (hc.SerializedRects != null) ? hc.SerializedRects.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-oser") == 0) result = (hc.SerializedRects != null) ? hc.SerializedRects.ToString() : "implement more converters.";
+                if (String.CompareOrdinal(arg, "-oser255") == 0) result = (hc.SerializedRectsLimit255 != null) ? hc.SerializedRectsLimit255.ToString() : "implement more converters.";
                 if (String.CompareOrdinal(arg, "-opng") == 0)
                 {
                     Console.WriteLine("PNG Output file: " + nextArg);
-                    GlyphicsApi.SaveFlatPng(nextArg, hc.grid);
+                    GlyphicsApi.SaveFlatPng(nextArg, hc.Grid);
                 }
                 if (String.CompareOrdinal(arg, "-oopng") == 0)
                 {
                     Console.WriteLine("Oblique PNG Output file: " + nextArg);
-                    GlyphicsApi.SaveFlatPng(nextArg, hc.gridOblique);
+                    GlyphicsApi.SaveFlatPng(nextArg, hc.GridOblique);
                 }
                 if (String.CompareOrdinal(arg, "-ostl") == 0)
                 {
-                    result = (hc.triangles != null) ? hc.triangles.ToString() : "implement more converters.";
+                    result = (hc.Triangles != null) ? hc.Triangles.ToString() : "implement more converters.";
                     Console.WriteLine("STL Output file: " + nextArg);
-                    GlyphicsApi.SaveTrianglesToStl(nextArg, hc.triangles);
+                    GlyphicsApi.SaveTrianglesToStl(nextArg, hc.Triangles);
                 }
             }
             Console.WriteLine("Result:\n" + result);

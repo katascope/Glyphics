@@ -15,5 +15,6 @@ namespace GlyphicsLibrary
     //Byte array class
     public interface IBytes
     {
+        byte[] ByteArray { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace GlyphicsLibrary
 {
     public interface IIndexedTriangles
     {
-        List<IFloat3> _vertices { get; }
-        List<IInt3> _faces { get; }
+        List<IFloat3> Vertices { get; }
+        List<IInt3> Faces { get; }
 
         string VerticesString { get; }
         string FacesString { get; }

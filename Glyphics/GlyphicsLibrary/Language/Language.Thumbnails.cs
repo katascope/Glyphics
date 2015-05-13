@@ -1,7 +1,4 @@
-﻿using System;
-using GlyphicsLibrary;
-using System.Threading.Tasks;
-
+﻿
 namespace GlyphicsLibrary.Language
 {
     internal class Thumbnails

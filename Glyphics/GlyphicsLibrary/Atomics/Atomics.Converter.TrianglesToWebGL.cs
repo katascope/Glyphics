@@ -18,8 +18,8 @@ namespace GlyphicsLibrary.Atomics
     {
         class CIndexedTriangles : IIndexedTriangles
         {
-            public List<IFloat3> _vertices { get; set; }
-            public List<IInt3> _faces { get; set; }
+            public List<IFloat3> Vertices { get; private set; }
+            public List<IInt3> Faces { get; private set; }
 
             public string VerticesString
             {
@@ -27,7 +27,7 @@ namespace GlyphicsLibrary.Atomics
                 {
                     var sb = new StringBuilder();
 
-                    foreach (IFloat3 f3 in _vertices)
+                    foreach (IFloat3 f3 in Vertices)
                     {
                         sb.Append(" " + f3.X + "," + f3.Y + "," + f3.Z + ",\r\n");
                     }
@@ -42,9 +42,9 @@ namespace GlyphicsLibrary.Atomics
                 {
                     var sb = new StringBuilder();
 
-                    foreach (IInt3 i3 in _faces)
+                    foreach (IInt3 i3 in Faces)
                     {
-                        sb.Append(" " + i3.v1 + "," + i3.v2 + "," + i3.v3 + ",\r\n");
+                        sb.Append(" " + i3.V1 + "," + i3.V2 + "," + i3.V3 + ",\r\n");
                     }
 
                     return sb.ToString();
@@ -55,27 +55,25 @@ namespace GlyphicsLibrary.Atomics
             {
                 //Indexer doesn't *actually* have to try and reduce..
 
-                _vertices = new List<IFloat3>();
-                _faces = new List<IInt3>();
+                Vertices = new List<IFloat3>();
+                Faces = new List<IInt3>();
 
                 int faceId = 0;
                 ITriangle[] triangleSet = triangles.GetTriangleArray();
 
                 foreach (ITriangle triangle in triangleSet)
                 {
-                    IInt3 i3 = null;
-
-                    _vertices.Add(triangle.Vertex1); 
-                    _vertices.Add(triangle.Vertex2);
-                    _vertices.Add(triangle.Vertex3);
-                    i3 = new CInt3(faceId, faceId + 1, faceId + 2);
+                    Vertices.Add(triangle.Vertex1); 
+                    Vertices.Add(triangle.Vertex2);
+                    Vertices.Add(triangle.Vertex3);
+                    IInt3 i3 = new CInt3(faceId, faceId + 1, faceId + 2);
                     faceId+=3;
-                    _faces.Add(i3);
+                    Faces.Add(i3);
                 }
             }
         }
 
-        public static string TrianglesToWebGL(ITriangles triangles, string declarationName)
+        public static string TrianglesToWebGl(ITriangles triangles, string declarationName)
         {
             IIndexedTriangles iit = new CIndexedTriangles(triangles);
 

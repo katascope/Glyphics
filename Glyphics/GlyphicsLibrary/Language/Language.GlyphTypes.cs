@@ -211,7 +211,7 @@ namespace GlyphicsLibrary.Language
 
     internal static class Glyphs
     {
-        private static Dictionary<int, IGlyph> glyphIdLookupTable = null;
+        private static Dictionary<int, IGlyph> _glyphIdLookupTable;
 
         private static readonly IGlyph[] GlyphDefs = 
             {
@@ -405,10 +405,10 @@ namespace GlyphicsLibrary.Language
 
         private static void BuildLookupTable()
         { 
-            glyphIdLookupTable = new Dictionary<int, IGlyph>();
+            _glyphIdLookupTable = new Dictionary<int, IGlyph>();
             foreach (IGlyph glyph in GlyphDefs)
             {
-                glyphIdLookupTable.Add(glyph.Id, glyph);
+                _glyphIdLookupTable.Add(glyph.Id, glyph);
             }
         }
 
@@ -418,10 +418,10 @@ namespace GlyphicsLibrary.Language
         {
             if (id < 0 || id >= GlyphDefs.Length) return null;
 
-            if (glyphIdLookupTable == null)
+            if (_glyphIdLookupTable == null)
                 BuildLookupTable();
 
-            return (glyphIdLookupTable.ContainsKey(id)) ? glyphIdLookupTable[id] : null;
+            return (_glyphIdLookupTable.ContainsKey(id)) ? _glyphIdLookupTable[id] : null;
         }
 
         //Return an array of all the glyphs

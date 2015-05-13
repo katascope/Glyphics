@@ -9,11 +9,8 @@ Redistribution and use in source and binary forms, with or without modification,
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #endregion
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GlyphicsLibrary.ByteGrid
 {
@@ -106,7 +103,7 @@ namespace GlyphicsLibrary.ByteGrid
                     Footer + "\r\n";
                 //Console.WriteLine(str);
 
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(filename))
+                using (var file = new System.IO.StreamWriter(filename))
                 {
                     file.WriteLine(str);
                 }
@@ -312,18 +309,18 @@ namespace GlyphicsLibrary.ByteGrid
 
                 _nodeid = 1;
 
-                ColladaScene scene = new ColladaScene();
+                var scene = new ColladaScene();
                 scene.Id = _nodeid++;
 
-                Collada collada = new Collada();
+                var collada = new Collada();
                 collada.Scenes.Add(scene);
 
                 foreach (ulong rgba in palette)
                 {
-                    ColladaEffect effect = new ColladaEffect();
+                    var effect = new ColladaEffect();
                     Atomics.Converter.Ulong2Rgba(rgba, out effect.R, out effect.G, out effect.B, out effect.A);
 
-                    ColladaMaterial material = new ColladaMaterial();
+                    var material = new ColladaMaterial();
                     material.Id = _nodeid++;
                     effect.Id = _nodeid++;
                     material.Url = effect.Id;
@@ -335,7 +332,7 @@ namespace GlyphicsLibrary.ByteGrid
 
                 foreach (IRect rect in rects)
                 {
-                    ColladaGeometry geom = new ColladaGeometry();
+                    var geom = new ColladaGeometry();
                     geom.Id = _nodeid++;
                     geom.PositionId = _nodeid++;
                     geom.NormalId = _nodeid++;

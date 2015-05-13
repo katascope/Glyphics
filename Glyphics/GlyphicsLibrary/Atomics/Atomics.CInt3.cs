@@ -15,9 +15,9 @@ namespace GlyphicsLibrary.Atomics
     //Implemention of Int3
     internal class CInt3 : IInt3
     {
-        public int v1 { get; set; }
-        public int v2 { get; set; }
-        public int v3 { get; set; }
+        public int V1 { get; set; }
+        public int V2 { get; set; }
+        public int V3 { get; set; }
 
         //Defauit constructor
         public CInt3()
@@ -27,13 +27,13 @@ namespace GlyphicsLibrary.Atomics
         //Assignment constructor
         public CInt3(int nv1, int nv2, int nv3)
         {
-            v1 = nv1; v2 = nv2; v3 = nv3;
+            V1 = nv1; V2 = nv2; V3 = nv3;
         }
 
         //Readable description
         public override string ToString()
         {
-            return "(" + (int)v1 + "," + (int)v2 + "," + (int)v3 + ")";
+            return "(" + V1 + "," + V2 + "," + V3 + ")";
         }
     }
 }
