@@ -1,0 +1,10 @@
+.columnLeft, .columRight {
+ width: 33%;
+ float: left;
+ margin: 10px;
+}
+.columnMiddle {
+ width: 33%;
+ float: left;
+ margin: 10px;
+}

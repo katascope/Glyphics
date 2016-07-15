@@ -60,6 +60,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinGlyphics", "Glyphics\App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfGlyphics", "Glyphics\Apps\WpfGlyphics\WpfGlyphics.csproj", "{49878D2F-3F4D-478C-9EAF-A7B9BFBCBCA7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JavascriptWebGLSDeserializer", "JavascriptWebGLSDeserializer", "{2BB3ED4C-90C9-4569-9503-E74009994AA2}"
+	ProjectSection(SolutionItems) = preProject
+		JavascriptWebGLSDeserializer\cube.html = JavascriptWebGLSDeserializer\cube.html
+		JavascriptWebGLSDeserializer\deserializer.html = JavascriptWebGLSDeserializer\deserializer.html
+		JavascriptWebGLSDeserializer\deserializerText.html = JavascriptWebGLSDeserializer\deserializerText.html
+		JavascriptWebGLSDeserializer\editor.html = JavascriptWebGLSDeserializer\editor.html
+		JavascriptWebGLSDeserializer\flow.html = JavascriptWebGLSDeserializer\flow.html
+		JavascriptWebGLSDeserializer\index.html = JavascriptWebGLSDeserializer\index.html
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{0E8BC98D-0E43-4670-8791-BC415D42220D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -324,6 +336,18 @@ Global
 		{49878D2F-3F4D-478C-9EAF-A7B9BFBCBCA7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{49878D2F-3F4D-478C-9EAF-A7B9BFBCBCA7}.Release|x64.ActiveCfg = Release|Any CPU
 		{49878D2F-3F4D-478C-9EAF-A7B9BFBCBCA7}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Release|x64.ActiveCfg = Release|Any CPU
+		{0E8BC98D-0E43-4670-8791-BC415D42220D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -333,6 +357,8 @@ Global
 		{586817B9-2B40-4F8F-8F2D-99848360546D} = {7C05E5CE-EDCE-445D-AE4C-902A8F41EDDB}
 		{590D1B19-21CF-4D0F-AC24-744DB24830CB} = {7C05E5CE-EDCE-445D-AE4C-902A8F41EDDB}
 		{076D61E0-8008-4446-8B61-6546283D0D09} = {7C05E5CE-EDCE-445D-AE4C-902A8F41EDDB}
+		{2BB3ED4C-90C9-4569-9503-E74009994AA2} = {7C05E5CE-EDCE-445D-AE4C-902A8F41EDDB}
+		{0E8BC98D-0E43-4670-8791-BC415D42220D} = {7C05E5CE-EDCE-445D-AE4C-902A8F41EDDB}
 		{BFDA3A75-714F-4509-856E-39FACAB25409} = {586817B9-2B40-4F8F-8F2D-99848360546D}
 		{FFD4146C-062C-401C-A7F0-6944E8375595} = {586817B9-2B40-4F8F-8F2D-99848360546D}
 		{42860F88-3F4C-4321-AECD-8184D214AA57} = {586817B9-2B40-4F8F-8F2D-99848360546D}
