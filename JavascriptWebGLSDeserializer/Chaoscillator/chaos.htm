@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Fractal</title>
+    <style type="text/css"><!--
+      #container { position: relative; }
+      #imageView { border: 1px solid #000; }
+      #imageTemp { position: absolute; top: 1px; left: 1px; }
+    --></style>
+  </head>
+  <body>
+     <button id="directuse">QuickCode</button>
+     <input name="direct" type="text" value="(x*y)/16@000000:00FF00:000000:FF00FF:000000" size="150"><br>
+     ^255 - Inverts<BR>
+     (x-256)/2@000000:FF0000:000000:FFFF00:000000:00FF00:000000:00FFFF:000000:0000FF:000000:FF00FF:000000 - full palette<Br>
+     (x*y)/16@000000:00FF00:000000:FF00FF:000000 - star in purple/violet<br>
+     Math.sqrt(Math.abs(x))*128@000000:00FFFF:000000:FF0000:000000 - hyperlines in red/cyan, (x+y)/4+Math.random()*32@FFFFFF:0000FF:000000:0000FF:FFFFFF - fuzzy blue and white bar<br><br>
+     (x * x + y * y) - Circles, (x * x & y * y) - Blocks, (x * x | y * y) - Grids, (x * x ^ y * y) - Checkers<br>
+     Math.sqrt(y)*256@000000:FFFFFF:000000 - Gray plane<br>
+     (x&y)/256@EEEEEE:FF7F00 - single orange serpinski on off-white<br>
+     (x|y)/130@000000:00FF00 - triple serpinski with black to green<br>
+     255^( x % (y+1) ) / 5 <br>
+    <p>
+    <button id="zoomout">Out</button>
+    <button id="zoomin">In</button>
+    <button id="invert">Invert</button>
+    <button id="calc">Calc</button>
+    <input name="equation" type="text" value=" (x&y)/256 " size="50"><input name="gradient" type="text" value="000000:FFFFFF" size="150"><br>
+    <div id="container">
+      <canvas id="imageView" width="512" height="544">
+        <p>This application requies HTML5.</p>
+      </canvas>
+    </div>
+    <script type="text/javascript" src="chaoscillator.js"></script>
+    <script type="text/javascript" src="chaos_html5.js"></script>
+  </body>
+</html>
